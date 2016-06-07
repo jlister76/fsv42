@@ -11,7 +11,7 @@ module.exports = function(Employee) {
     var arch = os.arch();
     var networkxfaces = os.networkInterfaces();
 
-    cb(null,{plat: platform, type: osType, release: osRelease, host: hostname, arc: arch, iface: networkxfaces});
+    cb(null,{plat: platform, type: osType, OSVersion: osRelease, host: hostname, arc: arch, iface: networkxfaces});
   };
 
   Employee.remoteMethod('os',
@@ -29,7 +29,7 @@ module.exports = function(Employee) {
    files.map(function (file) {
    return path.join(p, file);
    }).forEach(function (file) {
-   console.log(file, path.extname(file));
+   console.log(file); //path.extname(file)
    });
    cb(null, files);
    })

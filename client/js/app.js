@@ -16,6 +16,12 @@
           templateUrl: '../views/main.html',
           authenticate: true
         })
+        .state('confirm-update', {
+          controller: 'UpdateController',
+          url: '/confirm-update',
+          templateUrl: '../views/confirm-install.html',
+          authenticate: true
+        })
         .state('forbidden', {
           url: '/forbidden',
           templateUrl: '../views/forbidden.html',
