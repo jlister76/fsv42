@@ -2,7 +2,7 @@
   'use strict';
   angular
     .module('logInApp')
-    .controller('UpdateController', function ($scope, AuthService, $rootScope, $state, $http){
+    .controller('ConfirmationController', function ($scope, AuthService, $rootScope, $state, $http, Confirmation){
 
       //directs to log-in
       $scope.authenticated = AuthService.isAuthenticated();
@@ -34,9 +34,22 @@
                   console.log ($scope.files[i]);
                   if ($scope.files[i] == $scope.os.host+".json")
                   {
-                    $scope.confirmation = "Congratulations, your installation is successful.";
+                    var email = localStorage.getItem("email");
+                    var fname = localStorage.getItem("username");
+                    var lname = null;
+                    var state = "TX";
+                    var division = "DIV43";
+                    var date = new Date().getDate();
+                    Confirmation
+                      .create({lastUpdate:date, email: email, fname: fname, lname: lname, state: state, division: division})
+                      .$promise
+                      .then(function(){
+                        $scope.confirmation = "Congratulations, your installation was successful."
+                      })
+
+
                   } else{
-                    $scope.confirmation = "We are unable to confirm your installation at this time.";
+                    $scope.confirmation = "We are unable to confirm your installation at this time. Please try re-installing or report an issue";
                   }
                   var confirmUpdate = function(os){
 

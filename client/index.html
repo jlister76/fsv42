@@ -22,9 +22,12 @@
 <header layout="row">
   <md-toolbar layout layout-align="space-around center" style="background-color: #00274e; color: rgb(60, 161, 255);">
     <div>
-      <h3 ng-show="currentUser" class="title">Welcome, {{ currentUser.email }}</h3>
+      <p ng-show="currentUser" class="display-2">Welcome, {{ currentUser.email }}</p>
     </div>
     <div layout layout>
+      <md-button ng-show="currentUser" ui-sref="download" class="md-padding">Downloads</md-button>
+      <md-button ng-show="currentUser" ui-sref="confirm-update" class="md-padding">Confirm Update</md-button>
+      <md-button ng-show="currentUser" ui-sref="#" class="md-padding">Report Issue</md-button>
       <md-button ng-show="currentUser" ui-sref="logout" class="md-padding">Log Out</md-button>
     </div>
   </md-toolbar>
@@ -52,10 +55,10 @@
 <!-- Your application bootstrap  -->
 <script src="js/app.js"></script>
 <script src="js/lb-services.js"></script>
-<script src="js/mainController.js"></script>
+<script src="js/downloadController.js"></script>
 <script src="auth/authController.js"></script>
 <script src="auth/authService.js"></script>
-<script src="update/updateController.js"></script>
+<script src="update/confirmationController.js"></script>
 
 </body>
 </html>

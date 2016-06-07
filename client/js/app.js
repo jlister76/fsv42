@@ -10,14 +10,14 @@
     ])
     .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
       $stateProvider
-        .state('main', {
-          controller: 'MainController',
-          url: '/main',
-          templateUrl: '../views/main.html',
+        .state('download', {
+          controller: 'DownloadController',
+          url: '/download',
+          templateUrl: '../views/download.html',
           authenticate: true
         })
         .state('confirm-update', {
-          controller: 'UpdateController',
+          controller: 'ConfirmationController',
           url: '/confirm-update',
           templateUrl: '../views/confirm-install.html',
           authenticate: true
@@ -38,7 +38,7 @@
           controller: 'AuthLogoutController',
           authenticate: true
         });
-      $urlRouterProvider.otherwise('main');
+      $urlRouterProvider.otherwise('download');
 
       $httpProvider.interceptors.push(function ($q, $location, LoopBackAuth) {
         return {

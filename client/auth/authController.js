@@ -3,7 +3,7 @@
 
   angular
     .module('logInApp')
-    .controller('AuthLoginController', function ($scope, $state, AuthService, $location, $log) {
+    .controller('AuthLoginController', function ($scope, $state, AuthService, $location, $log, Employee) {
 
       $scope.user = {
         email: null,
@@ -23,16 +23,28 @@
             var next = $location.nextAfterLogin || '/';
             $location.nextAfterLogin = null;
             $location.path(next);
-            //$state.go('main');
+            $state.go('download');
+            Employee.getCurrent()
+              .$promise
+              .then(function (user){
+                localStorage.setItem("email", user.email);
+                localStorage.setItem("employee_number", user.employee_number);
+                localStorage.setItem("username", user.username);
+                console.log(user);
+              });
+
+            //localStorage.setItem("fname", currentUser.fname);
           })
       };
     })
     .controller('AuthLogoutController', function ($scope, $state, AuthService) {
 
       AuthService.logout()
-        .then(function () {
-          $state.go('login');
+        .then(function(){
+          $state.go('login')
         });
+
+
     })
     .controller('AuthSignUpController', function ($scope, $state, AuthService) {
 

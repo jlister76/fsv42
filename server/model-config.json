@@ -36,5 +36,13 @@
   "employee": {
     "dataSource": "db",
     "public": true
+  },
+  "container": {
+    "dataSource": "storage",
+    "public": false
+  },
+  "confirmation": {
+    "dataSource": "db",
+    "public": true
   }
 }

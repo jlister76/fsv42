@@ -2,7 +2,7 @@
   'use strict';
   angular
     .module('logInApp')
-    .controller('MainController', function ($scope, AuthService, $rootScope, $state, $http){
+    .controller('DownloadController', function ($scope, AuthService, $rootScope, $state, $http){
 
       //directs to log-in
       $scope.authenticated = AuthService.isAuthenticated();

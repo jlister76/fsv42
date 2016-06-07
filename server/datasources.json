@@ -3,5 +3,10 @@
     "name": "db",
     "connector": "memory",
     "file": "db.json"
+  },
+  "storage": {
+    "name": "storage",
+    "connector": "loopback-component-storage",
+    "provider": "amazon"
   }
 }
