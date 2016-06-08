@@ -1,0 +1,35 @@
+{
+  "name": "confirmation",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "lastUpdated": {
+      "type": "date"
+    },
+    "version": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "fname": {
+      "type": "string"
+    },
+    "lname": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "division": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
