@@ -4,8 +4,8 @@
     <h3>FSV42 Update</h3>
   </div>
 
-  <div>
-    <form name="confirmationForm" ng-submit="#">
+  <div ng-if="msgStatus == 0">
+    <form name="confirmationForm" ng-submit="confirm()">
       <md-input-container style="margin: 20px 10px 40px 10px;">
         <span class="md-subhead">* <i>Required</i></span>
         <label>Update version:</label>
@@ -17,6 +17,9 @@
         <md-button class="md-raised md-primary" type="submit" ng-disabled="confirmationForm.$invalid" style="color:white; width: 330px; height:60px">Confirm Installation</md-button>
       </div>
     </form>
+  </div>
+  <div ng-if="msgStatus==1">
+    <p>{{ confirmation }}</p>
   </div>
   <div layout layout-align="center center"device-detector>
     {{ data.os_version }}

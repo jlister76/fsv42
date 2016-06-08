@@ -3,7 +3,7 @@
   angular
     .module('logInApp')
     .controller('ConfirmationController', function ($scope, AuthService, $rootScope, $state, $http, Confirmation,deviceDetector){
-
+      $scope.msgStatus = 0;
       //directs to log-in
       $scope.authenticated = AuthService.isAuthenticated();
       $scope.getCurrent = function () {
@@ -20,53 +20,26 @@
       $scope.data = deviceDetector;
       $scope.allData = JSON.stringify($scope.data, null, 2);
       $scope.deviceDetector=deviceDetector;
-      $scope.updateVer = ['5.23.2016'];
+      $scope.updateVer = ['5.23.2016']; //TODO: store update versions in db and return an array of versions.
 
-      //Get OS data from user
-      $http.get('api/employees/os')
-        .success(function(os){$scope.os = os.OSystem; console.log($scope.os)})
-        .then(function(){
-          console.info($scope.os.host);
-          //confirmUpdate($scope.os.host);
-        } )
-        .then(
-          function(){
-            console.info($scope.os.host);
-            $http.get('api/employees/dir').success(function(f){$scope.files = f.Dirs; console.info($scope.files)})
-              .then(function (files){
-                for (var i =0; i < $scope.files.length; i++) {
-                  console.log ($scope.files[i]);
-                  if ($scope.files[i] == $scope.os.host+".json")
-                  {
-                    var email = localStorage.getItem("email");
-                    var fname = localStorage.getItem("username");
-                    var lname = null;
-                    var state = "TX";
-                    var division = "DIV43";
-                    var date = new Date().getDate();
-                    Confirmation
-                      .create({lastUpdate:date, email: email, fname: fname, lname: lname, state: state, division: division})
-                      .$promise
-                      .then(function(){
-                        $scope.confirmation = "Congratulations, your installation was successful."
-                      })
+      $scope.confirm = function (updaetVer){
+        //submit confirmation
 
-
-                  } else{
-                    $scope.confirmation = "We are unable to confirm your installation at this time. Please try re-installing or report an issue";
-                  }
-                  var confirmUpdate = function(os){
-
-                  };
-                }
-              })
-          }
-
-        );
-
-
-
-
+        var email = localStorage.getItem("email");
+        var fname = localStorage.getItem("fname");
+        var lname = localStorage.getItem(("lname"));
+        var state = localStorage.getItem(("state"));
+        var division = localStorage.getItem(("division"));
+        var date = new Date();
+        Confirmation
+          .upsert({version:$scope.updateVer ,lastUpdate:date, email: email, fname: fname, lname: lname, state: state, division: division})
+          .$promise
+          .then(function(){
+            console.log("Confirmation saved");
+            $scope.msgStatus = 1;
+            $scope.confirmation = "Thank you. Your insallation has been confirmed."
+          })
+      };
 
 
     })

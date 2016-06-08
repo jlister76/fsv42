@@ -8,6 +8,18 @@
   "properties": {
     "employee_number": {
       "type": "string"
+    },
+    "fname": {
+      "type": "string"
+    },
+    "lname": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "division": {
+      "type": "string"
     }
   },
   "validations": [],

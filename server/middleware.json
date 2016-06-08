@@ -1,8 +1,6 @@
 {
   "initial:before": {
-    "loopback#favicon": {
-
-    }
+    "loopback#favicon": {}
   },
   "initial": {
     "compression": {},
