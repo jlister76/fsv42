@@ -2,7 +2,7 @@
   'use strict';
   angular
     .module('logInApp')
-    .controller('ConfirmationController', function ($scope, AuthService, $rootScope, $state, $http, Confirmation){
+    .controller('ConfirmationController', function ($scope, AuthService, $rootScope, $state, $http, Confirmation,deviceDetector){
 
       //directs to log-in
       $scope.authenticated = AuthService.isAuthenticated();
@@ -17,6 +17,10 @@
 
       };
       $scope.getCurrent();
+      $scope.data = deviceDetector;
+      $scope.allData = JSON.stringify($scope.data, null, 2);
+      $scope.deviceDetector=deviceDetector;
+      $scope.updateVer = ['5.23.2016'];
 
       //Get OS data from user
       $http.get('api/employees/os')

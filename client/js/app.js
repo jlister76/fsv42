@@ -6,20 +6,21 @@
         'ui.router',
         'lbServices',
         'ngMaterial',
-        'ngMessages'
+        'ngMessages',
+      'ng.deviceDetector'
     ])
     .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
       $stateProvider
         .state('download', {
           controller: 'DownloadController',
           url: '/download',
-          templateUrl: '../views/download.html',
+          templateUrl: '../downloads/download.html',
           authenticate: true
         })
         .state('confirm-update', {
           controller: 'ConfirmationController',
           url: '/confirm-update',
-          templateUrl: '../views/confirm-install.html',
+          templateUrl: '../confirms/confirm-install.html',
           authenticate: true
         })
         .state('forbidden', {

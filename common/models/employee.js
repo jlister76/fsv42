@@ -3,7 +3,8 @@ module.exports = function(Employee) {
       fs = require('fs'),
       path = require('path');
 
-  Employee.os = function (cb){
+
+    Employee.os = function (cb){
     var platform = os.platform();
     var osType = os.type();
     var osRelease = os.release();
@@ -11,7 +12,8 @@ module.exports = function(Employee) {
     var arch = os.arch();
     var networkxfaces = os.networkInterfaces();
 
-    cb(null,{plat: platform, type: osType, OSVersion: osRelease, host: hostname, arc: arch, iface: networkxfaces});
+
+      cb(null,{plat: platform, type: osType, OSVersion: osRelease, host: hostname, arc: arch, iface: networkxfaces});
   };
 
   Employee.remoteMethod('os',

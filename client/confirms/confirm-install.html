@@ -1,0 +1,26 @@
+<div layout="column" class="md-padding"
+     style="margin-top: 8rem; background-color: whitesmoke; border: solid thin whitesmoke; border-radius: 5px;">
+  <div layout layout-align="center">
+    <h3>FSV42 Update</h3>
+  </div>
+
+  <div>
+    <form name="confirmationForm" ng-submit="#">
+      <md-input-container style="margin: 20px 10px 40px 10px;">
+        <span class="md-subhead">* <i>Required</i></span>
+        <label>Update version:</label>
+        <md-select ng-model="update.version" required>
+          <md-option ng-repeat="ver in updateVer" value="{{ver}}">{{ver}}</md-option>
+        </md-select>
+      </md-input-container>
+      <div>
+        <md-button class="md-raised md-primary" type="submit" ng-disabled="confirmationForm.$invalid" style="color:white; width: 330px; height:60px">Confirm Installation</md-button>
+      </div>
+    </form>
+  </div>
+  <div layout layout-align="center center"device-detector>
+    {{ data.os_version }}
+  </div>
+</div>
+
+</div>

@@ -589,7 +589,7 @@ module.factory(
          * The number of instances updated
          */
         "updateAll": {
-          url: urlBase + "/Users/update",
+          url: urlBase + "/Users/confirms",
           method: "POST"
         },
 
@@ -1680,7 +1680,7 @@ module.factory(
          * The number of instances updated
          */
         "updateAll": {
-          url: urlBase + "/employees/update",
+          url: urlBase + "/employees/confirms",
           method: "POST"
         },
 
@@ -2589,7 +2589,7 @@ module.factory(
          * The number of instances updated
          */
         "updateAll": {
-          url: urlBase + "/confirmations/update",
+          url: urlBase + "/confirmations/confirms",
           method: "POST"
         },
 
