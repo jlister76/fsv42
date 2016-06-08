@@ -44,5 +44,9 @@
   "confirmation": {
     "dataSource": "db",
     "public": true
+  },
+  "IssueReport": {
+    "dataSource": "db",
+    "public": true
   }
 }

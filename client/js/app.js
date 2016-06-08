@@ -17,7 +17,7 @@
           templateUrl: '../downloads/download.html',
           authenticate: true
         })
-        .state('issue', {
+        .state('issue-report', {
           controller: 'IssueReportController',
           url: '/report-issue',
           templateUrl: '../issue-reports/issue-report.html',

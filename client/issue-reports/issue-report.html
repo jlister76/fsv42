@@ -1,1 +1,18 @@
 <!--HTML Here-->
+<div layout="row">
+  <form layout="column">
+    <md-input-contianer style="margin: 20px 10px 40px 10px;">
+      <span class="md-subhead">* <i>Required</i></span>
+      <label>Select Issue:</label>
+      <md-select ng-model="issueReport" required>
+        <md-option ng-repeat="reason in issueType" value="{{reason}}">{{reason}}</md-option>
+      </md-select>
+    </md-input-contianer>
+    <textarea name="comments" id="comments" cols="30" rows="10"></textarea>
+    <div>
+      <md-button type="submit">Submit</md-button>
+    </div>
+</form>
+
+</div>
+
