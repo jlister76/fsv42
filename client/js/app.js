@@ -17,6 +17,12 @@
           templateUrl: '../downloads/download.html',
           authenticate: true
         })
+        .state('issue', {
+          controller: 'IssueReportController',
+          url: '/report-issue',
+          templateUrl: '../issue-reports/issue-report.html',
+          authenticate: true
+        })
         .state('confirm-update', {
           controller: 'ConfirmationController',
           url: '/confirm-update',
