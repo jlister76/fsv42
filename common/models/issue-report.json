@@ -1,0 +1,32 @@
+{
+  "name": "IssueReport",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "fname": {
+      "type": "string"
+    },
+    "lname": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "createdAT": {
+      "type": "date"
+    },
+    "issue": {
+      "type": "string"
+    },
+    "comments": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
