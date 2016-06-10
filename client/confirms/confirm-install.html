@@ -14,7 +14,7 @@
         </md-select>
       </md-input-container>
       <div>
-        <md-button class="md-raised md-primary" type="submit" ng-disabled="confirmationForm.$invalid" style="color:white; width: 330px; height:60px">Confirm Installation</md-button>
+        <md-button class="md-raised md-primary" type="submit" ng-disabled="confirmationForm.$invalid" style="color:white; width: 330px; height:45px">Confirm Installation</md-button>
       </div>
     </form>
   </div>
@@ -22,8 +22,10 @@
     <p>{{ confirmation }}</p>
   </div>
   <div layout layout-align="center center"device-detector>
+    <div id="demo">
+      {{ location }}
+    </div>
+
     {{ data.os_version }}
   </div>
-</div>
-
 </div>

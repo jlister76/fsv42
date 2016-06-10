@@ -3,9 +3,9 @@
     <p class="md-subhead">Please log-in to download Field Smart updates or to confirm your update installation.</p>
   </div>
   <div layout layout-align="center center">
-    <form layout layout-align="center center" name="loginForm" ng-submit="login()" style="border: solid 1px rgb(223, 223, 223); border-radius: 5px; color: rgb(53, 120, 201);">
-      <div layout="row" layout-align="center center" class="md-padding"
-           style="border: solid thin rgb(211, 217, 221); border-radius:2%;">
+    <form layout="row" layout-align="center center" name="loginForm" class="md-whiteframe-1" ng-submit="login()" style="border-radius: 1.2px; color: rgb(53, 120, 201);">
+      <div layout="column" layout-align="center center" class="md-padding"
+           style="border: solid thin rgb(230, 230, 230); border-radius:2%; width:600px;">
         <!--<legend>Credentials</legend>-->
         <md-input-container>
           <label for="email">Email</label>
@@ -15,7 +15,7 @@
           <label for="password">Password</label>
           <input type="password" ng-model="user.password" id="password">
         </md-input-container>
-        <span ng-show="err" style="color: coral">Invalid Username and/or password. Please try again.</span>
+        <div ng-show="err" style="color: coral">Invalid Username and/or password. Please try again.</div>
         <div>
           <md-button type="submit">Log In</md-button>
         </div>

@@ -22,7 +22,8 @@
       $scope.deviceDetector=deviceDetector;
       $scope.updateVer = ['5.23.2016']; //TODO: store update versions in db and return an array of versions.
 
-      $scope.confirm = function (updaetVer){
+      $scope.location = getLocation();
+      $scope.confirm = function (updateVer){
         //submit confirmation
 
         var email = localStorage.getItem("email");
@@ -38,7 +39,8 @@
             console.log("Confirmation saved");
             $scope.msgStatus = 1;
             $scope.confirmation = "Thank you. Your insallation has been confirmed."
-          })
+          });
+       
       };
 
 

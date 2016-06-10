@@ -23,7 +23,7 @@
             var next = $location.nextAfterLogin || '/';
             $location.nextAfterLogin = null;
             $location.path(next);
-            $state.go('/');
+
             Employee.getCurrent()
               .$promise
               .then(function (user){
