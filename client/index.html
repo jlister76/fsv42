@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body layout="column" ng-app="logInApp" ng-cloak>
-<div class="contaier" style="height: 100vh"><header layout="row">
+<div class="contaier" ><header layout="row">
   <md-toolbar layout layout-align="space-around center" style="background-color: #00274e; color: rgb(60, 161, 255);">
     <div>
       <p ng-show="currentUser" class="display-2">Welcome, {{ currentUser.email }}</p>
@@ -33,10 +33,8 @@
   </md-toolbar>
 
 </header>
-<main layout layout-align="center" ui-view ng-cloak></main>
-<footer layout layout-align="center start" device-detector="">
-
-
+<main layout layout-align="center start" ui-view ng-cloak class="md-padding" style="background-color:#00c1d5;"></main>
+<footer>
 </footer>
 </div>
 <!-- geolocation -->

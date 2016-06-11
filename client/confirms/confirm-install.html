@@ -1,12 +1,12 @@
 <div layout="column" class="md-padding"
-     style=" height:100vh; margin-top: 8rem; background-color: whitesmoke; border: solid thin whitesmoke; border-radius: 5px;">
+     style="margin: 4rem 0; background-color: whitesmoke; border: solid thin whitesmoke; border-radius: 5px;">
   <div layout layout-align="center">
     <h3>FSV42 Update</h3>
   </div>
 
   <div ng-if="msgStatus == 0">
     <form name="confirmationForm" ng-submit="confirm()">
-      <md-input-container style="margin: 20px 10px 40px 10px;">
+      <md-input-container>
         <span class="md-subhead">* <i>Required</i></span>
         <label>Update version:</label>
         <md-select ng-model="update.version" required>
@@ -28,8 +28,5 @@
         <p>Operating System: {{ data.os_version }}</p>
 
   </div>
-
-
-
 
 </div>
