@@ -41,10 +41,10 @@
       $scope.data = deviceDetector;
       $scope.allData = JSON.stringify($scope.data, null, 2);
       $scope.deviceDetector=deviceDetector;
-      $scope.updateVer = ['5.23.2016']; //TODO: store update versions in db and return an array of versions.
+      $scope.updateVersion = ['5.23.2016', '6.1.2016']; //TODO: store update versions in db and return an array of versions.
 
 
-      $scope.confirm = function (updateVer){
+      $scope.confirm = function (version){
         //submit confirmation
 
         var email = localStorage.getItem("email");
@@ -54,7 +54,7 @@
         var division = localStorage.getItem(("division"));
         var date = new Date();
         Confirmation
-          .upsert({version:$scope.updateVer ,lastUpdate:date, email: email, fname: fname, lname: lname, state: state, division: division})
+          .upsert({version: version ,lastUpdate:date, email: email, fname: fname, lname: lname, state: state, division: division})
           .$promise
           .then(function(){
             console.log("Confirmation saved");

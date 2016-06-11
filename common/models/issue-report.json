@@ -23,6 +23,9 @@
     },
     "comments": {
       "type": "string"
+    },
+    "version": {
+      "type": "string"
     }
   },
   "validations": [],

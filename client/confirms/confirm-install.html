@@ -5,12 +5,12 @@
   </div>
 
   <div ng-if="msgStatus == 0">
-    <form name="confirmationForm" ng-submit="confirm()">
+    <form name="confirmationForm" ng-submit="confirm(update.version)">
       <md-input-container>
         <span class="md-subhead">* <i>Required</i></span>
         <label>Update version:</label>
         <md-select ng-model="update.version" required>
-          <md-option ng-repeat="ver in updateVer" value="{{ver}}">{{ver}}</md-option>
+          <md-option ng-repeat="version in updateVersion" value="{{version}}">{{version}}</md-option>
         </md-select>
       </md-input-container>
       <div>
@@ -24,8 +24,8 @@
 
   <div layout="column" layout-align="center center" device-detector>
     <p id="demo">Getting location...</p>
-        <p> {{ data.os }}</p>
-        <p>Operating System: {{ data.os_version }}</p>
+        <p>Operating System: {{ data.os }}</p>
+        <p>Version: {{ data.os_version }}</p>
 
   </div>
 
