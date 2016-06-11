@@ -21,11 +21,13 @@
   <div ng-if="msgStatus==1">
     <p>{{ confirmation }}</p>
   </div>
-  <div layout layout-align="center center"device-detector>
-    <div id="demo">
-      {{ location }}
-    </div>
 
-    {{ data.os_version }}
+  <div layout="column" layout-align="center center" device-detector>
+    <p id="demo">Getting location...</p>
+        <p>Operating System: {{ data.os_version }}</p>
   </div>
+
+
+
+
 </div>

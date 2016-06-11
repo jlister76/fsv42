@@ -17,12 +17,33 @@
 
       };
       $scope.getCurrent();
+      //get Location stuff
+      var x = angular.element( document.querySelectorAll( '#demo' ) );
+      x.append('This was added');
+
+      $scope.getLocation = function() {
+
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+          x.html = "Geolocation is not supported by this browser.";
+        }
+      };
+
+      function showPosition(position) {
+        console.info(position.coords.longitude+","+position.coords.latitude);
+        var html = "Latitude: " + position.coords.latitude +
+          "<br>Longitude: " + position.coords.longitude;
+        x.html(html);
+      }
+      $scope.getLocation();
+      //EOS
       $scope.data = deviceDetector;
       $scope.allData = JSON.stringify($scope.data, null, 2);
       $scope.deviceDetector=deviceDetector;
       $scope.updateVer = ['5.23.2016']; //TODO: store update versions in db and return an array of versions.
 
-      $scope.location = getLocation();
+
       $scope.confirm = function (updateVer){
         //submit confirmation
 
@@ -40,7 +61,7 @@
             $scope.msgStatus = 1;
             $scope.confirmation = "Thank you. Your insallation has been confirmed."
           });
-       
+
       };
 
 
