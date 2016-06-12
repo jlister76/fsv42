@@ -25,7 +25,7 @@
       ng-controller="DownloadController"
       class="ng-cloak {xs: $mdMedia('xs'), sm: $mdMedia('sm'), md: $mdMedia('md'), lg: $mdMedia('lg')}">
 
-  <md-toolbar layout layout-align="space-between center" style="background-color: #00274e; color: rgb(60, 161, 255);">
+  <md-toolbar layout layout-align="space-between center" layout-xs layout-align-xs="center center" style="background-color: #00274e; color: rgb(60, 161, 255);">
     <div hide-xs hide-sm>
       <p ng-show="currentUser" class="display-2">Welcome, {{ currentUser.email }}</p>
     </div>
@@ -34,6 +34,10 @@
       <md-button ng-show="currentUser" ui-sref="confirm-update" class="md-padding">Confirm Update</md-button>
       <md-button ng-show="currentUser" ui-sref="report-issue" class="md-padding">Report Issue</md-button>
       <md-button ng-show="currentUser" ui-sref="logout" class="md-padding">Log Out</md-button>
+    </div>
+    <div flex layout layout-align="center center" hide-gt-xs>
+
+        <img flex="60" src="http://heathus.com/wp-content/uploads/hc-logo.png" alt="logo">
     </div>
   </md-toolbar>
 
@@ -60,7 +64,7 @@
   <main layout layout-align="center start" ui-view ng-cloak class="md-padding" style="background-color:white;"></main>
 </div>
 
-<footer hide-sm hide-gt-xs layout layout-align="space-around center"  class="md-padding">
+<footer ng-show="currentUser" hide-sm hide-gt-xs layout layout-align="space-around center"  class="md-padding">
   <!-- to keep the menu item to the right it should appear last -->
   <button ng-show="currentUser" ui-sref="download" hide-sm hide-gt-xs class="md-caption" style="background-color: transparent; border: none;">
     <div layout="column" layout-align="start">

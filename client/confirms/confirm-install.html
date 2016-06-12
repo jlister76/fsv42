@@ -1,4 +1,4 @@
-<div layout="column" class="md-padding"
+<div flex="35" flex-xs="100" layout="column" class="md-padding"
      style="margin: 4rem 0; background-color: rgb(221, 221, 221); border: solid thin whitesmoke; border-radius: 5px;">
   <div layout layout-align="center">
     <h3>FSV42 Update</h3>
@@ -6,15 +6,15 @@
 
   <div ng-if="msgStatus == 0">
     <form name="confirmationForm" ng-submit="confirm(update.version)">
-      <md-input-container>
+      <md-input-container layout="column" layout-align="center">
         <span class="md-subhead">* <i>Required</i></span>
         <label>Update version:</label>
         <md-select ng-model="update.version" required>
           <md-option ng-repeat="version in updateVersion" value="{{version}}">{{version}}</md-option>
         </md-select>
       </md-input-container>
-      <div>
-        <md-button class="md-raised md-primary" type="submit" ng-disabled="confirmationForm.$invalid" style=" color:white; width: 330px; height:45px">Confirm Installation</md-button>
+      <div layout layout-align="center">
+        <md-button class="md-raised md-primary" type="submit" ng-disabled="confirmationForm.$invalid" style=" color:white; width:250px; height:45px">Confirm Installation</md-button>
       </div>
     </form>
   </div>

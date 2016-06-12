@@ -17,7 +17,7 @@
 
       };
       $scope.getCurrent();
-
+      $scope.pageTitle = 'Downloads';
       $scope.openLeftMenu = function() {
         $mdSidenav('left').toggle();
       };
