@@ -29,11 +29,11 @@
     <div hide-xs hide-sm>
       <p ng-show="currentUser" class="display-2">Welcome, {{ currentUser.email }}</p>
     </div>
-    <div hide-xs layout layout>
+    <div hide-xs layout ng-controller="AuthLogoutController">
       <md-button ng-show="currentUser" ui-sref="download" class="md-padding">Downloads</md-button>
       <md-button ng-show="currentUser" ui-sref="confirm-update" class="md-padding">Confirm Update</md-button>
       <md-button ng-show="currentUser" ui-sref="report-issue" class="md-padding">Report Issue</md-button>
-      <md-button ng-show="currentUser" ui-sref="logout" class="md-padding">Log Out</md-button>
+      <md-button ng-show="currentUser" ng-click="logout()" class="md-padding">Log Out</md-button>
     </div>
     <div flex layout layout-align="center center" hide-gt-xs>
 
@@ -53,7 +53,7 @@
     <md-content>
       <md-list layout layout-align="center center">
         <md-list-item>
-          <md-button ng-show="currentUser" ui-sref="logout" layout="row" class="md-subhead" style="background-color: transparent; border: none;">
+          <md-button ng-show="currentUser" ng-click="logout()" layout="row" class="md-subhead" style="background-color: transparent; border: none;">
             <i class="material-icons">power_settings_new</i><span>Logout</span>
           </md-button>
         </md-list-item>
@@ -83,8 +83,6 @@
       Report Issue
     </div>
   </button>
-
-
   <button ng-show="currentUser" hide-sm hide-gt-xs ng-click="openLeftMenu()" class="md-caption" style="background-color: transparent; border: none;">
     <div layout="column" layout-align="start">
       <i class="material-icons">more_horiz</i>

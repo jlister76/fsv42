@@ -38,10 +38,9 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100vw;
-  height: 86px;
+  font-size: 12px;
+  height: 42px;
   background-color: rgb(221,221,221);
   border-top: solid thin #666666;
 }
-md-backdrop.md-sidenav-backdrop{
-  display:none
-}
+

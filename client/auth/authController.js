@@ -39,18 +39,12 @@
     })
     .controller('AuthLogoutController', function ($scope, $state, AuthService) {
 
-      AuthService.logout()
-        .then(function(){
-          $state.go('login');
-
-        });
-
-      /*$scope.logout = function () {
+     $scope.logout = function () {
         AuthService.logout()
           .then(function(){
             $state.go('login')
           });
-      };*/
+      };
 
 
     })
