@@ -13,18 +13,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <!-- Angular Material style sheet -->
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- Custom Font -->
+  <link href='https://fonts.googleapis.com/css?family=Lato|Lora|Ubuntu' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,700italic' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="css/main.css">
 </head>
-<body layout="column" ng-app="logInApp" ng-cloak>
-<div class="contaier" ><header layout="row">
-  <md-toolbar layout layout-align="space-around center" style="background-color: #00274e; color: rgb(60, 161, 255);">
-    <div>
+<body layout="column" ng-app="logInApp"
+      ng-cloak
+      ng-controller="DownloadController"
+      class="ng-cloak {xs: $mdMedia('xs'), sm: $mdMedia('sm'), md: $mdMedia('md'), lg: $mdMedia('lg')}">
+
+  <md-toolbar layout layout-align="space-between center" style="background-color: #00274e; color: rgb(60, 161, 255);">
+    <div hide-xs hide-sm>
       <p ng-show="currentUser" class="display-2">Welcome, {{ currentUser.email }}</p>
     </div>
-    <div layout layout>
+    <div hide-xs layout layout>
       <md-button ng-show="currentUser" ui-sref="download" class="md-padding">Downloads</md-button>
       <md-button ng-show="currentUser" ui-sref="confirm-update" class="md-padding">Confirm Update</md-button>
       <md-button ng-show="currentUser" ui-sref="report-issue" class="md-padding">Report Issue</md-button>
@@ -32,11 +37,60 @@
     </div>
   </md-toolbar>
 
-</header>
-<main layout layout-align="center start" ui-view ng-cloak class="md-padding" style="background-color:white;"></main>
-<footer>
-</footer>
+<div >
+
+  <md-sidenav hide-sm hide-gt-xs ng-show="currentUser" layout="column" class="md-sidenav-left" md-component-id="left"
+              style="background-color: #D3D9DD; color:#0E4DA0;">
+    <md-toolbar layout layout-align="end start" class="md-padding" style="height:10px!important;" >
+      <button ng-click='close()' style="background-color: transparent; border: none;">
+        <i class="material-icons">cancel</i>
+      </button>
+    </md-toolbar>
+    <md-content>
+      <md-list layout layout-align="center center">
+        <md-list-item>
+          <md-button layout="row" class="md-subhead but1" style="background-color: transparent; border: none;">
+
+            <i class="material-icons">power_settings_new</i><span>Logout</span>
+          </md-button>
+        </md-list-item>
+      </md-list>
+    </md-content>
+  </md-sidenav>
+  <main layout layout-align="center start" ui-view ng-cloak class="md-padding" style="background-color:white;"></main>
 </div>
+
+<footer hide-sm hide-gt-xs layout layout-align="space-around center"  class="md-padding">
+  <!-- to keep the menu item to the right it should appear last -->
+  <button ng-show="currentUser" ui-sref="download" hide-sm hide-gt-xs class="md-caption" style="background-color: transparent; border: none;">
+    <div layout="column" layout-align="start">
+      <i class="material-icons">file_download</i>
+      Downloads
+    </div>
+  </button>
+  <button ng-show="currentUser" ui-sref="confirm-update" hide-sm hide-gt-xs class="md-caption" style="background-color: transparent; border: none;">
+    <div layout="column" layout-align="start">
+      <i class="material-icons">done_all</i>
+      Confirm Update
+    </div>
+  </button>
+  <button ng-show="currentUser" ui-sref="report-issue" hide-sm hide-gt-xs class="md-caption" style="background-color: transparent; border: none;">
+    <div layout="column" layout-align="start">
+      <i class="material-icons">bug_report</i>
+      Report Issue
+    </div>
+  </button>
+
+
+  <button hide-sm hide-gt-xs ng-click="openLeftMenu()" class="md-caption" style="background-color: transparent; border: none;">
+    <div layout="column" layout-align="start">
+      <i class="material-icons">more_horiz</i>
+      More
+    </div>
+  </button>
+
+</footer>
+
 <!-- geolocation -->
 
 

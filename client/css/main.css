@@ -3,18 +3,42 @@
   templates compile.  The !important is important given that there may be
   other selectors that are more specific or come later and might alter display.
  */
+
+html { overflow:hidden; }
+
+.md-button[disabled] {
+  background-color: #d2d2d2!important;
+}
+.md-primary {
+  background-color:#34495E!important;
+}
 [ng\:cloak], [ng-cloak], .ng-cloak {
   display: none !important;
 }
-
-h1,h2,h3,h4,h5,h6,p,span {
-  font-family: 'Source Sans Pro', sans-serif;
+h1 {
+  font-family: 'Lora', sans-serif;
+}
+h2,h3,h4,h5,h6,p,span {
+  font-family: 'Ubuntu','Source Sans Pro', sans-serif;
 }
 
 body {
+  font-family: 'Ubuntu', sans-serif!important;
   background-color: white;
+  height:100%;
+  overflow:auto;
+
 }
 .md-button {border-bottom: thin solid transparent;}
 .md-button:hover {
   border-bottom: thin solid #d9d9d9;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  height: 86px;
+  background-color: rgb(221,221,221);
+  border-top: solid thin #666666;
 }

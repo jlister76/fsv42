@@ -8,5 +8,21 @@
     "name": "storage",
     "connector": "loopback-component-storage",
     "provider": "amazon"
+  },
+  "emailDs": {
+    "connector": "mail",
+    "transports": [{
+      "type": "smtp",
+      "host": "smtp-mail.outlook.com",
+      "secure": false,
+      "port": 25,
+      "tls": {
+        "rejectUnauthorized": true
+      },
+      "auth": {
+        "user": "jlister469@outlook.com",
+        "pass": "List547*"
+      }
+    }]
   }
 }
