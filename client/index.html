@@ -53,14 +53,14 @@
     <md-content>
       <md-list layout layout-align="center center">
         <md-list-item>
-          <md-button ng-show="currentUser" ng-click="logout()" layout="row" class="md-subhead" style="background-color: transparent; border: none;">
+          <md-button ng-controller="AuthLogoutController" ng-show="currentUser" ng-click="logout()" layout="row" class="md-subhead" style="background-color: transparent; border: none;">
             <i class="material-icons">power_settings_new</i><span>Logout</span>
           </md-button>
         </md-list-item>
       </md-list>
     </md-content>
   </md-sidenav>
-  <main layout="column" layout-align="center center" ui-view ng-cloak class="md-padding" style="background-color:white;"></main>
+  <main flex layout="column" layout-align="center center" ui-view ng-cloak class="md-padding" style="background-color:white; border: solid thin red"></main>
 </div>
 
 <footer ng-show="currentUser" hide-sm hide-gt-xs layout layout-align="space-around center"  class="md-padding">
