@@ -1,24 +1,24 @@
-<div flex="35" flex-xs="100" layout="column" class="md-padding"
-     style="margin: 2rem 0; background-color: rgb(221, 221, 221); border: solid thin whitesmoke; border-radius: 5px;">
+<span class="md-subhead">Issue Report</span>
+<div flex="35" flex-xs="100" layout="column" layout-align="center center" class="md-padding"
+     style="margin: 5px 0; background-color: rgb(221, 221, 221); border: solid thin whitesmoke; border-radius: 5px;">
 <div ng-if="msgStatus == 0">
   <form layout="column" name="reportIssueForm" ng-submit="report(update.version,update.issue,comments)">
     <md-input-container style="margin: 1rem 0;">
-      <span class="md-subhead">* <i>Required</i></span>
-      <p class="md-subhead">Please select a reason: </p>
+      <p class="md-caption" style="color:#950B02"><i>*</i> Please select a reason and version.</p>
       <label>I am unable to...</label>
       <md-select ng-model="update.issue" required>
         <md-option ng-repeat="issue in issueType" value="{{issue}}">{{issue}}</md-option>
       </md-select>
     </md-input-container>
     <md-input-container>
-      <span class="md-subhead">* <i>Required</i></span>
-      <label>Update version:</label>
+
+      <label>Update version</label>
       <md-select ng-model="update.version" required>
         <md-option ng-repeat="version in updateVersion" value="{{version}}">{{version}}</md-option>
       </md-select>
     </md-input-container>
     <div layout layout-align="center">
-      <textarea flex="100" ng-model="comments" name="comments" id="comments" cols="50" rows="6" style="border-radius: 2%; border: solid thin lightgray;"></textarea>
+      <textarea flex="100" ng-model="comments" name="comments" id="comments" cols="50" rows="4" style="border-radius: 2%; border: solid thin lightgray;"></textarea>
     </div>
     <div layout layout-align="center start" style="margin: 1rem;">
       <md-button class="md-raised md-primary" type="submit" ng-disabled="reportIssueForm.$invalid" style="color:white; width: 250px; height:40px">Submit</md-button>

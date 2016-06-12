@@ -37,7 +37,7 @@
     </div>
     <div flex layout layout-align="center center" hide-gt-xs>
 
-        <img flex="60" src="http://heathus.com/wp-content/uploads/hc-logo.png" alt="logo">
+        <img flex="60" style="margin:1rem;" src="http://heathus.com/wp-content/uploads/hc-logo.png" alt="logo">
     </div>
   </md-toolbar>
 
@@ -61,7 +61,7 @@
       </md-list>
     </md-content>
   </md-sidenav>
-  <main layout layout-align="center start" ui-view ng-cloak class="md-padding" style="background-color:white;"></main>
+  <main layout="column" layout-align="center center" ui-view ng-cloak class="md-padding" style="background-color:white;"></main>
 </div>
 
 <footer ng-show="currentUser" hide-sm hide-gt-xs layout layout-align="space-around center"  class="md-padding">
