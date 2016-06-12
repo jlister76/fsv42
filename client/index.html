@@ -49,7 +49,7 @@
     <md-content>
       <md-list layout layout-align="center center">
         <md-list-item>
-          <md-button layout="row" class="md-subhead but1" style="background-color: transparent; border: none;">
+          <md-button ng-show="currentUser" ui-sref="logout" layout="row" class="md-subhead" style="background-color: transparent; border: none;">
 
             <i class="material-icons">power_settings_new</i><span>Logout</span>
           </md-button>
@@ -82,7 +82,7 @@
   </button>
 
 
-  <button hide-sm hide-gt-xs ng-click="openLeftMenu()" class="md-caption" style="background-color: transparent; border: none;">
+  <button ng-show="currentUser" hide-sm hide-gt-xs ng-click="openLeftMenu()" class="md-caption" style="background-color: transparent; border: none;">
     <div layout="column" layout-align="start">
       <i class="material-icons">more_horiz</i>
       More

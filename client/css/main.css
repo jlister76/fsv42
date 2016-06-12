@@ -42,3 +42,6 @@ footer {
   background-color: rgb(221,221,221);
   border-top: solid thin #666666;
 }
+md-backdrop.md-sidenav-backdrop{
+  display:none
+}
