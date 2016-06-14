@@ -71,6 +71,6 @@
       $mdThemingProvider.definePalette('neonRed', neonRedMap);
       // Use that theme for the primary intentions
       $mdThemingProvider.theme('default')
-        .primaryPalette('blue-grey')
+        .primaryPalette('blue')
     });
 })();

@@ -44,23 +44,31 @@
 <div >
 
   <md-sidenav hide-sm hide-gt-xs ng-show="currentUser" layout="column" class="md-sidenav-left" md-component-id="left"
-              style="background-color: #D3D9DD; color:#0E4DA0;">
-    <md-toolbar layout layout-align="end start" class="md-padding" style="height:10px!important;" >
-      <button ng-click='close()' style="background-color: transparent; border: none;">
+              style="background-color: rgba(74, 78, 82, 0.79); color:white;">
+    <md-toolbar layout layout-align="space-between start" class="md-padding" style="color: white!important; background-color:#00274e; height:10px!important;" >
+      <span class="md-caption">{{ currentUser.email }}</span>
+      <button ng-click='close()' style="background-color: transparent; border: none; color: white!important">
         <i class="material-icons">cancel</i>
       </button>
     </md-toolbar>
     <md-content>
-      <md-list layout layout-align="center center">
+      <md-list layout="column" layout-align="center center">
         <md-list-item>
           <md-button ng-controller="AuthLogoutController" ng-show="currentUser" ng-click="logout()" layout="row" class="md-subhead" style="background-color: transparent; border: none;">
-            <i class="material-icons">power_settings_new</i><span>Logout</span>
+            <span>Logout</span>
+          </md-button>
+
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item>
+          <md-button ng-controller="AuthLogoutController" ng-show="currentUser" ng-click="logout()" layout="row" class="md-subhead" style="background-color: transparent; border: none;">
+            <span>Dashboard</span>
           </md-button>
         </md-list-item>
       </md-list>
     </md-content>
   </md-sidenav>
-  <main flex layout="column" layout-align="center center" ui-view ng-cloak class="md-padding" style="background-color:white;"></main>
+  <main flex layout="column" layout-align="center center" ui-view ng-cloak class="md-padding" style="background-color:white; height:100vh; border: solid thin red;"></main>
 </div>
 
 <footer ng-show="currentUser" hide-sm hide-gt-xs layout layout-align="space-around center"  class="md-padding">
