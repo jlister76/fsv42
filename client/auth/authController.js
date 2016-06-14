@@ -37,11 +37,12 @@
           })
       };
     })
-    .controller('AuthLogoutController', function ($scope, $state, AuthService) {
+    .controller('AuthLogoutController', function ($scope, $state, AuthService, $mdSidenav) {
 
      $scope.logout = function () {
         AuthService.logout()
           .then(function(){
+            $mdSidenav('left').close();
             $state.go('login')
           });
       };
