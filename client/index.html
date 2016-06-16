@@ -44,29 +44,29 @@
 <div >
 
   <md-sidenav hide-sm hide-gt-xs ng-show="currentUser" layout="column" class="md-sidenav-left" md-component-id="left"
-              style="background-color: rgba(74, 78, 82, 0.79); color:white;">
+              style="background-color: white;">
     <md-toolbar layout layout-align="space-between start" class="md-padding" style="color: white!important; background-color:#00274e; height:10px!important;" >
-      <span class="md-caption">{{ currentUser.email }}</span>
+      <div layout="column">
+        <small>{{ currentUser.email }}</small>
+        <p class="md-caption" style="color:#999">System Administrator</p>
+      </div>
       <button ng-click='close()' style="background-color: transparent; border: none; color: white!important">
         <i class="material-icons">cancel</i>
       </button>
     </md-toolbar>
-    <md-content>
-      <md-list layout="column" layout-align="center center">
-        <md-list-item>
-          <md-button ng-controller="AuthLogoutController" ng-show="currentUser" ng-click="logout()" layout="row" class="md-subhead" style="background-color: transparent; border: none;">
-            <span>Logout</span>
-          </md-button>
+    <div>
+      <md-button ng-controller="AuthLogoutController" ng-show="currentUser" ng-click="logout()" layout="row" class="md-subhead" style="background-color: transparent; border: none;">
+        <span>Logout</span>
+      </md-button>
+      <md-divider></md-divider>
+    </div>
+    <div>
+      <md-button ng-controller="AuthLogoutController" ng-show="currentUser" ng-click="logout()" layout="row" class="md-subhead" style="background-color: transparent; border: none;">
+        <span>Menu Item</span>
+      </md-button>
+      <md-divider></md-divider>
+    </div>
 
-        </md-list-item>
-        <md-divider></md-divider>
-        <md-list-item>
-          <md-button ng-controller="AuthLogoutController" ng-show="currentUser" ng-click="logout()" layout="row" class="md-subhead" style="background-color: transparent; border: none;">
-            <span>Dashboard</span>
-          </md-button>
-        </md-list-item>
-      </md-list>
-    </md-content>
   </md-sidenav>
   <main flex layout="column" layout-align="center" ui-view ng-cloak class="md-padding" style="background-color:white; height:90vh;"></main>
 </div>

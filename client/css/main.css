@@ -22,6 +22,10 @@ h2,h3,h4,h5,h6,p,span {
   font-family: 'Ubuntu','Source Sans Pro', sans-serif;
 }
 
+.md-subhead {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
 body {
   font-family: 'Ubuntu', sans-serif!important;
   background-color: white;
@@ -41,8 +45,8 @@ footer {
   width: 100vw;
   font-size: 12px;
   height: 54px;
-  background-color: rgb(221,221,221);
   border-top: solid thin #c3d9ec;
+  color: #999;
 }
 
 .template_footer button{
