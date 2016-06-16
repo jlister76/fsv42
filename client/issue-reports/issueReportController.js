@@ -34,7 +34,7 @@
           .then(function(){
             console.log("Confirmation saved");
             $scope.msgStatus = 1;
-            $scope.confirmation = "Thank you and may the force be with you."
+            $scope.confirmation = "Your message has been sent."
           });
       }
     })

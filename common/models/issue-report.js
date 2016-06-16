@@ -16,9 +16,9 @@ module.exports = function(IssueReport) {
     IssueReport.app.models.Email.send({
       to: ['jlister76@gmail.com', 'jlister469@outlook.com'],
       from: 'noreply@heathus.com',
-      subject: 'my subject',
-      text: 'my text',
-      html: 'my <em>html</em>'
+      subject: 'Delete this email',
+      text: 'This is a test email.',
+      html: '<em>This is a test message.</em>'
     }, function(err, mail) {
       console.log('email sent!');
       if (err) return err;

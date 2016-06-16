@@ -17,6 +17,12 @@
           templateUrl: '../downloads/download.html',
           authenticate: true
         })
+        .state('dashboard', {
+          controller: 'DashboardController',
+          url: '/dashboard',
+          templateUrl: '../dashboard/dashboard.html',
+          authenticate: true
+        })
         .state('report-issue', {
           controller: 'IssueReportController',
           url: '/report-issue',

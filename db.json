@@ -1,13 +1,13 @@
 {
   "ids": {
     "User": 1,
-    "AccessToken": 161,
+    "AccessToken": 176,
     "ACL": 1,
     "RoleMapping": 1,
     "Role": 1,
     "employee": 4,
     "confirmation": 76,
-    "IssueReport": 22
+    "IssueReport": 25
   },
   "models": {
     "User": {},
@@ -50,7 +50,13 @@
       "s16bKGX1NVt7Iq8IArfT8gnL0fVOZuQBdu2XCq91vOt3EjKnq0HyDUo8gOiszPHK": "{\"id\":\"s16bKGX1NVt7Iq8IArfT8gnL0fVOZuQBdu2XCq91vOt3EjKnq0HyDUo8gOiszPHK\",\"ttl\":1209600,\"created\":\"2016-06-14T02:46:15.627Z\",\"userId\":2}",
       "TFBLSEhkuqYXXVOTfHkxDqihlSIRIuBONxp6aQCT8pBtAUTblmEGyoDSTvRdj6sz": "{\"id\":\"TFBLSEhkuqYXXVOTfHkxDqihlSIRIuBONxp6aQCT8pBtAUTblmEGyoDSTvRdj6sz\",\"ttl\":1209600,\"created\":\"2016-06-14T03:47:18.640Z\",\"userId\":3}",
       "10RtVBJmSZ9B2SKV6CzZEV7jzloA6eexvObH6Sy2jk8FAcNeWVFWuPhEDtWwnjSp": "{\"id\":\"10RtVBJmSZ9B2SKV6CzZEV7jzloA6eexvObH6Sy2jk8FAcNeWVFWuPhEDtWwnjSp\",\"ttl\":1209600,\"created\":\"2016-06-14T03:47:20.198Z\",\"userId\":3}",
-      "rTeDPFNhHNb5AW5OkC7FMZGy6YWVGrWOGzCyx3sypoFJIAihBHZjMrzhckAT9zEv": "{\"id\":\"rTeDPFNhHNb5AW5OkC7FMZGy6YWVGrWOGzCyx3sypoFJIAihBHZjMrzhckAT9zEv\",\"ttl\":1209600,\"created\":\"2016-06-15T23:49:05.120Z\",\"userId\":2}"
+      "rTeDPFNhHNb5AW5OkC7FMZGy6YWVGrWOGzCyx3sypoFJIAihBHZjMrzhckAT9zEv": "{\"id\":\"rTeDPFNhHNb5AW5OkC7FMZGy6YWVGrWOGzCyx3sypoFJIAihBHZjMrzhckAT9zEv\",\"ttl\":1209600,\"created\":\"2016-06-15T23:49:05.120Z\",\"userId\":2}",
+      "xQuuidhQt5HJPDOlUHIVkX66mNDpBmAPtR14f3ggAPwiTwKYIYQq58H1QzFn6cb9": "{\"id\":\"xQuuidhQt5HJPDOlUHIVkX66mNDpBmAPtR14f3ggAPwiTwKYIYQq58H1QzFn6cb9\",\"ttl\":1209600,\"created\":\"2016-06-16T03:07:09.526Z\",\"userId\":2}",
+      "Kr54bZjgVjMIf2WgXRQ3NPpyyFPscRSIaGu1WAboDwYTBatH1OEIUdokqj5S7TA9": "{\"id\":\"Kr54bZjgVjMIf2WgXRQ3NPpyyFPscRSIaGu1WAboDwYTBatH1OEIUdokqj5S7TA9\",\"ttl\":1209600,\"created\":\"2016-06-16T03:26:23.611Z\",\"userId\":2}",
+      "Gwd7kkC9qeBPHpYtGwdBEYK8lCuX78HB5HNXeUmjAPhvFT0Z8jwMApBAQifnpxtJ": "{\"id\":\"Gwd7kkC9qeBPHpYtGwdBEYK8lCuX78HB5HNXeUmjAPhvFT0Z8jwMApBAQifnpxtJ\",\"ttl\":1209600,\"created\":\"2016-06-16T12:42:55.885Z\",\"userId\":2}",
+      "8Ru9fBUsaLvmR2a7WOpsWFr4ffsebVQgwr6WMDntj8pf5sbkhlOUYoDyDzl306Il": "{\"id\":\"8Ru9fBUsaLvmR2a7WOpsWFr4ffsebVQgwr6WMDntj8pf5sbkhlOUYoDyDzl306Il\",\"ttl\":1209600,\"created\":\"2016-06-16T12:45:16.774Z\",\"userId\":2}",
+      "NXmTfxYRkO2EiwYXYh00rlEOnEgIpRnvG57T18WHSJC61ZiXmNb69pBM6ROWU7oF": "{\"id\":\"NXmTfxYRkO2EiwYXYh00rlEOnEgIpRnvG57T18WHSJC61ZiXmNb69pBM6ROWU7oF\",\"ttl\":1209600,\"created\":\"2016-06-16T12:45:51.083Z\",\"userId\":2}",
+      "FCNC7bjeQUglIlyc2AQKTBnd0R9VjGtxtDkOJnaFN32AlvvrTBwvWmsEwrcnNs0R": "{\"id\":\"FCNC7bjeQUglIlyc2AQKTBnd0R9VjGtxtDkOJnaFN32AlvvrTBwvWmsEwrcnNs0R\",\"ttl\":1209600,\"created\":\"2016-06-16T12:46:40.109Z\",\"userId\":2}"
     },
     "ACL": {},
     "RoleMapping": {},
@@ -157,7 +163,10 @@
       "18": "{\"id\":18}",
       "19": "{\"fname\":null,\"lname\":null,\"email\":\"IT@heathus.com\",\"issue\":\"Other: See comments for details\",\"comments\":\"To find the update.\",\"version\":\"6.1.2016\",\"createdAt\":\"2016-06-12T01:25:41.105Z\",\"state\":null,\"division\":null,\"id\":19}",
       "20": "{\"fname\":null,\"lname\":null,\"email\":\"IT@heathus.com\",\"issue\":\"Install an update\",\"comments\":\"This update won't install.\",\"version\":\"5.23.2016\",\"createdAt\":\"2016-06-12T01:27:45.414Z\",\"state\":null,\"division\":null,\"id\":20}",
-      "21": "{\"fname\":null,\"lname\":null,\"email\":\"j.lister@heathus.com\",\"issue\":\"Install an update\",\"version\":\"6.1.2016\",\"createdAt\":\"2016-06-12T18:39:26.172Z\",\"state\":\"TX\",\"division\":null,\"id\":21}"
+      "21": "{\"fname\":null,\"lname\":null,\"email\":\"j.lister@heathus.com\",\"issue\":\"Install an update\",\"version\":\"6.1.2016\",\"createdAt\":\"2016-06-12T18:39:26.172Z\",\"state\":\"TX\",\"division\":null,\"id\":21}",
+      "22": "{\"fname\":null,\"lname\":null,\"email\":\"j.lister@heathus.com\",\"issue\":\"Install an update\",\"version\":\"6.1.2016\",\"createdAt\":\"2016-06-16T03:13:40.734Z\",\"state\":null,\"division\":null,\"id\":22}",
+      "23": "{\"fname\":null,\"lname\":null,\"email\":\"j.lister@heathus.com\",\"issue\":\"Install an update\",\"version\":\"5.23.2016\",\"createdAt\":\"2016-06-16T03:16:09.878Z\",\"state\":null,\"division\":null,\"id\":23}",
+      "24": "{\"fname\":null,\"lname\":null,\"email\":\"j.lister@heathus.com\",\"issue\":\"Download an update\",\"version\":\"6.1.2016\",\"createdAt\":\"2016-06-16T03:17:14.357Z\",\"state\":null,\"division\":null,\"id\":24}"
     }
   }
 }

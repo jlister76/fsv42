@@ -47,6 +47,7 @@ footer {
   height: 54px;
   border-top: solid thin #c3d9ec;
   color: #999;
+  background-color: #DDDDDD;
 }
 
 .template_footer button{

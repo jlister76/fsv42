@@ -2,7 +2,7 @@
   'use strict';
   angular
     .module('logInApp')
-    .controller('DownloadController', function ($scope, AuthService, $rootScope, $state, $mdSidenav, $log, $mdMedia){
+    .controller('DownloadController', function ($scope, AuthService, $rootScope, $state, $mdSidenav, $log, $mdMedia, deviceDetector){
 
       //directs to log-in
       $scope.authenticated = AuthService.isAuthenticated();
@@ -29,16 +29,13 @@
           });
       };
 
-      function GetComputerName() {
-        try {
-          var network = new ActiveXObject('WScript.Network');
-          // Show a pop up if it works
-          alert(network.computerName);
-        }
-        catch (e) { }
-      }
+       var data = deviceDetector;
+       var ios = "ios";
+       if (data.os == ios){
+       $state.go('dashboard');
+       }
 
-      GetComputerName();
+
 
     })
 })();
