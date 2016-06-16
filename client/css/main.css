@@ -42,6 +42,15 @@ footer {
   font-size: 12px;
   height: 54px;
   background-color: rgb(221,221,221);
-  border-top: solid thin #666666;
+  border-top: solid thin #c3d9ec;
+}
+
+.template_footer button{
+  background-color: transparent; border: none;
+  color:#999;
+}
+.template_footer button:hover{
+  background-color: transparent; border: none;
+  color:#0F6AB4;
 }
 

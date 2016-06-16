@@ -71,7 +71,7 @@
   <main flex layout="column" layout-align="center" ui-view ng-cloak class="md-padding" style="background-color:white; height:90vh;"></main>
 </div>
 
-<footer ng-show="currentUser" hide-sm hide-gt-xs layout layout-align="space-around center"  class="md-padding">
+<footer ng-show="currentUser" hide-sm hide-gt-xs layout layout-align="space-around center"  class="md-padding template_footer">
   <!-- to keep the menu item to the right it should appear last -->
   <button ng-show="currentUser" ui-sref="download" hide-sm hide-gt-xs class="md-caption" style="background-color: transparent; border: none;">
     <div layout="column" layout-align="start">
@@ -79,7 +79,7 @@
       Downloads
     </div>
   </button>
-  <button ng-show="currentUser" ui-sref="confirm-update" hide-sm hide-gt-xs class="md-caption" style="background-color: transparent; border: none;">
+  <button ng-show="currentUser" ui-sref="confirm-update" hide-sm hide-gt-xs class="md-caption">
     <div layout="column" layout-align="start">
       <i class="material-icons">done_all</i>
       Confirm
