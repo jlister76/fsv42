@@ -54,9 +54,11 @@
         var division = localStorage.getItem(("division"));
         var date = new Date();
         Confirmation
-          .upsert({version: version ,lastUpdate:date, email: email, fname: fname, lname: lname, state: state, division: division})
+          .find({filter:{where: {email: email, version: version}}})
           .$promise
           .then(function(){
+            Confirmation
+              .upsert({version: version ,lastUpdate:date, email: email, fname: fname, lname: lname, state: state, division: division});
             console.log("Confirmation saved");
             $scope.msgStatus = 1;
             $scope.confirmation = "Thank you. Your insallation has been confirmed."

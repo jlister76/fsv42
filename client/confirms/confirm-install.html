@@ -1,36 +1,82 @@
 
+
+
+<div flex-xs="100" layout="column" layout-align="center">
   <span class="md-subhead">Update Confirmation</span>
-  <div  flex="80" flex-xs="100" class="md-padding"
-       style="margin: 2rem 0; background-color: transparent; border: solid thin whitesmoke; border-radius: 5px; height:100%">
-    <div>
-      <div ng-if="msgStatus == 0">
-        <form name="confirmationForm" ng-submit="confirm(update.version)">
-          <md-input-container layout="column" layout-align="center">
-            <span class="md-subhead">* <i>Required</i></span>
-            <label>Update version:</label>
-            <md-select ng-model="update.version" required>
-              <md-option ng-repeat="version in updateVersion" value="{{version}}">{{version}}</md-option>
-            </md-select>
-          </md-input-container>
-          <div layout layout-align="center">
-            <md-button class="md-raised md-primary" type="submit" ng-disabled="confirmationForm.$invalid" style=" color:white; height:45px">Confirm Installation</md-button>
-          </div>
-        </form>
-      </div>
-      <div ng-if="msgStatus==1">
-        <p>{{ confirmation }}</p>
-      </div>
+  <div  flex-xs="100" layout="column" layout-align="center center" class="md-padding"
+        style="margin: 5px 0; background-color: whitesmoke; border: solid thin whitesmoke; border-radius: 5px;">
+    <div ng-if="msgStatus == 0">
+      <form layout="column" name="confirmationForm" ng-submit="confirm(update.version)">
 
-      <div layout="column" layout-align="center center" device-detector>
-        <p id="demo">Getting location...</p>
-        <p>Operating System: {{ data.os }}</p>
-        <p>Version: {{ data.os_version }}</p>
+        <md-input-container>
 
-      </div>
+          <label>Update version</label>
+          <md-select ng-model="update.version" required>
+            <md-option ng-repeat="version in updateVersion" value="{{version}}">{{version}}</md-option>
+          </md-select>
+        </md-input-container>
+
+        <div layout layout-align="center start" style="margin: 1rem;">
+          <md-button class="md-raised md-primary" type="submit" ng-disabled="confirmationForm.$invalid"  style="color:white; width: 250px; height:40px">Submit</md-button>
+        </div>
+      </form>
     </div>
+    <div ng-if="msgStatus==1">
+      <p>{{ confirmation }}</p>
+    </div>
+    <div layout="column" layout-align="center center" device-detector>
+      <p id="demo">Getting location...</p>
+      <p>Operating System: {{ data.os }}</p>
+      <p>Version: {{ data.os_version }}</p>
 
+    </div>
   </div>
 
+</div>
 
 
 
+
+<!--<div flex="40" flex-xs="100" layout="column" layout-align="center">
+  <span class="md-subhead" >Update Confirmation</span>
+ <div flex layout layout-align="center" >
+
+
+   <div  flex-xs="100" layout="column" layout-align="center center" class="md-padding"
+         style=" width:500px; margin: 5px 0; background-color: transparent; border: solid thin whitesmoke; border-radius: 5px;">
+
+     <div>
+       <div layout layout-align="center" ng-if="msgStatus == 0">
+         <form name="confirmationForm" ng-submit="confirm(update.version)">
+           <md-input-container layout="column" layout-align="center">
+             <span class="md-subhead">* <i>Required</i></span>
+             <label>Update version:</label>
+             <md-select ng-model="update.version" required>
+               <md-option ng-repeat="version in updateVersion" value="{{version}}">{{version}}</md-option>
+             </md-select>
+           </md-input-container>
+           <div layout layout-align="center">
+             <md-button class="md-raised md-primary" type="submit" ng-disabled="confirmationForm.$invalid" style=" color:white; height:45px">Confirm Installation</md-button>
+           </div>
+         </form>
+       </div>
+       <div ng-if="msgStatus==1">
+         <p>{{ confirmation }}</p>
+       </div>
+
+       <div layout="column" layout-align="center center" device-detector>
+         <p id="demo">Getting location...</p>
+         <p>Operating System: {{ data.os }}</p>
+         <p>Version: {{ data.os_version }}</p>
+
+       </div>
+     </div>
+
+   </div>
+ </div>
+
+
+
+
+
+</div>-->

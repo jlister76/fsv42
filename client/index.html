@@ -47,7 +47,7 @@
               style="background-color: white;">
     <md-toolbar layout layout-align="space-between start" class="md-padding" style="color: white!important; background-color:#00274e; height:10px!important;" >
       <div layout="column">
-        <small>{{ currentUser.email }}</small>
+        <span class="md-caption">{{ currentUser.email }}</span>
         <p class="md-caption" style="color:#999">System Administrator</p>
       </div>
       <button ng-click='close()' style="background-color: transparent; border: none; color: white!important">
@@ -68,14 +68,14 @@
     </div>
 
   </md-sidenav>
-  <main flex layout="column" layout-align="center" ui-view ng-cloak class="md-padding" style="background-color:white; height:90vh;"></main>
+  <main flex layout="row" layout-align="center" ui-view ng-cloak class="md-padding" style="background-color:white; height:90vh;"></main>
 </div>
 
 <footer ng-show="currentUser" hide-sm hide-gt-xs layout layout-align="space-around center"  class="md-padding template_footer">
   <!-- to keep the menu item to the right it should appear last -->
   <button ng-show="currentUser" ui-sref="download" hide-sm hide-gt-xs class="md-caption" style="background-color: transparent; border: none;">
     <div layout="column" layout-align="start">
-      <i class="material-icons">person_outline</i>
+      <i class="material-icons">developer_board</i>
       Dashboard
     </div>
   </button>
