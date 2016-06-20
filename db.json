@@ -1,32 +1,31 @@
 {
   "ids": {
     "User": 1,
-    "AccessToken": 2,
+    "AccessToken": 5,
     "ACL": 1,
     "RoleMapping": 1,
     "Role": 1,
-    "employee": 2,
-    "confirmation": 6,
+    "employee": 3,
+    "confirmation": 14,
     "IssueReport": 1
   },
   "models": {
     "User": {},
     "AccessToken": {
-      "Ta9yfhpo6z2ByCcHPkXZenVMfmQFcFOfIgd4hnNDBWKRWB2mqWyJ1Cr7SRgyWL8S": "{\"id\":\"Ta9yfhpo6z2ByCcHPkXZenVMfmQFcFOfIgd4hnNDBWKRWB2mqWyJ1Cr7SRgyWL8S\",\"ttl\":1209600,\"created\":\"2016-06-17T03:31:26.549Z\",\"userId\":1}"
+      "u2LmjdQ9hgotTFgamunNx94xsAIpzPn8Zbhcii6AdMzLnWkpGMQ99aloEhAJrbYz": "{\"id\":\"u2LmjdQ9hgotTFgamunNx94xsAIpzPn8Zbhcii6AdMzLnWkpGMQ99aloEhAJrbYz\",\"ttl\":1209600,\"created\":\"2016-06-20T04:51:57.879Z\",\"userId\":1}"
     },
     "ACL": {},
     "RoleMapping": {},
     "Role": {},
     "employee": {
-      "1": "{\"employee_number\":\"12345\",\"fname\":\"John\",\"lname\":\"Lister\",\"state\":\"Texas\",\"division\":\"43\",\"username\":\"jlister\",\"password\":\"$2a$10$oc9Lk2Vd11K2M2QCIhdnReC39dDLefJSkq6XKx6ySajMn3v6PeUIe\",\"email\":\"j.lister@heathus.com\",\"emailVerified\":false,\"created\":\"2016-06-17T00:00:00.000Z\",\"lastUpdated\":\"2016-06-17T00:00:00.000Z\",\"id\":1}"
+      "1": "{\"employee_number\":\"12345\",\"fname\":\"John\",\"lname\":\"Lister\",\"state\":\"Texas\",\"division\":\"43\",\"username\":\"jlister\",\"password\":\"$2a$10$oc9Lk2Vd11K2M2QCIhdnReC39dDLefJSkq6XKx6ySajMn3v6PeUIe\",\"email\":\"j.lister@heathus.com\",\"emailVerified\":false,\"created\":\"2016-06-17T00:00:00.000Z\",\"lastUpdated\":\"2016-06-17T00:00:00.000Z\",\"id\":1}",
+      "2": "{\"employee_number\":\"12345\",\"fname\":\"IT\",\"lname\":\"Dept\",\"state\":\"TX\",\"division\":\"Corp\",\"username\":\"IT Dept\",\"password\":\"$2a$10$Qq7Cav4LoQ6ee0cdizPTLOyimjb7jfluPFVZrexRGqSzxqgZxMZe2\",\"challenges\":{},\"email\":\"IT@heathus.com\",\"created\":\"2016-06-17T00:00:00.000Z\",\"id\":2}"
     },
+    "IssueReport": {},
     "confirmation": {
-      "1": "{\"version\":\"5.23.2016\",\"email\":\"j.lister@heathus.com\",\"fname\":null,\"lname\":null,\"state\":null,\"division\":null,\"lastUpdate\":\"2016-06-17T03:32:23.699Z\",\"id\":1}",
-      "2": "{\"version\":\"5.23.2016\",\"email\":\"j.lister@heathus.com\",\"fname\":null,\"lname\":null,\"state\":null,\"division\":null,\"lastUpdate\":\"2016-06-17T03:33:06.054Z\",\"id\":2}",
-      "3": "{\"version\":\"5.23.2016\",\"email\":\"j.lister@heathus.com\",\"fname\":null,\"lname\":null,\"state\":null,\"division\":null,\"lastUpdate\":\"2016-06-17T03:37:49.013Z\",\"id\":3}",
-      "4": "{\"version\":\"5.23.2016\",\"email\":\"j.lister@heathus.com\",\"fname\":null,\"lname\":null,\"state\":null,\"division\":null,\"lastUpdate\":\"2016-06-17T03:43:45.892Z\",\"id\":4}",
-      "5": "{\"version\":\"5.23.2016\",\"email\":\"j.lister@heathus.com\",\"fname\":null,\"lname\":null,\"state\":null,\"division\":null,\"lastUpdate\":\"2016-06-17T03:44:06.798Z\",\"id\":5}"
-    },
-    "IssueReport": {}
+      "9": "{\"lastUpdated\":\"2016-06-20T05:52:55.188Z\",\"version\":\"5.23.2016\",\"email\":\"j.lister@heathus.com\",\"fname\":\"john\",\"lname\":\"lister\",\"state\":\"TX\",\"division\":\"43\",\"id\":9}",
+      "12": "{\"lastUpdated\":\"2016-06-20T05:02:38.036Z\",\"id\":12}",
+      "13": "{\"lastUpdated\":\"2016-06-20T05:03:36.288Z\",\"id\":13}"
+    }
   }
 }

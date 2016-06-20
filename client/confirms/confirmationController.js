@@ -46,6 +46,7 @@
       $scope.pageTitle = 'Updates Confirmation';
       $scope.confirm = function (version){
         //submit confirmation
+        console.info(version);
 
         var email = localStorage.getItem("email");
         var fname = localStorage.getItem("fname");
@@ -53,16 +54,18 @@
         var state = localStorage.getItem(("state"));
         var division = localStorage.getItem(("division"));
         var date = new Date();
+        console.info(email);
         Confirmation
-          .find({filter:{where: {email: email, version: version}}})
-          .$promise
-          .then(function(){
-            Confirmation
-              .upsert({version: version ,lastUpdate:date, email: email, fname: fname, lname: lname, state: state, division: division});
-            console.log("Confirmation saved");
-            $scope.msgStatus = 1;
-            $scope.confirmation = "Thank you. Your insallation has been confirmed."
-          });
+          .findOne({filter:{where: {email: email, version: version}}}, function(success){console.log(success)})
+          /*.$promise
+          .then(function(confirmation){
+            console.info(confirmation.id);
+           Confirmation.prototype$updateAttributes({id:confirmation.id, lastUpdated: date});
+          });*/
+
+
+        /*Confirmation
+          .upsert({version: version ,lastUpdate:date, email: email, fname: fname, lname: lname, state: state, division: division});*/
 
       };
 
