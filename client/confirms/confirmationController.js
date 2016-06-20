@@ -56,12 +56,13 @@
         var date = new Date();
         console.info(email);
         Confirmation
-          .findOne({filter:{where: {email: email, version: version}}}, function(success){console.log(success)})
-          /*.$promise
+          .findOne({filter:{where: {email: email, version: version}}}, function(success){console.log(success)},
+          function(err){Confirmation.create({lastUpdated: date, email: email, version: version,fname: fname, lname: lname, state: state, division: division})})
+          .$promise
           .then(function(confirmation){
-            console.info(confirmation.id);
+
            Confirmation.prototype$updateAttributes({id:confirmation.id, lastUpdated: date});
-          });*/
+          });
 
 
         /*Confirmation
