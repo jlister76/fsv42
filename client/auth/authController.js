@@ -23,6 +23,7 @@
             var next = $location.nextAfterLogin || '/';
             $location.nextAfterLogin = null;
             $location.path(next);
+            $state.go('dashboard');
 
             Employee.getCurrent()
               .$promise
@@ -43,6 +44,9 @@
         AuthService.logout()
           .then(function(){
             $mdSidenav('left').close();
+            localStorage.removeItem('email');
+            localStorage.removeItem('employee_number');
+            localStorage.removeItem('username');
             $state.go('login')
           });
       };

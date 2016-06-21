@@ -3,7 +3,7 @@
     "loopback#favicon": {
       "params": "client/favicon.png"
     }
-    },
+  },
   "initial": {
     "compression": {},
     "cors": {

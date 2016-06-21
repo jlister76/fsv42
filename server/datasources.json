@@ -10,19 +10,22 @@
     "provider": "amazon"
   },
   "emailDs": {
+    "name": "emailDs",
     "connector": "mail",
-    "transports": [{
-      "type": "smtp",
-      "host": "smtp-mail.outlook.com",
-      "secure": false,
-      "port": 25,
-      "tls": {
-        "rejectUnauthorized": true
-      },
-      "auth": {
-        "user": "jlister469@outlook.com",
-        "pass": "List547*"
+    "transports": [
+      {
+        "type": "smtp",
+        "host": "smtp-mail.outlook.com",
+        "secure": false,
+        "port": 25,
+        "tls": {
+          "rejectUnauthorized": true
+        },
+        "auth": {
+          "user": "jlister469@outlook.com",
+          "pass": "List547*"
+        }
       }
-    }]
+    ]
   }
 }

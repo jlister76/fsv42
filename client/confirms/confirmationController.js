@@ -43,7 +43,7 @@
       $scope.deviceDetector=deviceDetector;
       $scope.updateVersion = ['5.23.2016', '6.1.2016']; //TODO: store update versions in db and return an array of versions.
 
-      $scope.pageTitle = 'Updates Confirmation';
+
       $scope.confirm = function (version){
         //submit confirmation
         console.info(version);
@@ -61,7 +61,7 @@
           .$promise
           .then(function(confirmation){
 
-           Confirmation.prototype$updateAttributes({id:confirmation.id, lastUpdated: date});
+           Confirmation.prototype$updateAttributes({id:confirmation.id},{lastUpdated: date});
           });
 
 
