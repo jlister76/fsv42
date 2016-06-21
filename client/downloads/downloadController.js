@@ -4,7 +4,7 @@
     .module('logInApp')
     .controller('DownloadController', function ($scope, AuthService, $rootScope, $state, $mdSidenav, $log, $mdMedia, deviceDetector){
 
-      //directs to log-in
+     /* //directs to log-in
       $scope.authenticated = AuthService.isAuthenticated();
       $scope.getCurrent = function () {
         AuthService.getCurrent()
@@ -16,26 +16,8 @@
           });
 
       };
-      $scope.getCurrent();
-      $scope.pageTitle = 'Downloads';
-      $scope.openLeftMenu = function() {
-        $mdSidenav('left').toggle();
-      };
-      $scope.close = function () {
-        // Component lookup should always be available since we are not using `ng-if`
-        $mdSidenav('left').close()
-          .then(function () {
-            $log.debug("close LEFT is done");
-          });
-      };
+      $scope.getCurrent();*/
 
-       var data = deviceDetector;
-       var ios = "ios";
-       if (data.os == ios){
-       $state.go('dashboard');
-       }
-
-
-
+      
     })
 })();

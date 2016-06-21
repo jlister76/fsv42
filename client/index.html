@@ -22,7 +22,7 @@
 </head>
 <body layout="column" ng-app="logInApp"
       ng-cloak
-      ng-controller="DownloadController"
+      ng-controller="DashboardController"
       class="ng-cloak {xs: $mdMedia('xs'), sm: $mdMedia('sm'), md: $mdMedia('md'), lg: $mdMedia('lg')}">
 
   <md-toolbar layout layout-align="space-between center" layout-xs layout-align-xs="center center" style="background-color: #00274e; color: rgb(60, 161, 255);">
@@ -30,14 +30,15 @@
       <p ng-show="currentUser" class="display-2"></p>
     </div>
     <div hide-xs layout ng-controller="AuthLogoutController">
+      <md-button ng-show="currentUser" ui-sref="dashboard" class="md-padding">Dashboard</md-button>
       <md-button ng-show="currentUser" ui-sref="download" class="md-padding">Downloads</md-button>
       <md-button ng-show="currentUser" ui-sref="confirm-update" class="md-padding">Confirm Update</md-button>
       <md-button ng-show="currentUser" ui-sref="report-issue" class="md-padding">Report Issue</md-button>
       <md-button ng-show="currentUser" ng-click="logout()" class="md-padding">Log Out</md-button>
     </div>
-    <div flex layout layout-align="center center" hide-gt-xs>
+    <div flex layout layout-align="center center" >
 
-        <img flex="30" style="margin:1rem;" src="http://heathus.com/wp-content/uploads/hc-logo.png" alt="logo">
+        <img flex-xs="30" style="margin:1rem;" src="http://heathus.com/wp-content/uploads/hc-logo.png" alt="logo">
     </div>
   </md-toolbar>
 
@@ -73,7 +74,7 @@
 
 <footer ng-show="currentUser" hide-sm hide-gt-xs layout layout-align="space-around center"  class="md-padding template_footer">
   <!-- to keep the menu item to the right it should appear last -->
-  <button ng-show="currentUser" ui-sref="download" hide-sm hide-gt-xs class="md-caption" style="background-color: transparent; border: none;">
+  <button ng-show="currentUser" ui-sref="dashboard" hide-sm hide-gt-xs class="md-caption" style="background-color: transparent; border: none;">
     <div layout="column" layout-align="start">
       <i class="material-icons">developer_board</i>
       Dashboard

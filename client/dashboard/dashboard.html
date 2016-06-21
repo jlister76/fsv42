@@ -1,1 +1,17 @@
-<span class="md-subhead">Dashboard</span>
+<div flex flex-xs="100" layout="column" layout-align="start center" class="md-title">
+<span class="md-title">Dashboard</span>
+  <p>Your Updates</p>
+  <div><span class="md-subhead">Date</span> | <span class="md-subhead">Version</span></div>
+    <div layout layout="start" ng-repeat="conf in confirms">
+        <div style="margin: .5rem;">
+
+          <span class="md-caption">{{ conf.lastUpdated | date : short }}</span>
+        </div>
+        <div style="margin: .5rem;">
+
+          <span class="md-caption">version:{{ conf.version }}</span>
+        </div>
+
+    </div>
+
+</div>

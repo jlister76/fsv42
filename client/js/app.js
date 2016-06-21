@@ -51,7 +51,7 @@
           controller: 'AuthLogoutController',
           authenticate: true
         });
-      $urlRouterProvider.otherwise('download');
+      $urlRouterProvider.otherwise('dashboard');
 
       $httpProvider.interceptors.push(function ($q, $location, LoopBackAuth) {
         return {
