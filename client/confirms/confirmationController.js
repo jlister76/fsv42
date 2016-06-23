@@ -60,8 +60,10 @@
           function(err){Confirmation.create({lastUpdated: date, email: email, version: version,fname: fname, lname: lname, state: state, division: division})})
           .$promise
           .then(function(confirmation){
-
-           Confirmation.prototype$updateAttributes({id:confirmation.id},{lastUpdated: date});
+            confirmation.lastUpdated = date;
+            confirmation.$save();
+            //Code below performs a partial update.
+           //Confirmation.prototype$updateAttributes({id:confirmation.id},{lastUpdated: date});
           });
 
 
