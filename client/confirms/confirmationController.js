@@ -4,20 +4,9 @@
     .module('logInApp')
     .controller('ConfirmationController', function ($scope, AuthService, $rootScope, $state, $http, Confirmation,deviceDetector){
       $scope.msgStatus = 0;
-      //directs to log-in
-      $scope.authenticated = AuthService.isAuthenticated();
-      $scope.getCurrent = function () {
-        AuthService.getCurrent()
-          .$promise
-          .then(function (user) {
-            //console.info(user);
-            $rootScope.currentUser = user;
 
-          });
 
-      };
-      $scope.getCurrent();
-      //get Location stuff
+      //Geo Location
       var x = angular.element( document.querySelectorAll( '#demo' ) );
       x.append('This was added');
 
@@ -57,11 +46,17 @@
         console.info(email);
         Confirmation
           .findOne({filter:{where: {email: email, version: version}}}, function(success){console.log(success)},
-          function(err){Confirmation.create({lastUpdated: date, email: email, version: version,fname: fname, lname: lname, state: state, division: division})})
+          function(err){Confirmation.create({lastUpdated: date, email: email, version: version,fname: fname, lname: lname, state: state, division: division});
+            $scope.msgStatus = 1;
+            $scope.confirmation = "Your confirmation has been saved."
+          })
           .$promise
           .then(function(confirmation){
             confirmation.lastUpdated = date;
             confirmation.$save();
+            console.info(confirmation + " saved");
+            $scope.msgStatus = 1;
+            $scope.confirmation = "Your confirmation has been saved.";
             //Code below performs a partial update.
            //Confirmation.prototype$updateAttributes({id:confirmation.id},{lastUpdated: date});
           });

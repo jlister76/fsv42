@@ -25,23 +25,25 @@
       ng-controller="MainController"
       class="ng-cloak {xs: $mdMedia('xs'), sm: $mdMedia('sm'), md: $mdMedia('md'), lg: $mdMedia('lg')}">
 
-  <md-toolbar layout layout-align="space-between center" layout-xs layout-align-xs="center center" style="background-color: #00274e; color: rgb(60, 161, 255);">
-    <div hide-xs hide-sm>
-      <p ng-show="currentUser" class="display-2"></p>
-    </div>
-    <div flex layout layout-align="center center" >
+  <md-header layout layout-align="center center" style=" background-color: #00274e; color: rgb(60, 161, 255);">
+    <div flex="50" flex-xs="100" layout layout-align="start" layout-align-xs="center center">
+      <div layout style="height:6vh; margin:.8rem;">
 
-      <img flex-xs="30" style="margin:1rem;" src="http://heathus.com/wp-content/uploads/hc-logo.png" alt="logo">
+       <img  src="hc-logo.png" alt="logo" style="height:7vh;" ng-cloak />
+      </div>
     </div>
-    <div hide-xs layout ng-controller="AuthLogoutController">
-      <md-button ng-show="currentUser" ui-sref="dashboard" class="md-padding">Dashboard</md-button>
-      <md-button ng-show="currentUser" ui-sref="download" class="md-padding">Downloads</md-button>
-      <md-button ng-show="currentUser" ui-sref="confirm-update" class="md-padding">Confirm Update</md-button>
-      <md-button ng-show="currentUser" ui-sref="report-issue" class="md-padding">Report Issue</md-button>
-      <md-button ng-show="currentUser" ng-click="logout()" class="md-padding">Log Out</md-button>
+    <div flex="50" layout layout-align="center center" hide-xs>
+      <div layout layout-align="center center"ng-controller="AuthLogoutController">
+        <md-button ng-show="currentUser" ui-sref="dashboard" class="md-padding">Dashboard</md-button>
+        <md-button ng-show="currentUser" ui-sref="download" class="md-padding">Downloads</md-button>
+        <md-button ng-show="currentUser" ui-sref="confirm-update" class="md-padding">Confirm Update</md-button>
+        <md-button ng-show="currentUser" ui-sref="report-issue" class="md-padding">Report Issue</md-button>
+        <md-button ng-show="currentUser" ng-click="logout()" class="md-padding">Log Out</md-button>
+      </div>
     </div>
 
-  </md-toolbar>
+
+  </md-header>
 
 <div >
 

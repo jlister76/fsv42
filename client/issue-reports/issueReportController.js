@@ -4,19 +4,7 @@
   angular
     .module('logInApp')
     .controller('IssueReportController', function($scope, AuthService, $rootScope, $state, IssueReport){
-      //Include in each controller to persist currentUser
-      $scope.authenticated = AuthService.isAuthenticated();
-      $scope.getCurrent = function () {
-        AuthService.getCurrent()
-          .$promise
-          .then(function (user) {
-            //console.info(user);
-            $rootScope.currentUser = user;
-
-          });
-
-      };
-      $scope.getCurrent();
+    
       $scope.msgStatus = 0;
       $scope.issueType = ['Download an update', 'Install an update', 'Other: See comments for details'];
       $scope.updateVersion = ['5.23.2016', '6.1.2016']; //TODO: store update versions in db and return an array of versions.
