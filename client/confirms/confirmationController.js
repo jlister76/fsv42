@@ -3,12 +3,13 @@
   angular
     .module('logInApp')
     .controller('ConfirmationController', function ($scope, AuthService, $rootScope, $state, $http, Confirmation,deviceDetector){
-      $scope.msgStatus = 0;
+
+     $scope.msgStatus = 0;
 
 
       //Geo Location
       var x = angular.element( document.querySelectorAll( '#demo' ) );
-      x.append('This was added');
+
 
       $scope.getLocation = function() {
 

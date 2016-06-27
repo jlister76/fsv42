@@ -4,8 +4,8 @@
   angular
     .module('logInApp')
     .controller('DashboardController', function ($scope, AuthService, $rootScope, $state, $mdSidenav, $log, $mdMedia, Confirmation){
-
-
+     
+      $scope.updateVersion = ['5.23.2016', '6.1.2016']; //TODO: store update versions in db and return an array of versions.
       $scope.getCurrent = function () {
         AuthService.getCurrent()
           .$promise
@@ -26,6 +26,17 @@
                 })
             };
             initConfirms();
+
+            $scope.findConfirms = function (updateVersion) {
+              Confirmation
+                .find({filter: {where: {version: updateVersion}}})
+                .$promise
+                .then(function(confirmation){
+                  console.log(confirmation);
+                  $scope.confirmations = confirmation;
+                })
+            };
+
           })
 
       };

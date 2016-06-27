@@ -65,3 +65,17 @@ footer {
   color:#0F6AB4;
 }
 
+table {
+  border: thin solid lightgray;
+  padding: 1rem;
+  border-collapse: collapse;
+}
+td{
+  padding:1rem;
+  margin: 2rem;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: lightgray;
+}
+

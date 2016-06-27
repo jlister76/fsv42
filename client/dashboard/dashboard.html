@@ -1,17 +1,35 @@
-<div flex flex-xs="100" layout="column" layout-align="start center" class="md-title">
+<div flex-xs="100" layout="column" layout-align="center" class="md-title">
 <span class="md-subhead">Dashboard</span>
-  <p class="md-title">Recent Updates</p>
-  <div><span class="md-subhead">Date</span> | <span class="md-subhead">Version</span></div>
-    <div layout layout="start" ng-repeat="conf in confirms">
-        <div style="margin: .5rem;">
-
-          <span class="md-caption">{{ conf.lastUpdated | date : short }}</span>
-        </div>
-        <div style="margin: .5rem;">
-
-          <span class="md-caption">{{ conf.version }}</span>
-        </div>
+  <div layout layout-align="start" layout-xs="column">
+    <div style="margin: 2rem; padding:3rem; background-color: whitesmoke;"><p class="md-title">My Recent Updates</p>
+      <table>
+        <thead>
+        <th class="md-subhead">Date</th>
+        <th class="md-subhead">Version</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="conf in confirms">
+          <td class="md-caption">{{ conf.lastUpdated | date: short }}</td>
+          <td class="md-caption">{{ conf.version }}</td>
+        </tr>
+        </tbody>
+      </table>
 
     </div>
+    <div style="margin: 2rem; padding:3rem; background-color: whitesmoke;">
+      <p class="md-title">All Updates</p>
+      <span class="md-subhead">Choose Version</span>
+      <md-select class="md-caption" ng-model="update.version" ng-change="findConfirms(update.version)">
+        <md-option ng-repeat="version in updateVersion" value="{{ version }}">
+          {{ version }}
+        </md-option>
+      </md-select>
+      <p class="md-caption"><b>Employee</b></p>
+      <div ng-repeat="confirm in confirmations">
+        <p class="md-caption">{{ confirm.lname +", "+confirm.fname }}</p>
+      </div>
+
+    </div>
+  </div>
 
 </div>

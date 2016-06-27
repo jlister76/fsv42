@@ -12,30 +12,36 @@
 
       $scope.login = function () {
         AuthService.login($scope.user.email, $scope.user.password)
+          .then(
+            function(){
+              var next = $location.nextAfterLogin || '/';
+              $location.nextAfterLogin = null;
+              $location.path(next);
+              //$state.go('dashboard');
+
+              Employee.getCurrent()
+                .$promise
+                .then(function (user){
+
+                  localStorage.setItem("email", user.email);
+                  localStorage.setItem("employee_number", user.employee_number);
+                  localStorage.setItem("username", user.username);
+                  localStorage.setItem("fname", user.fname);
+                  localStorage.setItem("lname", user.lname);
+                  localStorage.setItem("state", user.state);
+                  localStorage.setItem("division", user.division);
+                  console.log(user);
+                  $state.go('dashboard');
+                });
+            })
           .catch(function(e){
             if (e) {
               console.error(e);
               $scope.err = e;
+              
             }
           })
-          .then(function () {
 
-            var next = $location.nextAfterLogin || '/';
-            $location.nextAfterLogin = null;
-            $location.path(next);
-            $state.go('dashboard');
-
-            Employee.getCurrent()
-              .$promise
-              .then(function (user){
-                localStorage.setItem("email", user.email);
-                localStorage.setItem("employee_number", user.employee_number);
-                localStorage.setItem("username", user.username);
-                console.log(user);
-              });
-
-            //localStorage.setItem("fname", currentUser.fname);
-          })
       };
     })
     .controller('AuthLogoutController', function ($scope, $state, AuthService, $mdSidenav) {
