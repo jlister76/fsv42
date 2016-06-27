@@ -7,7 +7,8 @@
     "Role": 1,
     "employee": 3,
     "confirmation": 9,
-    "IssueReport": 1
+    "IssueReport": 1,
+    "update": 13
   },
   "models": {
     "User": {},
@@ -76,6 +77,14 @@
       "2": "{\"lastUpdated\":\"2016-06-23T10:42:17.251Z\",\"version\":\"6.1.2016\",\"email\":\"IT@heathus.com\",\"fname\":\"RoyDean\",\"lname\":\"Leighton\",\"state\":\"TX\",\"division\":\"Corporate\",\"id\":2}",
       "8": "{\"lastUpdated\":\"2016-06-27T01:02:19.648Z\",\"version\":\"5.23.2016\",\"email\":\"IT@heathus.com\",\"fname\":\"RoyDean\",\"lname\":\"Leighton\",\"state\":\"TX\",\"division\":\"Corporate\",\"id\":8}"
     },
-    "IssueReport": {}
+    "IssueReport": {},
+    "update": {
+      "7": "{\"releaseDate\":\"06/01/2016\",\"state\":\"Texas\",\"link\":\"https://s3.amazonaws.com/fsv42updates/FSV42+Update+64bit.EXE\",\"id\":7}",
+      "8": "{\"releaseDate\":\"06/01/2016\",\"state\":\"Kentucky\",\"link\":\"https://s3.amazonaws.com/fsv42updates/FSV42+Update+64bit.EXE\",\"id\":8}",
+      "9": "{\"releaseDate\":\"06/01/2016\",\"state\":\"Mississippi\",\"link\":\"https://s3.amazonaws.com/fsv42updates/FSV42+Update+64bit.EXE\",\"id\":9}",
+      "10": "{\"releaseDate\":\"05/23/2016\",\"state\":\"Mississippi\",\"link\":\"https://s3.amazonaws.com/fsv42updates/FSV42+Update+64bit.EXE\",\"id\":10}",
+      "11": "{\"releaseDate\":\"05/23/2016\",\"state\":\"Kentucky\",\"link\":\"https://s3.amazonaws.com/fsv42updates/FSV42+Update+64bit.EXE\",\"id\":11}",
+      "12": "{\"releaseDate\":\"05/23/2016\",\"state\":\"Texas\",\"link\":\"https://s3.amazonaws.com/fsv42updates/FSV42+Update+64bit.EXE\",\"id\":12}"
+    }
   }
 }

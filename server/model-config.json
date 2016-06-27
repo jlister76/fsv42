@@ -51,5 +51,9 @@
   "IssueReport": {
     "dataSource": "db",
     "public": true
+  },
+  "update": {
+    "dataSource": "db",
+    "public": true
   }
 }

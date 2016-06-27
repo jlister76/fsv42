@@ -51,10 +51,7 @@
           .then(function(){
             $mdSidenav('left').close();
             localStorage.clear();
-           /* localStorage.removeItem('email');
-            localStorage.removeItem('employee_number');
-            localStorage.removeItem('username');*/
-            $state.go('login')
+            $state.go('login');
           });
       };
 

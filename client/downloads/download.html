@@ -1,50 +1,24 @@
 <div flex>
   <div layout="column" layout-align="center center" style="margin-top: 2rem;">
     <h3 class="md-title">Downloads</h3>
-    <span class="md-subhead">05/23/2016</span>
-    <table class="md-padding">
-     <tbody >
-      <tr layout layout-align="start">
-        <th style="mmargin:1rem 1rem 0 0;">Texas</th>
-        <tr>
-        <td>
-          <a href="https://s3.amazonaws.com/fsv42updates/FSV42+Update+64bit.EXE">FSV42 64Bit Update</a> |
-        </td>
-        <td>
-          <a href="https://s3.amazonaws.com/fsv42updates/FSV42Update32bit.EXE">FSV42 Update</a>
-        </td>
-      </tr>
 
-      </tr>
-      <tr layout layout-align="start">
-        <th style="margin:1rem 1rem 0 0;">Kentucky</th>
-        <tr>
-        <td>
-          <a href="https://s3.amazonaws.com/fsv42updates/FSV42Update32bit.EXE">FSV42 64Bit Update</a> |
-        </td>
-        <td>
-          <a href="https://s3.amazonaws.com/fsv42updates/FSV42Update32bit.EXE">FSV42 Update</a>
-        </td>
-      </tr>
-      </tr>
-      <tr layout layout-align="start">
-        <th style="margin:1rem 1rem 0 0;">Mississippi</th>
-        <tr>
-        <td>
-          <a href="https://s3.amazonaws.com/fsv42updates/FSV42Update32bit.EXE">FSV42 64Bit Update</a> |
-        </td>
-        <td>
-          <a href="https://s3.amazonaws.com/fsv42updates/FSV42Update32bit.EXE">FSV42 Update</a>
-        </td>
-      </tr>
-      </tr>
+    <div layout layout-align="center center"><p class="md-subhead" style="margin:1rem;">Select your state</p>
+      <md-select ng-model="update.state" ng-change="updateByState(update.state)">
+        <md-option ng-repeat="state in states" value="{{ state }}">
+          {{ state }}
+        </md-option>
+      </md-select>
+    </div>
 
-      </tbody>
-    </table>
+
+    <div ng-repeat="update in updates | orderBy: releaseDate">
+      <a href="{{ update.link }}">{{ update.releaseDate }}</a>
+    </div>
+
   </div>
 
 </div>
-<div id="demo"></div>
+
 
 
 
