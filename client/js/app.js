@@ -61,7 +61,7 @@
               LoopBackAuth.clearUser();
               LoopBackAuth.clearStorage();
               $location.nextAfterLogin = $location.path();
-              $location.path('/login');
+              $location.path('login');
             }
             return $q.reject(rejection);
           }
@@ -81,14 +81,12 @@
     }).run(function ($rootScope, $state, AuthService) {
     //prevents loading views that require authentication
     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-      if (toState.authenticate && !$rootScope.currentUser){
+      if (toState.authenticate && !AuthService.getCurrentId()){
         // User isn’t authenticated
-        $state.transitionTo("login");
+        $state.transitionTo('login');
         event.preventDefault();
       }
     });
   });
-
-
 
 })();

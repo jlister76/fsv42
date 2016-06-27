@@ -38,7 +38,7 @@
             if (e) {
               console.error(e);
               $scope.err = e;
-              
+
             }
           })
 
@@ -50,9 +50,10 @@
         AuthService.logout()
           .then(function(){
             $mdSidenav('left').close();
-            localStorage.removeItem('email');
+            localStorage.clear();
+           /* localStorage.removeItem('email');
             localStorage.removeItem('employee_number');
-            localStorage.removeItem('username');
+            localStorage.removeItem('username');*/
             $state.go('login')
           });
       };
