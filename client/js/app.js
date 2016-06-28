@@ -7,7 +7,8 @@
         'lbServices',
         'ngMaterial',
         'ngMessages',
-      'ng.deviceDetector'
+      'ng.deviceDetector',
+      'uiGmapgoogle-maps'
     ])
     .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
       $stateProvider
@@ -21,7 +22,8 @@
           controller: 'DashboardController',
           url: '/dashboard',
           templateUrl: '../dashboard/dashboard.html',
-          authenticate: true
+          authenticate: true,
+          sticky: true
         })
         .state('report-issue', {
           controller: 'IssueReportController',
@@ -78,7 +80,14 @@
       // Use that theme for the primary intentions
       $mdThemingProvider.theme('default')
         .primaryPalette('blue')
-    }).run(function ($rootScope, $state, AuthService) {
+    }).config(function(uiGmapGoogleMapApiProvider) {
+    uiGmapGoogleMapApiProvider.configure({
+      key: 'AIzaSyBUZmQ8vc34NHhjEnLzFf970bmt-0ZQaVU',
+      v: '3.23', //defaults to latest 3.X anyhow
+      libraries: 'weather,geometry,visualization'
+    });
+  })
+    .run(function ($rootScope, $state, AuthService) {
     //prevents loading views that require authentication
     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
       if (toState.authenticate && !AuthService.getCurrentId()){

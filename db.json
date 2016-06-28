@@ -1,13 +1,13 @@
 {
   "ids": {
     "User": 1,
-    "AccessToken": 106,
+    "AccessToken": 109,
     "ACL": 1,
     "RoleMapping": 1,
     "Role": 1,
     "employee": 3,
     "confirmation": 9,
-    "IssueReport": 1,
+    "IssueReport": 2,
     "update": 13
   },
   "models": {
@@ -63,7 +63,8 @@
       "poMzvzFBTZxMs7WMyojjJrFG88o0xwiCA7PFrtCGlT7Nb2m5GEoCyRCKUUNjCmbq": "{\"id\":\"poMzvzFBTZxMs7WMyojjJrFG88o0xwiCA7PFrtCGlT7Nb2m5GEoCyRCKUUNjCmbq\",\"ttl\":1209600,\"created\":\"2016-06-27T04:42:33.857Z\",\"userId\":2}",
       "BKkGDBFaMK5ZXYSqZw1XPH1gY8UQpZ5I5j5892yMCFWhEEzRpNthAB46329w4DKX": "{\"id\":\"BKkGDBFaMK5ZXYSqZw1XPH1gY8UQpZ5I5j5892yMCFWhEEzRpNthAB46329w4DKX\",\"ttl\":1209600,\"created\":\"2016-06-27T04:43:20.208Z\",\"userId\":2}",
       "vxI0osyLzGdPn8Pg4utqW3ntpl6Kc5abUlwv27ttegcoIUT1hrABQZk5AYK9xlQg": "{\"id\":\"vxI0osyLzGdPn8Pg4utqW3ntpl6Kc5abUlwv27ttegcoIUT1hrABQZk5AYK9xlQg\",\"ttl\":1209600,\"created\":\"2016-06-27T04:45:39.845Z\",\"userId\":2}",
-      "CiLKcGPLpVTgOg15AxeGwhTkAPJFT0VJzDvpBT8kWuJgu1JZdElZclRaAOeqQpVz": "{\"id\":\"CiLKcGPLpVTgOg15AxeGwhTkAPJFT0VJzDvpBT8kWuJgu1JZdElZclRaAOeqQpVz\",\"ttl\":1209600,\"created\":\"2016-06-27T04:58:11.239Z\",\"userId\":2}"
+      "NzbOog4BHB8rAkXN46pPRvSzuUs3HEwvdLWSHEuV56LsAHP0iS93xNRonS5O43wJ": "{\"id\":\"NzbOog4BHB8rAkXN46pPRvSzuUs3HEwvdLWSHEuV56LsAHP0iS93xNRonS5O43wJ\",\"ttl\":1209600,\"created\":\"2016-06-27T07:17:04.109Z\",\"userId\":2}",
+      "DQPgiGM412RRwM3JhH8VE1TcI9tGBFXUAAwg9AjQka3lpFIOcW2zOxaat75eW1y5": "{\"id\":\"DQPgiGM412RRwM3JhH8VE1TcI9tGBFXUAAwg9AjQka3lpFIOcW2zOxaat75eW1y5\",\"ttl\":1209600,\"created\":\"2016-06-27T23:55:50.057Z\",\"userId\":2}"
     },
     "ACL": {},
     "RoleMapping": {},
@@ -77,7 +78,9 @@
       "2": "{\"lastUpdated\":\"2016-06-23T10:42:17.251Z\",\"version\":\"6.1.2016\",\"email\":\"IT@heathus.com\",\"fname\":\"RoyDean\",\"lname\":\"Leighton\",\"state\":\"TX\",\"division\":\"Corporate\",\"id\":2}",
       "8": "{\"lastUpdated\":\"2016-06-27T01:02:19.648Z\",\"version\":\"5.23.2016\",\"email\":\"IT@heathus.com\",\"fname\":\"RoyDean\",\"lname\":\"Leighton\",\"state\":\"TX\",\"division\":\"Corporate\",\"id\":8}"
     },
-    "IssueReport": {},
+    "IssueReport": {
+      "1": "{\"fname\":\"RoyDean\",\"lname\":\"Leighton\",\"email\":\"IT@heathus.com\",\"issue\":\"Download an update\",\"version\":\"5.23.2016\",\"createdAt\":\"2016-06-28T05:43:32.392Z\",\"state\":\"TX\",\"division\":\"Corporate\",\"id\":1}"
+    },
     "update": {
       "7": "{\"releaseDate\":\"06/01/2016\",\"state\":\"Texas\",\"link\":\"https://s3.amazonaws.com/fsv42updates/FSV42+Update+64bit.EXE\",\"id\":7}",
       "8": "{\"releaseDate\":\"06/01/2016\",\"state\":\"Kentucky\",\"link\":\"https://s3.amazonaws.com/fsv42updates/FSV42+Update+64bit.EXE\",\"id\":8}",
