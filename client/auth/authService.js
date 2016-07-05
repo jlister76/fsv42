@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('logInApp')
+    .module('FSV42App')
     .factory('AuthService', function (Employee, $q, $rootScope) {
       function login(email, password) {
         return Employee

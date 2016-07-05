@@ -2,13 +2,14 @@
   'use strict';
 
   angular
-    .module('logInApp',[
+    .module('FSV42App',[
         'ui.router',
         'lbServices',
+      'uiGmapgoogle-maps',
         'ngMaterial',
         'ngMessages',
-      'ng.deviceDetector',
-      'uiGmapgoogle-maps'
+      'ng.deviceDetector'
+
     ])
     .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
       $stateProvider
@@ -70,23 +71,6 @@
         };
       })
     })
-    .config(function($mdThemingProvider) {
-      // Extend the red theme with a few different colors
-      var neonRedMap = $mdThemingProvider.extendPalette('red', {
-        '500': 'ff0000'
-      });
-      // Register the new color palette map with the name <code>neonRed</code>
-      $mdThemingProvider.definePalette('neonRed', neonRedMap);
-      // Use that theme for the primary intentions
-      $mdThemingProvider.theme('default')
-        .primaryPalette('blue')
-    }).config(function(uiGmapGoogleMapApiProvider) {
-    uiGmapGoogleMapApiProvider.configure({
-      key: 'AIzaSyBUZmQ8vc34NHhjEnLzFf970bmt-0ZQaVU',
-      v: '3.23', //defaults to latest 3.X anyhow
-      libraries: 'weather,geometry,visualization'
-    });
-  })
     .run(function ($rootScope, $state, AuthService) {
     //prevents loading views that require authentication
     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
@@ -96,6 +80,13 @@
         event.preventDefault();
       }
     });
-  });
+  })
+    .config(function(uiGmapGoogleMapApiProvider) {
+      uiGmapGoogleMapApiProvider.configure({
+        key: 'AIzaSyBUZmQ8vc34NHhjEnLzFf970bmt-0ZQaVU',
+        v: '3.23', //defaults to latest 3.X anyhow
+        libraries: 'weather,geometry,visualization'
+      });
+    })
 
 })();

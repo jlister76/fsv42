@@ -1,41 +1,136 @@
-<div flex-xs="100" layout="column" layout-align="center" class="md-title">
-<span class="md-subhead">Dashboard</span>
-  <div layout layout-align="start" layout-xs="column">
-    <div style="margin: 2rem; padding:3rem; background-color: whitesmoke;"><p class="md-title">My Recent Updates</p>
-      <table>
-        <thead>
-        <th class="md-subhead">Date</th>
-        <th class="md-subhead">Version</th>
-        </thead>
-        <tbody>
-        <tr ng-repeat="conf in confirms">
-          <td class="md-caption">{{ conf.lastUpdated | date: short }}</td>
-          <td class="md-caption">{{ conf.version }}</td>
-        </tr>
-        </tbody>
-      </table>
+<div flex flex-xs="100" layout="row" layout-xs="column" layout-align="start" layout-align-xs="start center">
 
-    </div>
-    <div style="margin: 2rem; padding:3rem; background-color: whitesmoke;">
-      <p class="md-title">All Updates</p>
-      <span class="md-subhead">Choose Version</span>
-      <md-select class="md-caption" ng-model="update.version" ng-change="findConfirms(update.version)">
-        <md-option ng-repeat="version in updateVersion" value="{{ version }}">
-          {{ version }}
-        </md-option>
-      </md-select>
-      <p class="md-caption"><b>Employee</b></p>
-      <div ng-repeat="confirm in confirmations">
-        <p class="md-caption">{{ confirm.lname +", "+confirm.fname }}</p>
+  <div flex="33" layout="column" layout-align="start" layout-align-xs="center center">
+    <md-list>
+    <md-list-item>
+      <div style=""><p class="md-subhead">My Updates</p>
+        <table>
+          <thead>
+          <th class="md-subhead">Date</th>
+          <th class="md-subhead">Version</th>
+          </thead>
+          <tbody>
+          <tr ng-repeat="conf in confirms">
+            <td class="md-caption">{{ conf.lastUpdated | date: short }}</td>
+            <td class="md-caption">{{ conf.version }}</td>
+          </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </md-list-item>
+    <md-list-item class="md-padding">
+        <div style="width:275px;">
+          <p class="md-subhead">Confirm Installation</p>
+          <div ng-controller="ConfirmationController" flex-xs="100">
+
+            <div flex-xs="100" layout="column"
+                 style="height: 250px; margin: 0 0; background-color: whitesmoke; border: solid thin whitesmoke; border-radius: 5px;">
+              <div ng-if="msgStatus == 0">
+                <form layout="column" name="confirmationForm" ng-submit="confirm(update.version)" >
+
+                  <md-input-container>
+
+                    <label>Update version</label>
+                    <md-select ng-model="update.version" required>
+                      <md-option ng-repeat="version in updateVersion" value="{{version}}">{{version}}</md-option>
+                    </md-select>
+                  </md-input-container>
+
+                  <div layout layout-align="center start" style="margin: 0rem;">
+                    <md-button class="md-raised md-primary" type="submit" ng-disabled="confirmationForm.$invalid"
+                               style="color:white;">Confirm
+                    </md-button>
+                  </div>
+                </form>
+              </div>
+              <div ng-if="msgStatus==1">
+                <p>{{ confirmation }}</p>
+              </div>
+              <div layout="column" layout-align="center center" device-detector>
+
+                <p class="md-caption">Operating System: {{ data.os }}</p>
+                <p class="md-caption">Version: {{ data.os_version }}</p>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </md-list-item>
+    <md-list-item>
+      <div>
+        <p class="md-subhead">Current location</p>
+        <div id="map"></div>
+        <!--<ui-gmap-google-map center="{latitude: 45, longitude: -73 }" zoom='map.zoom'></ui-gmap-google-map>-->
+      </div>
+    </md-list-item>
+
+  </md-list>
+
+
+
+  </div>
+  <div ng-controller="DashboardController" hide-xs layout="column">
+    <p class="md-subhead">See who is current</p>
+    <div style="height:300px; width:25vw;">
+      <div layout="column">
+        <md-list style="padding:0!important;">
+          <md-list-item style="background-color: whitesmoke;>
+
+            <div layout layout-align="start start">
+          <p class="md-caption" style="">Select an update version:</p>
+          <md-select class="md-caption" ng-model="update.version" ng-change="initTxData(update.version)"
+                     aria-label="update version">
+            <md-option ng-repeat="version in updateVersion" value="{{ version }}">
+              {{ version }}
+            </md-option>
+          </md-select>
+
       </div>
 
+      </md-list-item>
+      <md-divider></md-divider>
+      <md-list-item layout style="border: solid thin whitesmoke">
+
+        <div flex>
+
+          <div flex style="border: solid thin black">Texas {{ txConfirmCount/txEmpCount*100 | number:0}}%</div>
+          <div flex style="border: solid thin black">Kentucky {{ kyConfirmCount/kyEmpCount*100 | number:0 }}%</div>
+          <div flex style="border: solid thin black">Mississippi {{ msConfirmCount/msEmpCount*100 | number:0 }}%</div>
+          <md-content flex layout>
+            <md-tabs flex md-dynamic-height md-border-bottom>
+              <md-tab label="Confirmed">
+                <md-content flex>
+                  <table flex>
+                    <tr ng-repeat="people in confirmed">
+                      <td  class="md-caption"> {{ people.lname+", "+ people.fname }}</td>
+                      <td  class="md-caption">{{ people.state }}</td>
+                    </tr>
+                  </table>
+                </md-content>
+              </md-tab>
+              <md-tab label="Unconfirmed">
+                <md-content>
+                  <table>
+                    <tr ng-repeat="p in unConfirmed">
+                      <td class="md-caption">{{p.lname +", " + p.fname }}</td>
+                      <td class="md-caption">{{ p.state }}</td>
+                    </tr>
+                  </table>
+                </md-content>
+              </md-tab>
+            </md-tabs>
+          </md-content>
+
+        </div>
+      </md-list-item>
+      </md-list>
     </div>
-
   </div>
+</div>
 
-  <div layout layout-align="center center">
-    <ui-gmap-google-map center='map.center' zoom='map.zoom' id="map"></ui-gmap-google-map>
-  </div>
+
 
 </div>
 

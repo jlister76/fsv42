@@ -1,35 +1,37 @@
+<div flex layout="row" layout-align="center">
+  <div  flex-xs="100" layout="column" layout-align="center">
+    <span class="md-subhead">Update Confirmation</span>
+    <div  flex-xs="100" layout="column" layout-align="center center" class="md-padding"
+          style="margin: 5px 0; background-color: whitesmoke; border: solid thin whitesmoke; border-radius: 5px;">
+      <div ng-if="msgStatus == 0">
+        <form layout="column" name="confirmationForm" ng-submit="confirm(update.version)">
 
+          <md-input-container>
 
+            <label>Update version</label>
+            <md-select ng-model="update.version" required>
+              <md-option ng-repeat="version in updateVersion" value="{{version}}">{{version}}</md-option>
+            </md-select>
+          </md-input-container>
 
-<div  flex-xs="100" layout="column" layout-align="center">
-  <span class="md-subhead">Update Confirmation</span>
-  <div  flex-xs="100" layout="column" layout-align="center center" class="md-padding"
-        style="margin: 5px 0; background-color: whitesmoke; border: solid thin whitesmoke; border-radius: 5px;">
-    <div ng-if="msgStatus == 0">
-      <form layout="column" name="confirmationForm" ng-submit="confirm(update.version)">
+          <div layout layout-align="center start" style="margin: 1rem;">
+            <md-button class="md-raised md-primary" type="submit" ng-disabled="confirmationForm.$invalid"  style="color:white; width: 250px; height:40px">Submit</md-button>
+          </div>
+        </form>
+      </div>
+      <div ng-if="msgStatus==1">
+        <p>{{ confirmation }}</p>
+      </div>
+      <div layout="column" layout-align="center center" device-detector>
+        <p id="demo">Getting location...</p>
+        <p>Operating System: {{ data.os }}</p>
+        <p>Version: {{ data.os_version }}</p>
 
-        <md-input-container>
-
-          <label>Update version</label>
-          <md-select ng-model="update.version" required>
-            <md-option ng-repeat="version in updateVersion" value="{{version}}">{{version}}</md-option>
-          </md-select>
-        </md-input-container>
-
-        <div layout layout-align="center start" style="margin: 1rem;">
-          <md-button class="md-raised md-primary" type="submit" ng-disabled="confirmationForm.$invalid"  style="color:white; width: 250px; height:40px">Submit</md-button>
-        </div>
-      </form>
+      </div>
     </div>
-    <div ng-if="msgStatus==1">
-      <p>{{ confirmation }}</p>
-    </div>
-    <div layout="column" layout-align="center center" device-detector>
-      <p id="demo">Getting location...</p>
-      <p>Operating System: {{ data.os }}</p>
-      <p>Version: {{ data.os_version }}</p>
 
-    </div>
   </div>
-
 </div>
+
+
+

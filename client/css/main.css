@@ -71,8 +71,8 @@ table {
   border-collapse: collapse;
 }
 td{
-  padding:1rem;
-  margin: 2rem;
+  padding:0.8rem;
+  margin: 0rem;
 }
 
 tbody tr:nth-child(odd) {
@@ -81,4 +81,4 @@ tbody tr:nth-child(odd) {
 #map {
   width:275px; height: 175px;
 }
-.angular-google-map-container {  }
+.angular-google-map-container { width:200px; height: 175px; }

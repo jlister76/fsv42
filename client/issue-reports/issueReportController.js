@@ -2,9 +2,9 @@
   'use strict';
 
   angular
-    .module('logInApp')
+    .module('FSV42App')
     .controller('IssueReportController', function($scope, AuthService, $rootScope, $state, IssueReport){
-    
+
       $scope.msgStatus = 0;
       $scope.issueType = ['Download an update', 'Install an update', 'Other: See comments for details'];
       $scope.updateVersion = ['5.23.2016', '6.1.2016']; //TODO: store update versions in db and return an array of versions.

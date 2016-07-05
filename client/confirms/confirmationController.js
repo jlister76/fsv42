@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular
-    .module('logInApp')
+    .module('FSV42App')
     .controller('ConfirmationController', function ($scope, AuthService, $rootScope, $state, $http, Confirmation,deviceDetector){
 
      $scope.msgStatus = 0;

@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('logInApp')
+    .module('FSV42App')
     .controller('AuthLoginController', function ($scope, $state, AuthService, $location, $log, Employee) {
 
       $scope.user = {

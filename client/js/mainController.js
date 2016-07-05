@@ -2,8 +2,9 @@
   'use strict';
 
   angular
-    .module('logInApp')
-    .controller('MainController', function($scope, AuthService, $rootScope, $state, $mdSidenav){
+    .module('FSV42App')
+    .controller('MainController', function($scope, AuthService, $rootScope, $state, $mdSidenav, $log){
+
       //directs to log-in
       $scope.authenticated = AuthService.isAuthenticated();
       $scope.getCurrent = function () {
@@ -20,13 +21,13 @@
       $scope.openLeftMenu = function() {
         $mdSidenav('left').toggle();
       };
-      /* $scope.close = function () {
+       $scope.close = function () {
        // Component lookup should always be available since we are not using `ng-if`
        $mdSidenav('left').close()
        .then(function () {
        $log.debug("close LEFT is done");
        });
-       };*/
+       };
 
     })
 })();

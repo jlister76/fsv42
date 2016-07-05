@@ -1,7 +1,7 @@
 (function(){
   'use strict';
   angular
-    .module('logInApp')
+    .module('FSV42App')
     .controller('DownloadController', function ($scope, Update){
       $scope.updateVersion = ['5.23.2016', '6.1.2016']; //TODO: store update versions in db and return an array of versions.
       $scope.states = ["Texas", "Kentucky", "Mississippi"];
@@ -24,6 +24,8 @@
             console.log(updates);
             $scope.updates = updates;
           })
-      }
+      };
+
+
     })
 })();
