@@ -29,7 +29,18 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "employee": {
+      "type": "belongsTo",
+      "model": "employee",
+      "foreignKey": ""
+    },
+    "update": {
+      "type": "belongsTo",
+      "model": "update",
+      "foreignKey": ""
+    }
+  },
   "acls": [
     {
       "accessType": "*",

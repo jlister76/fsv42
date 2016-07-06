@@ -73,12 +73,14 @@ table {
 td{
   padding:0.8rem;
   margin: 0rem;
+  width:100vw;
 }
 
 tbody tr:nth-child(odd) {
   background-color: lightgray;
 }
+
 #map {
-  width:275px; height: 175px;
+  width:205px; height: 175px;
 }
 .angular-google-map-container { width:200px; height: 175px; }

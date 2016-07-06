@@ -4,14 +4,15 @@
     <div  flex-xs="100" layout="column" layout-align="center center" class="md-padding"
           style="margin: 5px 0; background-color: whitesmoke; border: solid thin whitesmoke; border-radius: 5px;">
       <div ng-if="msgStatus == 0">
-        <form layout="column" name="confirmationForm" ng-submit="confirm(update.version)">
+        <form layout="column" name="confirmationForm" ng-submit="confirm(update.id)">
 
           <md-input-container>
 
             <label>Update version</label>
-            <md-select ng-model="update.version" required>
-              <md-option ng-repeat="version in updateVersion" value="{{version}}">{{version}}</md-option>
+            <md-select ng-model="update.id" required>
+              <md-option ng-repeat="d in updates" value="{{d.id}}">{{d.releaseDate | date:short}}</md-option>
             </md-select>
+            {{ update.id }}
           </md-input-container>
 
           <div layout layout-align="center start" style="margin: 1rem;">

@@ -3,46 +3,81 @@
 
   angular
     .module('FSV42App')
-    .controller('DashboardController', function ($scope, AuthService, $rootScope, $state, $mdSidenav, $log, $mdMedia, Confirmation,uiGmapGoogleMapApi, Employee){
+    .controller('DashboardController', function ($scope, AuthService, $rootScope, $state, $mdSidenav, $log, $mdMedia, Confirmation,uiGmapGoogleMapApi, Employee, Update){
+      /*****************************************************************/
+              //Set current user
 
-      $scope.updateVersion = ['5.23.2016', '6.1.2016']; //TODO: store update versions in db and return an array of versions.
+      AuthService.getCurrent()
+        .$promise
+        .then(function (user) {
+          //console.info(user);
+          $rootScope.currentUser = user;
+
+        });
+      /*****************************************************************/
       $scope.state = ["Texas", "Kentucky", "Mississippi"];
+      /****************************************************************/
+      //Determine release dates
+      Update
+        .find()
+        .$promise
+        .then (function(updates){
+          $scope.updates = _.uniqBy(updates, 'releaseDate');
+        });
+      /*****************************************************************/
 
-      $scope.getCurrent = function () {
-        AuthService.getCurrent()
-          .$promise
-          .then(function (user) {
-            //console.info(user);
-            $rootScope.currentUser = user;
+      /************************************************************************/
 
-          })
-          .then(function(){
-            var email = localStorage.getItem("email");
-            var initConfirms = function (){
-              //console.log(email);
-              Confirmation.find({filter: {where: {email: email}}})
-                .$promise
-                .then(function(confirmationList){
-                  console.log(confirmationList);
-                  $scope.confirms = confirmationList;
-                })
-            };
-            initConfirms();
+      /*Determine the most recent update, confirm users status & provide d/l link*/
 
-            $scope.findConfirms = function (updateVersion) {
-              Confirmation
-                .find({filter: {where: {version: updateVersion}}})
-                .$promise
-                .then(function(confirmation){
-                  console.log(confirmation);
-                  $scope.confirmations = confirmation;
-                })
-            };
+      Update
+        .find()
+        .$promise
+        .then(function(updates){
+          var dates = [];
+          _.forEach(updates, function(d){dates.push(moment(d.releaseDate))});
+          var mostRecent = moment.max(dates);
+          return mostRecent;
+        })
+        .then(function (mostRecent){
+          var id = AuthService.getCurrentId();
+          Confirmation.find({filter: {where: {employeeId: id}, include: 'update'}})
+            .$promise
+            .then(function(confirmationList){
+              console.log(confirmationList);
+              $scope.confirmationList = confirmationList;
+              console.log(mostRecent);
+              var ClDate = [];
+              _.forEach(confirmationList, function (cl){ ClDate.push(moment(cl.update.releaseDate))});
+              console.log(moment.max(ClDate));
+              var maxConfDate = moment.max(ClDate);
+              var statusCurrent = moment(mostRecent).isSame(maxConfDate);
+              if (statusCurrent){
+                $scope.status = "You are currently up to date.";
+              }else{
+                $scope.status = "A newer update is available:"
+                }
+            });
+            return mostRecent;
+        })
+        .then(function(mostRecent){
+          var state = localStorage.getItem('state');
+          Update
+            .findOne({filter: {where:{state: state, releaseDate: mostRecent}}})
+            .$promise
+            .then(function(update){
+              console.log(update.link);
 
-          })
+              $scope.mostRecentDownload = {
+                id: update.id,
+                state: update.state,
+                link: update.link,
+                releaseDate: update.releaseDate
+              }
+            })
+        });
+      /************************************************************************/
 
-      };
-      $scope.getCurrent();
 
       $scope.initTxData = function (version) {
         Employee
@@ -152,6 +187,42 @@
               'Error: Your browser doesn\'t support geolocation.');
           }
       });
+
+
+      //CHARTIST DEMO
+
+
+      $scope.barOptions = {
+        seriesBarDistance: 15
+      };
+
+      $scope.barResponsiveOptions = [
+        ['screen and (min-width: 901px) and (max-width: 1024px)', {
+          seriesBarDistance: 10,
+          axisX: {
+            labelInterpolationFnc: function (value) {
+              return value;
+            }
+          }
+        }],
+        ['screen and (max-width: 900px)', {
+          seriesBarDistance: 5,
+          axisX: {
+            labelInterpolationFnc: function (value) {
+              return value[0];
+            }
+          }
+        }]
+      ];
+
+      $scope.lineOptions = {
+        axisX: {
+          labelInterpolationFnc: function (value) {
+            return value;
+          }
+        }
+      };
+
 
 
 

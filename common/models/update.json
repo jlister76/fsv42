@@ -1,0 +1,23 @@
+{
+  "name": "update",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "releaseDate": {
+      "type": "date"
+    },
+    "state": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

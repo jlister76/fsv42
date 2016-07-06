@@ -8,7 +8,8 @@
       'uiGmapgoogle-maps',
         'ngMaterial',
         'ngMessages',
-      'ng.deviceDetector'
+      'ng.deviceDetector',
+      'angular-chartist'
 
     ])
     .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {

@@ -1,12 +1,12 @@
 {
   "ids": {
     "User": 1,
-    "AccessToken": 137,
+    "AccessToken": 146,
     "ACL": 1,
     "RoleMapping": 1,
     "Role": 1,
     "employee": 7,
-    "confirmation": 14,
+    "confirmation": 20,
     "IssueReport": 2,
     "update": 13
   },
@@ -78,40 +78,34 @@
       "AGd9Acv77KPU7i1D2rtfoYafYu84qj62OxCVYbLFvizcpIwbnVYVhO16nbKMXtsq": "{\"id\":\"AGd9Acv77KPU7i1D2rtfoYafYu84qj62OxCVYbLFvizcpIwbnVYVhO16nbKMXtsq\",\"ttl\":1209600,\"created\":\"2016-07-04T10:19:18.847Z\",\"userId\":1}",
       "sb8PaV9AChKYsScl6covRjysk8TqX6ySBD0yT7VrXo66cTAUC4cK6GvM1Fhz1xqq": "{\"id\":\"sb8PaV9AChKYsScl6covRjysk8TqX6ySBD0yT7VrXo66cTAUC4cK6GvM1Fhz1xqq\",\"ttl\":1209600,\"created\":\"2016-07-04T10:20:26.283Z\",\"userId\":1}",
       "Fl1pnGSk5oJoPshbPBXrHdDfbBKkHGGGSuW8cQ7qFIr6EWX2kyleL3KckXx2uC0w": "{\"id\":\"Fl1pnGSk5oJoPshbPBXrHdDfbBKkHGGGSuW8cQ7qFIr6EWX2kyleL3KckXx2uC0w\",\"ttl\":1209600,\"created\":\"2016-07-04T10:22:25.467Z\",\"userId\":2}",
-      "ZW4XWnw6ZrAVbuAnpZHJpnUGUYUiwzpQ9yXl9uKDTSD29If9U9AvPrRxRu2VKJBK": "{\"id\":\"ZW4XWnw6ZrAVbuAnpZHJpnUGUYUiwzpQ9yXl9uKDTSD29If9U9AvPrRxRu2VKJBK\",\"ttl\":1209600,\"created\":\"2016-07-04T12:55:27.546Z\",\"userId\":6}",
-      "bZ0J5EV3YgV1GPyaKZmQAXUVosaNPPvvprF9xce4xVFtDFCwh7V9aiD4MQ1epP5F": "{\"id\":\"bZ0J5EV3YgV1GPyaKZmQAXUVosaNPPvvprF9xce4xVFtDFCwh7V9aiD4MQ1epP5F\",\"ttl\":1209600,\"created\":\"2016-07-05T02:17:55.398Z\",\"userId\":2}"
+      "bZ0J5EV3YgV1GPyaKZmQAXUVosaNPPvvprF9xce4xVFtDFCwh7V9aiD4MQ1epP5F": "{\"id\":\"bZ0J5EV3YgV1GPyaKZmQAXUVosaNPPvvprF9xce4xVFtDFCwh7V9aiD4MQ1epP5F\",\"ttl\":1209600,\"created\":\"2016-07-05T02:17:55.398Z\",\"userId\":2}",
+      "71JOu0zwcBRMCwlwIXN30hdXylFf5qz3ZZuZnjYAMsb0ZFnUxxTjYJFdbw3g8Lzn": "{\"id\":\"71JOu0zwcBRMCwlwIXN30hdXylFf5qz3ZZuZnjYAMsb0ZFnUxxTjYJFdbw3g8Lzn\",\"ttl\":1209600,\"created\":\"2016-07-06T09:22:17.480Z\",\"userId\":6}",
+      "HXYbg9nGGo3d888AmagPQN9Qnw0aDCcFXnkkCaw1c3xZ9SzaifPlAZZ2YCKoWq3m": "{\"id\":\"HXYbg9nGGo3d888AmagPQN9Qnw0aDCcFXnkkCaw1c3xZ9SzaifPlAZZ2YCKoWq3m\",\"ttl\":1209600,\"created\":\"2016-07-06T09:35:48.423Z\",\"userId\":6}"
     },
     "ACL": {},
     "RoleMapping": {},
     "Role": {},
     "employee": {
-      "1": "{\"employee_number\":\"1234\",\"fname\":\"John\",\"lname\":\"Lister\",\"state\":\"TX\",\"division\":\"43\",\"username\":\"jlister\",\"password\":\"$2a$10$baM/X4mXMzLGn65ZAhANUuuXRA8Qz98aAFrnMjB2TWiq37e.RjgAu\",\"email\":\"j.lister@heathus.com\",\"status\":\"string\",\"created\":\"2016-06-23T00:00:00.000Z\",\"lastUpdated\":\"2016-06-23T00:00:00.000Z\",\"id\":1}",
-      "2": "{\"employee_number\":\"1234\",\"fname\":\"RoyDean\",\"lname\":\"Leighton\",\"state\":\"TX\",\"division\":\"Corporate\",\"username\":\"IT Dept\",\"password\":\"$2a$10$X.XrVWQMhSP2mWX7n/0JT.VPYwL22j4DoTO6Nubh8l3tHl5hlku9i\",\"email\":\"IT@heathus.com\",\"status\":\"string\",\"created\":\"2016-06-23T00:00:00.000Z\",\"lastUpdated\":\"2016-06-23T00:00:00.000Z\",\"id\":2}",
-      "3": "{\"employee_number\":\"1234\",\"fname\":\"Paul\",\"lname\":\"Galyean\",\"state\":\"KY\",\"division\":\"Corp\",\"username\":\"Paul Galyean\",\"password\":\"$2a$10$ASDas1NUxxtu69gSQkhqeOUkDqJZfckW3hJ82IsSxFsJxZV0fTmE6\",\"email\":\"p.galyean@heathus.com\",\"emailVerified\":false,\"created\":\"2016-07-04T00:00:00.000Z\",\"lastUpdated\":\"2016-07-04T00:00:00.000Z\",\"id\":3}",
-      "4": "{\"employee_number\":\"1234\",\"fname\":\"Sean\",\"lname\":\"Cerda\",\"state\":\"KY\",\"division\":\"Corp\",\"username\":\"Sean Cerda\",\"password\":\"$2a$10$3.XtdEbvVUbX16vTTNBmC.fgCXPG0TFhnuiD5LvqgujZeGXtjg946\",\"email\":\"s.cerda@heathus.com\",\"emailVerified\":false,\"created\":\"2016-07-04T00:00:00.000Z\",\"lastUpdated\":\"2016-07-04T00:00:00.000Z\",\"id\":4}",
-      "5": "{\"employee_number\":\"1234\",\"fname\":\"Todd\",\"lname\":\"Kelley\",\"state\":\"MS\",\"division\":\"40\",\"username\":\"Todd Kelley\",\"password\":\"$2a$10$Ko.ec6T6W8N9zpX4S6VJwO16nNIiruvQIIyg.aWG2QlnVxROrhwim\",\"email\":\"t.kelley@heathus.com\",\"emailVerified\":false,\"created\":\"2016-07-04T00:00:00.000Z\",\"lastUpdated\":\"2016-07-04T00:00:00.000Z\",\"id\":5}",
-      "6": "{\"employee_number\":\"1234\",\"fname\":\"William\",\"lname\":\"Luttrell\",\"state\":\"MS\",\"division\":\"40\",\"username\":\"William Luttrell\",\"password\":\"$2a$10$dexuwIgbdRoO5c8t0qLHh.TQ.mzcFL9mRbibwVb4Vg3iBrZbbAyyu\",\"email\":\"w.luttrell@heathus.com\",\"emailVerified\":false,\"created\":\"2016-07-04T00:00:00.000Z\",\"lastUpdated\":\"2016-07-04T00:00:00.000Z\",\"id\":6}"
+      "1": "{\"employee_number\":\"1234\",\"fname\":\"John\",\"lname\":\"Lister\",\"state\":\"Texas\",\"division\":\"43\",\"username\":\"jlister\",\"password\":\"$2a$10$baM/X4mXMzLGn65ZAhANUuuXRA8Qz98aAFrnMjB2TWiq37e.RjgAu\",\"email\":\"j.lister@heathus.com\",\"status\":\"string\",\"created\":\"2016-06-23T00:00:00.000Z\",\"lastUpdated\":\"2016-06-23T00:00:00.000Z\",\"id\":1}",
+      "2": "{\"employee_number\":\"1234\",\"fname\":\"RoyDean\",\"lname\":\"Leighton\",\"state\":\"Texas\",\"division\":\"Corporate\",\"username\":\"IT Dept\",\"password\":\"$2a$10$X.XrVWQMhSP2mWX7n/0JT.VPYwL22j4DoTO6Nubh8l3tHl5hlku9i\",\"email\":\"IT@heathus.com\",\"status\":\"string\",\"created\":\"2016-06-23T00:00:00.000Z\",\"lastUpdated\":\"2016-06-23T00:00:00.000Z\",\"id\":2}",
+      "3": "{\"employee_number\":\"1234\",\"fname\":\"Paul\",\"lname\":\"Galyean\",\"state\":\"Kentucky\",\"division\":\"Corp\",\"username\":\"Paul Galyean\",\"password\":\"$2a$10$ASDas1NUxxtu69gSQkhqeOUkDqJZfckW3hJ82IsSxFsJxZV0fTmE6\",\"email\":\"p.galyean@heathus.com\",\"emailVerified\":false,\"created\":\"2016-07-04T00:00:00.000Z\",\"lastUpdated\":\"2016-07-04T00:00:00.000Z\",\"id\":3}",
+      "4": "{\"employee_number\":\"1234\",\"fname\":\"Sean\",\"lname\":\"Cerda\",\"state\":\"Kentucky\",\"division\":\"Corp\",\"username\":\"Sean Cerda\",\"password\":\"$2a$10$3.XtdEbvVUbX16vTTNBmC.fgCXPG0TFhnuiD5LvqgujZeGXtjg946\",\"email\":\"s.cerda@heathus.com\",\"emailVerified\":false,\"created\":\"2016-07-04T00:00:00.000Z\",\"lastUpdated\":\"2016-07-04T00:00:00.000Z\",\"id\":4}",
+      "5": "{\"employee_number\":\"1234\",\"fname\":\"Todd\",\"lname\":\"Kelley\",\"state\":\"Mississippi\",\"division\":\"40\",\"username\":\"Todd Kelley\",\"password\":\"$2a$10$Ko.ec6T6W8N9zpX4S6VJwO16nNIiruvQIIyg.aWG2QlnVxROrhwim\",\"email\":\"t.kelley@heathus.com\",\"emailVerified\":false,\"created\":\"2016-07-04T00:00:00.000Z\",\"lastUpdated\":\"2016-07-04T00:00:00.000Z\",\"id\":5}",
+      "6": "{\"employee_number\":\"1234\",\"fname\":\"William\",\"lname\":\"Luttrell\",\"state\":\"Mississippi\",\"division\":\"40\",\"username\":\"William Luttrell\",\"password\":\"$2a$10$dexuwIgbdRoO5c8t0qLHh.TQ.mzcFL9mRbibwVb4Vg3iBrZbbAyyu\",\"email\":\"w.luttrell@heathus.com\",\"emailVerified\":false,\"created\":\"2016-07-04T00:00:00.000Z\",\"lastUpdated\":\"2016-07-04T00:00:00.000Z\",\"id\":6}"
     },
     "confirmation": {
-      "1": "{\"lastUpdated\":\"2016-06-23T09:58:38.671Z\",\"version\":\"5.23.2016\",\"email\":\"j.lister@heathus.com\",\"fname\":\"John\",\"lname\":\"Lister\",\"state\":\"TX\",\"division\":\"43\",\"id\":1}",
-      "2": "{\"lastUpdated\":\"2016-06-23T10:42:17.251Z\",\"version\":\"6.1.2016\",\"email\":\"IT@heathus.com\",\"fname\":\"RoyDean\",\"lname\":\"Leighton\",\"state\":\"TX\",\"division\":\"Corporate\",\"id\":2}",
-      "8": "{\"lastUpdated\":\"2016-07-04T08:28:00.877Z\",\"version\":\"5.23.2016\",\"email\":\"IT@heathus.com\",\"fname\":\"RoyDean\",\"lname\":\"Leighton\",\"state\":\"TX\",\"division\":\"Corporate\",\"id\":8}",
-      "9": "{\"lastUpdated\":\"2016-07-04T12:52:37.069Z\",\"version\":\"5.23.2016\",\"email\":\"p.galyean@heathus.com\",\"fname\":\"Paul\",\"lname\":\"Galyean\",\"state\":\"KY\",\"division\":\"Corp\",\"id\":9}",
-      "10": "{\"lastUpdated\":\"2016-07-04T12:52:51.482Z\",\"version\":\"6.1.2016\",\"email\":\"p.galyean@heathus.com\",\"fname\":\"Paul\",\"lname\":\"Galyean\",\"state\":\"KY\",\"division\":\"Corp\",\"id\":10}",
-      "11": "{\"lastUpdated\":\"2016-07-04T12:54:12.199Z\",\"version\":\"6.1.2016\",\"email\":\"s.cerda@heathus.com\",\"fname\":\"Sean\",\"lname\":\"Cerda\",\"state\":\"KY\",\"division\":\"Corp\",\"id\":11}",
-      "12": "{\"lastUpdated\":\"2016-07-04T12:55:35.537Z\",\"version\":\"5.23.2016\",\"email\":\"w.luttrell@heathus.com\",\"fname\":\"William\",\"lname\":\"Luttrell\",\"state\":\"MS\",\"division\":\"40\",\"id\":12}",
-      "13": "{\"lastUpdated\":\"2016-07-04T12:56:23.743Z\",\"version\":\"6.1.2016\",\"email\":\"w.luttrell@heathus.com\",\"fname\":\"William\",\"lname\":\"Luttrell\",\"state\":\"MS\",\"division\":\"40\",\"id\":13}"
+      "19": "{\"lastUpdated\":\"2016-07-06T07:48:50.433Z\",\"employeeId\":6,\"updateId\":10,\"id\":19}"
     },
     "IssueReport": {
       "1": "{\"fname\":\"RoyDean\",\"lname\":\"Leighton\",\"email\":\"IT@heathus.com\",\"issue\":\"Download an update\",\"version\":\"5.23.2016\",\"createdAt\":\"2016-06-28T05:43:32.392Z\",\"state\":\"TX\",\"division\":\"Corporate\",\"id\":1}"
     },
     "update": {
-      "7": "{\"releaseDate\":\"06/01/2016\",\"state\":\"Texas\",\"link\":\"https://s3.amazonaws.com/fsv42updates/FSV42+Update+64bit.EXE\",\"id\":7}",
-      "8": "{\"releaseDate\":\"06/01/2016\",\"state\":\"Kentucky\",\"link\":\"https://s3.amazonaws.com/fsv42updates/FSV42+Update+64bit.EXE\",\"id\":8}",
-      "9": "{\"releaseDate\":\"06/01/2016\",\"state\":\"Mississippi\",\"link\":\"https://s3.amazonaws.com/fsv42updates/FSV42+Update+64bit.EXE\",\"id\":9}",
-      "10": "{\"releaseDate\":\"05/23/2016\",\"state\":\"Mississippi\",\"link\":\"https://s3.amazonaws.com/fsv42updates/FSV42+Update+64bit.EXE\",\"id\":10}",
-      "11": "{\"releaseDate\":\"05/23/2016\",\"state\":\"Kentucky\",\"link\":\"https://s3.amazonaws.com/fsv42updates/FSV42+Update+64bit.EXE\",\"id\":11}",
-      "12": "{\"releaseDate\":\"05/23/2016\",\"state\":\"Texas\",\"link\":\"https://s3.amazonaws.com/fsv42updates/FSV42+Update+64bit.EXE\",\"id\":12}"
+      "7": "{\"releaseDate\":\"2016-06-01T05:00:00.000Z\",\"state\":\"Texas\",\"link\":\"https://s3.amazonaws.com/fsv42updates/FSV42+Update+64bit.EXE\",\"id\":7}",
+      "8": "{\"releaseDate\":\"2016-06-01T05:00:00.000Z\",\"state\":\"Kentucky\",\"link\":\"https://s3.amazonaws.com/fsv42updates/FSV42+Update+64bit.EXE\",\"id\":8}",
+      "9": "{\"releaseDate\":\"2016-06-01T05:00:00.000Z\",\"state\":\"Mississippi\",\"link\":\"https://s3.amazonaws.com/fsv42updates/FSV42+Update+64bit.EXE\",\"id\":9}",
+      "10": "{\"releaseDate\":\"2016-05-23T05:00:00.000Z\",\"state\":\"Mississippi\",\"link\":\"https://s3.amazonaws.com/fsv42updates/FSV42+Update+64bit.EXE\",\"id\":10}",
+      "11": "{\"releaseDate\":\"2016-05-23T05:00:00.000Z\",\"state\":\"Kentucky\",\"link\":\"https://s3.amazonaws.com/fsv42updates/FSV42+Update+64bit.EXE\",\"id\":11}",
+      "12": "{\"releaseDate\":\"2016-05-23T05:00:00.000Z\",\"state\":\"Texas\",\"link\":\"https://s3.amazonaws.com/fsv42updates/FSV42+Update+64bit.EXE\",\"id\":12}"
     }
   }
 }

@@ -15,9 +15,9 @@
           </md-input-container>
           <md-input-container>
 
-            <label>Update version</label>
-            <md-select ng-model="update.version" required>
-              <md-option ng-repeat="version in updateVersion" value="{{version}}">{{version}}</md-option>
+            <label>Release Date</label>
+            <md-select ng-model="update.releaseDate" required>
+              <md-option ng-repeat="d in updates" value="{{d.releaseDate}}">{{d.releaseDate |date:long}}</md-option>
             </md-select>
           </md-input-container>
           <div layout layout-align="center">

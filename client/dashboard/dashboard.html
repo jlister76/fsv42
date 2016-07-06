@@ -1,22 +1,13 @@
 <div flex flex-xs="100" layout="row" layout-xs="column" layout-align="start" layout-align-xs="start center">
 
-  <div flex="33" layout="column" layout-align="start" layout-align-xs="center center">
+  <div flex="25" layout="column" layout-align="start" layout-align-xs="center center">
     <md-list>
     <md-list-item>
-      <div style=""><p class="md-subhead">My Updates</p>
-        <table>
-          <thead>
-          <th class="md-subhead">Date</th>
-          <th class="md-subhead">Version</th>
-          </thead>
-          <tbody>
-          <tr ng-repeat="conf in confirms">
-            <td class="md-caption">{{ conf.lastUpdated | date: short }}</td>
-            <td class="md-caption">{{ conf.version }}</td>
-          </tr>
-          </tbody>
-        </table>
-
+      <div style=""><span class="md-subhead">Status</span>
+        <p class="md-caption">{{ status }}</p>
+        <span>
+          <span class="md-caption">{{ mostRecentDownload.state+":  " }}</span><a class="md-caption" href="{{ mostRecentDownload.link }}">{{ mostRecentDownload.releaseDate | date:short }}</a>
+        </span>
       </div>
     </md-list-item>
     <md-list-item class="md-padding">
@@ -27,14 +18,15 @@
             <div flex-xs="100" layout="column"
                  style="height: 250px; margin: 0 0; background-color: whitesmoke; border: solid thin whitesmoke; border-radius: 5px;">
               <div ng-if="msgStatus == 0">
-                <form layout="column" name="confirmationForm" ng-submit="confirm(update.version)" >
+                <form layout="column" name="confirmationForm" ng-submit="confirm(update.id)" >
 
                   <md-input-container>
 
                     <label>Update version</label>
-                    <md-select ng-model="update.version" required>
-                      <md-option ng-repeat="version in updateVersion" value="{{version}}">{{version}}</md-option>
+                    <md-select ng-model="update.id" required>
+                      <md-option ng-repeat="d in updates" value="{{d.id}}">{{d.releaseDate | date:short}}</md-option>
                     </md-select>
+
                   </md-input-container>
 
                   <div layout layout-align="center start" style="margin: 0rem;">
@@ -67,58 +59,52 @@
     </md-list-item>
 
   </md-list>
-
-
-
-  </div>
-  <div ng-controller="DashboardController" hide-xs layout="column">
+  </div> <!--end of ROW -->
+  <div flex="50" hide-xs layout="column" layout-align="start">
     <p class="md-subhead">See who is current</p>
-    <div style="height:300px; width:25vw;">
+    <div style="width:28vw;">
       <div layout="column">
         <md-list style="padding:0!important;">
-          <md-list-item style="background-color: whitesmoke;>
-
-            <div layout layout-align="start start">
-          <p class="md-caption" style="">Select an update version:</p>
-          <md-select class="md-caption" ng-model="update.version" ng-change="initTxData(update.version)"
-                     aria-label="update version">
-            <md-option ng-repeat="version in updateVersion" value="{{ version }}">
-              {{ version }}
-            </md-option>
-          </md-select>
-
-      </div>
-
-      </md-list-item>
-      <md-divider></md-divider>
-      <md-list-item layout style="border: solid thin whitesmoke">
+          <md-list-item style="background-color: whitesmoke;">
+            <div layout layout-align="space-between center">
+              <p class="md-caption" style="">Select an update version:</p>
+              <md-select class="md-caption" ng-model="update.ver" ng-change="initTxData(update.ver)"
+                         aria-label="update version">
+                <md-option ng-repeat="d in updates" value="{{ d.releaseDate }}">
+                  {{ d.releaseDate | date:short }}
+                </md-option>
+              </md-select>
+            </div>
+          </md-list-item>
+          <md-divider></md-divider>
+          <md-list-item layout style="border: solid thin whitesmoke">
 
         <div flex>
 
-          <div flex style="border: solid thin black">Texas {{ txConfirmCount/txEmpCount*100 | number:0}}%</div>
-          <div flex style="border: solid thin black">Kentucky {{ kyConfirmCount/kyEmpCount*100 | number:0 }}%</div>
-          <div flex style="border: solid thin black">Mississippi {{ msConfirmCount/msEmpCount*100 | number:0 }}%</div>
-          <md-content flex layout>
+          <div flex>Texas {{ txConfirmCount/txEmpCount*100 | number:0}}%</div>
+          <div flex>Kentucky {{ kyConfirmCount/kyEmpCount*100 | number:0 }}%</div>
+          <div flex>Mississippi {{ msConfirmCount/msEmpCount*100 | number:0 }}%</div>
+          <md-content>
             <md-tabs flex md-dynamic-height md-border-bottom>
               <md-tab label="Confirmed">
                 <md-content flex>
-                  <table flex>
+                  <table>
                     <tr ng-repeat="people in confirmed">
-                      <td  class="md-caption"> {{ people.lname+", "+ people.fname }}</td>
-                      <td  class="md-caption">{{ people.state }}</td>
+                      <td class="md-caption"> {{ people.lname+", "+ people.fname }}</td>
+                      <td class="md-caption">{{ people.state }}</td>
                     </tr>
                   </table>
                 </md-content>
               </md-tab>
               <md-tab label="Unconfirmed">
-                <md-content>
-                  <table>
-                    <tr ng-repeat="p in unConfirmed">
-                      <td class="md-caption">{{p.lname +", " + p.fname }}</td>
-                      <td class="md-caption">{{ p.state }}</td>
+                <div layout>
+                  <table style="witdh:100%;">
+                    <tr style="witdh:100%;" layout ng-repeat="p in unConfirmed">
+                      <td class="md-caption" style="witdh:100%;">{{p.lname +", " + p.fname }}</td>
+                      <td class="md-caption" style="witdh:100%;">{{ p.state }}</td>
                     </tr>
                   </table>
-                </md-content>
+                </div>
               </md-tab>
             </md-tabs>
           </md-content>
@@ -129,9 +115,69 @@
     </div>
   </div>
 </div>
+  </div><!--end of ROW -->
+  <div flex="25" layout="column" style="border: solid thin red;">
+    <div layou style="background-color: whitesmoke">
+      <p class="md-caption" style="">Select an update version:</p>
+      <md-select class="md-caption" ng-model="update.ver" ng-change="initTxData(update.ver)"
+                 aria-label="update version">
+        <md-option ng-repeat="version in updateVersion" value="{{ version }}">
+          {{ version }}
+        </md-option>
+      </md-select>
+    </div>
+    <md-content>
+      <md-tabs flex md-dynamic-height md-border-bottom>
+        <md-tab label="Confirmed">
+          <md-content>
+            <div layout>
+              <div flex style="border:solid thin grey;" class="md-caption tableRow">
+                <table>
+                  <tr ng-repeat="people in confirmed">
+                    <td  class="md-caption"> {{ people.lname +", "+ people.fname }}</td>
+                    <td class="md-caption">{{ people.state }}</td>
+                    <table>
+                      <tr ng-repeat="people in confirmed">
+                        <td  class="md-caption"> {{ people.lname +", "+ people.fname }}</td>
+                        <td class="md-caption">{{ people.state }}</td>
+                        <table>
+                          <tr ng-repeat="people in confirmed">
+                            <td  class="md-caption"> {{ people.lname +", "+ people.fname }}</td>
+                            <td class="md-caption">{{ people.state }}</td>
 
-
-
+                          </tr>
+                        </table>
+                      </tr>
+                    </table>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </md-content>
+        </md-tab>
+        <md-tab label="Unconfirmed">
+          <div layout>
+            <table>
+              <tr ng-repeat="p in unConfirmed">
+                <td class="md-caption">{{p.lname +", " + p.fname }}</td>
+                <td class="md-caption">{{ p.state }}</td>
+              </tr>
+            </table>
+          </div>
+        </md-tab>
+      </md-tabs>
+    </md-content>
+  </div><!--end of ROW -->
 </div>
+<!--Chartist
+<div class="md-padding" layout layout style="border:dotted thin #e5e5e5;">
+
+  <chartist flex="33" class="ct-chart " chartist-data="lineData" chartist-chart-type="Bar"
+            chartist-chart-options="lineOptions" chartist-responsive-options="barResponsiveOptions"></chartist>
+</div>
+End of chart -->
+
+
+
 
 

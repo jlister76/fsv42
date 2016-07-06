@@ -3,11 +3,22 @@
 
   angular
     .module('FSV42App')
-    .controller('IssueReportController', function($scope, AuthService, $rootScope, $state, IssueReport){
+    .controller('IssueReportController', function($scope, AuthService, $rootScope, $state, IssueReport, Update){
 
       $scope.msgStatus = 0;
       $scope.issueType = ['Download an update', 'Install an update', 'Other: See comments for details'];
-      $scope.updateVersion = ['5.23.2016', '6.1.2016']; //TODO: store update versions in db and return an array of versions.
+
+
+      /****************************************************************/
+      //Determine release dates
+      Update
+        .find()
+        .$promise
+        .then (function(updates){
+          $scope.updates = _.uniqBy(updates, 'releaseDate');
+        });
+      /*****************************************************************/
+
       $scope.report = function (version,issue,comments){
 
         var email = localStorage.getItem("email");
