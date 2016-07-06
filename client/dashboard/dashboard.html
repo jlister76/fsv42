@@ -12,11 +12,11 @@
     </md-list-item>
     <md-list-item class="md-padding">
         <div style="width:275px;">
-          <p class="md-subhead">Confirm Installation</p>
+          <p class="md-subhead title md-padding">Confirm Installation</p>
           <div ng-controller="ConfirmationController" flex-xs="100">
 
             <div flex-xs="100" layout="column"
-                 style="height: 250px; margin: 0 0; background-color: whitesmoke; border: solid thin whitesmoke; border-radius: 5px;">
+                 style="height: 250px; margin: 0 0; background-color: whitesmoke; border: solid thin lightblue; border-radius: 5px;">
               <div ng-if="msgStatus == 0">
                 <form layout="column" name="confirmationForm" ng-submit="confirm(update.id)" >
 
@@ -52,7 +52,7 @@
       </md-list-item>
     <md-list-item>
       <div>
-        <p class="md-subhead">Current location</p>
+        <p class="md-subhead title md-padding">Current location</p>
         <div id="map"></div>
         <!--<ui-gmap-google-map center="{latitude: 45, longitude: -73 }" zoom='map.zoom'></ui-gmap-google-map>-->
       </div>

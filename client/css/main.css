@@ -88,4 +88,5 @@ tbody tr:nth-child(odd) {
 .title {
   background-color: #0F6AB4;
   color: white;
+  margin-bottom:.5rem;
 }
