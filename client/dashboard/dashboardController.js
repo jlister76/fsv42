@@ -89,67 +89,82 @@
             var msEmp = [];
 
             for(var e in employees){
-              if(employees[e].state == "TX"){
+              if(employees[e].state == "Texas"){
                 txEmp.push(employees[e]);
                 $scope.txEmpCount = txEmp.length;
-              } else if (employees[e].state == "KY"){
+              } else if (employees[e].state == "Kentucky"){
                 kyEmp.push(employees[e]);
                 $scope.kyEmpCount = kyEmp.length;
-              } else if (employees[e].state == "MS") {
+              } else if (employees[e].state == "Mississippi") {
                 msEmp.push(employees[e]);
                 $scope.msEmpCount = msEmp.length;
               }
             }
             return employees;
           })
-          .then( function(employees){
+          .then(function (employees){
+            Update
+              .find()
+              .$promise
+              .then(function(updates){
+                var dates = [];
+                var recentUpdates = [];
+                var releaseDates =[];
+                _.forEach(updates, function(d){dates.push(moment(d.releaseDate))});
+                var mostRecent = moment.max(dates);
+                var updated = _.groupBy(updates, 'releaseDate');
 
-              Confirmation
-                .find({filter:{where:{version: version}}})
-                .$promise
-                .then(function(confirmations){
+                console.log(updated);
+              })
+              .then( function(){
+                console.log();
+                Confirmation
+                  .find()
+                  .$promise
+                  .then(function(confirmations){
+                    var txConfirms =[];
+                    var kyConfirms = [];
+                    var msConfirms = [];
+                    var combo =[];
+                    //return all confirmed employees
+                    $scope.confirmed = _.difference(confirmations,employees);
+                    var confirmedList = [];
+                    var unconfirmedList = [];
+                    _.forEach(employees, function (o){
+                      confirmedList.push({email:o.email,fname:o.fname,lname:o.lname,state:o.state});
+                    });
+                    _.forEach(confirmations, function (o){
+                      unconfirmedList.push({email:o.email,fname:o.fname,lname:o.lname,state:o.state});
+                    });
+                    function compare(a,b) {
+                      if (a.email < b.email)
+                        return -1;
+                      if (a.email > b.email)
+                        return 1;
+                      return 0;
+                    }//sorts objects by email
+                    //console.log(confirmedList, unconfirmedList);
+                    //match the confirmed with unconfirmed and return the difference
+                    $scope.unConfirmed = _.differenceBy(confirmedList.sort(compare),unconfirmedList.sort(compare), 'email');
 
-                  var txConfirms =[];
-                  var kyConfirms = [];
-                  var msConfirms = [];
-                  var combo =[];
-                  //return all confirmed employees
-                  $scope.confirmed = _.difference(confirmations,employees);
-                   var confirmedList = [];
-                   var unconfirmedList = [];
-                  _.forEach(employees, function (o){
-                     confirmedList.push({email:o.email,fname:o.fname,lname:o.lname,state:o.state});
-                  });
-                  _.forEach(confirmations, function (o){
-                    unconfirmedList.push({email:o.email,fname:o.fname,lname:o.lname,state:o.state});
-                  });
-                  function compare(a,b) {
-                    if (a.email < b.email)
-                      return -1;
-                    if (a.email > b.email)
-                      return 1;
-                    return 0;
-                  }//sorts objects by email
-                  //console.log(confirmedList, unconfirmedList);
-                  //match the confirmed with unconfirmed and return the difference
-                  $scope.unConfirmed = _.differenceBy(confirmedList.sort(compare),unconfirmedList.sort(compare), 'email');
-
-                  for (var c in confirmations) {
-                    combo.push({email:confirmations[c].email,fname:confirmations[c].fname,lname:confirmations[c].lname,state:confirmations[c].state});
-                    /*for (var e in employees){ combo.push(employees[e].email)}*/
-                    if (confirmations[c].state== "TX"){
-                      txConfirms.push(confirmations[c]);
-                      $scope.txConfirmCount = txConfirms.length;
-                    }else if (confirmations[c].state== "KY"){
-                      kyConfirms.push(confirmations[c]);
-                      $scope.kyConfirmCount = kyConfirms.length;
-                    }else if(confirmations[c].state == "MS"){
-                      msConfirms.push(confirmations[c]);
-                      $scope.msConfirmCount = msConfirms.length;
+                    for (var c in confirmations) {
+                      combo.push({email:confirmations[c].email,fname:confirmations[c].fname,lname:confirmations[c].lname,state:confirmations[c].state});
+                      /*for (var e in employees){ combo.push(employees[e].email)}*/
+                      if (confirmations[c].state== "TX"){
+                        txConfirms.push(confirmations[c]);
+                        $scope.txConfirmCount = txConfirms.length;
+                      }else if (confirmations[c].state== "KY"){
+                        kyConfirms.push(confirmations[c]);
+                        $scope.kyConfirmCount = kyConfirms.length;
+                      }else if(confirmations[c].state == "MS"){
+                        msConfirms.push(confirmations[c]);
+                        $scope.msConfirmCount = msConfirms.length;
+                      }
                     }
-                  }
-                })
+                  })
+              })
           })
+
       };
 
 

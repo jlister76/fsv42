@@ -17,7 +17,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "confirmations": {
+      "type": "hasMany",
+      "model": "confirmation",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }

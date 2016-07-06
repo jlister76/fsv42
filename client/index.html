@@ -28,14 +28,14 @@
 
 <div flex layout="column" id="container">
   <md-header layout layout-align="center center" class="md-padding" style=" background-color: #00274e; color: rgb(60, 161, 255);height:68px!important;">
-    <div flex flex-xs="100" layout layout-align="start" layout-align-sm="center space-between" layout-align-xs="center center" style="border:solid thin grey">
+    <div flex flex-xs="100" layout layout-align="start" layout-align-sm="center space-between" layout-align-xs="center center" style="border:none">
       <div layout style=" margin-left:1rem;">
 
         <img  src="hc-logo.png" alt="logo" style="height:44px;" ng-cloak />
       </div>
     </div>
 
-    <div  layout layout-align="end end" hide-xs style="height:64px;; border:solid thin red">
+    <div  layout layout-align="end end" hide-xs style="height:64px;; border:none">
       <div layout layout-align="center center" ng-controller="AuthLogoutController">
         <md-button ng-show="currentUser" ui-sref="dashboard" class="md-subhead">Dashboard</md-button>
         <md-button ng-show="currentUser" ui-sref="download" class="md-padding">Downloads</md-button>

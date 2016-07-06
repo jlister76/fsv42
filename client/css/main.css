@@ -84,3 +84,8 @@ tbody tr:nth-child(odd) {
   width:205px; height: 175px;
 }
 .angular-google-map-container { width:200px; height: 175px; }
+
+.title {
+  background-color: #0F6AB4;
+  color: white;
+}
