@@ -1,0 +1,28 @@
+{
+  "name": "FSV42App",
+  "description": "Updates for FSV",
+  "main": "server/server.js",
+  "authors": [
+    "John <jlister76@gmail.com>"
+  ],
+  "license": "UNLICENSED",
+  "homepage": "https://github.com/jlister76/fsv42",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-chartist": "*",
+    "angular-chartist.js": "^3.3.13",
+    "angular-google-maps": "^2.3.3",
+    "angular-material": "^1.0.9",
+    "angular-resource": "^1.5.7",
+    "chartist": "^0.9.8",
+    "angular-ui-router": "^0.3.1",
+    "moment": "^2.14.1"
+  }
+}

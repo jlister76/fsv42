@@ -11,44 +11,7 @@
       </div>
     </md-list-item>
     <md-list-item class="md-padding">
-        <div style="width:275px;">
-          <p class="md-subhead title md-padding">Confirm Installation</p>
-          <div ng-controller="ConfirmationController" flex-xs="100">
 
-            <div flex-xs="100" layout="column"
-                 style="height: 250px; margin: 0 0; background-color: whitesmoke; border: solid thin lightblue; border-radius: 5px;">
-              <div ng-if="msgStatus == 0">
-                <form layout="column" name="confirmationForm" ng-submit="confirm(update.id)" >
-
-                  <md-input-container>
-
-                    <label>Update version</label>
-                    <md-select ng-model="update.id" required>
-                      <md-option ng-repeat="d in updates" value="{{d.id}}">{{d.releaseDate | date:short}}</md-option>
-                    </md-select>
-
-                  </md-input-container>
-
-                  <div layout layout-align="center start" style="margin: 0rem;">
-                    <md-button class="md-raised md-primary" type="submit" ng-disabled="confirmationForm.$invalid"
-                               style="color:white;">Confirm
-                    </md-button>
-                  </div>
-                </form>
-              </div>
-              <div ng-if="msgStatus==1">
-                <p>{{ confirmation }}</p>
-              </div>
-              <div layout="column" layout-align="center center" device-detector>
-
-                <p class="md-caption">Operating System: {{ data.os }}</p>
-                <p class="md-caption">Version: {{ data.os_version }}</p>
-
-              </div>
-            </div>
-
-          </div>
-        </div>
       </md-list-item>
     <md-list-item>
       <div>
@@ -97,11 +60,11 @@
                 </md-content>
               </md-tab>
               <md-tab label="Unconfirmed">
-                <div layout>
+                <div layout >
                   <table style="witdh:100%;">
                     <tr style="witdh:100%;" layout ng-repeat="p in unConfirmed">
                       <td class="md-caption" style="witdh:100%;">{{p.lname +", " + p.fname }}</td>
-                      <td class="md-caption" style="witdh:100%;">{{ p.state }}</td>
+                      <td class="md-caption" style="width:100%;">{{ p.state }}</td>
                     </tr>
                   </table>
                 </div>
@@ -116,46 +79,98 @@
   </div>
 </div>
   </div><!--end of ROW -->
-  <div ng-controller="IssueReportController" flex="25" layout="column" style="border: none;">
-    <div  layout="row" layout-align="center">
+<div layout="column" layout-align="start start" style="border: none;" class="md-padding">
 
-      <div flex-xs="100" layout="column" layout-align="center">
-        <span class="md-subhead title md-padding">Issue Tracker</span>
-        <div  flex-xs="100" layout="column" layout-align="center center" class="md-padding"
-              style="margin: 5px 0; background-color: whitesmoke; border: solid thin lightblue; border-radius: 5px;">
+
+    <div ng-controller="IssueReportController" layout="column" style="margin: .5rem; border: none;">
+      <div layout="row" layout-align="start">
+
+        <div flex-xs="100" layout="column" layout-align="center">
+          <span class="md-subhead title md-padding">Issue Tracker</span>
+          <div flex-xs="100" layout="column" layout-align="center center" class="md-padding"
+               style="margin: 5px 0; background-color: whitesmoke; border: solid thin lightblue; border-radius: 5px;">
+            <div ng-if="msgStatus == 0">
+              <form layout="column" name="reportIssueForm"
+                    ng-submit="report(update.releaseDate,update.issue,issue.comments)">
+                <md-input-container style="margin: 1rem 0;">
+                  <!--<p class="md-caption" style="color:#950B02"><i>*</i> Please select a reason and version.</p>-->
+                  <label>I am unable to...</label>
+                  <md-select ng-model="update.issue" required>
+                    <md-option ng-repeat="issue in issueType" value="{{issue}}">{{issue}}</md-option>
+                  </md-select>
+                </md-input-container>
+                <md-input-container>
+
+                  <label>Release Date</label>
+                  <md-select ng-model="update.releaseDate" required>
+                    <md-option ng-repeat="d in updates" value="{{d.releaseDate}}">{{d.releaseDate |date:long}}</md-option>
+                  </md-select>
+                </md-input-container>
+                <div layout layout-align="center">
+                <textarea flex="100" ng-model="issue.comments" name="comments" id="comments" cols="32" rows="4"
+                          style="border-radius: 2%; border: solid thin lightgray;"></textarea>
+                </div>
+                <div layout layout-align="center start" style="margin: 1rem;">
+                  <md-button class="md-raised md-primary" type="submit" ng-disabled="reportIssueForm.$invalid"
+                             style="color:white; width:200px; height:40px">Submit
+                  </md-button>
+                </div>
+              </form>
+            </div>
+            <div ng-if="msgStatus==1">
+              <p>{{ confirmation }}</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  <div ng-controller="ConfirmationController" flex flex-xs="100" layout="column" style="margin: .5rem; border: none;" class="">
+    <div layout layout-align="center">
+      <div layout="column">
+        <span class="md-subhead title md-padding">Update Confirmation</span>
+        <div flex-xs="100" layout="column" layout-align="center center"
+             style="background-color: whitesmoke; border: solid thin lightblue; border-radius: 5px;" class="md-padding">
           <div ng-if="msgStatus == 0">
-            <form layout="column" name="reportIssueForm" ng-submit="report(update.releaseDate,update.issue,issue.comments)">
-              <md-input-container style="margin: 1rem 0;">
-                <!--<p class="md-caption" style="color:#950B02"><i>*</i> Please select a reason and version.</p>-->
-                <label>I am unable to...</label>
-                <md-select ng-model="update.issue" required>
-                  <md-option ng-repeat="issue in issueType" value="{{issue}}">{{issue}}</md-option>
-                </md-select>
-              </md-input-container>
+            <form layout="column" name="confirmationForm" ng-submit="confirm(update.id)">
+
               <md-input-container>
 
-                <label>Release Date</label>
-                <md-select ng-model="update.releaseDate" required>
-                  <md-option ng-repeat="d in updates" value="{{d.releaseDate}}">{{d.releaseDate |date:long}}</md-option>
+                <label>Update version</label>
+                <md-select ng-model="update.id" required>
+                  <md-option ng-repeat="d in updates" value="{{d.id}}">{{d.releaseDate | date:short}}</md-option>
                 </md-select>
+                {{ update.id }}
               </md-input-container>
-              <div layout layout-align="center">
-                <textarea flex="100" ng-model="issue.comments" name="comments" id="comments" cols="30" rows="4" style="border-radius: 2%; border: solid thin lightgray;"></textarea>
-              </div>
+
               <div layout layout-align="center start" style="margin: 1rem;">
-                <md-button class="md-raised md-primary" type="submit" ng-disabled="reportIssueForm.$invalid" style="color:white; width: 150px; height:40px">Submit</md-button>
+                <md-button class="md-raised md-primary" type="submit" ng-disabled="confirmationForm.$invalid"  style="color:white; width: 200px; height:40px">Submit</md-button>
               </div>
             </form>
           </div>
           <div ng-if="msgStatus==1">
             <p>{{ confirmation }}</p>
           </div>
-        </div>
+          <div layout="column" layout-align="center center" device-detector>
 
+            <p>O/S: {{ data.os }}</p>
+            <p>Version: {{ data.os_version }}</p>
+
+          </div>
+        </div>
       </div>
     </div>
-  </div><!--end of ROW -->
+
+
+
+  </div>
+
 </div>
+
+
+
+
+
 <!--Chartist
 <div class="md-padding" layout layout style="border:dotted thin #e5e5e5;">
 
