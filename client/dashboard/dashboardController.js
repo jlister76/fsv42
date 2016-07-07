@@ -237,8 +237,47 @@
           }
         }
       };
+      //Current work
+      Update
+        .find({filter:{include:'confirmations'}})
+        .$promise
+        .then(function(updates){
+          var maxDates = [];
+          var confirmations = [];
+          _.forEach(updates, function(u){
+            maxDates.push(moment(u.releaseDate))
+          });
+          $scope.maxDate = moment.max(maxDates).format();
+          var updatesWithMaxDate = [];
+          _.forEach(updates, function(u){
+            if(moment(u.releaseDate).isSame($scope.maxDate)){
+              updatesWithMaxDate.push(u);
+            }});
+          _.forEach(updatesWithMaxDate, function(u){
+            confirmations.push(u.confirmations);
+          });
+          return confirmations;
+        })
+        .then(function(confirmations){
+          Employee
+            .find()
+            .$promise
+            .then(function(employees){
+              var employeeIdsWithConfirmation = [];
+              var employeesWithConfirmations = [];
+              var employeesWithoutConfirmations = [];
+              var employeeIdsWithConfirmations = _.difference(confirmations,employees);
+              //console.log(employeeIdsWithConfirmations);
+              _.forEach(employeeIdsWithConfirmations, function(c){
+                _.forEach(c, function (o) {
+                  employeeIdsWithConfirmation.push(o.employeeId);
+                  console.log(o.employeeId);
+                  //TODO: Left off retrieving employeeIds from the confirmations with max date. Need to split the eployees into a confirmed and unconfirmed list.
+                })
+              });
 
-
+            })
+        })
 
 
     })

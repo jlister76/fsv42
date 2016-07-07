@@ -1,12 +1,12 @@
 {
   "ids": {
     "User": 1,
-    "AccessToken": 149,
+    "AccessToken": 151,
     "ACL": 1,
     "RoleMapping": 1,
     "Role": 1,
     "employee": 7,
-    "confirmation": 20,
+    "confirmation": 22,
     "IssueReport": 2,
     "update": 13
   },
@@ -80,9 +80,9 @@
       "Fl1pnGSk5oJoPshbPBXrHdDfbBKkHGGGSuW8cQ7qFIr6EWX2kyleL3KckXx2uC0w": "{\"id\":\"Fl1pnGSk5oJoPshbPBXrHdDfbBKkHGGGSuW8cQ7qFIr6EWX2kyleL3KckXx2uC0w\",\"ttl\":1209600,\"created\":\"2016-07-04T10:22:25.467Z\",\"userId\":2}",
       "bZ0J5EV3YgV1GPyaKZmQAXUVosaNPPvvprF9xce4xVFtDFCwh7V9aiD4MQ1epP5F": "{\"id\":\"bZ0J5EV3YgV1GPyaKZmQAXUVosaNPPvvprF9xce4xVFtDFCwh7V9aiD4MQ1epP5F\",\"ttl\":1209600,\"created\":\"2016-07-05T02:17:55.398Z\",\"userId\":2}",
       "71JOu0zwcBRMCwlwIXN30hdXylFf5qz3ZZuZnjYAMsb0ZFnUxxTjYJFdbw3g8Lzn": "{\"id\":\"71JOu0zwcBRMCwlwIXN30hdXylFf5qz3ZZuZnjYAMsb0ZFnUxxTjYJFdbw3g8Lzn\",\"ttl\":1209600,\"created\":\"2016-07-06T09:22:17.480Z\",\"userId\":6}",
-      "HXYbg9nGGo3d888AmagPQN9Qnw0aDCcFXnkkCaw1c3xZ9SzaifPlAZZ2YCKoWq3m": "{\"id\":\"HXYbg9nGGo3d888AmagPQN9Qnw0aDCcFXnkkCaw1c3xZ9SzaifPlAZZ2YCKoWq3m\",\"ttl\":1209600,\"created\":\"2016-07-06T09:35:48.423Z\",\"userId\":6}",
       "pZ2DT44ptfw4AH2w8YuzW6rFHntUb0BhSZhUBUi5QNP93FHo0EzHCtej6kJlTOjW": "{\"id\":\"pZ2DT44ptfw4AH2w8YuzW6rFHntUb0BhSZhUBUi5QNP93FHo0EzHCtej6kJlTOjW\",\"ttl\":1209600,\"created\":\"2016-07-06T15:29:27.540Z\",\"userId\":4}",
-      "nhlHBA2vVSY3EJlqVBfOrKeFu4oiTHXGmpiVMJzxdX2imaX1hd4OBtAkf6AYuDCv": "{\"id\":\"nhlHBA2vVSY3EJlqVBfOrKeFu4oiTHXGmpiVMJzxdX2imaX1hd4OBtAkf6AYuDCv\",\"ttl\":1209600,\"created\":\"2016-07-06T15:29:52.062Z\",\"userId\":6}"
+      "nhlHBA2vVSY3EJlqVBfOrKeFu4oiTHXGmpiVMJzxdX2imaX1hd4OBtAkf6AYuDCv": "{\"id\":\"nhlHBA2vVSY3EJlqVBfOrKeFu4oiTHXGmpiVMJzxdX2imaX1hd4OBtAkf6AYuDCv\",\"ttl\":1209600,\"created\":\"2016-07-06T15:29:52.062Z\",\"userId\":6}",
+      "rvi7VykxTArLc03ctYJYe75b2AGOOqeo5Z1zjxtk8i35MArBKlcK7os6ArHjK2GA": "{\"id\":\"rvi7VykxTArLc03ctYJYe75b2AGOOqeo5Z1zjxtk8i35MArBKlcK7os6ArHjK2GA\",\"ttl\":1209600,\"created\":\"2016-07-07T10:51:00.211Z\",\"userId\":4}"
     },
     "ACL": {},
     "RoleMapping": {},
@@ -96,7 +96,7 @@
       "6": "{\"employee_number\":\"1234\",\"fname\":\"William\",\"lname\":\"Luttrell\",\"state\":\"Mississippi\",\"division\":\"40\",\"username\":\"William Luttrell\",\"password\":\"$2a$10$dexuwIgbdRoO5c8t0qLHh.TQ.mzcFL9mRbibwVb4Vg3iBrZbbAyyu\",\"email\":\"w.luttrell@heathus.com\",\"emailVerified\":false,\"created\":\"2016-07-04T00:00:00.000Z\",\"lastUpdated\":\"2016-07-04T00:00:00.000Z\",\"id\":6}"
     },
     "confirmation": {
-      "19": "{\"lastUpdated\":\"2016-07-06T07:48:50.433Z\",\"employeeId\":6,\"updateId\":10,\"id\":19}"
+      "21": "{\"lastUpdated\":\"2016-07-07T10:49:28.440Z\",\"employeeId\":4,\"updateId\":8,\"id\":21}"
     },
     "IssueReport": {
       "1": "{\"fname\":\"RoyDean\",\"lname\":\"Leighton\",\"email\":\"IT@heathus.com\",\"issue\":\"Download an update\",\"version\":\"5.23.2016\",\"createdAt\":\"2016-06-28T05:43:32.392Z\",\"state\":\"TX\",\"division\":\"Corporate\",\"id\":1}"

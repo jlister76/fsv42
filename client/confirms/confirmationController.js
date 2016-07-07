@@ -25,7 +25,7 @@
       $scope.data = deviceDetector;
       $scope.allData = JSON.stringify($scope.data, null, 2);
       $scope.deviceDetector=deviceDetector;
-      $scope.updateVersion = ['5.23.2016', '6.1.2016']; //TODO: store update versions in db and return an array of versions.
+
 
       /****************************************************************/
                         //Determine release dates
@@ -33,7 +33,7 @@
         .find()
         .$promise
         .then (function(updates){
-          $scope.updates = _.uniqBy(updates, 'releaseDate');
+          $scope.updates = _.uniqBy(updates, 'state');
         });
       /*****************************************************************/
 

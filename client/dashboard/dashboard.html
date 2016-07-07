@@ -8,6 +8,7 @@
         <span>
           <span class="md-caption">{{ mostRecentDownload.state+":  " }}</span><a class="md-caption" href="{{ mostRecentDownload.link }}">{{ mostRecentDownload.releaseDate | date:short }}</a>
         </span>
+        <p>{{ maxDate | date:short}}</p>
       </div>
     </md-list-item>
     <md-list-item class="md-padding">
@@ -136,9 +137,10 @@
 
               <md-input-container>
 
-                <label>Update version</label>
+                <label>Release Date</label>
+                <label>Release Date</label>
                 <md-select ng-model="update.id" required>
-                  <md-option ng-repeat="d in updates" value="{{d.id}}">{{d.releaseDate | date:short}}</md-option>
+                  <md-option ng-repeat="d in updates" value="{{d.id}}">{{d.state+"  "}}{{d.releaseDate | date:short}}</md-option>
                 </md-select>
                 {{ update.id }}
               </md-input-container>
