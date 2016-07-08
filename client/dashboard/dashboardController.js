@@ -77,9 +77,60 @@
             })
         });
       /************************************************************************/
+      /************************************************************************/
+      //Retrieving most recent update & their relative confirmations
+      //Creating a list of all employees and separating into 2 list [Confirmed,Unconfirmed]
+      Update
+        .find({filter:{include:'confirmations'}})
+        .$promise
+        .then(function(updates){
+          var maxDates = [];
+          var confirmations = [];
+          _.forEach(updates, function(u){
+            maxDates.push(moment(u.releaseDate))
+          });
+          $scope.maxDate = moment.max(maxDates).format();
+          var updatesWithMaxDate = [];
+          _.forEach(updates, function(u){
+            if(moment(u.releaseDate).isSame($scope.maxDate)){
+              updatesWithMaxDate.push(u);
+            }});
+          _.forEach(updatesWithMaxDate, function(u){
+            confirmations.push(u.confirmations);
+          });
+          return confirmations;
+        })
+        .then(function(confirmations){
+          Employee
+            .find()
+            .$promise
+            .then(function(employees){
+              var employeeIdsFromConfirmation = [];
+              var employeesWithConfirmations = [];
+              var employeesWithoutConfirmations = [];
+              var employeeIdsWithConfirmations = _.difference(confirmations,employees);
+              //console.log(employeeIdsWithConfirmations);
+              _.forEach(employeeIdsWithConfirmations, function(c){
+                _.forEach(c, function (o) {
+                  employeeIdsFromConfirmation.push(o.employeeId);
+                });
+                _.forEach(employees, function(e){
+                  _.forEach(employeeIdsFromConfirmation, function(id){
+                    if (id == e.id){employeesWithConfirmations.push(e) }else{
+                      employeesWithoutConfirmations.push(e);
+                    }
+                  })
+                });
+                $scope.employeesWithConfirmations =_.uniq(employeesWithConfirmations);
+                $scope.employeesWithoutConfirmations = _.uniq(employeesWithoutConfirmations);
+              });
 
+            })
+        });
 
-      $scope.initTxData = function (version) {
+      /************************************************************************/
+      //This code will eventually be removed
+      /*$scope.initTxData = function (version) {
         Employee
           .find()
           .$promise
@@ -149,7 +200,7 @@
 
                     for (var c in confirmations) {
                       combo.push({email:confirmations[c].email,fname:confirmations[c].fname,lname:confirmations[c].lname,state:confirmations[c].state});
-                      /*for (var e in employees){ combo.push(employees[e].email)}*/
+                      /!*for (var e in employees){ combo.push(employees[e].email)}*!/
                       if (confirmations[c].state== "TX"){
                         txConfirms.push(confirmations[c]);
                         $scope.txConfirmCount = txConfirms.length;
@@ -165,7 +216,7 @@
               })
           })
 
-      };
+      };*/
 
 
       uiGmapGoogleMapApi
@@ -237,47 +288,6 @@
           }
         }
       };
-      //Current work
-      Update
-        .find({filter:{include:'confirmations'}})
-        .$promise
-        .then(function(updates){
-          var maxDates = [];
-          var confirmations = [];
-          _.forEach(updates, function(u){
-            maxDates.push(moment(u.releaseDate))
-          });
-          $scope.maxDate = moment.max(maxDates).format();
-          var updatesWithMaxDate = [];
-          _.forEach(updates, function(u){
-            if(moment(u.releaseDate).isSame($scope.maxDate)){
-              updatesWithMaxDate.push(u);
-            }});
-          _.forEach(updatesWithMaxDate, function(u){
-            confirmations.push(u.confirmations);
-          });
-          return confirmations;
-        })
-        .then(function(confirmations){
-          Employee
-            .find()
-            .$promise
-            .then(function(employees){
-              var employeeIdsWithConfirmation = [];
-              var employeesWithConfirmations = [];
-              var employeesWithoutConfirmations = [];
-              var employeeIdsWithConfirmations = _.difference(confirmations,employees);
-              //console.log(employeeIdsWithConfirmations);
-              _.forEach(employeeIdsWithConfirmations, function(c){
-                _.forEach(c, function (o) {
-                  employeeIdsWithConfirmation.push(o.employeeId);
-                  console.log(o.employeeId);
-                  //TODO: Left off retrieving employeeIds from the confirmations with max date. Need to split the eployees into a confirmed and unconfirmed list.
-                })
-              });
-
-            })
-        })
 
 
     })
