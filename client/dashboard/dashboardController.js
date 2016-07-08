@@ -3,7 +3,7 @@
 
   angular
     .module('FSV42App')
-    .controller('DashboardController', function ($scope, AuthService, $rootScope, $state, $mdSidenav, $log, $mdMedia, Confirmation,uiGmapGoogleMapApi, Employee, Update){
+    .controller('DashboardController', function ($scope, AuthService, $rootScope, $state, $mdSidenav, $log, $mdMedia, Confirmation,uiGmapGoogleMapApi, Employee, Update,deviceDetector){
       /*****************************************************************/
               //Set current user
 
@@ -218,7 +218,8 @@
 
       };*/
 
-
+      /************************************************************************/
+       //Loads in GMap
       uiGmapGoogleMapApi
         .then (function(maps){
           //$scope.map = { center: { lat: 45, lng: -73 }, zoom: 8 };
@@ -253,10 +254,13 @@
               'Error: Your browser doesn\'t support geolocation.');
           }
       });
-
-
+      /************************************************************************/
+      //EOS
+      $scope.data = deviceDetector;
+      $scope.allData = JSON.stringify($scope.data, null, 2);
+      $scope.deviceDetector=deviceDetector;
+      /************************************************************************/
       //CHARTIST DEMO
-
 
       $scope.barOptions = {
         seriesBarDistance: 15
@@ -288,7 +292,7 @@
           }
         }
       };
-
+      /************************************************************************/
 
     })
 })();

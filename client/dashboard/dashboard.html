@@ -8,17 +8,22 @@
         <span>
           <span class="md-caption">{{ mostRecentDownload.state+":  " }}</span><a class="md-caption" href="{{ mostRecentDownload.link }}">{{ mostRecentDownload.releaseDate | date:short }}</a>
         </span>
-        <p>{{ maxDate | date:short}}</p>
       </div>
     </md-list-item>
     <md-list-item class="md-padding">
 
       </md-list-item>
-    <md-list-item>
+    <md-list-item layout="column">
       <div>
         <p class="md-subhead title md-padding">Current location</p>
         <div id="map"></div>
         <!--<ui-gmap-google-map center="{latitude: 45, longitude: -73 }" zoom='map.zoom'></ui-gmap-google-map>-->
+      </div>
+      <div layout="column" layout-align="center center" device-detector>
+
+        <p>O/S: {{ data.os }}</p>
+        <p>Version: {{ data.os_version }}</p>
+
       </div>
     </md-list-item>
 
@@ -29,22 +34,8 @@
     <div style="width:28vw;">
       <div layout="column">
         <md-list style="padding:0!important;">
-          <md-list-item style="background-color: whitesmoke;">
-            <div layout layout-align="space-between center">
-              <p class="md-caption" style="">Select an update version:</p>
-              <md-select class="md-caption" ng-model="update.ver" ng-change="initTxData(update.ver)"
-                         aria-label="update version">
-                <md-option ng-repeat="d in updates" value="{{ d.releaseDate }}">
-                  {{ d.releaseDate | date:short }}
-                </md-option>
-              </md-select>
-            </div>
-          </md-list-item>
-          <md-divider></md-divider>
           <md-list-item layout style="border: solid thin whitesmoke">
-
         <div flex>
-
           <div flex>Texas {{ txConfirmCount/txEmpCount*100 | number:0}}%</div>
           <div flex>Kentucky {{ kyConfirmCount/kyEmpCount*100 | number:0 }}%</div>
           <div flex>Mississippi {{ msConfirmCount/msEmpCount*100 | number:0 }}%</div>
@@ -53,19 +44,19 @@
               <md-tab label="Confirmed">
                 <md-content flex>
                   <table>
-                    <tr ng-repeat="people in confirmed">
-                      <td class="md-caption"> {{ people.lname+", "+ people.fname }}</td>
-                      <td class="md-caption">{{ people.state }}</td>
+                    <tr ng-repeat="e in employeesWithConfirmations | orderBy: 'state'">
+                      <td class="md-caption"> {{ e.lname}}, {{e.fname}}</td>
+                      <td class="md-caption">{{ e.state }}</td>
                     </tr>
                   </table>
                 </md-content>
               </md-tab>
               <md-tab label="Unconfirmed">
                 <div layout >
-                  <table style="witdh:100%;">
-                    <tr style="witdh:100%;" layout ng-repeat="p in unConfirmed">
-                      <td class="md-caption" style="witdh:100%;">{{p.lname +", " + p.fname }}</td>
-                      <td class="md-caption" style="width:100%;">{{ p.state }}</td>
+                  <table>
+                    <tr ng-repeat="e in employeesWithoutConfirmations | orderBy: 'state'">
+                      <td class="md-caption"> {{ e.lname}}, {{e.fname}}</td>
+                      <td class="md-caption">{{ e.state }}</td>
                     </tr>
                   </table>
                 </div>
@@ -152,12 +143,6 @@
           </div>
           <div ng-if="msgStatus==1">
             <p>{{ confirmation }}</p>
-          </div>
-          <div layout="column" layout-align="center center" device-detector>
-
-            <p>O/S: {{ data.os }}</p>
-            <p>Version: {{ data.os_version }}</p>
-
           </div>
         </div>
       </div>

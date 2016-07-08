@@ -20,11 +20,7 @@
           "<br>Longitude: " + position.coords.longitude;
         x.html(html);
       };
-      $scope.getLocation();
-      //EOS
-      $scope.data = deviceDetector;
-      $scope.allData = JSON.stringify($scope.data, null, 2);
-      $scope.deviceDetector=deviceDetector;
+      $scope.getLocation();     
 
 
       /****************************************************************/
