@@ -5,7 +5,7 @@
     <md-list-item>
       <div style=""><span class="md-title">Status</span>
         <p class="md-caption">{{ status }}</p>
-        <span>
+        <span ng-if="!statusCurrent">
           <span class="md-caption">{{ mostRecentDownload.state+":  " }}</span><a class="md-caption" href="{{ mostRecentDownload.link }}">{{ mostRecentDownload.releaseDate | date:short }}</a>
         </span>
       </div>
@@ -54,7 +54,7 @@
               <md-tab label="Unconfirmed">
                 <div layout >
                   <table>
-                    <tr ng-repeat="e in employeesWithoutConfirmations | orderBy: 'state'">
+                    <tr ng-repeat="e in employeesWithoutConfirmations | orderBy: 'lname'">
                       <td class="md-caption"> {{ e.lname}}, {{e.fname}}</td>
                       <td class="md-caption">{{ e.state }}</td>
                     </tr>
@@ -95,7 +95,7 @@
 
                   <label>Release Date</label>
                   <md-select ng-model="update.releaseDate" required>
-                    <md-option ng-repeat="d in updates" value="{{d.releaseDate}}">{{d.releaseDate |date:long}}</md-option>
+                    <md-option ng-repeat="d in updates" value="{{d.releaseDate}}">{{d.releaseDate |date:medium}}</md-option>
                   </md-select>
                 </md-input-container>
                 <div layout layout-align="center">
@@ -129,11 +129,9 @@
               <md-input-container>
 
                 <label>Release Date</label>
-                <label>Release Date</label>
                 <md-select ng-model="update.id" required>
                   <md-option ng-repeat="d in updates" value="{{d.id}}">{{d.state+"  "}}{{d.releaseDate | date:short}}</md-option>
                 </md-select>
-                {{ update.id }}
               </md-input-container>
 
               <div layout layout-align="center start" style="margin: 1rem;">

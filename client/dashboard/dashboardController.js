@@ -51,8 +51,8 @@
               _.forEach(confirmationList, function (cl){ ClDate.push(moment(cl.update.releaseDate))});
               console.log(moment.max(ClDate));
               var maxConfDate = moment.max(ClDate);
-              var statusCurrent = moment(mostRecent).isSame(maxConfDate);
-              if (statusCurrent){
+              $scope.statusCurrent = moment(mostRecent).isSame(maxConfDate);
+              if ($scope.statusCurrent){
                 $scope.status = "You are currently up to date.";
               }else{
                 $scope.status = "A newer update is available:"
@@ -105,6 +105,7 @@
             .find()
             .$promise
             .then(function(employees){
+              var sortedEmployees = employees.sort();
               var employeeIdsFromConfirmation = [];
               var employeesWithConfirmations = [];
               var employeesWithoutConfirmations = [];
@@ -112,17 +113,29 @@
               //console.log(employeeIdsWithConfirmations);
               _.forEach(employeeIdsWithConfirmations, function(c){
                 _.forEach(c, function (o) {
-                  employeeIdsFromConfirmation.push(o.employeeId);
+                  employeeIdsFromConfirmation.push({id: o.employeeId});
                 });
-                _.forEach(employees, function(e){
-                  _.forEach(employeeIdsFromConfirmation, function(id){
-                    if (id == e.id){employeesWithConfirmations.push(e) }else{
-                      employeesWithoutConfirmations.push(e);
-                    }
+
+                function compare(a,b) {
+                  if (a.id < b.id)
+                    return -1;
+                  if (a.id > b.id)
+                    return 1;
+                  return 0;
+                }//sorts objects by id
+
+                //match employee ids with employeeId and return the difference
+                var employeesWithoutConfirmations = _.differenceBy(employees.sort(compare),employeeIdsFromConfirmation.sort(compare), 'id');
+
+                _.forEach(employees.sort(compare), function(e){
+                  _.forEach(employeeIdsFromConfirmation.sort(compare), function(c){
+                    if (c.id == e.id){employeesWithConfirmations.push(e) }
                   })
                 });
-                $scope.employeesWithConfirmations =_.uniq(employeesWithConfirmations);
-                $scope.employeesWithoutConfirmations = _.uniq(employeesWithoutConfirmations);
+
+                $scope.employeesWithConfirmations =_.uniq(employeesWithConfirmations);//unique values, no dupes
+                $scope.employeesWithoutConfirmations = _.uniq(employeesWithoutConfirmations);//unique values, no dupes
+
               });
 
             })
