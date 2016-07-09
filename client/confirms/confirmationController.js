@@ -2,7 +2,7 @@
   'use strict';
   angular
     .module('FSV42App')
-    .controller('ConfirmationController', function ($scope, AuthService, $rootScope, $state, $http, Confirmation,deviceDetector, Update){
+    .controller('ConfirmationController', function ($scope, AuthService, $rootScope, $state, $http, Confirmation, Update){
 
      $scope.msgStatus = 0;
       //Geo Location
@@ -19,8 +19,8 @@
         var html = "Latitude: " + position.coords.latitude +
           "<br>Longitude: " + position.coords.longitude;
         x.html(html);
-      };
-      $scope.getLocation();     
+      }
+      $scope.getLocation();
 
 
       /****************************************************************/

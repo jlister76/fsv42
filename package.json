@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "angular": "^1.5.7",
+    "angular-chart.js": "^1.0.0-alpha8",
     "angular-chartist.js": "^3.3.13",
+    "chart.js": "^2.1.6",
     "chartist": "^0.9.8",
     "compression": "^1.0.3",
     "cors": "^2.5.2",

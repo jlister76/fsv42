@@ -19,12 +19,6 @@
         <div id="map"></div>
         <!--<ui-gmap-google-map center="{latitude: 45, longitude: -73 }" zoom='map.zoom'></ui-gmap-google-map>-->
       </div>
-      <div layout="column" layout-align="center center" device-detector>
-
-        <p>O/S: {{ data.os }}</p>
-        <p>Version: {{ data.os_version }}</p>
-
-      </div>
     </md-list-item>
 
   </md-list>
@@ -36,9 +30,11 @@
         <md-list style="padding:0!important;">
           <md-list-item layout style="border: solid thin whitesmoke">
         <div flex>
-          <div flex>Texas {{ txConfirmCount/txEmpCount*100 | number:0}}%</div>
-          <div flex>Kentucky {{ kyConfirmCount/kyEmpCount*100 | number:0 }}%</div>
-          <div flex>Mississippi {{ msConfirmCount/msEmpCount*100 | number:0 }}%</div>
+          <div layout>
+            <canvas id="base" class="chart-horizontal-bar"
+                          chart-legend="true" chart-data="data" chart-labels="labels">
+          </canvas>
+          </div>
           <md-content>
             <md-tabs flex md-dynamic-height md-border-bottom>
               <md-tab label="Confirmed">
@@ -149,22 +145,4 @@
 
 
   </div>
-
 </div>
-
-
-
-
-
-<!--Chartist
-<div class="md-padding" layout layout style="border:dotted thin #e5e5e5;">
-
-  <chartist flex="33" class="ct-chart " chartist-data="lineData" chartist-chart-type="Bar"
-            chartist-chart-options="lineOptions" chartist-responsive-options="barResponsiveOptions"></chartist>
-</div>
-End of chart -->
-
-
-
-
-

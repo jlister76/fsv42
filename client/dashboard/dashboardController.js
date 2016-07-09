@@ -3,7 +3,7 @@
 
   angular
     .module('FSV42App')
-    .controller('DashboardController', function ($scope, AuthService, $rootScope, $state, $mdSidenav, $log, $mdMedia, Confirmation,uiGmapGoogleMapApi, Employee, Update,deviceDetector){
+    .controller('DashboardController', function ($scope, AuthService, $rootScope, $state, $mdSidenav, $log, $mdMedia, Confirmation,uiGmapGoogleMapApi, Employee, Update){
       /*****************************************************************/
               //Set current user
 
@@ -136,7 +136,43 @@
                 $scope.employeesWithConfirmations =_.uniq(employeesWithConfirmations);//unique values, no dupes
                 $scope.employeesWithoutConfirmations = _.uniq(employeesWithoutConfirmations);//unique values, no dupes
 
+
               });
+              console.log($scope.employeesWithConfirmations);
+              var txEmployeeCount =[];
+              var kyEmployeeCount =[];
+              var msEmployeeCount =[];
+              var txConfCount =[];
+              var kyConfCount =[];
+              var msConfCount =[];
+              //console.log($scope.employeesWithConfirmations.length / employees.length *100);
+              _.forEach(employees, function (e){
+                if (e.state == "Texas"){
+                  txEmployeeCount.push(e);
+                } else if (e.state == "Kentucky"){
+                  kyEmployeeCount.push(e);
+                  console.log(kyEmployeeCount);
+                } else if (e.state == "Mississippi"){msEmployeeCount.push(e)}
+              });
+              _.forEach(employeesWithConfirmations, function (e){
+                if (e.state == "Texas"){
+                  txConfCount.push(e);
+                } else if (e.state == "Kentucky"){
+                  kyConfCount.push(e);
+                } else if (e.state == "Mississippi"){msConfCount.push(e)}
+              });
+              //unique results
+              var uTxConfCount = _.uniq(txConfCount);
+              var uKyConfCount = _.uniq(kyConfCount);
+              var uMsConfCount = _.uniq(msConfCount);
+              console.log(uTxConfCount.length,uKyConfCount.length,uMsConfCount.length );
+              var TXPercentage = uTxConfCount.length / txEmployeeCount.length *100;
+              var KYPercentage = uKyConfCount.length / kyEmployeeCount.length *100;
+              var MSPercentage = uMsConfCount.length / msEmployeeCount.length *100;
+              //Angular-Chart.js
+              $scope.labels = ['Texas', 'Kentucky', 'Mississippi'];
+              $scope.series = ['Confirmed Installs'];
+              $scope.data = [[TXPercentage,KYPercentage,MSPercentage]];
 
             })
         });
@@ -268,43 +304,15 @@
           }
       });
       /************************************************************************/
-      //EOS
-      $scope.data = deviceDetector;
+      //Device Detector
+    /*  $scope.data = deviceDetector;
       $scope.allData = JSON.stringify($scope.data, null, 2);
-      $scope.deviceDetector=deviceDetector;
+      $scope.deviceDetector=deviceDetector;*/
       /************************************************************************/
-      //CHARTIST DEMO
 
-      $scope.barOptions = {
-        seriesBarDistance: 15
-      };
 
-      $scope.barResponsiveOptions = [
-        ['screen and (min-width: 901px) and (max-width: 1024px)', {
-          seriesBarDistance: 10,
-          axisX: {
-            labelInterpolationFnc: function (value) {
-              return value;
-            }
-          }
-        }],
-        ['screen and (max-width: 900px)', {
-          seriesBarDistance: 5,
-          axisX: {
-            labelInterpolationFnc: function (value) {
-              return value[0];
-            }
-          }
-        }]
-      ];
 
-      $scope.lineOptions = {
-        axisX: {
-          labelInterpolationFnc: function (value) {
-            return value;
-          }
-        }
-      };
+
       /************************************************************************/
 
     })

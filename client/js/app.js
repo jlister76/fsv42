@@ -8,10 +8,8 @@
       'uiGmapgoogle-maps',
         'ngMaterial',
         'ngMessages',
-      'ng.deviceDetector',
-      'angular-chartist'
-
-    ])
+      'chart.js'
+      ])
     .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
       $stateProvider
         .state('download', {
