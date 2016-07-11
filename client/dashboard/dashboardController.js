@@ -15,7 +15,7 @@
 
         });
       /*****************************************************************/
-      $scope.state = ["Texas", "Kentucky", "Mississippi"];
+      $scope.states = ["Texas", "Kentucky", "Mississippi"];
       $scope.searchcriteria = "";
       /****************************************************************/
       //Determine release dates
@@ -139,9 +139,14 @@
                 $scope.employeesWithoutConfirmations = _.uniq(employeesWithoutConfirmations);//unique values, no dupes
 
 
-
               });
+              var groups = [];
 
+              _.forEach(employees, function(e){
+                groups.push(e.group);
+              });
+              $scope.groups = _.uniq(groups);
+              console.log($scope.groups);
               var txEmployeeCount =[];
               var kyEmployeeCount =[];
               var msEmployeeCount =[];
@@ -172,11 +177,73 @@
               var TXPercentage = uTxConfCount.length / txEmployeeCount.length *100;
               var KYPercentage = uKyConfCount.length / kyEmployeeCount.length *100;
               var MSPercentage = uMsConfCount.length / msEmployeeCount.length *100;
+              var TXGroup_1 = [];
+              var TXGroup_2 = [];
+              var TXGroup_1Conf =[];
+              var TXGroup_2Conf =[];
+              var KYGroup_1 = [];
+              var KYGroup_2 = [];
+              var KYGroup_1Conf =[];
+              var KYGroup_2Conf =[];
+              var MSGroup_1 = [];
+              var MSGroup_2 = [];
+              var MSGroup_1Conf =[];
+              var MSGroup_2Conf =[];
+              _.forEach(txEmployeeCount,function(c){
+                if (c.group == 'Corporate/IT'){
+                  TXGroup_1.push(c);
+                } else if (c.group == "DAL/5L") {TXGroup_2.push(c) }
+              });
+              _.forEach(uTxConfCount, function(c){
+                if (c.group == 'Corporate/IT'){
+                  TXGroup_1Conf.push(c);
+                } else if (c.group == 'DAL/5L'){
+                  TXGroup_2Conf.push(c);
+                }
+              });
+              _.forEach(kyEmployeeCount,function(c){
+                if (c.group == 'KY/Group_1'){
+                  KYGroup_1.push(c);
+                } else if (c.group == "KY/Group_2") {KYGroup_2.push(c) }
+              });
+              _.forEach(uKyConfCount, function(c){
+                if (c.group == 'KY/Group_1'){
+                  KYGroup_1Conf.push(c);
+                } else if (c.group == 'KY/Group_2'){
+                  KYGroup_2Conf.push(c);
+                }
+              });
+              _.forEach(msEmployeeCount,function(c){
+                if (c.group == 'MS/Group_1'){
+                  MSGroup_1.push(c);
+                } else if (c.group == "MS/Group_2") {MSGroup_2.push(c) }
+              });
+              _.forEach(uMsConfCount, function(c){
+                if (c.group == 'MS/Group_1'){
+                  MSGroup_1Conf.push(c);
+                } else if (c.group == 'MS/Group_2'){
+                  MSGroup_2Conf.push(c);
+                }
+              });
+              var TXGroup_1Percentage = TXGroup_1Conf.length / TXGroup_1.length * 100;
+              var TXGroup_2Percentage = TXGroup_2Conf.length / TXGroup_2.length * 100;
+              var KYGroup_1Percentage = KYGroup_1Conf.length / KYGroup_1.length * 100;
+              var KYGroup_2Percentage = KYGroup_2Conf.length / KYGroup_2.length * 100;
+              var MSGroup_1Percentage = MSGroup_1Conf.length / MSGroup_1.length * 100;
+              var MSGroup_2Percentage = MSGroup_2Conf.length / MSGroup_2.length * 100;
+              console.info(TXGroup_1Percentage, TXGroup_2Percentage);
+              console.info(KYGroup_1Percentage, KYGroup_2Percentage);
+              console.info(MSGroup_1Percentage, MSGroup_2Percentage);
               //Angular-Chart.js
+              $scope.chart = "company-wide";
               $scope.labels = ['Texas', 'Kentucky', 'Mississippi'];
               $scope.series = ['Confirmed Installs'];
               $scope.data = [[TXPercentage,KYPercentage,MSPercentage]];
 
+              $scope.TXGroupLabels = ['DAL/5L','CORP/IT'];
+              $scope.TXGroupSeries = ['Confirmed'];
+              $scope.TXGroupData = [[TXGroup_1Percentage,TXGroup_2Percentage]];
+              //Sending email reminders
               $scope.sendReminder = function (state) {
                 console.log($scope.employeesWithoutConfirmations);
                 var emails =[];
@@ -195,95 +262,8 @@
 
       /************************************************************************/
 
-      /*$scope.initTxData = function (version) {
-        Employee
-          .find()
-          .$promise
-          .then(function(employees){
-            var txEmp = [];
-            var kyEmp = [];
-            var msEmp = [];
-
-            for(var e in employees){
-              if(employees[e].state == "Texas"){
-                txEmp.push(employees[e]);
-                $scope.txEmpCount = txEmp.length;
-              } else if (employees[e].state == "Kentucky"){
-                kyEmp.push(employees[e]);
-                $scope.kyEmpCount = kyEmp.length;
-              } else if (employees[e].state == "Mississippi") {
-                msEmp.push(employees[e]);
-                $scope.msEmpCount = msEmp.length;
-              }
-            }
-            return employees;
-          })
-          .then(function (employees){
-            Update
-              .find()
-              .$promise
-              .then(function(updates){
-                var dates = [];
-                var recentUpdates = [];
-                var releaseDates =[];
-                _.forEach(updates, function(d){dates.push(moment(d.releaseDate))});
-                var mostRecent = moment.max(dates);
-                var updated = _.groupBy(updates, 'releaseDate');
-
-                console.log(updated);
-              })
-              .then( function(){
-                console.log();
-                Confirmation
-                  .find()
-                  .$promise
-                  .then(function(confirmations){
-                    var txConfirms =[];
-                    var kyConfirms = [];
-                    var msConfirms = [];
-                    var combo =[];
-                    //return all confirmed employees
-                    $scope.confirmed = _.difference(confirmations,employees);
-                    var confirmedList = [];
-                    var unconfirmedList = [];
-                    _.forEach(employees, function (o){
-                      confirmedList.push({email:o.email,fname:o.fname,lname:o.lname,state:o.state});
-                    });
-                    _.forEach(confirmations, function (o){
-                      unconfirmedList.push({email:o.email,fname:o.fname,lname:o.lname,state:o.state});
-                    });
-                    function compare(a,b) {
-                      if (a.email < b.email)
-                        return -1;
-                      if (a.email > b.email)
-                        return 1;
-                      return 0;
-                    }//sorts objects by email
-                    //console.log(confirmedList, unconfirmedList);
-                    //match the confirmed with unconfirmed and return the difference
-                    $scope.unConfirmed = _.differenceBy(confirmedList.sort(compare),unconfirmedList.sort(compare), 'email');
-
-                    for (var c in confirmations) {
-                      combo.push({email:confirmations[c].email,fname:confirmations[c].fname,lname:confirmations[c].lname,state:confirmations[c].state});
-                      /!*for (var e in employees){ combo.push(employees[e].email)}*!/
-                      if (confirmations[c].state== "TX"){
-                        txConfirms.push(confirmations[c]);
-                        $scope.txConfirmCount = txConfirms.length;
-                      }else if (confirmations[c].state== "KY"){
-                        kyConfirms.push(confirmations[c]);
-                        $scope.kyConfirmCount = kyConfirms.length;
-                      }else if(confirmations[c].state == "MS"){
-                        msConfirms.push(confirmations[c]);
-                        $scope.msConfirmCount = msConfirms.length;
-                      }
-                    }
-                  })
-              })
-          })
-
-      };*///This code will eventually be removed
-
-      //Device Detector
+      /************************************************************************/
+                              //Device Detector
     /*  $scope.data = deviceDetector;
       $scope.allData = JSON.stringify($scope.data, null, 2);
       $scope.deviceDetector=deviceDetector;*/

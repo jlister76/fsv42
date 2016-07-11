@@ -76,10 +76,16 @@ td{
   margin-left: .5rem;
   width:100vw;
 }
-
-tbody tr:nth-child(even) {
-  background-color: #e6e6e6;
+tr {
+  border-bottom: solid thin lightgray;
 }
+tbody tr:hover {
+  background-color: rgba(173, 216, 230, 0.13);
+}
+
+/*tbody tr:nth-child(even) {
+  background-color: #e6e6e6;
+}*/
 thead th {
   text-align:left;
 }
@@ -98,14 +104,11 @@ table.clone + md-table-container table tbody tr:first-child td {
   border: none;
 }
 
-#qInput {
+#q-input {
   padding: .5rem;
   border: solid thin lightgrey;
   border-radius:2%;
   margin: 1rem;
 }
-.select-button{
-  text-decoration: none;
-  color:darkgoldenrod;
-}
+
 

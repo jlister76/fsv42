@@ -1,6 +1,6 @@
 <div flex layout="column" class="container">
   <div flex-xs="100" layout="row" layout-xs="column" layout-align="start" layout-align-xs="start center" style="margin-bottom: 2rem;">
-    <div flex="25" layout="column" layout-align="start" layout-align-xs="center center">
+    <div flex="35" layout="column" layout-align="start" layout-align-xs="center center">
       <md-list>
         <md-list-item>
           <div style=""><span class="md-title">Status</span>
@@ -42,24 +42,6 @@
           </div>
         </div>
       </div>
-    </div> <!--End of section -->
-    <div flex="45" hide-xs layout="column" layout-align="start">
-      <p class="md-subhead">See who is current</p>
-      <div style="width:28vw;">
-        <div layout="column">
-          <div layout style="border: solid thin whitesmoke">
-            <div flex>
-              <div layout>
-                <canvas id="base" class="chart-horizontal-bar"
-                        chart-legend="true" chart-data="data" chart-labels="labels">
-                </canvas>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div><!--End of section-->
-    <div flex="30" layout="column" layout-align="start end" style="border: none;">
       <div ng-controller="IssueReportController" layout="column" style="margin: .5rem; border: none;">
         <div layout="row" layout-align="start">
           <div flex-xs="100" layout="column" layout-align="center">
@@ -103,56 +85,106 @@
           </div>
         </div>
       </div>
+    </div> <!--End of section -->
+    <div flex="65" hide-xs layout="column" layout-align="start" style="border:solid thin #eeeeee; background-color:rgba(233, 233, 233, 0.2);">
+
+      <div flex="55">
+        <div layout="column">
+          <div layout style="border: solid thin whitesmoke">
+            <div flex>
+              <div flex layout="column">
+                <canvas ng-if="chart=='company-wide'" id="base" class="chart-horizontal-bar"
+                        chart-legend="true" chart-data="data" chart-labels="labels">
+                </canvas>
+
+                <div flex="80" layout="row" class="md-padding">
+                  <div class="md-padding" style="width:100%;">
+                    <!--<a href="#">Texas Groups</a>-->
+                    <canvas  id="base2" class="chart chart-bar"
+                            chart-legend="true" chart-data="TXGroupData" chart-labels="TXGroupLabels">
+                    </canvas>
+                  </div>
+                  <div>
+                    <!--<a href="#">Kentucky Groups</a>-->
+                    <canvas  id="base2" class="chart chart-bar"
+                            chart-legend="true" chart-data="TXGroupData" chart-labels="TXGroupLabels">
+                    </canvas>
+                  </div>
+                  <div>
+                    <!--<a href="#">Mississippi Groups</a>-->
+                    <canvas  id="base2" class="chart chart-bar"
+                            chart-legend="true" chart-data="TXGroupData" chart-labels="TXGroupLabels">
+                    </canvas>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!--End of section-->
+    <div layout="column" layout-align="start end" style="border: none;">
+
     </div><!--End of section -->
   </div>
   <md-divider></md-divider>
   <div style="margin:1rem;">
     <div flex="95">
       <div>
-        <form name="qselector">
-          <md-input>
-            <input type="text" id="qInput" ng-model="searchCriteria" placeholder="filter by name, state, group"/>
-          </md-input>
-        </form>
+        <div layout layout-align="space-between start">
+          <!--<form name="qselector">
+            <md-input>
+              <input type="text" id="q-input" ng-model="searchCriteria" placeholder="filter by name, state, group"/>
+            </md-input>
+          </form>-->
+          <div layout layout-align="center center">
+            <span class="md-subhead" style="margin-right:.8rem;">Filter By State</span>
+            <md-select ng-model="searchCriteria" aria-label="states">
+              <md-option ng-repeat="state in states" value="{{ state }}" >{{ state }}</md-option>
+            </md-select>
+          </div>
+          <div layout layout-align="center center">
+            <span class="md-subhead" style="margin-right:.8rem;">Filter By Group</span>
+            <md-select ng-model="searchCriteria" aria-label="groups">
+              <md-option ng-repeat="group in groups" value="{{ group }}" >{{ group }}</md-option>
+            </md-select>
+          </div>
+
+          <div><a href="#" class="" style="margin: 1rem;">Send Reminder</a></div>
+        </div>
         {{ emailChain }}
         <md-tabs md-dynamic-height md-border-bottom>
           <md-tab label="Confirmed">
             <md-content>
               <table flex>
                 <thead flex>
-                  <th class="md-subhead">Email</th>
+
                   <th class="md-subhead">Name</th>
                   <th class="md-subhead">State</th>
                   <th class="md-subhead">Group</th>
                 </thead>
 
                 <tr ng-repeat="e in employeesWithConfirmations | orderBy: 'lname' | filter:searchCriteria">
-                  <td class="md-padding">
-                    <a href="#" class="select-button" ng-click="sendReminder(e.state)">
-                      <i class="material-icons">add_circle_outline</i>
-                    </a>
-                    <a href="#" class="select-button" ng-click="removeEmail(e.email,e.id)">
-                      <i class="material-icons">remove_circle_outline</i>
-                    </a>
 
-                  </td>
                   <td class="md-caption"> {{ e.lname}}, {{e.fname}}</td>
                   <td class="md-caption">{{ e.state }}</td>
-                  <td class="md-caption">{{ e.email }}</td>
+                  <td class="md-caption">{{ e.group }}</td>
+
                 </tr>
               </table>
 
             </md-content>
           </md-tab>
           <md-tab label="Unconfirmed">
-            <div style="overflow: auto; max-height: 100px">
+            <div style="overflow: auto; max-height: 200px">
               <table>
                 <thead fix-head>
                 <tr>
-                  <th class="md-subhead">Email</th>
                   <th class="md-subhead">Name</th>
                   <th class="md-subhead">State</th>
                   <th class="md-subhead">Group</th>
+                  <th class="md-subhead">Reminder</th>
                 </tr>
                 </thead>
                 <tbody flex>
@@ -160,8 +192,8 @@
 
                   <td class="md-caption"> {{ e.lname}}, {{e.fname}}</td>
                   <td class="md-caption">{{ e.state }}</td>
-                  <td class="md-caption">Group</td>
-                  <td class="md-caption">{{ e.email }}</td>
+                  <td class="md-caption">{{ e.group }}</td>
+                  <td><a href="#" class="md-caption">Send</a></td>
                 </tr>
                 </tbody>
               </table>
