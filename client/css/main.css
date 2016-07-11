@@ -91,14 +91,14 @@ thead th {
 }
 .warning {
   background-color: goldenrod;
-  border: solid thin #ccc;
-  border-radius: 3px;
+  /*border: solid thin #ccc;
+  border-radius: 3px;*/
 }
 .info {
   background-color: #dfecf3;
   /*border: solid thin #ccc;*/
   /*border-radius: 3px;*/
-  color: #66b6c7;
+
 }
 .title {
 
