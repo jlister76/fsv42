@@ -52,11 +52,12 @@
               _.forEach(confirmationList, function (cl){ ClDate.push(moment(cl.update.releaseDate))});
 
               var maxConfDate = moment.max(ClDate);
+              $scope.msgShow = 1;
               $scope.statusCurrent = moment(mostRecent).isSame(maxConfDate);
               if ($scope.statusCurrent){
                 $scope.status = "You are currently up to date.";
               }else{
-                $scope.status = "A newer update is available:"
+                $scope.status = "A newer update is available for download."
                 }
             });
             return mostRecent;
@@ -173,7 +174,6 @@
               var uTxConfCount = _.uniq(txConfCount);
               var uKyConfCount = _.uniq(kyConfCount);
               var uMsConfCount = _.uniq(msConfCount);
-
               var TXPercentage = uTxConfCount.length / txEmployeeCount.length *100;
               var KYPercentage = uKyConfCount.length / kyEmployeeCount.length *100;
               var MSPercentage = uMsConfCount.length / msEmployeeCount.length *100;

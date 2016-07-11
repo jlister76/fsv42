@@ -89,10 +89,22 @@ tbody tr:hover {
 thead th {
   text-align:left;
 }
+.warning {
+  background-color: goldenrod;
+  border: solid thin #ccc;
+  border-radius: 3px;
+}
+.info {
+  background-color: #dfecf3;
+  /*border: solid thin #ccc;*/
+  /*border-radius: 3px;*/
+  color: #66b6c7;
+}
 .title {
+
   background-color: #0F6AB4;
   color: white;
-  margin-bottom:.5rem;
+  margin-bottom: 0;
   padding: .5rem;
 }
 

@@ -1,50 +1,20 @@
 <div flex layout="column" class="container">
-  <div flex-xs="100" layout="row" layout-xs="column" layout-align="start" layout-align-xs="start center" style="margin-bottom: 2rem;">
-    <div flex="25" layout="column" layout-align="start" layout-align-xs="center center">
-      <div layout="column">
-
-          <div style=""><span class="md-title">Status</span>
-            <p class="md-caption">{{ status }}</p>
-        <span ng-if="!statusCurrent">
-          <span class="md-caption">{{ mostRecentDownload.state+":  " }}</span><a class="md-caption"
-                                                                                 href="{{ mostRecentDownload.link }}">{{ mostRecentDownload.releaseDate | date:short }}</a>
+  <div flex>
+    <div ng-show="msgShow" ng-class="{info : statusCurrent, warning : !statusCurrent}" layout layout-align="center center" style="padding:.5rem;">
+      <div layout layout-align="center center">
+        <span class="md-subhead"> {{ status }}</span>
+        <span ng-if="!statusCurrent" class="md-caption" style="margin:0 1rem;">
+          <a class="md-subhead" href="{{ mostRecentDownload.link }}">{{ mostRecentDownload.state+"  "}}{{ mostRecentDownload.releaseDate | date:short }}</a>
         </span>
-          </div>
-
-      </div>
-      <div ng-controller="ConfirmationController" flex flex-xs="100" layout="column" style="margin: .1rem; border: none;"
-           class="">
-        <div layout layout-align="start">
-          <div layout="column">
-            <span class="md-subhead title">Confirm Update</span>
-            <div flex-xs="100" layout="column" layout-align="center center"
-                 style="background-color: rgba(178, 178, 200, 0.36);" class="md-padding" md-whiteframe="2">
-              <div ng-if="msgStatus == 0">
-                <form layout="column" name="confirmationForm" ng-submit="confirm(update.id)">
-                  <md-input-container>
-                    <label>Release Date</label>
-                    <md-select ng-model="update.id" required>
-                      <md-option ng-repeat="d in updates" value="{{d.id}}">{{d.state+" "}}{{d.releaseDate | date:short}}
-                      </md-option>
-                    </md-select>
-                  </md-input-container>
-                  <div layout layout-align="center start" style="margin: 1rem;">
-                    <md-button class="md-raised md-primary" type="submit" ng-disabled="confirmationForm.$invalid"
-                               style="color:white; width: 200px; height:40px">Submit
-                    </md-button>
-                  </div>
-                </form>
-              </div>
-              <div ng-if="msgStatus==1">
-                <p>{{ confirmation }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <a href="#" ng-click="msgShow = !msgShow">
+          <i class="material-icons">highlight_off</i>
+        </a>
       </div>
 
-    </div> <!--End of section -->
-    <div flex="45" hide-xs layout="column" layout-align="start" style="border:solid thin #eeeeee; background-color:rgba(233, 233, 233, 0.2);">
+    </div>
+  </div>
+  <div flex-xs="100" layout="row" layout-xs="column" layout-align="start" layout-align-xs="start center" class="md-padding" style="margin-bottom: 2rem;">
+    <div flex="60" hide-xs layout="column" layout-align="start" style="margin-top: 4rem; border:solid thin #eeeeee; background-color:rgba(233, 233, 233, 0.2);">
       <div flex="85">
         <div layout="column">
           <div layout style="border: solid thin whitesmoke">
@@ -79,39 +49,26 @@
           </div>
         </div>
       </div>
-    </div><!--End of section-->
-    <div flex="30" layout="column" layout-align="start end" style="border: none;">
-      <div ng-controller="IssueReportController" layout="column" style=" border: none;">
-        <div layout="row" layout-align="start">
-          <div flex-xs="100" layout="column" layout-align="center">
-            <span class="md-subhead title">Issue Tracker</span>
-            <div flex flex-xs="100" layout="column" layout-align="center center" class="md-padding"
-                 style="background-color: rgba(178, 178, 200, 0.36); border: none;" md-whiteframe="2">
-              <div ng-if="msgStatus == 0" style="margin:1.8rem;">
-                <form layout="column" name="reportIssueForm"
-                      ng-submit="report(update.releaseDate,update.issue,issue.comments)">
-                  <md-input-container style="margin: 1rem 0;">
-                    <!--<p class="md-caption" style="color:#950B02"><i>*</i> Please select a reason and version.</p>-->
-                    <label>I am unable to...</label>
-                    <md-select ng-model="update.issue" required>
-                      <md-option ng-repeat="issue in issueType" value="{{issue}}">{{issue}}</md-option>
-                    </md-select>
-                  </md-input-container>
+    </div ><!--End of section-->
+    <div flex="40" layout="column" layout-align="start end" style="margin: 4rem;">
+      <div ng-controller="ConfirmationController" flex-xs="100" layout="column">
+        <div layout layout-align="start">
+          <div layout="column" style="margin-bottom: 4rem;">
+            <span class="md-subhead title">Confirm Update</span>
+            <div flex-xs="100" layout="column" layout-align="center center"
+                 style="background-color: whitesmoke;" class="md-padding" >
+              <div ng-if="msgStatus == 0">
+                <form layout="column" name="confirmationForm" ng-submit="confirm(update.id)">
                   <md-input-container>
-
                     <label>Release Date</label>
-                    <md-select ng-model="update.releaseDate" required>
-                      <md-option ng-repeat="d in updates" value="{{d.releaseDate}}">{{d.releaseDate |date:medium}}
+                    <md-select ng-model="update.id" required>
+                      <md-option ng-repeat="d in updates" value="{{d.id}}">{{d.state+" "}}{{d.releaseDate | date:short}}
                       </md-option>
                     </md-select>
                   </md-input-container>
-                  <div layout layout-align="center">
-                <textarea flex="100" ng-model="issue.comments" name="comments" id="comments" cols="32" rows="4"
-                          style="border-radius: 2%; border: solid thin lightgray;"></textarea>
-                  </div>
                   <div layout layout-align="center start" style="margin: 1rem;">
-                    <md-button class="md-raised md-primary" type="submit" ng-disabled="reportIssueForm.$invalid"
-                               style="color:white; width:200px; height:40px; margin: 1rem;">Submit
+                    <md-button class="md-raised md-primary" type="submit" ng-disabled="confirmationForm.$invalid"
+                               style="color:white; width: 200px; height:40px">Submit
                     </md-button>
                   </div>
                 </form>
@@ -119,6 +76,52 @@
               <div ng-if="msgStatus==1">
                 <p>{{ confirmation }}</p>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div ng-controller="IssueReportController" layout="column">
+        <div layout="row" layout-align="start">
+          <div flex-xs="100">
+            <div layout=column>
+              <span class="md-subhead title" >Issue Tracker</span>
+              <div flex flex-xs="100" layout="column" layout-align="center center" class="md-padding"
+                   style="background-color: whitesmoke; border: none;">
+
+                <div ng-if="msgStatus == 0" style="margin:1.8rem;">
+                  <form layout="column" name="reportIssueForm"
+                        ng-submit="report(update.releaseDate,update.issue,issue.comments)">
+                    <md-input-container style="margin: 1rem 0;">
+                      <!--<p class="md-caption" style="color:#950B02"><i>*</i> Please select a reason and version.</p>-->
+                      <label>I am unable to...</label>
+                      <md-select ng-model="update.issue" required>
+                        <md-option ng-repeat="issue in issueType" value="{{issue}}">{{issue}}</md-option>
+                      </md-select>
+                    </md-input-container>
+                    <md-input-container>
+
+                      <label>Release Date</label>
+                      <md-select ng-model="update.releaseDate" required>
+                        <md-option ng-repeat="d in updates" value="{{d.releaseDate}}">{{d.releaseDate |date:medium}}
+                        </md-option>
+                      </md-select>
+                    </md-input-container>
+                    <div layout layout-align="center">
+                <textarea flex="100" ng-model="issue.comments" name="comments" id="comments" cols="32" rows="4"
+                          style="border-radius: 2%; border: solid thin lightgray;"></textarea>
+                    </div>
+                    <div layout layout-align="center start" style="margin: 1rem;">
+                      <md-button class="md-raised md-primary" type="submit" ng-disabled="reportIssueForm.$invalid"
+                                 style="color:white; width:200px; height:40px; margin: 1rem;">Submit
+                      </md-button>
+                    </div>
+                  </form>
+                </div>
+                <div ng-if="msgStatus==1">
+                  <p>{{ confirmation }}</p>
+                </div>
+              </div>
+
             </div>
 
           </div>
