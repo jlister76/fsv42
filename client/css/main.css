@@ -67,26 +67,45 @@ footer {
 
 table {
   border: thin solid lightgray;
-  padding: 1rem;
+  padding: 0rem;
   border-collapse: collapse;
 }
+
 td{
-  padding:0.8rem;
-  margin: 0rem;
+  padding: 1rem .5rem;
+  margin-left: .5rem;
   width:100vw;
 }
 
-tbody tr:nth-child(odd) {
-  background-color: lightgray;
+tbody tr:nth-child(even) {
+  background-color: #e6e6e6;
 }
-
-#map {
-  width:205px; height: 175px;
+thead th {
+  text-align:left;
 }
-.angular-google-map-container { width:200px; height: 175px; }
-
 .title {
   background-color: #0F6AB4;
   color: white;
   margin-bottom:.5rem;
+  padding: .5rem;
 }
+
+/*table.clone thead tr:last-child th {
+  border-bottom: 1px rgba(0, 0, 0, 0.12) solid;
+}*/
+
+table.clone + md-table-container table tbody tr:first-child td {
+  border: none;
+}
+
+#qInput {
+  padding: .5rem;
+  border: solid thin lightgrey;
+  border-radius:2%;
+  margin: 1rem;
+}
+.select-button{
+  text-decoration: none;
+  color:darkgoldenrod;
+}
+

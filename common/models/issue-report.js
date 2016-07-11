@@ -15,7 +15,7 @@ module.exports = function(IssueReport) {
   IssueReport.sendMail = function(cb){
     IssueReport.app.models.Email.send({
       to: ['jlister76@gmail.com', 'jlister469@outlook.com'],
-      from: 'noreply@heathus.com',
+      from: 'noreply@gmail.com',
       subject: 'Delete this email',
       text: 'This is a test email.',
       html: '<em>This is a test message.</em>'

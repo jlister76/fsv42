@@ -1,13 +1,13 @@
 {
   "ids": {
     "User": 1,
-    "AccessToken": 155,
+    "AccessToken": 156,
     "ACL": 1,
     "RoleMapping": 1,
     "Role": 1,
     "employee": 8,
     "confirmation": 23,
-    "IssueReport": 2,
+    "IssueReport": 5,
     "update": 13
   },
   "models": {
@@ -81,8 +81,8 @@
       "71JOu0zwcBRMCwlwIXN30hdXylFf5qz3ZZuZnjYAMsb0ZFnUxxTjYJFdbw3g8Lzn": "{\"id\":\"71JOu0zwcBRMCwlwIXN30hdXylFf5qz3ZZuZnjYAMsb0ZFnUxxTjYJFdbw3g8Lzn\",\"ttl\":1209600,\"created\":\"2016-07-06T09:22:17.480Z\",\"userId\":6}",
       "pZ2DT44ptfw4AH2w8YuzW6rFHntUb0BhSZhUBUi5QNP93FHo0EzHCtej6kJlTOjW": "{\"id\":\"pZ2DT44ptfw4AH2w8YuzW6rFHntUb0BhSZhUBUi5QNP93FHo0EzHCtej6kJlTOjW\",\"ttl\":1209600,\"created\":\"2016-07-06T15:29:27.540Z\",\"userId\":4}",
       "nhlHBA2vVSY3EJlqVBfOrKeFu4oiTHXGmpiVMJzxdX2imaX1hd4OBtAkf6AYuDCv": "{\"id\":\"nhlHBA2vVSY3EJlqVBfOrKeFu4oiTHXGmpiVMJzxdX2imaX1hd4OBtAkf6AYuDCv\",\"ttl\":1209600,\"created\":\"2016-07-06T15:29:52.062Z\",\"userId\":6}",
-      "fAIJCYCUZXScCXw3VcC7ZUYLmDGYO5iPxBvfzRRpt0VnVsIlK6nAEASJiEklGAFk": "{\"id\":\"fAIJCYCUZXScCXw3VcC7ZUYLmDGYO5iPxBvfzRRpt0VnVsIlK6nAEASJiEklGAFk\",\"ttl\":1209600,\"created\":\"2016-07-08T11:22:34.593Z\",\"userId\":2}",
-      "aRWfSlIeaxmBdYNQRJB7ID8wC96NKFtaTJUemFY6EOrW4EnhcvWqOkTEEdwYaIi4": "{\"id\":\"aRWfSlIeaxmBdYNQRJB7ID8wC96NKFtaTJUemFY6EOrW4EnhcvWqOkTEEdwYaIi4\",\"ttl\":1209600,\"created\":\"2016-07-09T18:42:45.263Z\",\"userId\":7}"
+      "aRWfSlIeaxmBdYNQRJB7ID8wC96NKFtaTJUemFY6EOrW4EnhcvWqOkTEEdwYaIi4": "{\"id\":\"aRWfSlIeaxmBdYNQRJB7ID8wC96NKFtaTJUemFY6EOrW4EnhcvWqOkTEEdwYaIi4\",\"ttl\":1209600,\"created\":\"2016-07-09T18:42:45.263Z\",\"userId\":7}",
+      "Or9AVUfvqexWF8qRQre0eDioa2z89R1B4uiJXP6HkOBtj7XqGLkpo3rvijMlb0zd": "{\"id\":\"Or9AVUfvqexWF8qRQre0eDioa2z89R1B4uiJXP6HkOBtj7XqGLkpo3rvijMlb0zd\",\"ttl\":1209600,\"created\":\"2016-07-09T19:52:46.723Z\",\"userId\":7}"
     },
     "ACL": {},
     "RoleMapping": {},
@@ -101,7 +101,10 @@
       "22": "{\"lastUpdated\":\"2016-07-08T11:23:01.186Z\",\"employeeId\":2,\"updateId\":7,\"id\":22}"
     },
     "IssueReport": {
-      "1": "{\"fname\":\"RoyDean\",\"lname\":\"Leighton\",\"email\":\"IT@heathus.com\",\"issue\":\"Download an update\",\"version\":\"5.23.2016\",\"createdAt\":\"2016-06-28T05:43:32.392Z\",\"state\":\"TX\",\"division\":\"Corporate\",\"id\":1}"
+      "1": "{\"fname\":\"RoyDean\",\"lname\":\"Leighton\",\"email\":\"IT@heathus.com\",\"issue\":\"Download an update\",\"version\":\"5.23.2016\",\"createdAt\":\"2016-06-28T05:43:32.392Z\",\"state\":\"TX\",\"division\":\"Corporate\",\"id\":1}",
+      "2": "{\"fname\":\"Andrew\",\"lname\":\"Machiano\",\"email\":\"a.machiano@heathus.com\",\"issue\":\"Download an update\",\"comments\":\"testing\",\"version\":\"2016-06-01T05:00:00.000Z\",\"createdAt\":\"2016-07-10T22:49:12.470Z\",\"state\":\"Texas\",\"division\":\"Corporate\",\"id\":2}",
+      "3": "{\"fname\":\"Andrew\",\"lname\":\"Machiano\",\"email\":\"a.machiano@heathus.com\",\"issue\":\"Download an update\",\"comments\":\"testing this feature\",\"version\":\"2016-06-01T05:00:00.000Z\",\"createdAt\":\"2016-07-10T22:53:59.770Z\",\"state\":\"Texas\",\"division\":\"Corporate\",\"id\":3}",
+      "4": "{\"fname\":\"Andrew\",\"lname\":\"Machiano\",\"email\":\"a.machiano@heathus.com\",\"issue\":\"Download an update\",\"comments\":\"still testing\",\"version\":\"2016-06-01T05:00:00.000Z\",\"createdAt\":\"2016-07-10T22:58:11.492Z\",\"state\":\"Texas\",\"division\":\"Corporate\",\"id\":4}"
     },
     "update": {
       "7": "{\"releaseDate\":\"2016-06-01T05:00:00.000Z\",\"state\":\"Texas\",\"link\":\"https://s3.amazonaws.com/fsv42updates/FSV42+Update+64bit.EXE\",\"id\":7}",

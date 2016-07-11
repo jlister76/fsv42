@@ -5,10 +5,12 @@
     .module('FSV42App',[
         'ui.router',
         'lbServices',
-      'uiGmapgoogle-maps',
         'ngMaterial',
         'ngMessages',
-      'chart.js'
+        'chart.js',
+        'fixed.table.header',
+        'angularUtils.directives.dirPagination'
+
       ])
     .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
       $stateProvider
@@ -69,8 +71,7 @@
           }
         };
       })
-    })
-    .run(function ($rootScope, $state, AuthService) {
+    }).run(function ($rootScope, $state, AuthService) {
     //prevents loading views that require authentication
     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
       if (toState.authenticate && !AuthService.getCurrentId()){
@@ -79,13 +80,6 @@
         event.preventDefault();
       }
     });
-  })
-    .config(function(uiGmapGoogleMapApiProvider) {
-      uiGmapGoogleMapApiProvider.configure({
-        key: 'AIzaSyBUZmQ8vc34NHhjEnLzFf970bmt-0ZQaVU',
-        v: '3.23', //defaults to latest 3.X anyhow
-        libraries: 'weather,geometry,visualization'
-      });
-    })
+  });
 
 })();

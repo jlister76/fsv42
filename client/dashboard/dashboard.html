@@ -1,148 +1,176 @@
-<div flex flex-xs="100" layout="row" layout-xs="column" layout-align="start" layout-align-xs="start center">
-
-  <div flex="25" layout="column" layout-align="start" layout-align-xs="center center">
-    <md-list>
-    <md-list-item>
-      <div style=""><span class="md-title">Status</span>
-        <p class="md-caption">{{ status }}</p>
+<div flex layout="column" class="container">
+  <div flex-xs="100" layout="row" layout-xs="column" layout-align="start" layout-align-xs="start center" style="margin-bottom: 2rem;">
+    <div flex="25" layout="column" layout-align="start" layout-align-xs="center center">
+      <md-list>
+        <md-list-item>
+          <div style=""><span class="md-title">Status</span>
+            <p class="md-caption">{{ status }}</p>
         <span ng-if="!statusCurrent">
-          <span class="md-caption">{{ mostRecentDownload.state+":  " }}</span><a class="md-caption" href="{{ mostRecentDownload.link }}">{{ mostRecentDownload.releaseDate | date:short }}</a>
+          <span class="md-caption">{{ mostRecentDownload.state+":  " }}</span><a class="md-caption"
+                                                                                 href="{{ mostRecentDownload.link }}">{{ mostRecentDownload.releaseDate | date:short }}</a>
         </span>
-      </div>
-    </md-list-item>
-    <md-list-item class="md-padding">
-
-      </md-list-item>
-    <md-list-item layout="column">
-      <div>
-        <p class="md-subhead title md-padding">Current location</p>
-        <div id="map"></div>
-        <!--<ui-gmap-google-map center="{latitude: 45, longitude: -73 }" zoom='map.zoom'></ui-gmap-google-map>-->
-      </div>
-    </md-list-item>
-
-  </md-list>
-  </div> <!--end of ROW -->
-  <div flex="50" hide-xs layout="column" layout-align="start">
-    <p class="md-subhead">See who is current</p>
-    <div style="width:28vw;">
-      <div layout="column">
-        <md-list style="padding:0!important;">
-          <md-list-item layout style="border: solid thin whitesmoke">
-        <div flex>
-          <div layout>
-            <canvas id="base" class="chart-horizontal-bar"
-                          chart-legend="true" chart-data="data" chart-labels="labels">
-          </canvas>
           </div>
-          <md-content>
-            <md-tabs flex md-dynamic-height md-border-bottom>
-              <md-tab label="Confirmed">
-                <md-content flex>
-                  <table>
-                    <tr ng-repeat="e in employeesWithConfirmations | orderBy: 'state'">
-                      <td class="md-caption"> {{ e.lname}}, {{e.fname}}</td>
-                      <td class="md-caption">{{ e.state }}</td>
-                    </tr>
-                  </table>
-                </md-content>
-              </md-tab>
-              <md-tab label="Unconfirmed">
-                <div layout >
-                  <table>
-                    <tr ng-repeat="e in employeesWithoutConfirmations | orderBy: 'lname'">
-                      <td class="md-caption"> {{ e.lname}}, {{e.fname}}</td>
-                      <td class="md-caption">{{ e.state }}</td>
-                    </tr>
-                  </table>
-                </div>
-              </md-tab>
-            </md-tabs>
-          </md-content>
-
-        </div>
-      </md-list-item>
+        </md-list-item>
       </md-list>
-    </div>
-  </div>
-</div>
-  </div><!--end of ROW -->
-<div layout="column" layout-align="start start" style="border: none;" class="md-padding">
+      <div ng-controller="ConfirmationController" flex flex-xs="100" layout="column" style="margin: .8rem; border: none;"
+           class="">
+        <div layout layout-align="start">
+          <div layout="column">
+            <span class="md-subhead title">Confirm Update</span>
+            <div flex-xs="100" layout="column" layout-align="center center"
+                 style="background-color: rgba(178, 178, 200, 0.36);" class="md-padding" md-whiteframe="2">
+              <div ng-if="msgStatus == 0">
+                <form layout="column" name="confirmationForm" ng-submit="confirm(update.id)">
+                  <md-input-container>
+                    <label>Release Date</label>
+                    <md-select ng-model="update.id" required>
+                      <md-option ng-repeat="d in updates" value="{{d.id}}">{{d.state+" "}}{{d.releaseDate | date:short}}
+                      </md-option>
+                    </md-select>
+                  </md-input-container>
+                  <div layout layout-align="center start" style="margin: 1rem;">
+                    <md-button class="md-raised md-primary" type="submit" ng-disabled="confirmationForm.$invalid"
+                               style="color:white; width: 200px; height:40px">Submit
+                    </md-button>
+                  </div>
+                </form>
+              </div>
+              <div ng-if="msgStatus==1">
+                <p>{{ confirmation }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!--End of section -->
+    <div flex="45" hide-xs layout="column" layout-align="start">
+      <p class="md-subhead">See who is current</p>
+      <div style="width:28vw;">
+        <div layout="column">
+          <div layout style="border: solid thin whitesmoke">
+            <div flex>
+              <div layout>
+                <canvas id="base" class="chart-horizontal-bar"
+                        chart-legend="true" chart-data="data" chart-labels="labels">
+                </canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!--End of section-->
+    <div flex="30" layout="column" layout-align="start end" style="border: none;">
+      <div ng-controller="IssueReportController" layout="column" style="margin: .5rem; border: none;">
+        <div layout="row" layout-align="start">
+          <div flex-xs="100" layout="column" layout-align="center">
+            <span class="md-subhead title">Issue Tracker</span>
+            <div flex flex-xs="100" layout="column" layout-align="center center" class="md-padding"
+                 style="background-color: rgba(178, 178, 200, 0.36); border: none;" md-whiteframe="2">
+              <div ng-if="msgStatus == 0" style="margin:1.8rem;">
+                <form layout="column" name="reportIssueForm"
+                      ng-submit="report(update.releaseDate,update.issue,issue.comments)">
+                  <md-input-container style="margin: 1rem 0;">
+                    <!--<p class="md-caption" style="color:#950B02"><i>*</i> Please select a reason and version.</p>-->
+                    <label>I am unable to...</label>
+                    <md-select ng-model="update.issue" required>
+                      <md-option ng-repeat="issue in issueType" value="{{issue}}">{{issue}}</md-option>
+                    </md-select>
+                  </md-input-container>
+                  <md-input-container>
 
-
-    <div ng-controller="IssueReportController" layout="column" style="margin: .5rem; border: none;">
-      <div layout="row" layout-align="start">
-
-        <div flex-xs="100" layout="column" layout-align="center">
-          <span class="md-subhead title md-padding">Issue Tracker</span>
-          <div flex-xs="100" layout="column" layout-align="center center" class="md-padding"
-               style="margin: 5px 0; background-color: whitesmoke; border: solid thin lightblue; border-radius: 5px;">
-            <div ng-if="msgStatus == 0">
-              <form layout="column" name="reportIssueForm"
-                    ng-submit="report(update.releaseDate,update.issue,issue.comments)">
-                <md-input-container style="margin: 1rem 0;">
-                  <!--<p class="md-caption" style="color:#950B02"><i>*</i> Please select a reason and version.</p>-->
-                  <label>I am unable to...</label>
-                  <md-select ng-model="update.issue" required>
-                    <md-option ng-repeat="issue in issueType" value="{{issue}}">{{issue}}</md-option>
-                  </md-select>
-                </md-input-container>
-                <md-input-container>
-
-                  <label>Release Date</label>
-                  <md-select ng-model="update.releaseDate" required>
-                    <md-option ng-repeat="d in updates" value="{{d.releaseDate}}">{{d.releaseDate |date:medium}}</md-option>
-                  </md-select>
-                </md-input-container>
-                <div layout layout-align="center">
+                    <label>Release Date</label>
+                    <md-select ng-model="update.releaseDate" required>
+                      <md-option ng-repeat="d in updates" value="{{d.releaseDate}}">{{d.releaseDate |date:medium}}
+                      </md-option>
+                    </md-select>
+                  </md-input-container>
+                  <div layout layout-align="center">
                 <textarea flex="100" ng-model="issue.comments" name="comments" id="comments" cols="32" rows="4"
                           style="border-radius: 2%; border: solid thin lightgray;"></textarea>
-                </div>
-                <div layout layout-align="center start" style="margin: 1rem;">
-                  <md-button class="md-raised md-primary" type="submit" ng-disabled="reportIssueForm.$invalid"
-                             style="color:white; width:200px; height:40px">Submit
-                  </md-button>
-                </div>
-              </form>
-            </div>
-            <div ng-if="msgStatus==1">
-              <p>{{ confirmation }}</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  <div ng-controller="ConfirmationController" flex flex-xs="100" layout="column" style="margin: .5rem; border: none;" class="">
-    <div layout layout-align="center">
-      <div layout="column">
-        <span class="md-subhead title md-padding">Confirm Update</span>
-        <div flex-xs="100" layout="column" layout-align="center center"
-             style="background-color: whitesmoke; border: solid thin lightblue; border-radius: 5px;" class="md-padding">
-          <div ng-if="msgStatus == 0">
-            <form layout="column" name="confirmationForm" ng-submit="confirm(update.id)">
-
-              <md-input-container>
-
-                <label>Release Date</label>
-                <md-select ng-model="update.id" required>
-                  <md-option ng-repeat="d in updates" value="{{d.id}}">{{d.state+"  "}}{{d.releaseDate | date:short}}</md-option>
-                </md-select>
-              </md-input-container>
-
-              <div layout layout-align="center start" style="margin: 1rem;">
-                <md-button class="md-raised md-primary" type="submit" ng-disabled="confirmationForm.$invalid"  style="color:white; width: 200px; height:40px">Submit</md-button>
+                  </div>
+                  <div layout layout-align="center start" style="margin: 1rem;">
+                    <md-button class="md-raised md-primary" type="submit" ng-disabled="reportIssueForm.$invalid"
+                               style="color:white; width:200px; height:40px; margin: 1rem;">Submit
+                    </md-button>
+                  </div>
+                </form>
               </div>
-            </form>
-          </div>
-          <div ng-if="msgStatus==1">
-            <p>{{ confirmation }}</p>
+              <div ng-if="msgStatus==1">
+                <p>{{ confirmation }}</p>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
+    </div><!--End of section -->
+  </div>
+  <md-divider></md-divider>
+  <div style="margin:1rem;">
+    <div flex="95">
+      <div>
+        <form name="qselector">
+          <md-input>
+            <input type="text" id="qInput" ng-model="searchCriteria" placeholder="filter by name, state, group"/>
+          </md-input>
+        </form>
+        {{ emailChain }}
+        <md-tabs md-dynamic-height md-border-bottom>
+          <md-tab label="Confirmed">
+            <md-content>
+              <table flex>
+                <thead flex>
+                  <th class="md-subhead">Email</th>
+                  <th class="md-subhead">Name</th>
+                  <th class="md-subhead">State</th>
+                  <th class="md-subhead">Group</th>
+                </thead>
+
+                <tr ng-repeat="e in employeesWithConfirmations | orderBy: 'lname' | filter:searchCriteria">
+                  <td class="md-padding">
+                    <a href="#" class="select-button" ng-click="sendReminder(e.state)">
+                      <i class="material-icons">add_circle_outline</i>
+                    </a>
+                    <a href="#" class="select-button" ng-click="removeEmail(e.email,e.id)">
+                      <i class="material-icons">remove_circle_outline</i>
+                    </a>
+
+                  </td>
+                  <td class="md-caption"> {{ e.lname}}, {{e.fname}}</td>
+                  <td class="md-caption">{{ e.state }}</td>
+                  <td class="md-caption">{{ e.email }}</td>
+                </tr>
+              </table>
+
+            </md-content>
+          </md-tab>
+          <md-tab label="Unconfirmed">
+            <div style="overflow: auto; max-height: 100px">
+              <table>
+                <thead fix-head>
+                <tr>
+                  <th class="md-subhead">Email</th>
+                  <th class="md-subhead">Name</th>
+                  <th class="md-subhead">State</th>
+                  <th class="md-subhead">Group</th>
+                </tr>
+                </thead>
+                <tbody flex>
+                <tr ng-repeat="e in employeesWithoutConfirmations | orderBy: 'lname' | filter:searchCriteria">
+
+                  <td class="md-caption"> {{ e.lname}}, {{e.fname}}</td>
+                  <td class="md-caption">{{ e.state }}</td>
+                  <td class="md-caption">Group</td>
+                  <td class="md-caption">{{ e.email }}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </md-tab>
+        </md-tabs>
+
+      </div>
+
     </div>
-
-
-
   </div>
 </div>

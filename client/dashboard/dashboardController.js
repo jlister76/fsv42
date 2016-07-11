@@ -3,7 +3,7 @@
 
   angular
     .module('FSV42App')
-    .controller('DashboardController', function ($scope, AuthService, $rootScope, $state, $mdSidenav, $log, $mdMedia, Confirmation,uiGmapGoogleMapApi, Employee, Update){
+    .controller('DashboardController', function ($scope, AuthService, $rootScope, $state, $mdSidenav, $log, $mdMedia, Confirmation,Employee, Update, $http,IssueReport){
       /*****************************************************************/
               //Set current user
 
@@ -16,6 +16,7 @@
         });
       /*****************************************************************/
       $scope.state = ["Texas", "Kentucky", "Mississippi"];
+      $scope.searchcriteria = "";
       /****************************************************************/
       //Determine release dates
       Update
@@ -44,12 +45,12 @@
           Confirmation.find({filter: {where: {employeeId: id}, include: 'update'}})
             .$promise
             .then(function(confirmationList){
-              console.log(confirmationList);
+
               $scope.confirmationList = confirmationList;
-              console.log(mostRecent);
+
               var ClDate = [];
               _.forEach(confirmationList, function (cl){ ClDate.push(moment(cl.update.releaseDate))});
-              console.log(moment.max(ClDate));
+
               var maxConfDate = moment.max(ClDate);
               $scope.statusCurrent = moment(mostRecent).isSame(maxConfDate);
               if ($scope.statusCurrent){
@@ -66,7 +67,7 @@
             .findOne({filter: {where:{state: state, releaseDate: mostRecent}}})
             .$promise
             .then(function(update){
-              console.log(update.link);
+
 
               $scope.mostRecentDownload = {
                 id: update.id,
@@ -80,6 +81,7 @@
       /************************************************************************/
       //Retrieving most recent update & their relative confirmations
       //Creating a list of all employees and separating into 2 list [Confirmed,Unconfirmed]
+      var b;
       Update
         .find({filter:{include:'confirmations'}})
         .$promise
@@ -137,8 +139,9 @@
                 $scope.employeesWithoutConfirmations = _.uniq(employeesWithoutConfirmations);//unique values, no dupes
 
 
+
               });
-              console.log($scope.employeesWithConfirmations);
+
               var txEmployeeCount =[];
               var kyEmployeeCount =[];
               var msEmployeeCount =[];
@@ -151,7 +154,7 @@
                   txEmployeeCount.push(e);
                 } else if (e.state == "Kentucky"){
                   kyEmployeeCount.push(e);
-                  console.log(kyEmployeeCount);
+
                 } else if (e.state == "Mississippi"){msEmployeeCount.push(e)}
               });
               _.forEach(employeesWithConfirmations, function (e){
@@ -165,7 +168,7 @@
               var uTxConfCount = _.uniq(txConfCount);
               var uKyConfCount = _.uniq(kyConfCount);
               var uMsConfCount = _.uniq(msConfCount);
-              console.log(uTxConfCount.length,uKyConfCount.length,uMsConfCount.length );
+
               var TXPercentage = uTxConfCount.length / txEmployeeCount.length *100;
               var KYPercentage = uKyConfCount.length / kyEmployeeCount.length *100;
               var MSPercentage = uMsConfCount.length / msEmployeeCount.length *100;
@@ -174,11 +177,24 @@
               $scope.series = ['Confirmed Installs'];
               $scope.data = [[TXPercentage,KYPercentage,MSPercentage]];
 
+              $scope.sendReminder = function (state) {
+                console.log($scope.employeesWithoutConfirmations);
+                var emails =[];
+                _.forEach($scope.employeesWithoutConfirmations, function(employee){
+                  if (employee.state == state){
+                    emails.push(employee.email);
+                  }
+                });
+                console.log(emails);
+                var email = {email: emails};
+                $http.post('api/Updates/sendReminder', email);
+              }
+
             })
         });
 
       /************************************************************************/
-      //This code will eventually be removed
+
       /*$scope.initTxData = function (version) {
         Employee
           .find()
@@ -265,55 +281,14 @@
               })
           })
 
-      };*/
+      };*///This code will eventually be removed
 
-      /************************************************************************/
-       //Loads in GMap
-      uiGmapGoogleMapApi
-        .then (function(maps){
-          //$scope.map = { center: { lat: 45, lng: -73 }, zoom: 8 };
-          var map = new google.maps.Map(document.getElementById("map"), {
-            center: {lat: -34.397, lng: 150.644},
-            zoom: 15
-          });
-          var infoWindow = new google.maps.InfoWindow({map: map});
-
-          // Try HTML5 geolocation.
-          if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-              var pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-              };
-
-              infoWindow.setPosition(pos);
-              infoWindow.setContent('Location found.');
-              map.setCenter(pos);
-            }, function() {
-              handleLocationError(true, infoWindow, map.getCenter());
-            });
-          } else {
-            // Browser doesn't support Geolocation
-            handleLocationError(false, infoWindow, map.getCenter());
-          }
-          function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-            infoWindow.setPosition(pos);
-            infoWindow.setContent(browserHasGeolocation ?
-              'Error: The Geolocation service failed.' :
-              'Error: Your browser doesn\'t support geolocation.');
-          }
-      });
-      /************************************************************************/
       //Device Detector
     /*  $scope.data = deviceDetector;
       $scope.allData = JSON.stringify($scope.data, null, 2);
       $scope.deviceDetector=deviceDetector;*/
       /************************************************************************/
 
-
-
-
-      /************************************************************************/
 
     })
 })();

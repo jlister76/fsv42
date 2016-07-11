@@ -20,6 +20,9 @@
     },
     "division": {
       "type": "string"
+    },
+    "group": {
+      "type": "string"
     }
   },
   "validations": [],

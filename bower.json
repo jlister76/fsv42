@@ -16,15 +16,11 @@
     "tests"
   ],
   "dependencies": {
-    "angular-chartist": "*",
-    "angular-chartist.js": "^3.3.13",
-    "angular-google-maps": "^2.3.3",
+    "angular": "^1.4.9",
     "angular-material": "^1.0.9",
     "angular-resource": "^1.5.7",
-    "chartist": "^0.9.8",
     "angular-ui-router": "^0.3.1",
     "moment": "^2.14.1",
-    "angular-chart.js": "^0.10.2",
-    "angular-chart": "^0.5.0"
+    "angular-fixed-table-header": "^0.2.1"
   }
 }
