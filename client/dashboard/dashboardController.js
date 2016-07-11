@@ -235,14 +235,17 @@
               console.info(KYGroup_1Percentage, KYGroup_2Percentage);
               console.info(MSGroup_1Percentage, MSGroup_2Percentage);
               //Angular-Chart.js
-              $scope.chart = "company-wide";
+              $scope.chart = 1;
               $scope.labels = ['Texas', 'Kentucky', 'Mississippi'];
               $scope.series = ['Confirmed Installs'];
               $scope.data = [[TXPercentage,KYPercentage,MSPercentage]];
 
               $scope.TXGroupLabels = ['DAL/5L','CORP/IT'];
-              $scope.TXGroupSeries = ['Confirmed'];
               $scope.TXGroupData = [[TXGroup_1Percentage,TXGroup_2Percentage]];
+              $scope.KYGroupLabels = ['KY/Group_1','KY/Group_2'];
+              $scope.KYGroupData = [[KYGroup_1Percentage,KYGroup_2Percentage]];
+              $scope.MSGroupLabels = ['MS/Group_1','MS/Group_2'];
+              $scope.MSGroupData = [[MSGroup_1Percentage,MSGroup_2Percentage]];
               //Sending email reminders
               $scope.sendReminder = function (state) {
                 console.log($scope.employeesWithoutConfirmations);

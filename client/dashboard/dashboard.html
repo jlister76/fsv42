@@ -1,8 +1,8 @@
 <div flex layout="column" class="container">
   <div flex-xs="100" layout="row" layout-xs="column" layout-align="start" layout-align-xs="start center" style="margin-bottom: 2rem;">
-    <div flex="35" layout="column" layout-align="start" layout-align-xs="center center">
-      <md-list>
-        <md-list-item>
+    <div flex="25" layout="column" layout-align="start" layout-align-xs="center center">
+      <div layout="column">
+
           <div style=""><span class="md-title">Status</span>
             <p class="md-caption">{{ status }}</p>
         <span ng-if="!statusCurrent">
@@ -10,9 +10,9 @@
                                                                                  href="{{ mostRecentDownload.link }}">{{ mostRecentDownload.releaseDate | date:short }}</a>
         </span>
           </div>
-        </md-list-item>
-      </md-list>
-      <div ng-controller="ConfirmationController" flex flex-xs="100" layout="column" style="margin: .8rem; border: none;"
+
+      </div>
+      <div ng-controller="ConfirmationController" flex flex-xs="100" layout="column" style="margin: .1rem; border: none;"
            class="">
         <div layout layout-align="start">
           <div layout="column">
@@ -42,7 +42,46 @@
           </div>
         </div>
       </div>
-      <div ng-controller="IssueReportController" layout="column" style="margin: .5rem; border: none;">
+
+    </div> <!--End of section -->
+    <div flex="45" hide-xs layout="column" layout-align="start" style="border:solid thin #eeeeee; background-color:rgba(233, 233, 233, 0.2);">
+      <div flex="85">
+        <div layout="column">
+          <div layout style="border: solid thin whitesmoke">
+            <div flex>
+              <div flex="60" layout="column">
+                <canvas  id="base" class="chart-horizontal-bar"
+                        chart-legend="true" chart-data="data" chart-labels="labels">
+                </canvas>
+                <div layout="column" class="md-padding">
+                  <div class="md-padding">
+                    <a href="#" class="md-subhead" ng-click="chart=1">Texas</a>
+                    <canvas ng-if="chart==1" id="base2" class="chart chart-bar"
+                            chart-legend="true" chart-data="TXGroupData" chart-labels="TXGroupLabels">
+                    </canvas>
+                  </div>
+                  <div>
+                    <a href="#" class="md-subhead" ng-click="chart=2">Kentucky</a>
+                    <canvas ng-if="chart==2" id="base3" class="chart chart-bar"
+                            chart-legend="true" chart-data="KYGroupData" chart-labels="KYGroupLabels">
+                    </canvas>
+                  </div>
+                  <div>
+                    <a href="#" class="md-subhead" ng-click="chart=3">Mississippi</a>
+                    <canvas ng-if="chart==3" id="base4" class="chart chart-bar"
+                            chart-legend="true" chart-data="MSGroupData" chart-labels="MSGroupLabels">
+                    </canvas>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!--End of section-->
+    <div flex="30" layout="column" layout-align="start end" style="border: none;">
+      <div ng-controller="IssueReportController" layout="column" style=" border: none;">
         <div layout="row" layout-align="start">
           <div flex-xs="100" layout="column" layout-align="center">
             <span class="md-subhead title">Issue Tracker</span>
@@ -85,47 +124,6 @@
           </div>
         </div>
       </div>
-    </div> <!--End of section -->
-    <div flex="65" hide-xs layout="column" layout-align="start" style="border:solid thin #eeeeee; background-color:rgba(233, 233, 233, 0.2);">
-
-      <div flex="55">
-        <div layout="column">
-          <div layout style="border: solid thin whitesmoke">
-            <div flex>
-              <div flex layout="column">
-                <canvas ng-if="chart=='company-wide'" id="base" class="chart-horizontal-bar"
-                        chart-legend="true" chart-data="data" chart-labels="labels">
-                </canvas>
-
-                <div flex="80" layout="row" class="md-padding">
-                  <div class="md-padding" style="width:100%;">
-                    <!--<a href="#">Texas Groups</a>-->
-                    <canvas  id="base2" class="chart chart-bar"
-                            chart-legend="true" chart-data="TXGroupData" chart-labels="TXGroupLabels">
-                    </canvas>
-                  </div>
-                  <div>
-                    <!--<a href="#">Kentucky Groups</a>-->
-                    <canvas  id="base2" class="chart chart-bar"
-                            chart-legend="true" chart-data="TXGroupData" chart-labels="TXGroupLabels">
-                    </canvas>
-                  </div>
-                  <div>
-                    <!--<a href="#">Mississippi Groups</a>-->
-                    <canvas  id="base2" class="chart chart-bar"
-                            chart-legend="true" chart-data="TXGroupData" chart-labels="TXGroupLabels">
-                    </canvas>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div><!--End of section-->
-    <div layout="column" layout-align="start end" style="border: none;">
-
     </div><!--End of section -->
   </div>
   <md-divider></md-divider>
