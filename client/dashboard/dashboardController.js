@@ -6,7 +6,7 @@
     .controller('DashboardController', function ($scope, AuthService, $rootScope, $state, $mdSidenav, $log, $mdMedia, Confirmation,Employee, Update, $http,IssueReport, DownloadService,ConfirmationService,UpdateService){
       /*****************************************************************/
               //Set current user
-      console.log(DownloadService.getCurrentDownload());
+     
       AuthService.getCurrent()
         .$promise
         .then(function (user) {
@@ -47,7 +47,7 @@
       DownloadService
         .getCurrentDownload()
         .then(function(currentDownload){
-
+          console.log(currentDownload);
           $scope.mostRecentDownload = {
             id: currentDownload.id,
             state: currentDownload.state,
