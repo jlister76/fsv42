@@ -17,7 +17,6 @@
              };*/
           });
       }
-
       function logout() {
         return Employee
           .logout()
@@ -27,7 +26,6 @@
 
           });
       }
-
       function register(email, password) {
         return Employee
           .create({
@@ -36,20 +34,26 @@
           })
           .$promise
       }
-
       function getCurrent() {
         return Employee
           .getCurrent()
-      }
 
+
+      }
       function getCurrentId() {
         return Employee
           .getCurrentId()
 
       }
-
       function isAuthenticated() {
         return Employee.isAuthenticated;
+      }
+      function getCurrentState(){
+        var id = Employee.getCurrentId();
+          return Employee
+            .findById({id: id})
+            .$promise
+            .then(function(user){return user.state})
       }
 
 
@@ -59,7 +63,8 @@
         register: register,
         getCurrent: getCurrent,
         getCurrentId: getCurrentId,
-        isAuthenticated: isAuthenticated
+        isAuthenticated: isAuthenticated,
+        getCurrentState: getCurrentState
       };
     })
 })();
