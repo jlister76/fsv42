@@ -1,5 +1,5 @@
 {
-  "name": "employee",
+  "name": "Employee",
   "base": "User",
   "idInjection": true,
   "options": {
@@ -14,15 +14,6 @@
     },
     "lname": {
       "type": "string"
-    },
-    "state": {
-      "type": "string"
-    },
-    "division": {
-      "type": "string"
-    },
-    "group": {
-      "type": "string"
     }
   },
   "validations": [],
@@ -30,6 +21,16 @@
     "confirmations": {
       "type": "hasMany",
       "model": "confirmation",
+      "foreignKey": ""
+    },
+    "group": {
+      "type": "belongsTo",
+      "model": "Group",
+      "foreignKey": ""
+    },
+    "state": {
+      "type": "belongsTo",
+      "model": "State",
       "foreignKey": ""
     }
   },

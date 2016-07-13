@@ -1,5 +1,5 @@
 {
-  "name": "update",
+  "name": "Update",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -20,7 +20,7 @@
   "relations": {
     "confirmations": {
       "type": "hasMany",
-      "model": "confirmation",
+      "model": "Confirmation",
       "foreignKey": ""
     }
   },

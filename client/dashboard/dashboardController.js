@@ -6,55 +6,64 @@
     .controller('DashboardController', function ($scope, AuthService, $rootScope, $state, $mdSidenav, $log, $mdMedia, Confirmation,Employee, Update, $http,IssueReport, DownloadService,ConfirmationService,UpdateService){
       /*****************************************************************/
               //Set current user
-     
+
       AuthService.getCurrent()
         .$promise
         .then(function (user) {
-          //console.info(user);
+          console.info(user);
           $rootScope.currentUser = user;
 
         });
       /*****************************************************************/
-      $scope.states = ["Texas", "Kentucky", "Mississippi"];
+      $scope.states = ["Texas", "Kentucky", "Mississippi"];//TODO: programattically bring in all states in dashboard service
       $scope.searchcriteria = "";
+      AuthService
+        .getCurrentState()
+        .then(function(state){console.log(state)});
+
       /****************************************************************/
       //Determine release dates
       Update
         .find()
         .$promise
         .then (function(updates){
+
           $scope.updates = _.uniqBy(updates, 'releaseDate');
+          console.log($scope.updates);
         });
       /*****************************************************************/
 
       /************************************************************************/
 
       /*Determine the most recent update, confirm user status & provide d/l link*/
-      var mostRecent = UpdateService.getCurrentReleaseDate();
+      /*var mostRecent = UpdateService.getCurrentReleaseDate();*/
+      UpdateService
+        .getCurrentReleaseDate()
+        .then(function(currentReleaseDate){
+          ConfirmationService
+            .getCurrentConfirmation()
+            .then(function(maxConfDate){
+              $scope.msgShow = 1;
+              $scope.statusCurrent = moment(currentReleaseDate).isSame(maxConfDate);
 
-      ConfirmationService
-        .getCurrentConfirmation()
-        .then(function(maxConfDate){
-          $scope.msgShow = 1;
-          $scope.statusCurrent = moment(mostRecent).isSame(maxConfDate);
+              if ($scope.statusCurrent){
+                $scope.status = "You are currently up to date.";
+              }else{
+                $scope.status = "A newer update is available for download."
+              }
+            });
+          DownloadService
+            .getCurrentDownload()
+            .then(function(currentDownload){
+              console.log(currentDownload);
+              $scope.mostRecentDownload = {
+                id: currentDownload.id,
+                state: currentDownload.state,
+                link: currentDownload.link,
+                releaseDate: currentDownload.releaseDate
+              }
 
-          if ($scope.statusCurrent){
-            $scope.status = "You are currently up to date.";
-          }else{
-            $scope.status = "A newer update is available for download."
-          }
-        });
-      DownloadService
-        .getCurrentDownload()
-        .then(function(currentDownload){
-          console.log(currentDownload);
-          $scope.mostRecentDownload = {
-            id: currentDownload.id,
-            state: currentDownload.state,
-            link: currentDownload.link,
-            releaseDate: currentDownload.releaseDate
-          }
-
+            });
         });
 
       /************************************************************************/

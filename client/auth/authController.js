@@ -28,8 +28,8 @@
                   localStorage.setItem("username", user.username);
                   localStorage.setItem("fname", user.fname);
                   localStorage.setItem("lname", user.lname);
-                  localStorage.setItem("state", user.state);
-                  localStorage.setItem("division", user.division);
+                  localStorage.setItem("stateId", user.stateId);
+                  localStorage.setItem("group", user.groupId);
                   console.log(user);
                   $state.go('dashboard');
                 });

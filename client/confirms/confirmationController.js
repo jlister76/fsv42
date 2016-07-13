@@ -29,7 +29,7 @@
         .find()
         .$promise
         .then (function(updates){
-          $scope.updates = _.uniqBy(updates, 'state');
+          $scope.updates = _.uniqBy(updates, 'id');
         });
       /*****************************************************************/
 

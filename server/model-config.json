@@ -36,15 +36,15 @@
     "dataSource": "db",
     "public": false
   },
-  "employee": {
+  "Employee": {
     "dataSource": "db",
     "public": true
   },
-  "container": {
+  "Container": {
     "dataSource": "storage",
     "public": false
   },
-  "confirmation": {
+  "Confirmation": {
     "dataSource": "db",
     "public": true
   },
@@ -52,7 +52,15 @@
     "dataSource": "db",
     "public": true
   },
-  "update": {
+  "Update": {
+    "dataSource": "db",
+    "public": true
+  },
+  "State": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Group": {
     "dataSource": "db",
     "public": true
   }

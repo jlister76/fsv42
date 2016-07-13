@@ -3,7 +3,7 @@
 
   angular
     .module('FSV42App')
-    .factory('AuthService', function (Employee, $q, $rootScope) {
+    .factory('AuthService', function (Employee, $q, $rootScope, State) {
       function login(email, password) {
         return Employee
           .login({email: email, password: password})
@@ -48,12 +48,22 @@
       function isAuthenticated() {
         return Employee.isAuthenticated;
       }
-      function getCurrentState(){
-        var id = Employee.getCurrentId();
-          return Employee
-            .findById({id: id})
-            .$promise
-            .then(function(user){return user.state})
+
+      function getCurrentState() {
+        return Employee
+          .getCurrent()
+          .$promise
+          .then(function (currentEmployee) {
+            var stateId = currentEmployee.stateId;
+            console.log(stateId);
+            return State
+              .findById({id: stateId})
+              .$promise
+              .then(function (state) {
+                return state.title;
+              })
+          });
+
       }
 
 

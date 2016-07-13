@@ -1,5 +1,5 @@
 {
-  "name": "confirmation",
+  "name": "Confirmation",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -32,12 +32,12 @@
   "relations": {
     "employee": {
       "type": "belongsTo",
-      "model": "employee",
+      "model": "Employee",
       "foreignKey": ""
     },
     "update": {
       "type": "belongsTo",
-      "model": "update",
+      "model": "Update",
       "foreignKey": ""
     }
   },

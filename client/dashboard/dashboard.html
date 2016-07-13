@@ -2,9 +2,9 @@
   <div flex>
     <div ng-show="msgShow" ng-class="{info : statusCurrent, warning : !statusCurrent}" layout layout-align="center center" style="padding:.5rem;">
       <div layout layout-align="center center">
-        <span class="md-subhead"> {{ status }}</span>
-        <span ng-if="!statusCurrent" class="md-caption" style="margin:0 1rem;">
-          <a class="md-subhead" href="{{ mostRecentDownload.link }}">{{ mostRecentDownload.state+"  "}}{{ mostRecentDownload.releaseDate | date:short }}</a>
+        <span class="md-body-1"> {{ status }}</span>
+        <span ng-if="!statusCurrent" style="margin:0 1rem;">
+          <a class="md-body-1" href="{{ mostRecentDownload.link }}">{{ mostRecentDownload.state+"  "}}{{ mostRecentDownload.releaseDate | date:short }}</a>
         </span>
         <a href="#" ng-click="msgShow = !msgShow">
           <i class="material-icons">highlight_off</i>
@@ -14,47 +14,65 @@
     </div>
   </div>
   <div flex-xs="100" layout="row" layout-xs="column" layout-align="start" layout-align-xs="start center" class="md-padding" style="margin-bottom: 2rem;">
-    <div flex="60" hide-xs layout="column" layout-align="start" style="margin-top: 4rem; border:solid thin #eeeeee; background-color:rgba(233, 233, 233, 0.2);">
+    <div flex="70" hide-xs layout="column" layout-align="start" style="margin-top: 4rem; border:solid thin #eeeeee; background-color:rgba(233, 233, 233, 0.2);">
       <div flex="85">
         <div layout="column">
-          <div layout style="border: solid thin whitesmoke">
-            <div flex>
-              <div flex="60" layout="column">
-                <canvas  id="base" class="chart-horizontal-bar"
-                        chart-legend="true" chart-data="data" chart-labels="labels">
-                </canvas>
-                <div layout="column" class="md-padding">
-                  <div class="md-padding">
-                    <a href="#" class="md-subhead" ng-click="chart=1">Texas</a>
+          <div flex>
+            <div flex="80" layout="column">
+              <md-card class="md-padding">
+                <md-card-title>
+                  <md-card-title-text>
+                    <h5 class="md-title">Company-Wide</h5>
+                    <h6 class="md-subhead">Installation Percentages</h6>
+                  </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                  <canvas  id="base" class="chart-horizontal-bar"
+                           chart-legend="true" chart-data="data" chart-labels="labels">
+                  </canvas>
+                </md-card-content>
+              </md-card>
+              <div flex layout="column" class="md-padding">
+                <md-card class="md-padding">
+                  <md-card-header layout layout-align="space-around">
+                    <a href="#" class="md-body-1" ng-click="chart=1">Texas</a>
+                    <a href="#" class="md-body-1" ng-click="chart=2">Kentucky</a>
+                    <a href="#" class="md-body-1" ng-click="chart=3">Mississippi</a>
+                  </md-card-header>
+                  <md-card-title>
+                    <md-card-title-text>
+                      <h5 class="md-title">State-Wide</h5>
+                      <h6 class="md-subhead">By Group Percentages</h6>
+                    </md-card-title-text>
+                  </md-card-title>
+                  <md-card-content>
                     <canvas ng-if="chart==1" id="base2" class="chart chart-bar"
                             chart-legend="true" chart-data="TXGroupData" chart-labels="TXGroupLabels">
                     </canvas>
-                  </div>
-                  <div>
-                    <a href="#" class="md-subhead" ng-click="chart=2">Kentucky</a>
                     <canvas ng-if="chart==2" id="base3" class="chart chart-bar"
                             chart-legend="true" chart-data="KYGroupData" chart-labels="KYGroupLabels">
                     </canvas>
-                  </div>
-                  <div>
-                    <a href="#" class="md-subhead" ng-click="chart=3">Mississippi</a>
                     <canvas ng-if="chart==3" id="base4" class="chart chart-bar"
                             chart-legend="true" chart-data="MSGroupData" chart-labels="MSGroupLabels">
                     </canvas>
-                  </div>
-
-                </div>
+                  </md-card-content>
+                  <md-card-footer layout layout-align="center start">
+                    <span ng-if="chart==1" class="md-body-1"><i>TEXAS GROUPS</i></span>
+                    <span ng-if="chart==2" class="md-body-1"><i>KENTUCKY GROUPS</i></span>
+                    <span ng-if="chart==3" class="md-body-1"><i>MISSISSIPPI GROUPS</i></span>
+                  </md-card-footer>
+                </md-card>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div ><!--End of section-->
-    <div flex="40" layout="column" layout-align="start end" style="margin: 4rem;">
+    <div flex="30" layout="column" layout-align="start end" style="margin: 4rem;">
       <div ng-controller="ConfirmationController" flex-xs="100" layout="column">
         <div layout layout-align="start">
           <div layout="column" style="margin-bottom: 4rem;">
-            <span class="md-subhead title">Confirm Update</span>
+            <h6 class="md-subhead title">Confirm Update</h6>
             <div flex-xs="100" layout="column" layout-align="center center"
                  style="background-color: whitesmoke;" class="md-padding" >
               <div ng-if="msgStatus == 0">
@@ -84,7 +102,7 @@
         <div layout="row" layout-align="start">
           <div flex-xs="100">
             <div layout=column>
-              <span class="md-subhead title" >Issue Tracker</span>
+              <h6 class="md-subhead title" >Issue Tracker</h6>
               <div flex flex-xs="100" layout="column" layout-align="center center" class="md-padding"
                    style="background-color: whitesmoke; border: none;">
 
@@ -92,7 +110,6 @@
                   <form layout="column" name="reportIssueForm"
                         ng-submit="report(update.releaseDate,update.issue,issue.comments)">
                     <md-input-container style="margin: 1rem 0;">
-                      <!--<p class="md-caption" style="color:#950B02"><i>*</i> Please select a reason and version.</p>-->
                       <label>I am unable to...</label>
                       <md-select ng-model="update.issue" required>
                         <md-option ng-repeat="issue in issueType" value="{{issue}}">{{issue}}</md-option>
@@ -129,76 +146,80 @@
       </div>
     </div><!--End of section -->
   </div>
-  <md-divider></md-divider>
-  <div style="margin:1rem;">
-    <div flex="95">
+  <div layout="column" layout-align="center">
+    <div layout layout-align="center" class="md-padding" style="background-color: #0f6ab4">
+      <span class="md-title" style="color:white;">Results Table</span>
+    </div>
+    <md-divider></md-divider>
+    <div flex="95" class="md-padding">
       <div>
-        <div layout layout-align="space-between start">
+        <div layout layout-align="space-around start">
           <!--<form name="qselector">
             <md-input>
               <input type="text" id="q-input" ng-model="searchCriteria" placeholder="filter by name, state, group"/>
             </md-input>
           </form>-->
           <div layout layout-align="center center">
-            <span class="md-subhead" style="margin-right:.8rem;">Filter By State</span>
+            <span class="md-body-2" style="margin-right:.8rem;">Filter By State</span>
             <md-select ng-model="searchCriteria" aria-label="states">
               <md-option ng-repeat="state in states" value="{{ state }}" >{{ state }}</md-option>
             </md-select>
           </div>
           <div layout layout-align="center center">
-            <span class="md-subhead" style="margin-right:.8rem;">Filter By Group</span>
+            <span class="md-body-2" style="margin-right:.8rem;">Filter By Group</span>
             <md-select ng-model="searchCriteria" aria-label="groups">
               <md-option ng-repeat="group in groups" value="{{ group }}" >{{ group }}</md-option>
             </md-select>
+            <div><a href="#" class="" style="margin: 1rem;">Send Reminder</a></div>
           </div>
 
-          <div><a href="#" class="" style="margin: 1rem;">Send Reminder</a></div>
+
         </div>
-        {{ emailChain }}
-        <md-tabs md-dynamic-height md-border-bottom>
-          <md-tab label="Confirmed">
-            <md-content>
-              <table flex>
-                <thead flex>
 
-                  <th class="md-subhead">Name</th>
-                  <th class="md-subhead">State</th>
-                  <th class="md-subhead">Group</th>
-                </thead>
-
-                <tr ng-repeat="e in employeesWithConfirmations | orderBy: 'lname' | filter:searchCriteria">
-
-                  <td class="md-caption"> {{ e.lname}}, {{e.fname}}</td>
-                  <td class="md-caption">{{ e.state }}</td>
-                  <td class="md-caption">{{ e.group }}</td>
-
-                </tr>
-              </table>
-
-            </md-content>
-          </md-tab>
+        <md-tabs md-dynamic-height>
           <md-tab label="Unconfirmed">
             <div style="overflow: auto; max-height: 200px">
               <table>
                 <thead fix-head>
                 <tr>
-                  <th class="md-subhead">Name</th>
-                  <th class="md-subhead">State</th>
-                  <th class="md-subhead">Group</th>
-                  <th class="md-subhead">Reminder</th>
+                  <th class="md-body-2">Name</th>
+                  <th class="md-body-2">State</th>
+                  <th class="md-body-2">Group</th>
+                  <th class="md-body-2">Reminder</th>
                 </tr>
                 </thead>
                 <tbody flex>
                 <tr ng-repeat="e in employeesWithoutConfirmations | orderBy: 'lname' | filter:searchCriteria">
 
-                  <td class="md-caption"> {{ e.lname}}, {{e.fname}}</td>
-                  <td class="md-caption">{{ e.state }}</td>
-                  <td class="md-caption">{{ e.group }}</td>
-                  <td><a href="#" class="md-caption">Send</a></td>
+                  <td class="md-body-1"> {{ e.lname}}, {{e.fname}}</td>
+                  <td class="md-body-1">{{ e.state }}</td>
+                  <td class="md-body-1">{{ e.group }}</td>
+                  <td><a href="#" class="md-body-1">Send</a></td>
                 </tr>
                 </tbody>
               </table>
             </div>
+          </md-tab>
+          <md-tab label="Confirmed">
+            <md-content>
+              <table flex>
+                <thead flex>
+
+                  <th class="md-body-2">Name</th>
+                  <th class="md-body-2">State</th>
+                  <th class="md-body-2">Group</th>
+                </thead>
+
+                <tr ng-repeat="e in employeesWithConfirmations | orderBy: 'lname' | filter:searchCriteria">
+
+                  <td class="md-body-1"> {{ e.lname}}, {{e.fname}}</td>
+                  <td class="md-body-1">{{ e.state }}</td>
+                  <td class="md-body-1">{{ e.group }}</td>
+
+                </tr>
+              </table>
+
+            </md-content>
           </md-tab>
         </md-tabs>
 
