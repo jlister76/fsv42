@@ -1,23 +1,25 @@
 {
-  "name": "Update",
+  "name": "Group",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "releaseDate": {
-      "type": "date"
-    },
-    "link": {
+    "title": {
       "type": "string"
     }
   },
   "validations": [],
   "relations": {
-    "confirmations": {
+    "employees": {
       "type": "hasMany",
-      "model": "Confirmation",
+      "model": "Employee",
+      "foreignKey": ""
+    },
+    "state": {
+      "type": "belongsTo",
+      "model": "State",
       "foreignKey": ""
     },
     "issueReports": {
@@ -25,19 +27,12 @@
       "model": "IssueReport",
       "foreignKey": ""
     },
-    "state": {
-      "type": "belongsTo",
-      "model": "State",
+    "confirmations": {
+      "type": "hasMany",
+      "model": "Confirmation",
       "foreignKey": ""
     }
   },
-  "acls": [
-    {
-      "accessType": "*",
-      "principalType": "ROLE",
-      "principalId": "$authenticated",
-      "permission": "ALLOW"
-    }
-  ],
+  "acls": [],
   "methods": {}
 }

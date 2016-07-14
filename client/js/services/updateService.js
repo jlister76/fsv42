@@ -17,8 +17,30 @@
 
       }
 
+      function getAllCurrentUpdates() {
+        return Update
+          .find()
+          .$promise
+          .then(function (updates) {
+            var dates = [];
+            _.forEach(updates, function (d) {
+              dates.push(moment(d.releaseDate))
+            });
+            var currentReleaseDate = moment.max(dates);
+            var currentUpdates = [];
+            _.forEach(updates, function (o) {
+              if (o.releaseDate == currentReleaseDate.toJSON()) {
+                currentUpdates.push(o);
+              }
+            });
+
+            return currentUpdates;
+
+          });
+      }
       return {
-        getCurrentReleaseDate: getCurrentReleaseDate
+        getCurrentReleaseDate: getCurrentReleaseDate,
+        getAllCurrentUpdates: getAllCurrentUpdates
       }
     })
 })();

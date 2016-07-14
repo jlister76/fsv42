@@ -3,35 +3,19 @@
 
   angular
     .module('FSV42App')
-    .controller('DashboardController', function ($scope, AuthService, $rootScope, $state, $mdSidenav, $log, $mdMedia, Confirmation,Employee, Update, $http,IssueReport, DownloadService,ConfirmationService,UpdateService){
+    .controller('DashboardController', function ($scope, AuthService, $rootScope, $state, $mdSidenav, $log, $mdMedia, Confirmation,Employee,Group, Update, $http,IssueReport, DownloadService,ConfirmationService,UpdateService, DashboadService){
       /*****************************************************************/
-              //Set current user
+              //Sets current user
 
       AuthService.getCurrent()
         .$promise
         .then(function (user) {
-          console.info(user);
           $rootScope.currentUser = user;
-
+          console.log(user);
         });
       /*****************************************************************/
       $scope.states = ["Texas", "Kentucky", "Mississippi"];//TODO: programattically bring in all states in dashboard service
       $scope.searchcriteria = "";
-      AuthService
-        .getCurrentState()
-        .then(function(state){console.log(state)});
-
-      /****************************************************************/
-      //Determine release dates
-      Update
-        .find()
-        .$promise
-        .then (function(updates){
-
-          $scope.updates = _.uniqBy(updates, 'releaseDate');
-          console.log($scope.updates);
-        });
-      /*****************************************************************/
 
       /************************************************************************/
 
@@ -43,6 +27,7 @@
           ConfirmationService
             .getCurrentConfirmation()
             .then(function(maxConfDate){
+
               $scope.msgShow = 1;
               $scope.statusCurrent = moment(currentReleaseDate).isSame(maxConfDate);
 
@@ -55,7 +40,6 @@
           DownloadService
             .getCurrentDownload()
             .then(function(currentDownload){
-              console.log(currentDownload);
               $scope.mostRecentDownload = {
                 id: currentDownload.id,
                 state: currentDownload.state,
@@ -94,7 +78,7 @@
           })
           .then(function(confirmations){
             Employee
-              .find()
+              .find({filter:{include: ['state','group']}})
               .$promise
               .then(function(employees){
                 var sortedEmployees = employees.sort();
@@ -133,10 +117,9 @@
                 var groups = [];
 
                 _.forEach(employees, function(e){
-                  groups.push(e.group);
+                  groups.push(e.group.title);
                 });
                 $scope.groups = _.uniq(groups);
-                console.log($scope.groups);
                 var txEmployeeCount =[];
                 var kyEmployeeCount =[];
                 var msEmployeeCount =[];
@@ -145,19 +128,18 @@
                 var msConfCount =[];
                 //console.log($scope.employeesWithConfirmations.length / employees.length *100);
                 _.forEach(employees, function (e){
-                  if (e.state == "Texas"){
+                  if (e.state.title == "Texas"){
                     txEmployeeCount.push(e);
-                  } else if (e.state == "Kentucky"){
+                  } else if (e.state.title == "Kentucky"){
                     kyEmployeeCount.push(e);
-
-                  } else if (e.state == "Mississippi"){msEmployeeCount.push(e)}
+                  } else if (e.state.title == "Mississippi"){msEmployeeCount.push(e)}
                 });
                 _.forEach(employeesWithConfirmations, function (e){
-                  if (e.state == "Texas"){
+                  if (e.state.title == "Texas"){
                     txConfCount.push(e);
-                  } else if (e.state == "Kentucky"){
+                  } else if (e.state.title == "Kentucky"){
                     kyConfCount.push(e);
-                  } else if (e.state == "Mississippi"){msConfCount.push(e)}
+                  } else if (e.state.title == "Mississippi"){msConfCount.push(e)}
                 });
                 //unique results
                 var uTxConfCount = _.uniq(txConfCount);
@@ -214,6 +196,11 @@
                     MSGroup_2Conf.push(c);
                   }
                 });
+
+
+                /*******************************************************************************/
+                            //This won't work
+
                 var TXGroup_1Percentage = TXGroup_1Conf.length / TXGroup_1.length * 100;
                 var TXGroup_2Percentage = TXGroup_2Conf.length / TXGroup_2.length * 100;
                 var KYGroup_1Percentage = KYGroup_1Conf.length / KYGroup_1.length * 100;
@@ -223,17 +210,67 @@
                 console.info(TXGroup_1Percentage, TXGroup_2Percentage);
                 console.info(KYGroup_1Percentage, KYGroup_2Percentage);
                 console.info(MSGroup_1Percentage, MSGroup_2Percentage);
+                /*******************************************************************************/
+
                 //Angular-Chart.js
+                var labels =[];
+                DashboadService
+                  .getAllStates()
+                  .then(function(states){
+                    _.forEach(states, function(s){
+                      labels.push(s.title);
+                    });
+                   });
                 $scope.chart = 1;
-                $scope.labels = ['Texas', 'Kentucky', 'Mississippi'];
-                $scope.series = ['Confirmed Installs'];
+                $scope.labels = labels;
                 $scope.data = [[TXPercentage,KYPercentage,MSPercentage]];
 
-                $scope.TXGroupLabels = ['CORP/IT','DAL5L'];
+                var TXGroupLabels =[];
+                var TXGroups =[];
+                DashboadService
+                  .getTexasGroups()
+                  .then(function(Texas){
+                    console.log(Texas.groups);
+                    _.forEach(Texas.groups, function(g){
+                      TXGroupLabels.push(g.title);
+                      TXGroups.push(g);
+                    });
+                      _.forEach(TXGroups, function(g){
+                        Group
+                          .findOne({filter:{include:['confirmations','employees'],where:{id:g.id}}})
+                          .$promise
+                          .then(function(group){
+                            console.log(group);
+                            //TODO: programatically set each group then divide confirmation and employee counts
+                          })
+                      })
+                   });
+                var KYGroupLabels = [];
+                DashboadService
+                  .getKentuckyGroups()
+                  .then(function(Kentucky){
+
+                    _.forEach(Kentucky.groups, function(g){
+                      KYGroupLabels.push(g.title);
+                    });
+
+                   });
+                var MSGroupLabels = [];
+                DashboadService
+                  .getMississippiGroups()
+                  .then(function(Mississippi){
+
+                    _.forEach(Mississippi.groups, function(g){
+                      MSGroupLabels.push(g.title);
+                    });
+
+                  });
+
+                $scope.TXGroupLabels = TXGroupLabels;
                 $scope.TXGroupData = [[TXGroup_1Percentage,TXGroup_2Percentage]];
-                $scope.KYGroupLabels = ['KY/Group_1','KY/Group_2'];
+                $scope.KYGroupLabels = KYGroupLabels;
                 $scope.KYGroupData = [[KYGroup_1Percentage,KYGroup_2Percentage]];
-                $scope.MSGroupLabels = ['MS/Group_1','MS/Group_2'];
+                $scope.MSGroupLabels = MSGroupLabels;
                 $scope.MSGroupData = [[MSGroup_1Percentage,MSGroup_2Percentage]];
                 //Sending email reminders
                 $scope.sendReminder = function (state) {

@@ -1,0 +1,36 @@
+{
+  "name": "State",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "sequence": {
+      "type": "number"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "groups": {
+      "type": "hasMany",
+      "model": "Group",
+      "foreignKey": ""
+    },
+    "employees": {
+      "type": "hasMany",
+      "model": "Employee",
+      "foreignKey": ""
+    },
+    "issueReports": {
+      "type": "hasMany",
+      "model": "IssueReport",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

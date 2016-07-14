@@ -76,17 +76,10 @@
             <div flex-xs="100" layout="column" layout-align="center center"
                  style="background-color: whitesmoke;" class="md-padding" >
               <div ng-if="msgStatus == 0">
-                <form layout="column" name="confirmationForm" ng-submit="confirm(update.id)">
-                  <md-input-container>
-                    <label>Release Date</label>
-                    <md-select ng-model="update.id" required>
-                      <md-option ng-repeat="d in updates" value="{{d.id}}">{{d.state+" "}}{{d.releaseDate | date:short}}
-                      </md-option>
-                    </md-select>
-                  </md-input-container>
+                <form layout="column" name="confirmationForm" ng-submit="confirm()">
                   <div layout layout-align="center start" style="margin: 1rem;">
-                    <md-button class="md-raised md-primary" type="submit" ng-disabled="confirmationForm.$invalid"
-                               style="color:white; width: 200px; height:40px">Submit
+                    <md-button class="md-raised md-primary" ng-disabled="statusCurrent" type="submit"
+                               style="color:white; width: 200px; height:40px">Confirm Installation
                     </md-button>
                   </div>
                 </form>
@@ -108,19 +101,11 @@
 
                 <div ng-if="msgStatus == 0" style="margin:1.8rem;">
                   <form layout="column" name="reportIssueForm"
-                        ng-submit="report(update.releaseDate,update.issue,issue.comments)">
+                        ng-submit="report(update.issue,issue.comments)">
                     <md-input-container style="margin: 1rem 0;">
                       <label>I am unable to...</label>
                       <md-select ng-model="update.issue" required>
                         <md-option ng-repeat="issue in issueType" value="{{issue}}">{{issue}}</md-option>
-                      </md-select>
-                    </md-input-container>
-                    <md-input-container>
-
-                      <label>Release Date</label>
-                      <md-select ng-model="update.releaseDate" required>
-                        <md-option ng-repeat="d in updates" value="{{d.releaseDate}}">{{d.releaseDate |date:medium}}
-                        </md-option>
                       </md-select>
                     </md-input-container>
                     <div layout layout-align="center">
@@ -192,8 +177,8 @@
                 <tr ng-repeat="e in employeesWithoutConfirmations | orderBy: 'lname' | filter:searchCriteria">
 
                   <td class="md-body-1"> {{ e.lname}}, {{e.fname}}</td>
-                  <td class="md-body-1">{{ e.state }}</td>
-                  <td class="md-body-1">{{ e.group }}</td>
+                  <td class="md-body-1">{{ e.state.title }}</td>
+                  <td class="md-body-1">{{ e.group.title }}</td>
                   <td><a href="#" class="md-body-1">Send</a></td>
                 </tr>
                 </tbody>
@@ -213,8 +198,8 @@
                 <tr ng-repeat="e in employeesWithConfirmations | orderBy: 'lname' | filter:searchCriteria">
 
                   <td class="md-body-1"> {{ e.lname}}, {{e.fname}}</td>
-                  <td class="md-body-1">{{ e.state }}</td>
-                  <td class="md-body-1">{{ e.group }}</td>
+                  <td class="md-body-1">{{ e.state.title }}</td>
+                  <td class="md-body-1">{{ e.group.title }}</td>
 
                 </tr>
               </table>

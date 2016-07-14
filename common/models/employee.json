@@ -32,6 +32,11 @@
       "type": "belongsTo",
       "model": "State",
       "foreignKey": ""
+    },
+    "issueReports": {
+      "type": "hasMany",
+      "model": "IssueReport",
+      "foreignKey": ""
     }
   },
   "acls": [

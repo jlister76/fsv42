@@ -55,7 +55,7 @@
           .$promise
           .then(function (currentEmployee) {
             var stateId = currentEmployee.stateId;
-            console.log(stateId);
+
             return State
               .findById({id: stateId})
               .$promise

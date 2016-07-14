@@ -8,24 +8,6 @@
   "properties": {
     "lastUpdated": {
       "type": "date"
-    },
-    "version": {
-      "type": "string"
-    },
-    "email": {
-      "type": "string"
-    },
-    "fname": {
-      "type": "string"
-    },
-    "lname": {
-      "type": "string"
-    },
-    "state": {
-      "type": "string"
-    },
-    "division": {
-      "type": "string"
     }
   },
   "validations": [],
@@ -38,6 +20,11 @@
     "update": {
       "type": "belongsTo",
       "model": "Update",
+      "foreignKey": ""
+    },
+    "group": {
+      "type": "belongsTo",
+      "model": "Group",
       "foreignKey": ""
     }
   },

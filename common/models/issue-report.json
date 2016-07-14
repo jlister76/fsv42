@@ -6,15 +6,6 @@
     "validateUpsert": true
   },
   "properties": {
-    "fname": {
-      "type": "string"
-    },
-    "lname": {
-      "type": "string"
-    },
-    "email": {
-      "type": "string"
-    },
     "createdAT": {
       "type": "date"
     },
@@ -23,13 +14,31 @@
     },
     "comments": {
       "type": "string"
-    },
-    "version": {
-      "type": "string"
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "employee": {
+      "type": "belongsTo",
+      "model": "Employee",
+      "foreignKey": ""
+    },
+    "update": {
+      "type": "belongsTo",
+      "model": "Update",
+      "foreignKey": ""
+    },
+    "state": {
+      "type": "belongsTo",
+      "model": "State",
+      "foreignKey": ""
+    },
+    "group": {
+      "type": "belongsTo",
+      "model": "Group",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }
