@@ -1,12 +1,12 @@
 {
   "ids": {
     "User": 1,
-    "AccessToken": 10,
+    "AccessToken": 13,
     "ACL": 1,
     "RoleMapping": 1,
     "Role": 1,
     "Employee": 8,
-    "Confirmation": 6,
+    "Confirmation": 8,
     "IssueReport": 4,
     "Update": 7,
     "State": 4,
@@ -16,7 +16,8 @@
     "User": {},
     "AccessToken": {
       "ijykXCHrSCflUHuYarCP75L0oYFfMOjEruhfbDiFSdgnwhCtCReXR9B0zJXEM0Va": "{\"id\":\"ijykXCHrSCflUHuYarCP75L0oYFfMOjEruhfbDiFSdgnwhCtCReXR9B0zJXEM0Va\",\"ttl\":1209600,\"created\":\"2016-07-13T08:26:43.421Z\",\"userId\":1}",
-      "r9LOctoiEoXA0HGQC6r2j1KuIHfalL5g2PDSTd29xE5Csi6g1iTOlGSoBE8hfybB": "{\"id\":\"r9LOctoiEoXA0HGQC6r2j1KuIHfalL5g2PDSTd29xE5Csi6g1iTOlGSoBE8hfybB\",\"ttl\":1209600,\"created\":\"2016-07-14T06:23:35.376Z\",\"userId\":1}"
+      "r9LOctoiEoXA0HGQC6r2j1KuIHfalL5g2PDSTd29xE5Csi6g1iTOlGSoBE8hfybB": "{\"id\":\"r9LOctoiEoXA0HGQC6r2j1KuIHfalL5g2PDSTd29xE5Csi6g1iTOlGSoBE8hfybB\",\"ttl\":1209600,\"created\":\"2016-07-14T06:23:35.376Z\",\"userId\":1}",
+      "wjOys5FdtZrHi776YEPANuoC7qw7QsNsHXjrb5i2KeGj1fDqu9IoTDFpM98S7zBD": "{\"id\":\"wjOys5FdtZrHi776YEPANuoC7qw7QsNsHXjrb5i2KeGj1fDqu9IoTDFpM98S7zBD\",\"ttl\":1209600,\"created\":\"2016-07-14T21:26:22.784Z\",\"userId\":2}"
     },
     "ACL": {},
     "RoleMapping": {},
@@ -31,7 +32,9 @@
       "7": "{\"employee_number\":\"12345\",\"fname\":\"Paul\",\"lname\":\"Galyean\",\"username\":\"p.galyean@heathus.com\",\"password\":\"$2a$10$3wSSQTmKG9/TGg.PACQKHuNPSjl97r4wVeCOxwzUrAAZow5bGQf6i\",\"email\":\"p.galyean@heathus.com\",\"stateId\":3,\"groupId\":20,\"id\":7}"
     },
     "Confirmation": {
-      "5": "{\"lastUpdated\":\"2016-07-14T06:43:53.411Z\",\"employeeId\":1,\"updateId\":4,\"groupId\":18,\"id\":5}"
+      "5": "{\"lastUpdated\":\"2016-07-14T06:43:53.411Z\",\"employeeId\":1,\"updateId\":4,\"groupId\":18,\"id\":5}",
+      "6": "{\"lastUpdated\":\"2016-07-14T20:22:40.633Z\",\"employeeId\":5,\"updateId\":5,\"groupId\":17,\"id\":6}",
+      "7": "{\"lastUpdated\":\"2016-07-14T21:28:20.319Z\",\"employeeId\":2,\"updateId\":4,\"groupId\":18,\"id\":7}"
     },
     "IssueReport": {
       "2": "{\"issue\":\"Download an update\",\"comments\":\"What it is\",\"employeeId\":1,\"updateId\":4,\"stateId\":1,\"groupId\":18,\"createdAt\":\"2016-07-14T04:48:41.297Z\",\"id\":2}",

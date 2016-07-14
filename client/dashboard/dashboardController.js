@@ -229,32 +229,102 @@
                 var TXGroups =[];
                 DashboadService
                   .getTexasGroups()
-                  .then(function(Texas){
-                    console.log(Texas.groups);
-                    _.forEach(Texas.groups, function(g){
+                  .then(function (Texas) {
+                    _.forEach(Texas.groups, function (g) {
                       TXGroupLabels.push(g.title);
                       TXGroups.push(g);
                     });
-                      _.forEach(TXGroups, function(g){
-                        Group
-                          .findOne({filter:{include:['confirmations','employees'],where:{id:g.id}}})
-                          .$promise
-                          .then(function(group){
-                            console.log(group);
-                            //TODO: programatically set each group then divide confirmation and employee counts
-                          })
-                      })
-                   });
+                    function compare(a, b) {
+                      if (a.id < b.id)
+                        return -1;
+                      if (a.id > b.id)
+                        return 1;
+                      return 0;
+                    }//sorts objects by id
+                    _.forEach(TXGroups.sort(compare), function (g) {
+                      Group
+                        .findOne({filter: {include: ['confirmations', 'employees'], where: {id: g.id}}})
+                        .$promise
+                        .then(function (group) {
+                          var groupConfCount = [];
+                          var groupEmployeeCount = [];
+                          _.forEach(group.confirmations, function (g) {
+                            console.log(typeof(g), g);
+                            if (g == NaN){
+                              groupConfCount.push(1);
+                            }else{
+                              groupConfCount.push(g);
+                            }
+                          });
+                          _.forEach(group.employees, function (g) {
+                            //console.log(g);
+                            if (g == NaN) {
+                              groupEmployeeCount.push(1);
+                            }else{
+                              groupEmployeeCount.push(g);
+                            }
+                          });
+
+                          return groups = {
+                            confCount: groupConfCount.length,
+                            employeeCount: groupEmployeeCount.length
+                          };
+                        })
+                        .then(function (groups) {
+                          //console.log(groups.confCount, groups.employeeCount);
+                          var TXGroupsPercentage =  groups.confCount/groups.employeeCount*100;
+                          $scope.TXGroupData = [TXGroupsPercentage];
+
+                        })
+
+                    });
+                  });
+
                 var KYGroupLabels = [];
+                var KYGroups =[];
                 DashboadService
                   .getKentuckyGroups()
                   .then(function(Kentucky){
-
                     _.forEach(Kentucky.groups, function(g){
-                      KYGroupLabels.push(g.title);
+                     KYGroupLabels.push(g.title);
+                      KYGroups.push(g);
                     });
+                    function compare(a, b) {
+                      if (a.id < b.id)
+                        return -1;
+                      if (a.id > b.id)
+                        return 1;
+                      return 0;
+                    }//sorts objects by id
+                    _.forEach(KYGroups.sort(compare), function (g) {
+                      Group
+                        .findOne({filter: {include: ['confirmations', 'employees'], where: {id: g.id}}})
+                        .$promise
+                        .then(function (group) {
+                          var groupConfCount = [];
+                          var groupEmployeeCount = [];
+                          _.forEach(group.confirmations, function (g) {
+                            groupConfCount.push(g);
+                          });
+                          _.forEach(group.employees, function (g) {
+                            console.log(g);
+                            groupEmployeeCount.push(g);
+                          });
 
+                          return groups = {
+                            confCount: groupConfCount.length,
+                            employeeCount: groupEmployeeCount.length
+                          };
+                        })
+                        .then(function (groups) {
+                          console.log(groups.confCount, groups.employeeCount);
+
+                        })
+
+                    });
                    });
+
+
                 var MSGroupLabels = [];
                 DashboadService
                   .getMississippiGroups()
@@ -267,7 +337,7 @@
                   });
 
                 $scope.TXGroupLabels = TXGroupLabels;
-                $scope.TXGroupData = [[TXGroup_1Percentage,TXGroup_2Percentage]];
+                /*$scope.TXGroupData = [[TXGroup_1Percentage,TXGroup_2Percentage]];*/
                 $scope.KYGroupLabels = KYGroupLabels;
                 $scope.KYGroupData = [[KYGroup_1Percentage,KYGroup_2Percentage]];
                 $scope.MSGroupLabels = MSGroupLabels;
@@ -284,8 +354,8 @@
                   console.log(emails);
                   var email = {email: emails};
                   $http.post('api/Updates/sendReminder', email);
-                }
-                console.info(TXGroup_2);
+                };
+
               })
           });
       }
