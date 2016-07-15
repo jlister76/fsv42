@@ -11,7 +11,7 @@
         .$promise
         .then(function (user) {
           $rootScope.currentUser = user;
-          console.log(user);
+
         });
       /*****************************************************************/
       $scope.states = ["Texas", "Kentucky", "Mississippi"];//TODO: programattically bring in all states in dashboard service
@@ -197,22 +197,9 @@
                   }
                 });
 
-
-                /*******************************************************************************/
-                            //This won't work
-
-                var TXGroup_1Percentage = TXGroup_1Conf.length / TXGroup_1.length * 100;
-                var TXGroup_2Percentage = TXGroup_2Conf.length / TXGroup_2.length * 100;
-                var KYGroup_1Percentage = KYGroup_1Conf.length / KYGroup_1.length * 100;
-                var KYGroup_2Percentage = KYGroup_2Conf.length / KYGroup_2.length * 100;
-                var MSGroup_1Percentage = MSGroup_1Conf.length / MSGroup_1.length * 100;
-                var MSGroup_2Percentage = MSGroup_2Conf.length / MSGroup_2.length * 100;
-                console.info(TXGroup_1Percentage, TXGroup_2Percentage);
-                console.info(KYGroup_1Percentage, KYGroup_2Percentage);
-                console.info(MSGroup_1Percentage, MSGroup_2Percentage);
-                /*******************************************************************************/
-
                 //Angular-Chart.js
+             /**************************************************************************/
+                                //Company-wide stats
                 var labels =[];
                 DashboadService
                   .getAllStates()
@@ -220,20 +207,22 @@
                     _.forEach(states, function(s){
                       labels.push(s.title);
                     });
-                   });
+                  });
                 $scope.chart = 1;
                 $scope.labels = labels;
                 $scope.data = [[TXPercentage,KYPercentage,MSPercentage]];
 
+                /*************************************************************************/
+                /*************************************************************************/
+                                         //Texas Group stats
                 var TXGroupLabels =[];
                 var TXGroups =[];
+                var TXGroupPercentages =[];
                 DashboadService
                   .getTexasGroups()
                   .then(function (Texas) {
-                    _.forEach(Texas.groups, function (g) {
-                      TXGroupLabels.push(g.title);
-                      TXGroups.push(g);
-                    });
+                    //console.log(Texas);
+                    _.forEach(Texas.sort(compare), function(g){TXGroupLabels.push(g.title)});
                     function compare(a, b) {
                       if (a.id < b.id)
                         return -1;
@@ -241,54 +230,25 @@
                         return 1;
                       return 0;
                     }//sorts objects by id
-                    _.forEach(TXGroups.sort(compare), function (g) {
-                      Group
-                        .findOne({filter: {include: ['confirmations', 'employees'], where: {id: g.id}}})
-                        .$promise
-                        .then(function (group) {
-                          var groupConfCount = [];
-                          var groupEmployeeCount = [];
-                          _.forEach(group.confirmations, function (g) {
-                            console.log(typeof(g), g);
-                            if (g == NaN){
-                              groupConfCount.push(1);
-                            }else{
-                              groupConfCount.push(g);
-                            }
-                          });
-                          _.forEach(group.employees, function (g) {
-                            //console.log(g);
-                            if (g == NaN) {
-                              groupEmployeeCount.push(1);
-                            }else{
-                              groupEmployeeCount.push(g);
-                            }
-                          });
 
-                          return groups = {
-                            confCount: groupConfCount.length,
-                            employeeCount: groupEmployeeCount.length
-                          };
-                        })
-                        .then(function (groups) {
-                          //console.log(groups.confCount, groups.employeeCount);
-                          var TXGroupsPercentage =  groups.confCount/groups.employeeCount*100;
-                          $scope.TXGroupData = [TXGroupsPercentage];
-
-                        })
-
+                    _.forEach(Texas.sort(compare), function (g) {
+                      var cl = g.confirmations.length;
+                      var el = g.employees.length;
+                      var percentage = cl/el*100;
+                      TXGroupPercentages.push(percentage);
                     });
                   });
-
-                var KYGroupLabels = [];
+                /*************************************************************************/
+                /*************************************************************************/
+                                     //Kentucky Group stats
+                var KYGroupLabels =[];
                 var KYGroups =[];
+                var KYGroupPercentages =[];
                 DashboadService
                   .getKentuckyGroups()
-                  .then(function(Kentucky){
-                    _.forEach(Kentucky.groups, function(g){
-                     KYGroupLabels.push(g.title);
-                      KYGroups.push(g);
-                    });
+                  .then(function (Kentucky) {
+
+                    _.forEach(Kentucky.sort(compare), function(g){KYGroupLabels.push(g.title)});
                     function compare(a, b) {
                       if (a.id < b.id)
                         return -1;
@@ -296,52 +256,48 @@
                         return 1;
                       return 0;
                     }//sorts objects by id
-                    _.forEach(KYGroups.sort(compare), function (g) {
-                      Group
-                        .findOne({filter: {include: ['confirmations', 'employees'], where: {id: g.id}}})
-                        .$promise
-                        .then(function (group) {
-                          var groupConfCount = [];
-                          var groupEmployeeCount = [];
-                          _.forEach(group.confirmations, function (g) {
-                            groupConfCount.push(g);
-                          });
-                          _.forEach(group.employees, function (g) {
-                            console.log(g);
-                            groupEmployeeCount.push(g);
-                          });
-
-                          return groups = {
-                            confCount: groupConfCount.length,
-                            employeeCount: groupEmployeeCount.length
-                          };
-                        })
-                        .then(function (groups) {
-                          console.log(groups.confCount, groups.employeeCount);
-
-                        })
-
+                    _.forEach(Kentucky.sort(compare), function (g) {
+                      var cl = g.confirmations.length;
+                      var el = g.employees.length;
+                      var percentage = cl/el*100;
+                      KYGroupPercentages.push(percentage);
                     });
-                   });
-
-
-                var MSGroupLabels = [];
+                  });
+                /*************************************************************************/
+                /*************************************************************************/
+                //Mississippi Group stats
+                var MSGroupLabels =[];
+                var MSGroups =[];
+                var MSGroupPercentages =[];
                 DashboadService
                   .getMississippiGroups()
-                  .then(function(Mississippi){
+                  .then(function (Mississippi) {
 
-                    _.forEach(Mississippi.groups, function(g){
-                      MSGroupLabels.push(g.title);
+                    _.forEach(Mississippi.sort(compare), function(g){MSGroupLabels.push(g.title)});
+                    function compare(a, b) {
+                      if (a.id < b.id)
+                        return -1;
+                      if (a.id > b.id)
+                        return 1;
+                      return 0;
+                    }//sorts objects by id
+                    _.forEach(Mississippi.sort(compare), function (g) {
+                      var cl = g.confirmations.length;
+                      var el = g.employees.length;
+                      var percentage = cl/el*100;
+                      MSGroupPercentages.push(percentage);
                     });
-
                   });
+                /*************************************************************************/
 
                 $scope.TXGroupLabels = TXGroupLabels;
-                /*$scope.TXGroupData = [[TXGroup_1Percentage,TXGroup_2Percentage]];*/
+                $scope.TXGroupData = [TXGroupPercentages];
                 $scope.KYGroupLabels = KYGroupLabels;
-                $scope.KYGroupData = [[KYGroup_1Percentage,KYGroup_2Percentage]];
+                $scope.KYGroupData = [KYGroupPercentages];
                 $scope.MSGroupLabels = MSGroupLabels;
-                $scope.MSGroupData = [[MSGroup_1Percentage,MSGroup_2Percentage]];
+                $scope.MSGroupData = [MSGroupPercentages];
+
+
                 //Sending email reminders
                 $scope.sendReminder = function (state) {
                   console.log($scope.employeesWithoutConfirmations);

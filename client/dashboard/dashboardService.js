@@ -15,20 +15,20 @@
           .$promise
       }
       function getTexasGroups(){
-        return State
-          .findOne({filter:{include: 'groups',where:{title: 'Texas'}}})
+        return Group
+          .find({filter:{include: ['confirmations','employees'],where:{stateId: 1}}})
           .$promise
 
       }
       function getKentuckyGroups(){
-        return State
-          .findOne({filter:{include: 'groups',where:{title: 'Kentucky'}}})
+        return Group
+          .find({filter:{include: ['confirmations','employees'],where:{stateId: 2}}})
           .$promise
 
       }
       function getMississippiGroups(){
-        return State
-          .findOne({filter:{include: ['groups'],where:{title: 'Mississippi'}}})
+        return Group
+          .find({filter:{include: ['confirmations','employees'],where:{stateId: 3}}})
           .$promise
 
       }
