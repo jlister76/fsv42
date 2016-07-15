@@ -126,4 +126,7 @@ table.clone + md-table-container table tbody tr:first-child td {
   margin: 1rem;
 }
 
+.card {
+  background-color: white;
+}
 

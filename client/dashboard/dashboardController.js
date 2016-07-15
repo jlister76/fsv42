@@ -208,7 +208,7 @@
                       labels.push(s.title);
                     });
                   });
-                $scope.chart = 1;
+                $scope.chart = 0;//Sets company wide chart
                 $scope.labels = labels;
                 $scope.data = [[TXPercentage,KYPercentage,MSPercentage]];
 
