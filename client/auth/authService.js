@@ -60,7 +60,7 @@
               .findById({id: stateId})
               .$promise
               .then(function (state) {
-                return state.title;
+                return state;
               })
           });
 

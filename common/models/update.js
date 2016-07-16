@@ -23,7 +23,7 @@ module.exports = function(Update) {
   Update.remoteMethod(
     'sendReminder',
     {
-      accepts: {arg: 'email', type: 'string'},
+      accepts: {arg: 'email', type: 'Array'},
       http: {path: '/sendReminder', verb: 'post'}
     });
 

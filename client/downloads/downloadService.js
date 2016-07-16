@@ -14,11 +14,11 @@
                 .getCurrentReleaseDate()
                 .then(function (date) {
                   return Update
-                    .findOne({filter: {where: {state: state, releaseDate: date}}})
+                    .findOne({filter: {where: {state: state.title, releaseDate: date}}})
                     .$promise
                     .then(function (update) {
                       currentDownload.id = update.id;
-                      currentDownload.state = state;
+                      currentDownload.state = state.title;
                       currentDownload.link = update.link;
                       currentDownload.releaseDate = update.releaseDate;
                       return currentDownload;

@@ -129,4 +129,18 @@ table.clone + md-table-container table tbody tr:first-child td {
 .card {
   background-color: white;
 }
+.chart-link{
+  color: #0F6AB4;
+  padding:.8rem;
+  text-decoration: none;
+}
+.chart-link:hover {
+  color: darkgoldenrod;
+}
+.selected {
+  background-color: #00b3ee;
+}
+a::selection {
+  background-color: #00b3ee;
+}
 

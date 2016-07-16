@@ -3,7 +3,7 @@
 
   angular
     .module('FSV42App')
-    .controller('DashboardController', function ($scope, AuthService, $rootScope, $state, $mdSidenav, $log, $mdMedia, Confirmation,Employee,Group, Update, $http,IssueReport, DownloadService,ConfirmationService,UpdateService, DashboadService){
+    .controller('DashboardController', function ($scope, AuthService, $rootScope, $state, $mdSidenav, $log, $mdMedia, Confirmation,Employee,Group, Update, $http,IssueReport, DownloadService,ConfirmationService,UpdateService, DashboadService,$mdToast){
       /*****************************************************************/
               //Sets current user
 
@@ -18,7 +18,7 @@
       $scope.searchcriteria = "";
 
       /************************************************************************/
-
+      $scope.sortOption = 'lname';
       /*Determine the most recent update, confirm user status & provide d/l link*/
       /*var mostRecent = UpdateService.getCurrentReleaseDate();*/
       UpdateService
@@ -32,22 +32,41 @@
               $scope.statusCurrent = moment(currentReleaseDate).isSame(maxConfDate);
 
               if ($scope.statusCurrent){
-                $scope.status = "You are currently up to date.";
-              }else{
-                $scope.status = "A newer update is available for download."
-              }
-            });
-          DownloadService
-            .getCurrentDownload()
-            .then(function(currentDownload){
-              $scope.mostRecentDownload = {
-                id: currentDownload.id,
-                state: currentDownload.state,
-                link: currentDownload.link,
-                releaseDate: currentDownload.releaseDate
-              }
 
+                var el = angular.element( document.querySelector('#status'));
+                var status = "You are currently up to date.";
+                el.html(status);
+
+
+              }else{
+                $scope.msgStatus =0;
+                DownloadService
+                  .getCurrentDownload()
+                  .then(function(currentDownload){
+                    var mostRecentDownload = {
+                      id: currentDownload.id,
+                      state: currentDownload.state,
+                      link: currentDownload.link,
+                      releaseDate: currentDownload.releaseDate };
+
+                      var el = angular.element( document.querySelector('#status'));
+
+                    var status = 'A newer update is available for download.' +
+                      '<p style="margin:0 1rem;" class="md-padding md-body-1">' +
+                      '<a class="md-body-1" href="'+ mostRecentDownload.link +' ">' +
+                      mostRecentDownload.state+"  "+ moment(mostRecentDownload.releaseDate).format("MM/DD/YYYY")  +
+                      '</a><br/><small class="md-caption"><i>Click link to download</i></small>';
+
+
+                    el.html(status);
+
+
+
+                  });
+
+              }
             });
+
         });
 
       /************************************************************************/
@@ -55,7 +74,7 @@
       //Retrieving most recent update & their relative confirmations
       //Creating a list of all employees and separating into 2 list [Confirmed,Unconfirmed]
       function initData(){
-        var b;
+
         Update
           .find({filter:{include:'confirmations'}})
           .$promise
@@ -148,54 +167,7 @@
                 var TXPercentage = uTxConfCount.length / txEmployeeCount.length *100;
                 var KYPercentage = uKyConfCount.length / kyEmployeeCount.length *100;
                 var MSPercentage = uMsConfCount.length / msEmployeeCount.length *100;
-                var TXGroup_1 = [];
-                var TXGroup_2 = [];
-                var TXGroup_1Conf =[];
-                var TXGroup_2Conf =[];
-                var KYGroup_1 = [];
-                var KYGroup_2 = [];
-                var KYGroup_1Conf =[];
-                var KYGroup_2Conf =[];
-                var MSGroup_1 = [];
-                var MSGroup_2 = [];
-                var MSGroup_1Conf =[];
-                var MSGroup_2Conf =[];
-                _.forEach(txEmployeeCount,function(c){
-                  if (c.group == 'Corporate/IT'){
-                    TXGroup_1.push(c);
-                  } else if (c.group == "DAL/5L") {TXGroup_2.push(c) }
-                });
-                _.forEach(uTxConfCount, function(c){
-                  if (c.group == 'Corporate/IT'){
-                    TXGroup_1Conf.push(c);
-                  } else if (c.group == 'DAL/5L'){
-                    TXGroup_2Conf.push(c);
-                  }
-                });
-                _.forEach(kyEmployeeCount,function(c){
-                  if (c.group == 'KY/Group_1'){
-                    KYGroup_1.push(c);
-                  } else if (c.group == "KY/Group_2") {KYGroup_2.push(c) }
-                });
-                _.forEach(uKyConfCount, function(c){
-                  if (c.group == 'KY/Group_1'){
-                    KYGroup_1Conf.push(c);
-                  } else if (c.group == 'KY/Group_2'){
-                    KYGroup_2Conf.push(c);
-                  }
-                });
-                _.forEach(msEmployeeCount,function(c){
-                  if (c.group == 'MS/Group_1'){
-                    MSGroup_1.push(c);
-                  } else if (c.group == "MS/Group_2") {MSGroup_2.push(c) }
-                });
-                _.forEach(uMsConfCount, function(c){
-                  if (c.group == 'MS/Group_1'){
-                    MSGroup_1Conf.push(c);
-                  } else if (c.group == 'MS/Group_2'){
-                    MSGroup_2Conf.push(c);
-                  }
-                });
+
 
                 //Angular-Chart.js
              /**************************************************************************/
@@ -296,27 +268,70 @@
                 $scope.KYGroupData = [KYGroupPercentages];
                 $scope.MSGroupLabels = MSGroupLabels;
                 $scope.MSGroupData = [MSGroupPercentages];
+                //Ensure scale 0-100
+                $scope.options ={
+                  scales: {
+                    xAxes: [
+                      {
+                        id: 'x-axis-1',
+                        type: 'linear',
+                        beginAtZero: true,
+                        ticks: {
+                          min: 0,
+                          max: 100
+                        }
+                      }
+                    ]
+                  }
 
+                };
 
                 //Sending email reminders
-                $scope.sendReminder = function (state) {
-                  console.log($scope.employeesWithoutConfirmations);
-                  var emails =[];
-                  _.forEach($scope.employeesWithoutConfirmations, function(employee){
-                    if (employee.state == state){
-                      emails.push(employee.email);
-                    }
-                  });
-                  console.log(emails);
-                  var email = {email: emails};
-                  $http.post('api/Updates/sendReminder', email);
+                $scope.sendReminder = function ($event) {
+                  AuthService
+                    .getCurrentState()
+                    .then(function(state){
+                      var emails =[];
+
+                      _.forEach($scope.employeesWithoutConfirmations, function(employee){
+                        console.log(employee, state);
+                        if (employee.stateId == state.id){
+                          console.log(employee.stateId, state.id);
+                          emails.push(employee.email);
+                        } else {
+                          console.log("Everyone in "+ state.title + " is up to date.");
+                          $mdToast.show($mdToast.simple()
+                            .position('right')
+                            .capsule(true)
+                            .textContent("Everyone in "+ state.title + " is up to date."))
+
+                        }
+                      });
+                      var email = {email: emails};
+                      $http.post('api/Updates/sendReminder', email);
+                      console.log(email);
+                    });
                 };
+                $scope.sendEmail = function (address, $event){
+                  var address = [address];
+                  var email = {email: address};
+                  $http.post('api/Updates/sendReminder', email);
+                  console.log(email);
+                  $mdToast.show($mdToast.simple()
+                    .position('right')
+                    .capsule(true)
+                    .textContent("A reminder has been sent to " + email.email ))
+                }
 
               })
           });
       }
       initData();
       /************************************************************************/
+      $scope.chart = function (){
+        $scope.isSelected = !$scope.isSelected;
+      }
+
 
       /************************************************************************/
                               //Device Detector
@@ -324,7 +339,6 @@
       $scope.allData = JSON.stringify($scope.data, null, 2);
       $scope.deviceDetector=deviceDetector;*/
       /************************************************************************/
-
 
     })
 })();

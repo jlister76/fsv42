@@ -6,7 +6,7 @@
 
      /****************************************************************/
                          /*Geo Location*/
-      $scope.msgStatus = 0;
+      $scope.msgStatus;
       var x = angular.element( document.querySelectorAll( '#demo' ) );
       $scope.getLocation = function() {
         if (navigator.geolocation) {
