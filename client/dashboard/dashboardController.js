@@ -74,12 +74,12 @@
       //Retrieving most recent update & their relative confirmations
       //Creating a list of all employees and separating into 2 list [Confirmed,Unconfirmed]
       function initData(){
-        console.log("Ive been called");
+
         Update
           .find({filter:{include:'confirmations'}})
           .$promise
           .then(function(updates){
-            console.log("I got updates");
+
             var maxDates = [];
             var confirmations = [];
             _.forEach(updates, function(u){
@@ -97,7 +97,7 @@
             return confirmations;
           })
           .then(function(confirmations){
-            console.log("I got confs");
+
             Employee
               .find({filter:{include: ['state','group']}})
               .$promise
@@ -178,7 +178,7 @@
                 DashboardService
                   .getAllStates()
                   .then(function(states){
-                    console.log("I got all states");
+
                     _.forEach(states, function(s){
                       labels.push(s.title);
                     });

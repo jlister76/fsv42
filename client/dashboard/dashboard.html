@@ -1,12 +1,12 @@
 <div flex layout="column" layout-align="center" class="container">
-  <div flex-xs="100" layout="row" layout-xs="column" layout-align-xs="start center" class="md-padding"
+  <div flex-xs layout="row" layout-xs="column" layout-align-xs="start center" class="md-padding"
        style="min-height:900px; margin-bottom: 2rem;">
     <div flex style="margin-top: 4rem; border:solid thin #eeeeee; background-color:rgba(233, 233, 233, 0.2);">
       <div flex layout>
         <div flex layout="column">
           <div layout="column" class="md-padding">
             <div layout="column" class="card md-padding" md-whiteframe="1">
-              <div layout layout-align="space-around">
+              <div layout layout-align="space-around" layout-xs="column">
                 <a href="#" class="md-body-1 chart-link" ng-click="chart=0">Company Wide</a>
                 <a href="#" class="md-body-1 chart-link" ng-click="chart=1">Texas</a>
                 <a href="#" class="md-body-1 chart-link" ng-click="chart=2">Kentucky </a>
@@ -42,7 +42,7 @@
         </div>
       </div>
     </div><!--End of section-->
-    <div flex="30" layout="column" layout-align="start end" style="margin:4rem 2rem;">
+    <div flex="30" flex-xs="30" layout="column" layout-align="start end" style="margin:4rem 2rem;">
       <div ng-controller="DashboardController" flex-xs="100" layout="column" class="md-padding"
            style="border:solid thin lightgray;background-color: palegoldenrod">
         <div layout="column" layout-align="start" id="status">
@@ -168,7 +168,7 @@
                       </tr>
                       </thead>
                       <tbody flex>
-                      <tr ng-repeat="e in employeesWithoutConfirmations | orderBy: 'lname' | filter:searchCriteria">
+                      <tr ng-repeat="e in employeesWithoutConfirmations | orderBy:sortOption:sortReverse | filter:searchCriteria">
 
                         <td class="md-body-1"> {{ e.lname}}, {{e.fname}}</td>
                         <td class="md-body-1">{{ e.state.title }}</td>
