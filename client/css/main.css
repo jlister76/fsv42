@@ -9,7 +9,7 @@
 #logo {
   background-image: url(../hc-logo.png);
 }
-md-header {
+.md-header {
   max-height: 120px!important;
 }
 html { overflow:hidden; }
@@ -20,7 +20,7 @@ a:active{
 .md-button[disabled] {
   background-color: #d2d2d2!important;
 }
-.md-primary {
+.md-raised {
   background-color:#34495E!important;
 }
 
@@ -72,13 +72,16 @@ table {
   border: thin solid lightgray;
   padding: 0rem;
   border-collapse: collapse;
+  empty-cells: show;
 }
 
-td{
+td {
   padding: 1rem .5rem;
   margin-left: .5rem;
   width:100vw;
+
 }
+
 tr {
   border-bottom: solid thin lightgray;
 }
@@ -91,7 +94,9 @@ tbody tr:hover {
 }*/
 thead th {
   text-align:left;
+  min-width:15rem;
 }
+
 .warning {
   background-color: goldenrod;
   /*border: solid thin #ccc;
@@ -143,4 +148,8 @@ table.clone + md-table-container table tbody tr:first-child td {
 a::selection {
   background-color: #00b3ee;
 }
-
+.menu-icon {
+  cursor: hand;
+  text-decoration: none;
+  color:inherit;
+}

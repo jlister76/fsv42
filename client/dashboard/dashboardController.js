@@ -306,8 +306,13 @@
                           var email = {email: emails};
                           $http.post('api/Updates/sendReminder', email);
                           console.log(email);
-                        } else {
-                          console.log("Everyone in "+ state.title + " is up to date.");
+                          $mdToast.show($mdToast.simple()
+                            .position('right')
+                            .capsule(true)
+                            .textContent("Statewide reminder was sent to: " + state.title))
+                        } else if ($scope.employeesWithoutConfirmations.length < 0) {
+
+                          //console.log("Everyone in "+ state.title + " is up to date.");
                           $mdToast.show($mdToast.simple()
                             .position('right')
                             .capsule(true)
@@ -318,36 +323,35 @@
 
                     });
                 };
-                $scope.sendEmail = function (address, $event){
+                $scope.sendEmail = function (employeeEmail, employeeState, $event){
                   AuthService
                     .getCurrentState()
                     .then(function(state){
-                      _.forEach($scope.employeesWithoutConfirmations, function(employee){
-                        console.log(employee, state);
-                        if (employee.stateId == state.id && $scope.employeesWithoutConfirmations.length > 0){
-                          console.log(employee.stateId, state.id);
-                          emails.push(employee.email);
-                          var email = {email: [address]};
-                          $http.post('api/Updates/sendReminder', email);
-                          console.log(email);
-                          $mdToast.show($mdToast.simple()
-                            .position('right')
-                            .capsule(true)
-                            .textContent("A reminder has been sent to " + email.email ))
-                        } else {
-                          console.log("Everyone in "+ state.title + " is up to date.");
-                          $mdToast.show($mdToast.simple()
-                            .position('right')
-                            .capsule(true)
-                            .textContent("WARNING! Email not sent. Employee does not belong to "+state.title ))
+                      var emailAddress = [];
+                      var employeeList = [];
 
-                        }
-                      });
+                      if (employeeState == state.id && $scope.employeesWithoutConfirmations.length > 0){
+                        console.log(employeeState, state.id);
+
+                        var email = {email: [employeeEmail]};
+                        $http.post('api/Updates/sendReminder', email);
+                        $mdToast.show($mdToast.simple()
+                          .position('right')
+                          .capsule(true)
+                          .textContent("An email reminder was sent to " + employeeEmail ));
+                      } else if (employeeState != state.id) {
+
+                        $mdToast.show($mdToast.simple()
+                          .position('right')
+                          .capsule(true)
+                          .textContent("WARNING! Email not sent. Employee does not belong to "+ state.title ))
+
+                      }
                     });
                 }
               })
           });
-        console.log("bottom of function");
+
       }
       initData();
       /************************************************************************/

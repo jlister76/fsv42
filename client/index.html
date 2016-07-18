@@ -35,10 +35,22 @@
 
     <div  layout layout-align="end end" hide-xs style="height:64px;; border:none">
       <div layout layout-align="center center" ng-controller="AuthLogoutController">
-        <md-button ng-show="currentUser" ui-sref="dashboard" class="md-subhead">Dashboard</md-button>
-        <md-button ng-show="currentUser" ui-sref="download" class="md-padding">Downloads</md-button>
-        <md-button ng-show="currentUser" ui-sref="report-issue" class="md-padding">Report Issue</md-button>
-        <md-button ng-show="currentUser" ng-click="logout()" class="md-padding">Log Out</md-button>
+        <md-menu md-offset="80 30"class="md-padding">
+          <a href="#"layout layout-align="center center" class="menu-icon"  ng-click="$mdOpenMenu($event)">
+            {{currentUser.fname +" " +currentUser.lname}}<span>&nbsp;<i class="material-icons md-icon-button" style="color:#ccc;">settings_applications</i></span>
+          </a>
+          <md-menu-content width="4">
+            <md-menu-item>
+              <md-button ui-sref="dashboard" class="">Dashboard</md-button>
+            </md-menu-item>
+            <md-menu-item>
+              <md-button ui-sref="download" class="">Downloads</md-button>
+            </md-menu-item>
+            <md-menu-item>
+              <md-button ng-show="currentUser" ng-click="logout()" md-menu-align-target class="md-padding">Log Out</md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
       </div>
     </div>
 

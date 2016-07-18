@@ -121,11 +121,7 @@
                 </md-select>
               </div>
               <div flex="33">
-                <a layout layout-align="center center" href="#" ng-click="searchCriteria=''"
-                   style="text-decoration: none">
-                  <i class="material-icons">clear_all</i>
-                  <span class="md-body-2">Clear Filter</span>
-                </a>
+                  <md-button layout="row"  class="md-primary md-body-2" ng-click="searchCriteria=''">Clear Filter</md-button>
               </div>
             </div>
             <div>
@@ -177,7 +173,7 @@
                         <td class="md-body-1"> {{ e.lname}}, {{e.fname}}</td>
                         <td class="md-body-1">{{ e.state.title }}</td>
                         <td class="md-body-1">{{ e.group.title }}</td>
-                        <td><a href="#" ng-click="sendEmail(e.email)" class="md-body-1"><i class="material-icons">mail_outline</i></a>
+                        <td><a href="#" ng-click="sendEmail(e.email, e.stateId)" class="md-body-1"><i class="material-icons">mail_outline</i></a>
                         </td>
                       </tr>
                       </tbody>
@@ -215,9 +211,9 @@
                       <tr
                         ng-repeat="e in employeesWithConfirmations | orderBy:sortOption:sortReverse | filter:searchCriteria">
 
-                        <td class="md-body-1"> {{ e.lname}}, {{e.fname}}</td>
-                        <td class="md-body-1">{{ e.state.title }}</td>
-                        <td class="md-body-1">{{ e.group.title }}</td>
+                        <td class="md-body-1" > {{ e.lname }}, {{e.fname}}</td>
+                        <td class="md-body-1" >{{ e.state.title }}</td>
+                        <td class="md-body-1" >{{ e.group.title }}</td>
 
                       </tr>
                     </table>

@@ -33,12 +33,6 @@
           templateUrl: '../issue-reports/issue-report.html',
           authenticate: true
         })
-        .state('confirm-update', {
-          controller: 'ConfirmationController',
-          url: '/confirm-update',
-          templateUrl: '../confirms/confirm-install.html',
-          authenticate: true
-        })
         .state('forbidden', {
           url: '/forbidden',
           templateUrl: '../views/forbidden.html',
