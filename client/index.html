@@ -37,7 +37,6 @@
       <div layout layout-align="center center" ng-controller="AuthLogoutController">
         <md-button ng-show="currentUser" ui-sref="dashboard" class="md-subhead">Dashboard</md-button>
         <md-button ng-show="currentUser" ui-sref="download" class="md-padding">Downloads</md-button>
-        <md-button ng-show="currentUser" ui-sref="confirm-update" class="md-padding">Confirm Update</md-button>
         <md-button ng-show="currentUser" ui-sref="report-issue" class="md-padding">Report Issue</md-button>
         <md-button ng-show="currentUser" ng-click="logout()" class="md-padding">Log Out</md-button>
       </div>
@@ -143,12 +142,10 @@
 <script src="downloads/downloadController.js"></script>
 <script src="auth/authController.js"></script>
 <script src="auth/authService.js"></script>
-<script src="confirms/confirmationController.js"></script>
 <script src="issue-reports/issueReportController.js"></script>
 <script src="dashboard/dashboardController.js"></script>
 <script src="dashboard/dashboardService.js"></script>
 <script src="js/services/updateService.js"></script>
-<script src="confirms/confirmationService.js"></script>
 <script src="downloads/downloadService.js"></script>
 
 

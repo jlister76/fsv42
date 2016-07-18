@@ -3,7 +3,7 @@
 
   angular
     .module('FSV42App')
-    .controller('DashboardController', function ($scope, AuthService, $rootScope, $state, $mdSidenav, $log, $mdMedia, Confirmation,Employee,Group, Update, $http,IssueReport, DownloadService,ConfirmationService,UpdateService, DashboadService,$mdToast){
+    .controller('DashboardController', function ($scope, AuthService, $rootScope, $state, $mdSidenav, $log, $mdMedia, Confirmation,Employee,Update, $http,IssueReport, DownloadService,UpdateService, DashboardService,$mdToast){
       /*****************************************************************/
               //Sets current user
 
@@ -24,7 +24,7 @@
       UpdateService
         .getCurrentReleaseDate()
         .then(function(currentReleaseDate){
-          ConfirmationService
+          DashboardService
             .getCurrentConfirmation()
             .then(function(maxConfDate){
 
@@ -74,11 +74,12 @@
       //Retrieving most recent update & their relative confirmations
       //Creating a list of all employees and separating into 2 list [Confirmed,Unconfirmed]
       function initData(){
-
+        console.log("Ive been called");
         Update
           .find({filter:{include:'confirmations'}})
           .$promise
           .then(function(updates){
+            console.log("I got updates");
             var maxDates = [];
             var confirmations = [];
             _.forEach(updates, function(u){
@@ -96,6 +97,7 @@
             return confirmations;
           })
           .then(function(confirmations){
+            console.log("I got confs");
             Employee
               .find({filter:{include: ['state','group']}})
               .$promise
@@ -173,9 +175,10 @@
              /**************************************************************************/
                                 //Company-wide stats
                 var labels =[];
-                DashboadService
+                DashboardService
                   .getAllStates()
                   .then(function(states){
+                    console.log("I got all states");
                     _.forEach(states, function(s){
                       labels.push(s.title);
                     });
@@ -190,7 +193,7 @@
                 var TXGroupLabels =[];
                 var TXGroups =[];
                 var TXGroupPercentages =[];
-                DashboadService
+                DashboardService
                   .getTexasGroups()
                   .then(function (Texas) {
                     //console.log(Texas);
@@ -216,7 +219,7 @@
                 var KYGroupLabels =[];
                 var KYGroups =[];
                 var KYGroupPercentages =[];
-                DashboadService
+                DashboardService
                   .getKentuckyGroups()
                   .then(function (Kentucky) {
 
@@ -241,7 +244,7 @@
                 var MSGroupLabels =[];
                 var MSGroups =[];
                 var MSGroupPercentages =[];
-                DashboadService
+                DashboardService
                   .getMississippiGroups()
                   .then(function (Mississippi) {
 
@@ -262,29 +265,31 @@
                   });
                 /*************************************************************************/
 
-                $scope.TXGroupLabels = TXGroupLabels;
-                $scope.TXGroupData = [TXGroupPercentages];
-                $scope.KYGroupLabels = KYGroupLabels;
-                $scope.KYGroupData = [KYGroupPercentages];
-                $scope.MSGroupLabels = MSGroupLabels;
-                $scope.MSGroupData = [MSGroupPercentages];
-                //Ensure scale 0-100
-                $scope.options ={
-                  scales: {
-                    xAxes: [
-                      {
-                        id: 'x-axis-1',
-                        type: 'linear',
-                        beginAtZero: true,
-                        ticks: {
-                          min: 0,
-                          max: 100
-                        }
-                      }
-                    ]
-                  }
 
-                };
+                 $scope.TXGroupLabels = TXGroupLabels;
+                 $scope.TXGroupData = [TXGroupPercentages];
+                 $scope.KYGroupLabels = KYGroupLabels;
+                 $scope.KYGroupData = [KYGroupPercentages];
+                 $scope.MSGroupLabels = MSGroupLabels;
+                 $scope.MSGroupData = [MSGroupPercentages];
+                 //Ensure scale 0-100
+                 $scope.options ={
+                   scales: {
+                     xAxes: [
+                       {
+                         id: 'x-axis-1',
+                         type: 'linear',
+                         beginAtZero: true,
+                         ticks: {
+                           min: 0,
+                           max: 100
+                         }
+                       }
+                     ]
+                   }
+
+                 };
+
 
                 //Sending email reminders
                 $scope.sendReminder = function ($event) {
@@ -295,9 +300,12 @@
 
                       _.forEach($scope.employeesWithoutConfirmations, function(employee){
                         console.log(employee, state);
-                        if (employee.stateId == state.id){
+                        if (employee.stateId == state.id && $scope.employeesWithoutConfirmations.length > 0){
                           console.log(employee.stateId, state.id);
                           emails.push(employee.email);
+                          var email = {email: emails};
+                          $http.post('api/Updates/sendReminder', email);
+                          console.log(email);
                         } else {
                           console.log("Everyone in "+ state.title + " is up to date.");
                           $mdToast.show($mdToast.simple()
@@ -307,30 +315,86 @@
 
                         }
                       });
-                      var email = {email: emails};
-                      $http.post('api/Updates/sendReminder', email);
-                      console.log(email);
+
                     });
                 };
                 $scope.sendEmail = function (address, $event){
-                  var address = [address];
-                  var email = {email: address};
-                  $http.post('api/Updates/sendReminder', email);
-                  console.log(email);
-                  $mdToast.show($mdToast.simple()
-                    .position('right')
-                    .capsule(true)
-                    .textContent("A reminder has been sent to " + email.email ))
-                }
+                  AuthService
+                    .getCurrentState()
+                    .then(function(state){
+                      _.forEach($scope.employeesWithoutConfirmations, function(employee){
+                        console.log(employee, state);
+                        if (employee.stateId == state.id && $scope.employeesWithoutConfirmations.length > 0){
+                          console.log(employee.stateId, state.id);
+                          emails.push(employee.email);
+                          var email = {email: [address]};
+                          $http.post('api/Updates/sendReminder', email);
+                          console.log(email);
+                          $mdToast.show($mdToast.simple()
+                            .position('right')
+                            .capsule(true)
+                            .textContent("A reminder has been sent to " + email.email ))
+                        } else {
+                          console.log("Everyone in "+ state.title + " is up to date.");
+                          $mdToast.show($mdToast.simple()
+                            .position('right')
+                            .capsule(true)
+                            .textContent("WARNING! Email not sent. Employee does not belong to "+state.title ))
 
+                        }
+                      });
+                    });
+                }
               })
           });
+        console.log("bottom of function");
       }
       initData();
       /************************************************************************/
       $scope.chart = function (){
         $scope.isSelected = !$scope.isSelected;
-      }
+      };
+      /*****************************************************************/
+      /*Update or Create confirmation*/
+
+      $scope.createConfirmation = function () {
+        UpdateService
+          .getAllCurrentUpdates()
+          .then(function (currentUpdates) {
+            AuthService
+              .getCurrent()
+              .$promise
+              .then(function (user){
+                var update;
+                var date = new Date();
+                _.forEach(currentUpdates, function(o){
+                  if(o.stateId == user.stateId){
+                    update = o;
+                  }
+                });
+                Confirmation
+                  .create({lastUpdated: date, updateId: update.id, employeeId: user.id, groupId: user.groupId})
+                  .$promise
+                  .then(function(confirmation){
+                    console.log(confirmation + " saved");
+                    $scope.msgStatus = 1;
+                    $state.reload();
+                    /*setTimeout(function() {
+                      $scope.$apply(function() {
+                        //wrapped this within $apply
+                        $state.reload();
+                        console.log('Data has been initialized');
+                      });
+                    }, 1000);*/
+                  });
+
+
+              });
+
+          });
+
+      };
+      /*****************************************************************/
 
 
       /************************************************************************/
