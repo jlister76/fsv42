@@ -1,10 +1,9 @@
 <div flex layout="column" layout-align="center" class="container">
-  <div flex-xs layout="row" layout-xs="column" layout-align-xs="start center" class="md-padding"
-       style="min-height:900px; margin-bottom: 2rem;">
-    <div flex style="margin-top: 4rem; border:solid thin #eeeeee; background-color:rgba(233, 233, 233, 0.2);">
-      <div flex layout>
-        <div flex layout="column">
-          <div layout="column" class="md-padding">
+  <div layout="row" layout-align="space-around" layout-sm="column"  layout-align-sm="start start" class="md-padding" id="top-container">
+    <div flex-sm="100" flex-order-sm="2" layout-sm="row" id="chart-container">
+      <div flex-sm="">
+        <div>
+          <div  class="md-padding">
             <div layout="column" class="card md-padding" md-whiteframe="1">
               <div layout layout-align="space-around" layout-xs="column">
                 <a href="#" class="md-body-1 chart-link" ng-click="chart=0">Company Wide</a>
@@ -42,8 +41,8 @@
         </div>
       </div>
     </div><!--End of section-->
-    <div flex="30" flex-xs="30" layout="column" layout-align="start end" style="margin:4rem 2rem;">
-      <div ng-controller="DashboardController" flex-xs="100" layout="column" class="md-padding"
+    <div flex-order-sm="1" flex-sm="" layout="column" layout-align="start" id="container-two">
+      <div ng-controller="DashboardController" layout="column" layout-align-sm="center center" class="md-padding"
            style="border:solid thin lightgray;background-color: palegoldenrod">
         <div layout="column" layout-align="start" id="status">
           <md-progress-circular class="md-hue-4" md-mode="indeterminate">
@@ -56,9 +55,9 @@
           <span class="md-body-1">Your confirmation has been saved!</span>
         </div>
       </div>
-      <div ng-controller="IssueReportController" layout="column">
-        <div layout="row" layout-align="start">
-          <div flex-xs="100">
+      <div hide-sm ng-controller="IssueReportController" layout="column" >
+        <div layout="row" layout-align="end end">
+          <div flex-xs="100" flex-md="80">
             <div layout=column>
               <h6 class="md-subhead title">Issue Tracker</h6>
               <div flex-xs="100" layout="column" layout-align="center center" class="md-padding"
@@ -73,8 +72,8 @@
                         <md-option ng-repeat="issue in issueType" value="{{issue}}">{{issue}}</md-option>
                       </md-select>
                     </md-input-container>
-                    <div layout layout-align="center">
-                <textarea flex="100" ng-model="issue.comments" name="comments" id="comments" cols="32" rows="4"
+                    <div  layout layout-align="center">
+                <textarea flex="90"   ng-model="issue.comments" name="comments" id="comments"  rows="4"
                           style="border-radius: 2%; border: solid thin lightgray;"></textarea>
                     </div>
                     <div layout layout-align="center start" style="margin: 1rem;">

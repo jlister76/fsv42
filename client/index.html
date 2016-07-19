@@ -35,11 +35,11 @@
 
     <div  layout layout-align="end end" hide-xs style="height:64px;; border:none">
       <div layout layout-align="center center" ng-controller="AuthLogoutController">
-        <md-menu md-offset="80 30"class="md-padding">
+        <md-menu ng-show="currentUser" md-offset="80 30"class="md-padding">
           <a href="#"layout layout-align="center center" class="menu-icon"  ng-click="$mdOpenMenu($event)">
             {{currentUser.fname +" " +currentUser.lname}}<span>&nbsp;<i class="material-icons md-icon-button" style="color:#ccc;">settings_applications</i></span>
           </a>
-          <md-menu-content width="4">
+          <md-menu-content ng-show="currentUser" width="4">
             <md-menu-item>
               <md-button ui-sref="dashboard" class="">Dashboard</md-button>
             </md-menu-item>

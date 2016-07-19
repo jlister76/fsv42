@@ -1,8 +1,5 @@
-/*
-  Allow angular.js to be loaded in body, hiding cloaked elements until
-  templates compile.  The !important is important given that there may be
-  other selectors that are more specific or come later and might alter display.
- */
+/***********************Global Styles*************************/
+
 [ng\:cloak], [ng-cloak], .ng-cloak {
   display: none !important;
 }
@@ -12,8 +9,6 @@
 .md-header {
   max-height: 120px!important;
 }
-html { overflow:hidden; }
-
 a:active{
   color: darkgoldenrod;
 }
@@ -23,18 +18,15 @@ a:active{
 .md-raised {
   background-color:#34495E!important;
 }
-
 h1 {
   font-family: 'Lora', sans-serif;
 }
 h2,h3,h4,h5,h6,p,span {
   font-family: 'Ubuntu','Source Sans Pro', sans-serif;
 }
-
 .md-subhead {
   font-family: 'Source Sans Pro', sans-serif;
 }
-
 body {
   font-family: 'Ubuntu', sans-serif!important;
   background-color: white;
@@ -46,7 +38,6 @@ body {
 .md-button:hover {
   border-bottom: thin solid #d9d9d9;
 }
-
 footer {
   position: fixed;
   bottom: 0;
@@ -58,7 +49,6 @@ footer {
   color: #999;
   background-color: #DDDDDD;
 }
-
 .template_footer button{
   background-color: transparent; border: none;
   color:#999;
@@ -67,46 +57,27 @@ footer {
   background-color: transparent; border: none;
   color:#0F6AB4;
 }
-
 table {
   border: thin solid lightgray;
   padding: 0rem;
   border-collapse: collapse;
   empty-cells: show;
 }
-
 td {
   padding: 1rem .5rem;
   margin-left: .5rem;
   width:100vw;
 
 }
-
 tr {
   border-bottom: solid thin lightgray;
 }
 tbody tr:hover {
   background-color: rgba(173, 216, 230, 0.13);
 }
-
-/*tbody tr:nth-child(even) {
-  background-color: #e6e6e6;
-}*/
 thead th {
   text-align:left;
   min-width:15rem;
-}
-
-.warning {
-  background-color: goldenrod;
-  /*border: solid thin #ccc;
-  border-radius: 3px;*/
-}
-.info {
-  background-color: #dfecf3;
-  /*border: solid thin #ccc;*/
-  /*border-radius: 3px;*/
-
 }
 .title {
 
@@ -115,22 +86,15 @@ thead th {
   margin-bottom: 0;
   padding: .5rem;
 }
-
-/*table.clone thead tr:last-child th {
-  border-bottom: 1px rgba(0, 0, 0, 0.12) solid;
-}*/
-
 table.clone + md-table-container table tbody tr:first-child td {
   border: none;
 }
-
 #q-input {
   padding: .5rem;
   border: solid thin lightgrey;
   border-radius:2%;
   margin: 1rem;
 }
-
 .card {
   background-color: white;
 }
@@ -153,3 +117,61 @@ a::selection {
   text-decoration: none;
   color:inherit;
 }
+
+/*********************************************************************/
+                   /*X-Large Screens*/
+@media only screen and (min-width:1920px){
+
+}
+/*********************************************************************/
+/*********************************************************************/
+                 /*Large Screens*/
+@media only screen and (min-width:1280px) and (max-width:1919px){
+#chart-container{
+  height: 74vh;
+  margin-top: 2rem;
+  border:solid thin #eeeeee;
+  background-color:rgba(99, 99, 99, 0.89);
+}
+  #container-two {
+    margin-top:2rem;
+    margin-left: .8rem;
+    height: 74vh;
+  }
+  #top-container {
+    min-height:60vh;
+    border: solid thin red;
+  }
+}
+
+/*********************************************************************/
+/*********************************************************************/
+                /*Medium Screens*/
+@media only screen and (min-width:960px) and (max-width:1279px){
+
+}
+
+/*********************************************************************/
+/*********************************************************************/
+                   /*Small Screens*/
+@media only screen and (min-width:600px) and (max-width:959px){
+
+  html { overflow:hidden;}
+  #container-two {
+    width: 100vw;
+  }
+  #chart-container {
+    border: none;
+    width:100vw;
+  }
+
+}
+
+/*********************************************************************/
+/*********************************************************************/
+                  /*X-Small Screens*/
+@media only screen and (max-width:599px){
+
+}
+
+/*********************************************************************/

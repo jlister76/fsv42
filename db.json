@@ -1,12 +1,12 @@
 {
   "ids": {
     "User": 1,
-    "AccessToken": 58,
+    "AccessToken": 61,
     "ACL": 1,
     "RoleMapping": 1,
     "Role": 1,
     "Employee": 8,
-    "Confirmation": 53,
+    "Confirmation": 54,
     "IssueReport": 5,
     "Update": 7,
     "State": 4,
@@ -26,7 +26,8 @@
       "4TptHFQ83Ui3b7zzwQ3FBXK6pnYh6ynSetgRAqu0Gt1Ls5mcPZ7ZLsLEYTRFnqIX": "{\"id\":\"4TptHFQ83Ui3b7zzwQ3FBXK6pnYh6ynSetgRAqu0Gt1Ls5mcPZ7ZLsLEYTRFnqIX\",\"ttl\":1209600,\"created\":\"2016-07-18T16:00:24.711Z\",\"userId\":3}",
       "IKokmac1suqhOJr2E7GYqLrZ0u6SdGogczNnEDkKVEwJ4Abj7CBTFfYYOCcAbIAR": "{\"id\":\"IKokmac1suqhOJr2E7GYqLrZ0u6SdGogczNnEDkKVEwJ4Abj7CBTFfYYOCcAbIAR\",\"ttl\":1209600,\"created\":\"2016-07-18T16:02:28.381Z\",\"userId\":1}",
       "oB99eqjust9BSu4IQ24sBgVZRCdDjCWekbvkyjpPEuh7ZLpYAAf3BULAx2GYcHAA": "{\"id\":\"oB99eqjust9BSu4IQ24sBgVZRCdDjCWekbvkyjpPEuh7ZLpYAAf3BULAx2GYcHAA\",\"ttl\":1209600,\"created\":\"2016-07-18T20:47:28.253Z\",\"userId\":7}",
-      "zvE7pII0JxO1RkAbDP27EwJDosGiD3sqIgRxEFzZDoC5z3KKDA3nvw4NwBttGnxX": "{\"id\":\"zvE7pII0JxO1RkAbDP27EwJDosGiD3sqIgRxEFzZDoC5z3KKDA3nvw4NwBttGnxX\",\"ttl\":1209600,\"created\":\"2016-07-18T21:05:13.478Z\",\"userId\":3}"
+      "zvE7pII0JxO1RkAbDP27EwJDosGiD3sqIgRxEFzZDoC5z3KKDA3nvw4NwBttGnxX": "{\"id\":\"zvE7pII0JxO1RkAbDP27EwJDosGiD3sqIgRxEFzZDoC5z3KKDA3nvw4NwBttGnxX\",\"ttl\":1209600,\"created\":\"2016-07-18T21:05:13.478Z\",\"userId\":3}",
+      "wbENCGYTsICJKGx4dBLWLxMGtHBM8kBioCmZXt4aOtgLnqwUBsYTRL11otAqigDB": "{\"id\":\"wbENCGYTsICJKGx4dBLWLxMGtHBM8kBioCmZXt4aOtgLnqwUBsYTRL11otAqigDB\",\"ttl\":1209600,\"created\":\"2016-07-19T19:43:12.977Z\",\"userId\":1}"
     },
     "ACL": {},
     "RoleMapping": {},
@@ -42,7 +43,8 @@
     },
     "Confirmation": {
       "51": "{\"lastUpdated\":\"2016-07-18T18:33:25.309Z\",\"employeeId\":1,\"updateId\":4,\"groupId\":18,\"id\":51}",
-      "52": "{\"lastUpdated\":\"2016-07-18T21:06:25.627Z\",\"employeeId\":3,\"updateId\":4,\"groupId\":18,\"id\":52}"
+      "52": "{\"lastUpdated\":\"2016-07-18T21:06:25.627Z\",\"employeeId\":3,\"updateId\":4,\"groupId\":18,\"id\":52}",
+      "53": "{\"lastUpdated\":\"2016-07-19T14:27:48.364Z\",\"employeeId\":7,\"updateId\":6,\"groupId\":20,\"id\":53}"
     },
     "IssueReport": {
       "2": "{\"issue\":\"Download an update\",\"comments\":\"What it is\",\"employeeId\":1,\"updateId\":4,\"stateId\":1,\"groupId\":18,\"createdAt\":\"2016-07-14T04:48:41.297Z\",\"id\":2}",
