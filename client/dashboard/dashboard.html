@@ -1,6 +1,6 @@
 <div flex layout="column" layout-align="center" class="container">
   <div layout-sm="column" layout-gt-sm="row" layout-align-gt-sm="space-around" layout-xs="column"  layout-align-xs="start start" class="md-padding" id="top-container">
-    <div flex-gt-md="70" flex-order-sm="2" hide-xs flex-gt-sm="70" layout-sm="row" id="chart-container">
+    <div flex-gt-lg="75" flex-gt-md="70" flex-order-sm="2" hide-xs flex-gt-sm="70" layout-sm="row" id="chart-container">
       <div  flex-sm>
         <div>
           <div flex class="md-padding">
@@ -41,7 +41,7 @@
         </div>
       </div>
     </div><!--End of section-->
-    <div hide-gt-xs flex-order-xs="7" flex-xs="100">
+    <div hide-gt-xs flex-order-xs="7" flex-xs="100" id="sm-state-list">
 
         <md-list>
           <md-list-item><span class="md-title">Texas</span><small class="md-subhead">- {{ TXPercentage | number:0 }} %</small></md-list-item>
@@ -50,7 +50,7 @@
         </md-list>
 
     </div>
-    <div flex-gt-md="30" flex-order-sm="1" flex-order-xs="5"  layout="column" layout-align="start" id="container-two">
+    <div flex-gt-lg="25" flex-gt-md="30" flex-order-sm="1" flex-order-xs="5"  layout="column" layout-align="start" id="container-two">
       <div ng-controller="DashboardController"  layout="column" layout-align="start center" layout-align-sm="center center"
            id="confirmation-box">
         <div layout="column" layout-align="start" id="status">

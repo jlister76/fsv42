@@ -145,11 +145,12 @@ a::selection {
     max-height: 400px
   }
 
+
 }
 /*********************************************************************/
 /*********************************************************************/
                  /*Large Screens*/
-@media only screen and (min-width:1280px) and (max-width:1919px){
+@media only screen and (min-width:1280px){
 #chart-container{
   min-height: 74vh;
   margin-top: 2rem;
@@ -298,7 +299,7 @@ a::selection {
 
 /*********************************************************************/
 /*********************************************************************/
-                  /*X-Small Screens*/
+                  /*XSmall Screens*/
 @media only screen and (max-width:599px){
   html { overflow:hidden;}
   #container-two {
@@ -331,6 +332,9 @@ a::selection {
   #unconfirmed-contianer {
     overflow: auto;
     max-height: 400px
+  }
+  #sm-state-list {
+    min-height: 200px;
   }
 
 }
