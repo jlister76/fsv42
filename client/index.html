@@ -17,6 +17,7 @@
   <!-- Custom Font -->
   <link href='https://fonts.googleapis.com/css?family=Lato|Lora|Ubuntu' rel='stylesheet' type='text/css'>
   <!--<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,700italic' rel='stylesheet' type='text/css'>-->
+  <script src="https://use.fontawesome.com/3c7025b019.js"></script>
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body layout="column"
@@ -26,25 +27,27 @@
 
 <div flex layout="column" id="container">
   <md-header layout layout-align="center center" class="md-padding" style=" background-color: #00274e; color: rgb(60, 161, 255);height:68px!important;">
-    <div flex flex-xs="100" layout layout-align="start" layout-align-sm="center space-between" layout-align-xs="center center" style="border:none">
-      <div layout style=" margin-left:1rem;">
+    <div flex flex-xs="100" layout layout-align="start" layout-sm layout-align-sm="start start" layout-align-xs="center center" style="border:none">
+      <div flex-sm layout-sm  style="height:44px; margin-left:1rem;">
 
-        <img  src="hc-logo.png" alt="logo" style="height:44px;" ng-cloak />
+        <img  src="hc-logo.png" alt="logo" class="logo" ng-cloak />
       </div>
     </div>
-
+    <div ng-show="currentUser" hide-gt-xs ng-click="openLeftMenu()">
+      <i class="material-icons">menu</i>
+    </div>
     <div  layout layout-align="end end" hide-xs style="height:64px;; border:none">
       <div layout layout-align="center center" ng-controller="AuthLogoutController">
         <md-menu ng-show="currentUser" md-offset="80 30"class="md-padding">
           <a href="#"layout layout-align="center center" class="menu-icon"  ng-click="$mdOpenMenu($event)">
-            {{currentUser.fname +" " +currentUser.lname}}<span>&nbsp;<i class="material-icons md-icon-button" style="color:#ccc;">settings_applications</i></span>
+            {{currentUser.fname +" " +currentUser.lname}}<span>&nbsp;<i class="material-icons">arrow_drop_down</i></span>
           </a>
           <md-menu-content ng-show="currentUser" width="4">
             <md-menu-item>
-              <md-button ui-sref="dashboard" class="">Dashboard</md-button>
+              <md-button ng-show="currentUser" ui-sref="dashboard" class="">Dashboard</md-button>
             </md-menu-item>
             <md-menu-item>
-              <md-button ui-sref="download" class="">Downloads</md-button>
+              <md-button ng-show="currentUser" ui-sref="download" class="">Downloads</md-button>
             </md-menu-item>
             <md-menu-item>
               <md-button ng-show="currentUser" ng-click="logout()" md-menu-align-target class="md-padding">Log Out</md-button>
@@ -64,8 +67,8 @@
                   style="background-color: white;">
         <md-toolbar layout layout-align="space-between start" class="md-padding" style="color: white!important; background-color:#00274e; height:10px!important;" >
           <div layout="column">
-            <span class="md-caption">{{ currentUser.email }}</span>
-            <p class="md-caption" style="color:#999">System Administrator</p>
+            <span class="md-caption">{{ currentUser.username }}</span>
+
           </div>
           <button ng-click='close()' style="background-color: transparent; border: none; color: white!important">
             <i class="material-icons">cancel</i>
@@ -76,40 +79,19 @@
             <span>Logout</span>
           </md-button>
           <md-divider></md-divider>
-        </div>
-        <div>
-          <md-button ng-controller="AuthLogoutController" ng-show="currentUser" ng-click="logout()" layout="row" class="md-subhead" style="background-color: transparent; border: none;">
-            <span>Menu Item</span>
+          <md-button ui-sref="dashboard">DASHBOARD
           </md-button>
           <md-divider></md-divider>
+          <md-button ui-sref="report-issue">ISSUE TRACKER</md-button>
+          <md-divider></md-divider>
         </div>
+
 
       </md-sidenav>
 
       <main flex layout="row" layout-align="start" ui-view style="background-color:white;"></main>
 
-      <footer ng-show="currentUser"  hide-gt-xs layout layout-align="space-around center"  class="md-padding template_footer">
-        <!-- to keep the menu item to the right it should appear last -->
-        <button ng-show="currentUser" ui-sref="dashboard" hide-gt-xs class="md-caption" style="background-color: transparent; border: none;">
-          <div layout="column" layout-align="start">
-            <i class="material-icons">developer_board</i>
-            Dashboard
-          </div>
-        </button>
-        <button ng-show="currentUser" ui-sref="report-issue" hide-gt-xs class="md-caption" style="background-color: transparent; border: none;">
-          <div layout="column" layout-align="start">
-            <i class="material-icons">bug_report</i>
-            Issue
-          </div>
-        </button>
-        <button ng-show="currentUser" hide-gt-xs ng-click="openLeftMenu()" class="md-caption" style="background-color: transparent; border: none;">
-          <div layout="column" layout-align="start">
-            <i class="material-icons">more_horiz</i>
-            More
-          </div>
-        </button>
 
-      </footer>
     </md-content>
 
 </div>

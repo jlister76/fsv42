@@ -187,11 +187,14 @@
                 $scope.labels = labels;
                 $scope.data = [[TXPercentage,KYPercentage,MSPercentage]];
 
+                $scope.TXPercentage = TXPercentage;
+                $scope.KYPercentage = KYPercentage;
+                $scope.MSPercentage = MSPercentage;
+
                 /*************************************************************************/
                 /*************************************************************************/
                                          //Texas Group stats
                 var TXGroupLabels =[];
-                var TXGroups =[];
                 var TXGroupPercentages =[];
                 DashboardService
                   .getTexasGroups()
@@ -217,7 +220,6 @@
                 /*************************************************************************/
                                      //Kentucky Group stats
                 var KYGroupLabels =[];
-                var KYGroups =[];
                 var KYGroupPercentages =[];
                 DashboardService
                   .getKentuckyGroups()
@@ -242,7 +244,6 @@
                 /*************************************************************************/
                 //Mississippi Group stats
                 var MSGroupLabels =[];
-                var MSGroups =[];
                 var MSGroupPercentages =[];
                 DashboardService
                   .getMississippiGroups()
@@ -286,6 +287,12 @@
                          }
                        }
                      ]
+                   },
+                   default: {
+                     global: {
+                       responsive: true,
+                       maintainAspectRatio: false
+                     }
                    }
 
                  };

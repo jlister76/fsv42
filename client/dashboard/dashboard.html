@@ -1,9 +1,9 @@
 <div flex layout="column" layout-align="center" class="container">
-  <div layout="row" layout-align="space-around" layout-sm="column"  layout-align-sm="start start" class="md-padding" id="top-container">
-    <div flex-sm="100" flex-order-sm="2" layout-sm="row" id="chart-container">
-      <div flex-sm="">
+  <div layout-sm="column" layout-gt-sm="row" layout-align-gt-sm="space-around" layout-xs="column"  layout-align-xs="start start" class="md-padding" id="top-container">
+    <div flex-order-sm="2" hide-xs flex-gt-sm="70" layout-sm="row" id="chart-container">
+      <div  flex-sm>
         <div>
-          <div  class="md-padding">
+          <div flex class="md-padding">
             <div layout="column" class="card md-padding" md-whiteframe="1">
               <div layout layout-align="space-around" layout-xs="column">
                 <a href="#" class="md-body-1 chart-link" ng-click="chart=0">Company Wide</a>
@@ -41,9 +41,18 @@
         </div>
       </div>
     </div><!--End of section-->
-    <div flex-order-sm="1" flex-sm="" layout="column" layout-align="start" id="container-two">
-      <div ng-controller="DashboardController" layout="column" layout-align-sm="center center" class="md-padding"
-           style="border:solid thin lightgray;background-color: palegoldenrod">
+    <div hide-gt-xs flex-order-xs="7" flex-xs="100">
+
+        <md-list>
+          <md-list-item><span class="md-title">Texas</span><small class="md-subhead">- {{ TXPercentage | number:0 }} %</small></md-list-item>
+          <md-list-item><span class="md-title">Kentucky</span><small class="md-subhead">- {{ KYPercentage | number:0 }} %</small></md-list-item>
+          <md-list-item><span class="md-title">Mississippi</span><small class="md-subhead">- {{ MSPercentage | number:0 }} %</small></md-list-item>
+        </md-list>
+
+    </div>
+    <div flex-order-sm="1" flex-order-xs="5"  layout="column" layout-align="start" id="container-two">
+      <div ng-controller="DashboardController" layout="column" layout-align="start center" layout-align-sm="center center"
+           id="confirmation-box">
         <div layout="column" layout-align="start" id="status">
           <md-progress-circular class="md-hue-4" md-mode="indeterminate">
           </md-progress-circular>
@@ -55,31 +64,27 @@
           <span class="md-body-1">Your confirmation has been saved!</span>
         </div>
       </div>
-      <div hide-sm ng-controller="IssueReportController" layout="column" >
-        <div layout="row" layout-align="end end">
-          <div flex-xs="100" flex-md="80">
+      <div hide-xs hide-sm ng-controller="IssueReportController" layout="column" id="issue-tracker-form">
+        <div>
+          <div flex-xs="100">
             <div layout=column>
               <h6 class="md-subhead title">Issue Tracker</h6>
               <div flex-xs="100" layout="column" layout-align="center center" class="md-padding"
-                   style="background-color: whitesmoke;">
-
-                <div ng-if="msgStatus == 0" style="margin:1.8rem;">
-                  <form layout="column" name="reportIssueForm"
+                   id="issue-form-background">
+                <div flex ng-if="msgStatus == 0" >
+                  <form flex layout="column" name="reportIssueForm"
                         ng-submit="report(update.issue,issue.comments)">
-                    <md-input-container style="margin: 1rem 0;">
+                    <md-input-container>
                       <label>I am unable to...</label>
                       <md-select ng-model="update.issue" required aria-label="issue report">
                         <md-option ng-repeat="issue in issueType" value="{{issue}}">{{issue}}</md-option>
                       </md-select>
                     </md-input-container>
                     <div  layout layout-align="center">
-                <textarea flex="90"   ng-model="issue.comments" name="comments" id="comments"  rows="4"
-                          style="border-radius: 2%; border: solid thin lightgray;"></textarea>
+                      <textarea flex="90"   ng-model="issue.comments" name="comments" id="comments" cols="10" rows="4"></textarea>
                     </div>
-                    <div layout layout-align="center start" style="margin: 1rem;">
-                      <md-button class="md-raised md-primary" type="submit" ng-disabled="reportIssueForm.$invalid"
-                                 style="color:white; width:200px; height:40px; margin: 1rem;">Submit
-                      </md-button>
+                    <div layout layout-align="center start">
+                      <md-button class="md-raised md-primary" id="issue-tracker-button" type="submit" ng-disabled="reportIssueForm.$invalid">Submit</md-button>
                     </div>
                   </form>
                 </div>
@@ -87,47 +92,53 @@
                   <p>{{ confirmation }}</p>
                 </div>
               </div>
-
             </div>
-
           </div>
         </div>
       </div>
     </div><!--End of section -->
   </div>
-  <div flex layout="column" layout-align="center" style="min-height: 600px;">
+  <div flex layout="column" layout-align="center" id="bottom-container">
     <div flex layout="column">
-      <div layout layout-align="center" class="md-padding" style="background-color: #0f6ab4">
-        <span class="md-title" style="color:white;">Results Table</span>
+      <div layout layout-align="center" class="md-padding" id="results-title">
+        <span class="md-title">Results Table</span>
       </div>
-
       <div layout="column" class="md-padding">
         <div>
-          <div layout="column">
-            <div layout style="background-color: palegoldenrod; border:grey">
-              <div flex="33" layout layout-align="center center">
-                <span class="md-body-2" style="margin-right:.8rem;">Filter By State</span>
+          <div layout="column" layout-align-sm="space-between">
+            <div layout id="filter-bar">
+              <div hide-xs flex="25" layout layout-align="center center">
+                <span  class="md-icon">
+                  <i class="material-icons">filter_list</i>
+                </span>
+                <span>Filter</span>
+              </div>
+              <div flex="25" flex-xs="33" layout layout-align="center center">
+                <span hide-sm hide-xs class="md-body-2">Filter By State</span>
                 <md-select style="margin:0 1rem!important;" ng-model="searchCriteria" aria-label="states"
                            placeholder="State">
                   <md-option ng-repeat="state in states" value="{{ state }}">{{ state }}</md-option>
                 </md-select>
               </div>
-              <div flex="33" layout layout-align="center center">
-                <span class="md-body-2" style="margin-right:.8rem;">Filter By Group</span>
+              <div flex="25" flex-xs="33" layout layout-align="center center">
+                <span hide-sm hide-xs class="md-body-2">Filter By Group</span>
                 <md-select style="margin:0 1rem!important;" ng-model="searchCriteria" aria-label="groups"
                            placeholder="Group">
                   <md-option ng-repeat="group in groups" value="{{ group }}">{{ group }}</md-option>
                 </md-select>
               </div>
-              <div flex="33">
-                  <md-button layout="row"  class="md-primary md-body-2" ng-click="searchCriteria=''">Clear Filter</md-button>
+              <div flex="25" flex-xs="33" layout layout-align="center center" >
+                  <span class="md-icon">
+                    <a href="#" class="md-body-2" ng-click="searchCriteria=''">Clear Filter</a>
+                  </span>
               </div>
             </div>
             <div>
               <div layout layout-align="end">
-                <div layout="column">
-                  <md-button class="md-secondary" ng-click="sendReminder()">Statewide Reminder</md-button>
-                  <code class="md-caption">{{ reminderMsg }}</code>
+                <div layout="column" class="md-padding">
+                  <p class="md-caption">Statewide</p>
+                  <md-button class="md-fab md-mini md-warn md-icon-button" ng-click="sendReminder()"><i class="material-icons">chat_bubble_outline</i></md-button>
+
                 </div>
                 <div>
 
@@ -138,18 +149,18 @@
             <div>
               <md-tabs md-dynamic-height>
                 <md-tab label="Unconfirmed">
-                  <div style="overflow: auto; max-height: 400px">
+                  <div id="unconfirmed-contianer">
                     <table>
                       <thead fix-head>
                       <tr>
                         <th class="md-body-2">
                           <a layout layout-align="start center" href="#"
                              ng-click="sortOption='lname'; sortReverse = !sortReverse">Name
-                            <span ng-if="sortOption=='lname' && !sortReverse"><i
-                              class="material-icons">arrow_drop_down</i></span>
+                            <span ng-if="sortOption=='lname' && !sortReverse">
+                              <i class="material-icons">arrow_drop_down</i></span>
                             <span ng-if="sortOption=='lname' && sortReverse"><i class="material-icons">arrow_drop_up</i></span></a>
                         </th>
-                        <th class="md-body-2">
+                        <th hide-sm hide-xs class="md-body-2">
                           <a layout layout-align="start center" href="#"
                              ng-click="sortOption='state'; sortReverse = !sortReverse">State
                             <span ng-if="sortOption=='state' && !sortReverse"><i
@@ -163,16 +174,16 @@
                           <span ng-if="sortOption=='group.title' && sortReverse"><i
                             class="material-icons">arrow_drop_up</i></span></a></th>
 
-                        <th class="md-body-2">Reminder</th>
+                        <th layout layout-align-sm="start start" class="md-body-2">Reminder</th>
                       </tr>
                       </thead>
                       <tbody flex>
                       <tr ng-repeat="e in employeesWithoutConfirmations | orderBy:sortOption:sortReverse | filter:searchCriteria">
 
                         <td class="md-body-1"> {{ e.lname}}, {{e.fname}}</td>
-                        <td class="md-body-1">{{ e.state.title }}</td>
+                        <td hide-sm hide-xs class="md-body-1">{{ e.state.title }}</td>
                         <td class="md-body-1">{{ e.group.title }}</td>
-                        <td><a href="#" ng-click="sendEmail(e.email, e.stateId)" class="md-body-1"><i class="material-icons">mail_outline</i></a>
+                        <td ><a href="#" ng-click="sendEmail(e.email, e.stateId)" class="md-body-1"><i class="material-icons">chat_bubble</i></a>
                         </td>
                       </tr>
                       </tbody>

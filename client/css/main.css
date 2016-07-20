@@ -3,8 +3,9 @@
 [ng\:cloak], [ng-cloak], .ng-cloak {
   display: none !important;
 }
-#logo {
-  background-image: url(../hc-logo.png);
+.logo {
+  /*background-image: url(../hc-logo.png);*/
+ width: 112px;
 }
 .md-header {
   max-height: 120px!important;
@@ -59,26 +60,17 @@ footer {
 }
 table {
   border: thin solid lightgray;
-  padding: 0rem;
   border-collapse: collapse;
   empty-cells: show;
 }
-td {
-  padding: 1rem .5rem;
-  margin-left: .5rem;
-  width:100vw;
 
-}
 tr {
   border-bottom: solid thin lightgray;
 }
 tbody tr:hover {
   background-color: rgba(173, 216, 230, 0.13);
 }
-thead th {
-  text-align:left;
-  min-width:15rem;
-}
+
 .title {
 
   background-color: #0F6AB4;
@@ -115,12 +107,43 @@ a::selection {
 .menu-icon {
   cursor: hand;
   text-decoration: none;
-  color:inherit;
+  color:lightgray;
+}
+
+#bottom-container {
+  min-height: 600px;
+}
+#bottom-container a {
+  text-decoration: none;
+  color: #0F6AB4;
+}
+#results-title {
+  background-color: #0f6ab4
+}
+#results-title span {
+  color:white;
+}
+#filter-bar {
+  background-color: palegoldenrod;
+  border:grey;
+}
+
+#filter-bar span {
+  margin-right:.8rem;
+}
+
+#unconfirmed-contianer {
+  overflow: auto;
+  max-height: 400px
 }
 
 /*********************************************************************/
                    /*X-Large Screens*/
 @media only screen and (min-width:1920px){
+  #unconfirmed-contianer {
+    overflow: auto;
+    max-height: 400px
+  }
 
 }
 /*********************************************************************/
@@ -128,7 +151,7 @@ a::selection {
                  /*Large Screens*/
 @media only screen and (min-width:1280px) and (max-width:1919px){
 #chart-container{
-  height: 74vh;
+  min-height: 74vh;
   margin-top: 2rem;
   border:solid thin #eeeeee;
   background-color:rgba(99, 99, 99, 0.89);
@@ -140,7 +163,50 @@ a::selection {
   }
   #top-container {
     min-height:60vh;
-    border: solid thin red;
+
+  }
+  #confirmation-box {
+    border:solid thin lightgray;
+    background-color: palegoldenrod;
+    padding: .8rem;
+    margin-bottom: .8rem;
+    min-height: 170px;
+  }
+  thead th {
+    text-align:left;
+    min-width:15rem;
+  }
+  td {
+    padding: 1rem .5rem;
+    margin-left: .5rem;
+    width:100vw;
+
+  }
+  #issue-form-background {
+    background-color: whitesmoke;
+  }
+  #issue-tracker-form {
+    margin:1.8rem;
+  }
+  #issue-tracker-form md-input-container {
+    margin: 1rem 0;
+  }
+  textarea {
+    border-radius: 2%;
+    border: solid thin lightgray;
+  }
+  #issue-tracker-button-container {
+    margin: 1rem;
+  }
+  #issue-tracker-button {
+    color:white;
+    width:200px;
+    height:40px;
+    margin: 1rem
+  }
+  #unconfirmed-contianer {
+    overflow: auto;
+    max-height: 400px
   }
 }
 
@@ -148,7 +214,44 @@ a::selection {
 /*********************************************************************/
                 /*Medium Screens*/
 @media only screen and (min-width:960px) and (max-width:1279px){
+  #confirmation-box {
+    border:solid thin lightgray;
+    background-color: palegoldenrod;
+    padding: .8rem;
+    margin-bottom: .8rem;
 
+  }
+  td {
+    padding: 1rem .5rem;
+    margin-left: .5rem;
+    width:100vw;
+  }
+  #unconfirmed-contianer {
+    overflow: auto;
+    max-height: 400px
+  }
+  #issue-form-background {
+    background-color: whitesmoke;
+  }
+  #issue-tracker-form {
+    margin:1.8rem;
+  }
+  #issue-tracker-form md-input-container {
+    margin: 1rem 0;
+  }
+  textarea {
+    border-radius: 2%;
+    border: solid thin lightgray;
+  }
+  #issue-tracker-button-container {
+    margin: 1rem;
+  }
+  #issue-tracker-button {
+    color:white;
+    width:200px;
+    height:40px;
+    margin: 1rem
+  }
 }
 
 /*********************************************************************/
@@ -160,9 +263,33 @@ a::selection {
   #container-two {
     width: 100vw;
   }
+  #container-two {
+    width: 98vw;
+    maring-bottom:1rem;
+  }
   #chart-container {
     border: none;
     width:100vw;
+  }
+  #confirmation-box {
+    background-color: white;
+    padding-bottom: .8rem;
+    border-bottom: solid thin lightgrey;
+    width:95vw;
+    margin: 1rem 0;
+  }
+  td {
+    padding: 1rem .5rem;
+    margin-left: .5rem;
+    width:80vw;
+  }
+ th {
+  padding: 1rem .5rem;
+  margin-left: .5rem;
+}
+  #unconfirmed-contianer {
+    overflow: auto;
+    max-height: 400px
   }
 
 }
@@ -171,6 +298,38 @@ a::selection {
 /*********************************************************************/
                   /*X-Small Screens*/
 @media only screen and (max-width:599px){
+  html { overflow:hidden;}
+  #container-two {
+    width: 100vw;
+  }
+  #container-two {
+    width: 98vw;
+    maring-bottom:1rem;
+  }
+  #chart-container {
+    border: none;
+    width:100vw;
+  }
+  #confirmation-box {
+    background-color: #E2E2E2;
+    padding: .8rem;
+    border-bottom: solid thin lightgrey;
+    width:95vw;
+    margin: 1rem 0;
+  }
+  td {
+    padding: 1rem .5rem;
+    margin-left: .5rem;
+    width:80vw;
+  }
+  th {
+    padding: 1rem .5rem;
+    margin-left: .5rem;
+  }
+  #unconfirmed-contianer {
+    overflow: auto;
+    max-height: 400px
+  }
 
 }
 
