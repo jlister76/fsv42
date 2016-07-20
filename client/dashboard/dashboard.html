@@ -1,6 +1,6 @@
 <div flex layout="column" layout-align="center" class="container">
   <div layout-sm="column" layout-gt-sm="row" layout-align-gt-sm="space-around" layout-xs="column"  layout-align-xs="start start" class="md-padding" id="top-container">
-    <div flex-order-sm="2" hide-xs flex-gt-sm="70" layout-sm="row" id="chart-container">
+    <div flex-gt-md="70" flex-order-sm="2" hide-xs flex-gt-sm="70" layout-sm="row" id="chart-container">
       <div  flex-sm>
         <div>
           <div flex class="md-padding">
@@ -50,8 +50,8 @@
         </md-list>
 
     </div>
-    <div flex-order-sm="1" flex-order-xs="5"  layout="column" layout-align="start" id="container-two">
-      <div ng-controller="DashboardController" layout="column" layout-align="start center" layout-align-sm="center center"
+    <div flex-gt-md="30" flex-order-sm="1" flex-order-xs="5"  layout="column" layout-align="start" id="container-two">
+      <div ng-controller="DashboardController"  layout="column" layout-align="start center" layout-align-sm="center center"
            id="confirmation-box">
         <div layout="column" layout-align="start" id="status">
           <md-progress-circular class="md-hue-4" md-mode="indeterminate">
@@ -65,11 +65,11 @@
         </div>
       </div>
       <div hide-xs hide-sm ng-controller="IssueReportController" layout="column" id="issue-tracker-form">
-        <div>
-          <div flex-xs="100">
-            <div layout=column>
+        <div flex>
+          <div flex flex-xs="100">
+            <div flex layout=column>
               <h6 class="md-subhead title">Issue Tracker</h6>
-              <div flex-xs="100" layout="column" layout-align="center center" class="md-padding"
+              <div  flex-xs="100" layout="column" layout-align="center center" class="md-padding"
                    id="issue-form-background">
                 <div flex ng-if="msgStatus == 0" >
                   <form flex layout="column" name="reportIssueForm"

@@ -154,12 +154,12 @@ a::selection {
   min-height: 74vh;
   margin-top: 2rem;
   border:solid thin #eeeeee;
-  background-color:rgba(99, 99, 99, 0.89);
+  background-color: rgba(226, 226, 226, 0.89);
 }
   #container-two {
     margin-top:2rem;
     margin-left: .8rem;
-    height: 74vh;
+
   }
   #top-container {
     min-height:60vh;
@@ -170,7 +170,7 @@ a::selection {
     background-color: palegoldenrod;
     padding: .8rem;
     margin-bottom: .8rem;
-    min-height: 170px;
+
   }
   thead th {
     text-align:left;
@@ -184,9 +184,11 @@ a::selection {
   }
   #issue-form-background {
     background-color: whitesmoke;
+    min-height:280px;
   }
   #issue-tracker-form {
     margin:1.8rem;
+
   }
   #issue-tracker-form md-input-container {
     margin: 1rem 0;
@@ -200,7 +202,7 @@ a::selection {
   }
   #issue-tracker-button {
     color:white;
-    width:200px;
+    width:280px;
     height:40px;
     margin: 1rem
   }
