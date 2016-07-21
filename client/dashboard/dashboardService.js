@@ -36,15 +36,21 @@
         return AuthService
           .getCurrentEmployee()
           .then(function(user){
-            return Confirmation
-              .find({filter: {where: {employeeId: user.id}, include: 'update'}})
-              .$promise
-              .then(function(confirmations){
-                console.log(confirmations);
-                var currentReleaseDate =[];
-                _.forEach(confirmations, function (o){ currentReleaseDate.push(moment(o.update.releaseDate))});
-                return moment.max(currentReleaseDate);
-              })
+            if (!user){
+              console.log("Not an employee");
+              return null;
+            }else{
+              return Confirmation
+                .find({filter: {where: {employeeId: user.id}, include: 'update'}})
+                .$promise
+                .then(function(confirmations){
+
+                  var currentReleaseDate =[];
+                  _.forEach(confirmations, function (o){ currentReleaseDate.push(moment(o.update.releaseDate))});
+                  return moment.max(currentReleaseDate);
+                })
+            }
+
           });
 
 

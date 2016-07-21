@@ -45,16 +45,16 @@
           .getCurrent()
           .$promise
           .then(function(user){
-            console.log(user.id);
             return Employee
               .find({filter:{where:{memberId: user.id}}})
               .$promise
-              .then(function(employee){
-                console.log(employee[0]);
-                return employee[0];
-              })
+              .then(function(employee) {
+                return employee[0];})
           })
+
+
       }
+
       function getCurrentId() {
         return Member
           .getCurrentId()

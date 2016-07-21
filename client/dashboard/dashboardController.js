@@ -28,9 +28,14 @@
           DashboardService
             .getCurrentConfirmation()
             .then(function(maxConfDate){
+              console.log(maxConfDate);
+              if (maxConfDate == null){
+                $scope.msgStatus = 2;
+              }else{
+                $scope.msgShow = 1;
+                $scope.statusCurrent = moment(currentReleaseDate).isSame(maxConfDate);
+              }
 
-              $scope.msgShow = 1;
-              $scope.statusCurrent = moment(currentReleaseDate).isSame(maxConfDate);
 
               if ($scope.statusCurrent){
 
@@ -44,7 +49,7 @@
                 DownloadService
                   .getCurrentDownload()
                   .then(function(currentDownload){
-                    console.log(currentDownload);
+
                     var mostRecentDownload = {
                       id: currentDownload.id,
                       state: currentDownload.state,
@@ -133,7 +138,7 @@
 
                   $scope.employeesWithConfirmations =_.uniq(employeesWithConfirmations);//unique values, no dupes
                   $scope.employeesWithoutConfirmations = _.uniq(employeesWithoutConfirmations);//unique values, no dupes
-                  console.log($scope.employeesWithConfirmations);
+
 
                 });
                 var groups = [];

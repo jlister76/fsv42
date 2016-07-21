@@ -1,14 +1,14 @@
 {
   "ids": {
     "User": 1,
-    "AccessToken": 7,
+    "AccessToken": 12,
     "ACL": 1,
     "RoleMapping": 1,
     "Role": 1,
     "Member": 5,
     "Employee": 4,
-    "Confirmation": 7,
-    "IssueReport": 1,
+    "Confirmation": 8,
+    "IssueReport": 2,
     "Update": 4,
     "State": 7,
     "Group": 8
@@ -33,9 +33,12 @@
       "3": "{\"employee_number\":\"12345\",\"stateId\":3,\"groupId\":6,\"memberId\":4,\"id\":3}"
     },
     "Confirmation": {
-      "6": "{\"lastUpdated\":\"2016-07-21T06:29:42.854Z\",\"groupId\":4,\"employeeId\":2,\"updateId\":2,\"id\":6}"
+      "6": "{\"lastUpdated\":\"2016-07-21T06:29:42.854Z\",\"groupId\":4,\"employeeId\":2,\"updateId\":2,\"id\":6}",
+      "7": "{\"lastUpdated\":\"2016-07-21T22:10:13.549Z\",\"groupId\":1,\"employeeId\":1,\"updateId\":1,\"id\":7}"
     },
-    "IssueReport": {},
+    "IssueReport": {
+      "1": "{\"issue\":\"Install an update\",\"employeeId\":2,\"updateId\":1,\"stateId\":1,\"createdAt\":\"2016-07-21T22:10:35.418Z\",\"id\":1}"
+    },
     "Update": {
       "1": "{\"releaseDate\":\"2016-07-21T05:00:00.000Z\",\"link\":\"https://s3.amazonaws.com/fsv42updates/FSV42KY-Mid(64bit).EXE\",\"stateId\":1,\"id\":1}",
       "2": "{\"releaseDate\":\"2016-07-21T05:00:00.000Z\",\"link\":\"https://s3.amazonaws.com/fsv42updates/FSV42KY-Mid(64bit).EXE\",\"stateId\":2,\"id\":2}",
