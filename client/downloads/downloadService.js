@@ -14,7 +14,7 @@
                 .getCurrentReleaseDate()
                 .then(function (date) {
                   return Update
-                    .findOne({filter: {where: {state: state.title, releaseDate: date}}})
+                    .findOne({filter: {where: {stateId: state.id, releaseDate: moment(date)}}})
                     .$promise
                     .then(function (update) {
                       currentDownload.id = update.id;

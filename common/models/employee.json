@@ -1,18 +1,12 @@
 {
   "name": "Employee",
-  "base": "User",
+  "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
     "employee_number": {
-      "type": "string"
-    },
-    "fname": {
-      "type": "string"
-    },
-    "lname": {
       "type": "string"
     }
   },
@@ -36,6 +30,11 @@
     "issueReports": {
       "type": "hasMany",
       "model": "IssueReport",
+      "foreignKey": ""
+    },
+    "member": {
+      "type": "belongsTo",
+      "model": "Member",
       "foreignKey": ""
     }
   },

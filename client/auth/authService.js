@@ -3,9 +3,9 @@
 
   angular
     .module('FSV42App')
-    .factory('AuthService', function (Employee, $q, $rootScope, State) {
+    .factory('AuthService', function (Member,Employee, $q, $rootScope, State) {
       function login(email, password) {
-        return Employee
+        return Member
           .login({email: email, password: password})
           .$promise
           .then(function (response) {
@@ -18,7 +18,7 @@
           });
       }
       function logout() {
-        return Employee
+        return Member
           .logout()
           .$promise
           .then(function () {
@@ -27,7 +27,7 @@
           });
       }
       function register(email, password) {
-        return Employee
+        return Member
           .create({
             email: email,
             password: password
@@ -35,22 +35,37 @@
           .$promise
       }
       function getCurrent() {
-        return Employee
+        return Member
           .getCurrent()
 
 
       }
+      function getCurrentEmployee() {
+        return Member
+          .getCurrent()
+          .$promise
+          .then(function(user){
+            console.log(user.id);
+            return Employee
+              .find({filter:{where:{memberId: user.id}}})
+              .$promise
+              .then(function(employee){
+                console.log(employee[0]);
+                return employee[0];
+              })
+          })
+      }
       function getCurrentId() {
-        return Employee
+        return Member
           .getCurrentId()
 
       }
       function isAuthenticated() {
-        return Employee.isAuthenticated;
+        return Member.isAuthenticated;
       }
 
       function getCurrentState() {
-        return Employee
+        return Member
           .getCurrent()
           .$promise
           .then(function (currentEmployee) {
@@ -72,6 +87,7 @@
         logout: logout,
         register: register,
         getCurrent: getCurrent,
+        getCurrentEmployee:getCurrentEmployee,
         getCurrentId: getCurrentId,
         isAuthenticated: isAuthenticated,
         getCurrentState: getCurrentState

@@ -180,7 +180,7 @@
                       <tbody flex>
                       <tr ng-repeat="e in employeesWithoutConfirmations | orderBy:sortOption:sortReverse | filter:searchCriteria">
 
-                        <td class="md-body-1"> {{ e.lname}}, {{e.fname}}</td>
+                        <td class="md-body-1"> {{ e.member.lname}}, {{e.member.fname}}</td>
                         <td hide-sm hide-xs class="md-body-1">{{ e.state.title }}</td>
                         <td class="md-body-1">{{ e.group.title }}</td>
                         <td ><a href="#" ng-click="sendEmail(e.email, e.stateId)" class="md-body-1"><i class="material-icons">chat_bubble</i></a>
@@ -221,7 +221,7 @@
                       <tr
                         ng-repeat="e in employeesWithConfirmations | orderBy:sortOption:sortReverse | filter:searchCriteria">
 
-                        <td class="md-body-1" > {{ e.lname }}, {{e.fname}}</td>
+                        <td class="md-body-1" > {{ e.member.lname }}, {{e.member.fname}}</td>
                         <td class="md-body-1" >{{ e.state.title }}</td>
                         <td class="md-body-1" >{{ e.group.title }}</td>
 

@@ -24,6 +24,7 @@
       UpdateService
         .getCurrentReleaseDate()
         .then(function(currentReleaseDate){
+
           DashboardService
             .getCurrentConfirmation()
             .then(function(maxConfDate){
@@ -43,6 +44,7 @@
                 DownloadService
                   .getCurrentDownload()
                   .then(function(currentDownload){
+                    console.log(currentDownload);
                     var mostRecentDownload = {
                       id: currentDownload.id,
                       state: currentDownload.state,
@@ -99,7 +101,7 @@
           .then(function(confirmations){
 
             Employee
-              .find({filter:{include: ['state','group']}})
+              .find({filter:{include: ['state','group','member']}})
               .$promise
               .then(function(employees){
                 var sortedEmployees = employees.sort();
@@ -107,7 +109,7 @@
                 var employeesWithConfirmations = [];
                 var employeesWithoutConfirmations = [];
                 var employeeIdsWithConfirmations = _.difference(confirmations,employees);
-                //console.log(employeeIdsWithConfirmations);
+
                 _.forEach(employeeIdsWithConfirmations, function(c){
                   _.forEach(c, function (o) {
                     employeeIdsFromConfirmation.push({id: o.employeeId});
@@ -116,7 +118,6 @@
                   function compare(a,b) {
                     if (a.id < b.id)
                       return -1;
-                    if (a.id > b.id)
                       return 1;
                     return 0;
                   }//sorts objects by id
@@ -132,7 +133,7 @@
 
                   $scope.employeesWithConfirmations =_.uniq(employeesWithConfirmations);//unique values, no dupes
                   $scope.employeesWithoutConfirmations = _.uniq(employeesWithoutConfirmations);//unique values, no dupes
-
+                  console.log($scope.employeesWithConfirmations);
 
                 });
                 var groups = [];
@@ -149,6 +150,7 @@
                 var msConfCount =[];
                 //console.log($scope.employeesWithConfirmations.length / employees.length *100);
                 _.forEach(employees, function (e){
+
                   if (e.state.title == "Texas"){
                     txEmployeeCount.push(e);
                   } else if (e.state.title == "Kentucky"){
@@ -372,10 +374,11 @@
         UpdateService
           .getAllCurrentUpdates()
           .then(function (currentUpdates) {
+            console.log(currentUpdates);
             AuthService
-              .getCurrent()
-              .$promise
+              .getCurrentEmployee()
               .then(function (user){
+
                 var update;
                 var date = new Date();
                 _.forEach(currentUpdates, function(o){
@@ -383,6 +386,7 @@
                     update = o;
                   }
                 });
+
                 Confirmation
                   .create({lastUpdated: date, updateId: update.id, employeeId: user.id, groupId: user.groupId})
                   .$promise

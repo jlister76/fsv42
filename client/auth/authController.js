@@ -3,7 +3,7 @@
 
   angular
     .module('FSV42App')
-    .controller('AuthLoginController', function ($scope, $state, AuthService, $location, $log, Employee) {
+    .controller('AuthLoginController', function ($scope, $state, AuthService, $location, $log, Member, Employee) {
 
       $scope.user = {
         email: null,
@@ -19,7 +19,7 @@
               $location.path(next);
               //$state.go('dashboard');
 
-              Employee.getCurrent()
+              Member.getCurrent()
                 .$promise
                 .then(function (user){
 
@@ -59,7 +59,7 @@
     })
     .controller('AuthSignUpController', function ($scope, $state, AuthService) {
 
-      $scope.Employee = {
+      $scope.Member = {
         email: 'baz@qux.com',
         password: 'bazqux'
       };

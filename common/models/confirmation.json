@@ -8,6 +8,10 @@
   "properties": {
     "lastUpdated": {
       "type": "date"
+    },
+    "groupId": {
+      "type": "number",
+      "required": true
     }
   },
   "validations": [],
