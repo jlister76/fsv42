@@ -28,9 +28,10 @@
           DashboardService
             .getCurrentConfirmation()
             .then(function(maxConfDate){
-              console.log(maxConfDate);
+
               if (maxConfDate == null){
-                $scope.msgStatus = 2;
+                $scope.msgShow = 2;
+
               }else{
                 $scope.msgShow = 1;
                 $scope.statusCurrent = moment(currentReleaseDate).isSame(maxConfDate);
@@ -138,7 +139,7 @@
 
                   $scope.employeesWithConfirmations =_.uniq(employeesWithConfirmations);//unique values, no dupes
                   $scope.employeesWithoutConfirmations = _.uniq(employeesWithoutConfirmations);//unique values, no dupes
-
+                  console.log($scope.employeesWithoutConfirmations);
 
                 });
                 var groups = [];
@@ -310,10 +311,10 @@
                   AuthService
                     .getCurrentState()
                     .then(function(state){
+                      console.log(state.id);
                       var emails =[];
-
                       _.forEach($scope.employeesWithoutConfirmations, function(employee){
-                        console.log(employee, state);
+                        console.log(employee.stateId, $scope.employeesWithoutConfirmations.length > 0);
                         if (employee.stateId == state.id && $scope.employeesWithoutConfirmations.length > 0){
                           console.log(employee.stateId, state.id);
                           emails.push(employee.email);
@@ -324,9 +325,9 @@
                             .position('right')
                             .capsule(true)
                             .textContent("Statewide reminder was sent to: " + state.title))
-                        } else if ($scope.employeesWithoutConfirmations.length < 0) {
-
-                          //console.log("Everyone in "+ state.title + " is up to date.");
+                        } else if (employee.stateId != state.id || $scope.employeesWithoutConfirmations.length < 0) {
+                          console.log("WTF?");
+                          console.log("Everyone in "+ state.title + " is up to date.");
                           $mdToast.show($mdToast.simple()
                             .position('right')
                             .capsule(true)

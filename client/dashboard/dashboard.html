@@ -57,7 +57,8 @@
           <md-progress-circular class="md-hue-4" md-mode="indeterminate">
           </md-progress-circular>
         </div>
-        <div ng-if="!statusCurrent && msgStatus==0 && msgStatus !=2">
+        <div ng-if="!statusCurrent && msgStatus == 0 && msgShow == 2 ">Member Only</div>
+        <div ng-if="!statusCurrent && msgStatus == 0 && msgShow != 2">
           <md-checkbox ng-model="status" ng-change="createConfirmation()">I have successfully installed this update.</md-checkbox>
         </div>
         <div ng-if="msgStatus == 2">
@@ -185,7 +186,7 @@
                         <td class="md-body-1"> {{ e.member.lname}}, {{e.member.fname}}</td>
                         <td hide-sm hide-xs class="md-body-1">{{ e.state.title }}</td>
                         <td class="md-body-1">{{ e.group.title }}</td>
-                        <td ><a href="#" ng-click="sendEmail(e.email, e.stateId)" class="md-body-1"><i class="material-icons">chat_bubble</i></a>
+                        <td ><a href="#" ng-click="sendEmail(e.member.email, e.stateId)" class="md-body-1"><i class="material-icons">chat_bubble</i></a>
                         </td>
                       </tr>
                       </tbody>

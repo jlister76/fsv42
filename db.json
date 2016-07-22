@@ -1,7 +1,7 @@
 {
   "ids": {
     "User": 1,
-    "AccessToken": 12,
+    "AccessToken": 24,
     "ACL": 1,
     "RoleMapping": 1,
     "Role": 1,
@@ -16,7 +16,8 @@
   "models": {
     "User": {},
     "AccessToken": {
-      "ljjVyaEXytFOTnhRY5NQ4QAYhUE9NKETYBIYCnL1Zh8tUrGADNric7ggVQghE1YV": "{\"id\":\"ljjVyaEXytFOTnhRY5NQ4QAYhUE9NKETYBIYCnL1Zh8tUrGADNric7ggVQghE1YV\",\"ttl\":1209600,\"created\":\"2016-07-21T06:30:21.416Z\",\"userId\":1}"
+      "ljjVyaEXytFOTnhRY5NQ4QAYhUE9NKETYBIYCnL1Zh8tUrGADNric7ggVQghE1YV": "{\"id\":\"ljjVyaEXytFOTnhRY5NQ4QAYhUE9NKETYBIYCnL1Zh8tUrGADNric7ggVQghE1YV\",\"ttl\":1209600,\"created\":\"2016-07-21T06:30:21.416Z\",\"userId\":1}",
+      "SQqX7c819fcw3OuXoNjmnykqiJ8PBbn5Di9w8vZmCA5SosjYuGniBCP7pH0pdhPO": "{\"id\":\"SQqX7c819fcw3OuXoNjmnykqiJ8PBbn5Di9w8vZmCA5SosjYuGniBCP7pH0pdhPO\",\"ttl\":1209600,\"created\":\"2016-07-22T03:37:13.673Z\",\"userId\":2}"
     },
     "ACL": {},
     "RoleMapping": {},
