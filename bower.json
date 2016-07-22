@@ -24,6 +24,7 @@
     "angular-fixed-table-header": "^0.2.1",
     "Chart.js": "^2.1.6",
     "angular-chart.js": "^1.0.0",
-    "angularUtils-pagination": "angular-utils-pagination#^0.11.1"
+    "angularUtils-pagination": "angular-utils-pagination#^0.11.1",
+    "lodash": "^4.13.1"
   }
 }

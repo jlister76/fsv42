@@ -326,7 +326,7 @@
                             .capsule(true)
                             .textContent("Statewide reminder was sent to: " + state.title))
                         } else if (employee.stateId != state.id || $scope.employeesWithoutConfirmations.length < 0) {
-                          
+
                           console.log("Everyone in "+ state.title + " is up to date.");
                           $mdToast.show($mdToast.simple()
                             .position('right')
