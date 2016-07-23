@@ -318,23 +318,25 @@
                         if (employee.stateId == state.id && $scope.employeesWithoutConfirmations.length > 0){
                           console.log(employee.stateId, state.id);
                           emails.push(employee.email);
+                        }
+                      });
+                        if (emails.length > 0){
                           var email = {email: emails};
                           $http.post('api/Updates/sendReminder', email);
                           console.log(email);
                           $mdToast.show($mdToast.simple()
-                            .position('right')
-                            .capsule(true)
-                            .textContent("Statewide reminder was sent to: " + state.title))
-                        } else if (employee.stateId != state.id || $scope.employeesWithoutConfirmations.length < 0) {
-
-                          console.log("Everyone in "+ state.title + " is up to date.");
+                           .position('right')
+                           .capsule(true)
+                           .textContent("Statewide reminder was sent to: " + state.title))
+                        } else {
+                          console.log("email list is empty");
                           $mdToast.show($mdToast.simple()
                             .position('right')
                             .capsule(true)
-                            .textContent("Everyone in "+ state.title + " is up to date."))
-
+                            .textContent("Everyone is " + state.title + "is up to date."));
                         }
-                      });
+
+
 
                     });
                 };
