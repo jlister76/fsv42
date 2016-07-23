@@ -26,28 +26,38 @@
       class="ng-cloak {xs: $mdMedia('xs'), sm: $mdMedia('sm'), md: $mdMedia('md'), lg: $mdMedia('lg')}">
 
 <div flex layout="column" id="container">
-  <md-header layout layout-align="center center" class="md-padding" style=" background-color: #00274e; color: rgb(60, 161, 255);height:68px!important;">
-    <div flex flex-xs="100" layout layout-align="start" layout-sm layout-align-sm="start start" layout-align-xs="center center" style="border:none">
-      <div flex-sm layout-sm  style="height:44px; margin-left:1rem;">
-
-        <img  src="hc-logo.png" alt="logo" class="logo" ng-cloak />
-      </div>
-    </div>
-    <div ng-show="currentUser" hide-gt-xs ng-click="openLeftMenu()">
+  <md-header layout layout-align="space-between center" layout-xs="row" layout-align-xs="space-around" class="md-padding" style=" background-color: #00274e; color: rgb(60, 161, 255);height:68px!important;">
+    <div layout-xs="row" layout-align-xs="start" ng-show="currentUser" hide-gt-xs ng-click="openLeftMenu()">
       <i class="material-icons">menu</i>
     </div>
+    <div flex-xs layout-xs layout-align-xs="center center" class="md-padding" id="logo-container" style="">
+      <div flex layout layout-align="start start" layout-sm layout-align-sm="start start" layout-xs layout-align-xs="center center">
+        <div flex-sm layout-sm  style="height:44px;">
+          <img  src="hc-logo.png" alt="logo" class="logo" ng-cloak />
+        </div>
+      </div>
+    </div>
+    <div layout-xs>
+
+    </div>
+
+
+
     <div  layout layout-align="end end" hide-xs style="height:64px;; border:none">
       <div layout layout-align="center center" ng-controller="AuthLogoutController">
         <md-menu ng-show="currentUser" md-offset="80 30"class="md-padding">
           <a href="#"layout layout-align="center center" class="menu-icon"  ng-click="$mdOpenMenu($event)">
             {{currentUser.fname +" " +currentUser.lname}}<span>&nbsp;<i class="material-icons">arrow_drop_down</i></span>
           </a>
-          <md-menu-content ng-show="currentUser" width="4">
+          <md-menu-content  hide-xs ng-show="currentUser" width="4">
             <md-menu-item>
               <md-button ng-show="currentUser" ui-sref="dashboard" class="">Dashboard</md-button>
             </md-menu-item>
-            <md-menu-item>
-              <md-button ng-show="currentUser" ui-sref="download" class="">Downloads</md-button>
+            <md-menu-item hide-xs hide-sm hide-md>
+              <md-button hide-xs hide-sm hide-md ng-show="currentUser" ui-sref="download" class="">Downloads</md-button>
+            </md-menu-item>
+            <md-menu-item hide-gt-sm >
+              <md-button hide-gt-sm ng-show="currentUser" ui-sref="report-issue" class="">Issue Tracker</md-button>
             </md-menu-item>
             <md-menu-item>
               <md-button ng-show="currentUser" ng-click="logout()" md-menu-align-target class="md-padding">Log Out</md-button>
@@ -75,14 +85,14 @@
           </button>
         </md-toolbar>
         <div>
-          <md-button ng-controller="AuthLogoutController" ng-show="currentUser" ng-click="logout()" layout="row" class="md-subhead" style="background-color: transparent; border: none;">
-            <span>Logout</span>
+          <md-button ui-sref="dashboard">Dashboard
           </md-button>
           <md-divider></md-divider>
-          <md-button ui-sref="dashboard">DASHBOARD
-          </md-button>
+          <md-button ui-sref="report-issue">Issue Tracker</md-button>
           <md-divider></md-divider>
-          <md-button ui-sref="report-issue">ISSUE TRACKER</md-button>
+          <md-button ng-controller="AuthLogoutController" ng-show="currentUser" ng-click="logout()" layout="row" class="md-subhead">
+            Logout
+          </md-button>
           <md-divider></md-divider>
         </div>
 

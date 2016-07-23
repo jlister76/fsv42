@@ -184,6 +184,8 @@ a::selection {
 
   }
   #issue-form-background {
+    border: solid thin;
+    border-color: rgba(52, 73, 94, 0.26);
     background-color: whitesmoke;
     min-height:280px;
   }
@@ -307,7 +309,12 @@ a::selection {
   }
   #container-two {
     width: 98vw;
-    maring-bottom:1rem;
+    min-height: 30vh;
+    margin-bottom:1rem;
+  }
+  #logo-container {
+    width:100vw;
+
   }
   #chart-container {
     border: none;

@@ -4,10 +4,11 @@ module.exports = function(Update) {
   Update.sendMail = function(emails,cb){
     Update.app.models.Email.send({
       to: emails,
-      from: 'noreply@gmail.com',
-      subject: 'Delete this email',
-      text: 'This is a test email.',
-      html: '<em>This is a test message [email reminder].</em>'
+      from: 'noreply@heathus.com',
+      subject: 'Field Smart Update Reminder',
+      text: '',
+      html: '<p>A newer version of Field Smart is available for download.</p>' +
+        '<p>Click <a href="http://fsv42.azurewebsites.net"><em>here</em></a> to get the latest update.</p>'
     }, function(err, mail) {
       console.log('email sent!');
       if (err) return err;
