@@ -3,8 +3,8 @@
     "User": 1,
     "AccessToken": 33,
     "ACL": 1,
-    "RoleMapping": 1,
-    "Role": 1,
+    "RoleMapping": 5,
+    "Role": 2,
     "Member": 14,
     "Employee": 10,
     "Confirmation": 8,
@@ -22,8 +22,15 @@
       "898bnhkido42aIgE4jNbrt7opyFALPZAB41HD4QrE4G7KkZqo2HtKClKEOgsNlh7": "{\"id\":\"898bnhkido42aIgE4jNbrt7opyFALPZAB41HD4QrE4G7KkZqo2HtKClKEOgsNlh7\",\"ttl\":1209600,\"created\":\"2016-07-25T01:48:00.424Z\",\"userId\":5}"
     },
     "ACL": {},
-    "RoleMapping": {},
-    "Role": {},
+    "RoleMapping": {
+      "1": "{\"principalId\":\"2\",\"roleId\":2,\"id\":1}",
+      "2": "{\"principalId\":\"2\",\"roleId\":2,\"id\":2}",
+      "3": "{\"principalType\":\"USER\",\"principalId\":\"2\",\"roleId\":2,\"id\":3}",
+      "4": "{\"principalType\":\"USER\",\"principalId\":\"2\",\"roleId\":2,\"id\":4}"
+    },
+    "Role": {
+      "1": "{\"name\":\"admin\",\"created\":\"2016-07-25T02:52:37.301Z\",\"modified\":\"2016-07-25T02:52:37.301Z\",\"id\":1}"
+    },
     "Member": {
       "1": "{\"fname\":\"John\",\"lname\":\"Lister\",\"username\":\"John Lister\",\"password\":\"$2a$10$hEz34USvMlW7iqtMWcHyDe5OIXk.204SwIGCJJueI/o8fRClgUssS\",\"email\":\"jlister469@outlook.com\",\"stateId\":1,\"id\":1}",
       "2": "{\"fname\":\"Andrew\",\"lname\":\"Machiano\",\"username\":\"Andrew Machiano\",\"password\":\"$2a$10$s98.bJK5zw89RnC55rB2ReVrIADMXGt44LKiiW93YshR4xmpskuKG\",\"email\":\"a.machiano@heathus.com\",\"stateId\":1,\"id\":2}",

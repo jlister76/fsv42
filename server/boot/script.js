@@ -80,7 +80,20 @@ module.exports = function(app){
       })
 
   });*/
+Role.create({
+  name:'administrator'
+}, function(err,role){
+  if(err) return console.error(err);
+  console.info(role);
 
+  role.principals.create({
+    principalType: RoleMapping.USER,
+    principalId: 2
+  }, function (err,principal){
+    if (err) return debug(err);
+    console.error(principal);
+  })
+});
 
   /*User.create([
     {username: 'John', email: 'john@email.com', password: "01234HCI"},
