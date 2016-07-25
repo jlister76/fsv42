@@ -80,7 +80,7 @@ module.exports = function(app){
       })
 
   });*/
-Role.create({
+/*Role.create({
   name:'administrator'
 }, function(err,role){
   if(err) return console.error(err);
@@ -93,7 +93,9 @@ Role.create({
     if (err) return debug(err);
     console.error(principal);
   })
-});
+});*/
+
+
 
   /*User.create([
     {username: 'John', email: 'john@email.com', password: "01234HCI"},

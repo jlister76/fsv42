@@ -67,5 +67,13 @@
   "Member": {
     "dataSource": "db",
     "public": true
+  },
+  "Company": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Region": {
+    "dataSource": "db",
+    "public": true
   }
 }

@@ -3,7 +3,7 @@
 
   angular
     .module('FSV42App')
-    .controller('DashboardController', function ($scope, AuthService, $rootScope, $state, $mdSidenav, $log, $mdMedia, Confirmation,Employee,Update, $http,IssueReport, DownloadService,UpdateService, DashboardService,$mdToast){
+    .controller('DashboardController', function ($scope, AuthService, $rootScope, $state, $mdSidenav, $log, $mdMedia, Confirmation,Employee,Update, $http,IssueReport, DownloadService,UpdateService, DashboardService,$mdToast, Group){
       /*****************************************************************/
               //Sets current user
 
@@ -41,7 +41,12 @@
               if ($scope.statusCurrent){
 
                 var el = angular.element( document.querySelector('#status'));
-                var status = "You are currently up to date.";
+                var status ='<div layout layout-align="center center">'+
+                  '<div flex layout layout-align="center center" class="confirmation-icon">' +
+                  '<i class="material-icons">' + 'done' + '</i>'+
+                  '</div>' + '&nbsp; You are currently up to date.'+
+                  '</div>';
+
                 el.html(status);
 
 
@@ -79,10 +84,39 @@
         });
 
       /************************************************************************/
+
+      UpdateService
+        .getAllCurrentUpdates()
+        .then(function(updates){
+          console.log(updates);
+        });
+
       /************************************************************************/
       //Retrieving most recent update & their relative confirmations
       //Creating a list of all employees and separating into 2 list [Confirmed,Unconfirmed]
       function initData(){
+        /**********************************************************/
+        AuthService
+          .getCurrent()
+          .$promise
+          .then(function(user){
+            console.log(user);
+            if (user.accessLevel == 'account'){
+             Employee
+               .find({filter:{where:{memberId: user.id}}})
+               .$promise
+               .then(function(employee){
+                 var groupId = _.forEach(employee, function(e){console.log(e.groupId); return e.groupId;});
+                 console.log(groupId);
+                 Group
+                   .find({filter: {where:{id:groupId}}})
+                   .$promise.then(function (group){
+                     console.log(group);
+                 })
+               })
+            }
+          });
+        /**********************************************************/
 
         Update
           .find({filter:{include:'confirmations'}})

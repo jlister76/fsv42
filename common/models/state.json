@@ -29,6 +29,16 @@
       "type": "hasMany",
       "model": "IssueReport",
       "foreignKey": ""
+    },
+    "company": {
+      "type": "belongsTo",
+      "model": "Company",
+      "foreignKey": ""
+    },
+    "region": {
+      "type": "belongsTo",
+      "model": "Region",
+      "foreignKey": ""
     }
   },
   "acls": [],

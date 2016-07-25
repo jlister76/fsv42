@@ -11,6 +11,10 @@
     },
     "lname": {
       "type": "string"
+    },
+    "accessLevel": {
+      "type": "string",
+      "default": ""
     }
   },
   "validations": [],

@@ -19,7 +19,7 @@
 
       function getAllCurrentUpdates() {
         return Update
-          .find()
+          .find({filter:{include: 'confirmations'}})
           .$promise
           .then(function (updates) {
             var dates = [];

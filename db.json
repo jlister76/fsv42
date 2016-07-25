@@ -1,9 +1,9 @@
 {
   "ids": {
     "User": 1,
-    "AccessToken": 33,
+    "AccessToken": 40,
     "ACL": 1,
-    "RoleMapping": 5,
+    "RoleMapping": 7,
     "Role": 2,
     "Member": 14,
     "Employee": 10,
@@ -11,7 +11,9 @@
     "IssueReport": 3,
     "Update": 4,
     "State": 7,
-    "Group": 8
+    "Group": 8,
+    "Company": 2,
+    "Region": 3
   },
   "models": {
     "User": {},
@@ -19,18 +21,13 @@
       "ljjVyaEXytFOTnhRY5NQ4QAYhUE9NKETYBIYCnL1Zh8tUrGADNric7ggVQghE1YV": "{\"id\":\"ljjVyaEXytFOTnhRY5NQ4QAYhUE9NKETYBIYCnL1Zh8tUrGADNric7ggVQghE1YV\",\"ttl\":1209600,\"created\":\"2016-07-21T06:30:21.416Z\",\"userId\":1}",
       "SQqX7c819fcw3OuXoNjmnykqiJ8PBbn5Di9w8vZmCA5SosjYuGniBCP7pH0pdhPO": "{\"id\":\"SQqX7c819fcw3OuXoNjmnykqiJ8PBbn5Di9w8vZmCA5SosjYuGniBCP7pH0pdhPO\",\"ttl\":1209600,\"created\":\"2016-07-22T03:37:13.673Z\",\"userId\":2}",
       "GCZ4PquUOniBCaRGknjBqYVNkvMfeXVjbUcefY9B56QiSRsybN90rNRLNp9xp3nJ": "{\"id\":\"GCZ4PquUOniBCaRGknjBqYVNkvMfeXVjbUcefY9B56QiSRsybN90rNRLNp9xp3nJ\",\"ttl\":1209600,\"created\":\"2016-07-24T19:06:33.240Z\",\"userId\":5}",
-      "898bnhkido42aIgE4jNbrt7opyFALPZAB41HD4QrE4G7KkZqo2HtKClKEOgsNlh7": "{\"id\":\"898bnhkido42aIgE4jNbrt7opyFALPZAB41HD4QrE4G7KkZqo2HtKClKEOgsNlh7\",\"ttl\":1209600,\"created\":\"2016-07-25T01:48:00.424Z\",\"userId\":5}"
+      "898bnhkido42aIgE4jNbrt7opyFALPZAB41HD4QrE4G7KkZqo2HtKClKEOgsNlh7": "{\"id\":\"898bnhkido42aIgE4jNbrt7opyFALPZAB41HD4QrE4G7KkZqo2HtKClKEOgsNlh7\",\"ttl\":1209600,\"created\":\"2016-07-25T01:48:00.424Z\",\"userId\":5}",
+      "ta4fFA5e49CYvkDUU0s2VMj8Q9BEuhpFC26AkJpTZTzw1WWw0AScya6VlgsHtWbW": "{\"id\":\"ta4fFA5e49CYvkDUU0s2VMj8Q9BEuhpFC26AkJpTZTzw1WWw0AScya6VlgsHtWbW\",\"ttl\":1209600,\"created\":\"2016-07-25T16:37:24.210Z\",\"userId\":5}",
+      "jfr3lXRCDYAoxk5jNbA473wBAuqQTeBnngHEXuuIrRaWqSl0PAFffIP34p3GP3EF": "{\"id\":\"jfr3lXRCDYAoxk5jNbA473wBAuqQTeBnngHEXuuIrRaWqSl0PAFffIP34p3GP3EF\",\"ttl\":1209600,\"created\":\"2016-07-25T21:48:20.172Z\",\"userId\":12}"
     },
     "ACL": {},
-    "RoleMapping": {
-      "1": "{\"principalId\":\"2\",\"roleId\":2,\"id\":1}",
-      "2": "{\"principalId\":\"2\",\"roleId\":2,\"id\":2}",
-      "3": "{\"principalType\":\"USER\",\"principalId\":\"2\",\"roleId\":2,\"id\":3}",
-      "4": "{\"principalType\":\"USER\",\"principalId\":\"2\",\"roleId\":2,\"id\":4}"
-    },
-    "Role": {
-      "1": "{\"name\":\"admin\",\"created\":\"2016-07-25T02:52:37.301Z\",\"modified\":\"2016-07-25T02:52:37.301Z\",\"id\":1}"
-    },
+    "RoleMapping": {},
+    "Role": {},
     "Member": {
       "1": "{\"fname\":\"John\",\"lname\":\"Lister\",\"username\":\"John Lister\",\"password\":\"$2a$10$hEz34USvMlW7iqtMWcHyDe5OIXk.204SwIGCJJueI/o8fRClgUssS\",\"email\":\"jlister469@outlook.com\",\"stateId\":1,\"id\":1}",
       "2": "{\"fname\":\"Andrew\",\"lname\":\"Machiano\",\"username\":\"Andrew Machiano\",\"password\":\"$2a$10$s98.bJK5zw89RnC55rB2ReVrIADMXGt44LKiiW93YshR4xmpskuKG\",\"email\":\"a.machiano@heathus.com\",\"stateId\":1,\"id\":2}",
@@ -43,7 +40,7 @@
       "9": "{\"fname\":\"Blaine\",\"lname\":\"Cadieu\",\"username\":\"Blaine Cadieu\",\"password\":\"$2a$10$y/AgAfhn4FWB1hh88rxOseeNIAZ1yVRvkC8.blEJ3w0RzqZtikJeK\",\"email\":\"b.cadieu@heathus.com\",\"created\":\"2016-07-21T00:00:00.000Z\",\"lastUpdated\":\"2016-07-21T00:00:00.000Z\",\"stateId\":1,\"id\":9}",
       "10": "{\"fname\":\"George\",\"lname\":\"Espinosa\",\"username\":\"George Espinosa\",\"password\":\"$2a$10$2PsSc4FpPtV3pCSmxhc2a.5FC2gxC31sXQ827vWJXnA8MyqARkyMe\",\"email\":\"g.espinosa@heathus.com\",\"created\":\"2016-07-21T00:00:00.000Z\",\"lastUpdated\":\"2016-07-21T00:00:00.000Z\",\"stateId\":1,\"id\":10}",
       "11": "{\"fname\":\"Anthony\",\"lname\":\"McNitt\",\"username\":\"Anthony McNitt\",\"password\":\"$2a$10$sSMIvCeebcpbvEOIiDuyVeDFLQACUR/jUJthHL4c2BelQuafGHhTy\",\"email\":\"a.mcnitt@heathus.com\",\"created\":\"2016-07-21T00:00:00.000Z\",\"lastUpdated\":\"2016-07-21T00:00:00.000Z\",\"stateId\":1,\"id\":11}",
-      "12": "{\"fname\":\"Milton\",\"lname\":\"Austin\",\"username\":\"Milton Austin\",\"password\":\"$2a$10$8rZp/1i2dUG6Pg48xwQ7juCE2oSZC1tXmXgbT8nzYC8aKd65pHsyi\",\"email\":\"m.austin@heathus.com\",\"created\":\"2016-07-21T00:00:00.000Z\",\"lastUpdated\":\"2016-07-21T00:00:00.000Z\",\"stateId\":1,\"id\":12}",
+      "12": "{\"fname\":\"Milton\",\"lname\":\"Austin\",\"username\":\"Milton Austin\",\"password\":\"$2a$10$8rZp/1i2dUG6Pg48xwQ7juCE2oSZC1tXmXgbT8nzYC8aKd65pHsyi\",\"email\":\"m.austin@heathus.com\",\"created\":\"2016-07-21T00:00:00.000Z\",\"lastUpdated\":\"2016-07-21T00:00:00.000Z\",\"stateId\":1,\"id\":12,\"access-level\":\"account\",\"accessLevel\":\"account\"}",
       "13": "{\"fname\":\"Fidencio\",\"lname\":\"Pinales\",\"username\":\"Fidencio Pinales\",\"password\":\"$2a$10$RVNX5/Og28x14gD/1nnMJOKTqelgR9FUgoHDgtZjQ/K83f/3heHGy\",\"email\":\"f.pinales@heathus.com\",\"created\":\"2016-07-21T00:00:00.000Z\",\"lastUpdated\":\"2016-07-21T00:00:00.000Z\",\"stateId\":1,\"id\":13}"
     },
     "Employee": {
@@ -83,6 +80,13 @@
       "5": "{\"title\":\"South\",\"stateId\":2,\"id\":5}",
       "6": "{\"title\":\"East\",\"stateId\":3,\"id\":6}",
       "7": "{\"title\":\"West\",\"stateId\":3,\"id\":7}"
+    },
+    "Company": {
+      "1": "{\"title\":\"Heath\",\"id\":1}"
+    },
+    "Region": {
+      "1": "{\"title\":\"East\",\"id\":1}",
+      "2": "{\"title\":\"West\",\"id\":2}"
     }
   }
 }

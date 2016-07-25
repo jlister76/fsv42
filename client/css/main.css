@@ -128,7 +128,7 @@ a::selection {
 }
 #filter-bar {
   background-color: palegoldenrod;
-  border:grey;
+  border:solid thin #bebebe;
 }
 
 #filter-bar span {
@@ -149,6 +149,31 @@ a::selection {
 }
 #download-button:hover {
   background-color: rgb(161, 226, 0);
+}
+
+#sign-in-form {
+  border-radius: 8px;
+  border:solid thin rgba(1, 164, 239, 0.18);
+}
+#sign-in-button{
+  background-color:#01A4EF;
+  width:140px;
+  color:white;
+}
+#sign-in-button:hover {
+  background-color: rgba(1, 164, 239, 0.7);
+}
+.confirmation-icon {
+  border-radius: 100%;
+  background-color:rgb(50%, 73%, 0%);
+  width: 50px;
+  height:50px;
+  color: white;
+
+}
+
+.confirmation-icon i {
+  font-size:34px;
 }
 
 

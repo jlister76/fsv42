@@ -2,21 +2,21 @@
 <div flex layout="column" layout-align="center center" class="md-padding">
 
   <div layout layout-align="center center">
-    <form layout="row" layout-align="center center" name="loginForm" class="md-whiteframe-1" ng-submit="login()" style="border-radius: 1.2px; color: rgb(53, 120, 201);background-color: whitesmoke">
+    <form layout="row" layout-align="center center" name="loginForm" class="md-whiteframe-1" ng-submit="login()" id="sign-in-form">
       <div layout="column" layout-align="center center" class="md-padding"
            style="border: solid thin rgb(230, 230, 230); border-radius:2%; width:600px;">
         <!--<legend>Credentials</legend>-->
         <md-input-container>
           <label for="email">Email</label>
-          <input type="email" ng-model="user.email" id="email">
+          <input type="email" ng-model="user.email" id="email" style="width: 240px;" >
         </md-input-container>
         <md-input-container>
           <label for="password">Password</label>
-          <input type="password" ng-model="user.password" id="password">
+          <input type="password" ng-model="user.password" id="password" style="width: 240px;">
         </md-input-container>
         <div ng-show="err" style="color: coral">Invalid Username and/or password. Please try again.</div>
         <div>
-          <md-button type="submit">Log In</md-button>
+          <md-button class="" type="submit" id="sign-in-button">Log In</md-button>
         </div>
 
       </div>
