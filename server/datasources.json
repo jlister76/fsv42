@@ -22,8 +22,8 @@
           "rejectUnauthorized": true
         },
         "auth": {
-          "user": "jlister469@outlook.com",
-          "pass": "19seventysix"
+          "user": "EMAIL",
+          "pass": "PASSWORD"
         }
       }
     ]
