@@ -59,11 +59,12 @@
 
                       var el = angular.element( document.querySelector('#status'));
 
-                    var status = 'A newer update is available for download.' +
+                    var status = 'FieldSmart release '+moment(mostRecentDownload.releaseDate).format("MM/DD/YY") +' is available.' +
                       '<p style="margin:0 1rem;" class="md-padding md-body-1">' +
-                      '<a class="md-body-1" href="'+ mostRecentDownload.link +' ">' +
-                      mostRecentDownload.state+"  "+ moment(mostRecentDownload.releaseDate).format("MM/DD/YYYY")  +
-                      '</a><br/><small class="md-caption"><i>Click link to download</i></small>';
+                      '<button class="md-subhead" href="'+ mostRecentDownload.link +'' +
+                      ' " id="download-button" >' +
+                      "DOWNLOAD" + '</button>';
+
 
 
                     el.html(status);

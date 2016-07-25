@@ -1,14 +1,14 @@
 {
   "ids": {
     "User": 1,
-    "AccessToken": 28,
+    "AccessToken": 33,
     "ACL": 1,
     "RoleMapping": 1,
     "Role": 1,
     "Member": 14,
     "Employee": 10,
     "Confirmation": 8,
-    "IssueReport": 2,
+    "IssueReport": 3,
     "Update": 4,
     "State": 7,
     "Group": 8
@@ -18,7 +18,8 @@
     "AccessToken": {
       "ljjVyaEXytFOTnhRY5NQ4QAYhUE9NKETYBIYCnL1Zh8tUrGADNric7ggVQghE1YV": "{\"id\":\"ljjVyaEXytFOTnhRY5NQ4QAYhUE9NKETYBIYCnL1Zh8tUrGADNric7ggVQghE1YV\",\"ttl\":1209600,\"created\":\"2016-07-21T06:30:21.416Z\",\"userId\":1}",
       "SQqX7c819fcw3OuXoNjmnykqiJ8PBbn5Di9w8vZmCA5SosjYuGniBCP7pH0pdhPO": "{\"id\":\"SQqX7c819fcw3OuXoNjmnykqiJ8PBbn5Di9w8vZmCA5SosjYuGniBCP7pH0pdhPO\",\"ttl\":1209600,\"created\":\"2016-07-22T03:37:13.673Z\",\"userId\":2}",
-      "0FNDSoAX8rtMCCb39C2PxK6BYdA5HVYEl4B0s3NwGUex3spN2IsAHnMYSvZFldqf": "{\"id\":\"0FNDSoAX8rtMCCb39C2PxK6BYdA5HVYEl4B0s3NwGUex3spN2IsAHnMYSvZFldqf\",\"ttl\":1209600,\"created\":\"2016-07-23T23:40:06.437Z\",\"userId\":5}"
+      "GCZ4PquUOniBCaRGknjBqYVNkvMfeXVjbUcefY9B56QiSRsybN90rNRLNp9xp3nJ": "{\"id\":\"GCZ4PquUOniBCaRGknjBqYVNkvMfeXVjbUcefY9B56QiSRsybN90rNRLNp9xp3nJ\",\"ttl\":1209600,\"created\":\"2016-07-24T19:06:33.240Z\",\"userId\":5}",
+      "898bnhkido42aIgE4jNbrt7opyFALPZAB41HD4QrE4G7KkZqo2HtKClKEOgsNlh7": "{\"id\":\"898bnhkido42aIgE4jNbrt7opyFALPZAB41HD4QrE4G7KkZqo2HtKClKEOgsNlh7\",\"ttl\":1209600,\"created\":\"2016-07-25T01:48:00.424Z\",\"userId\":5}"
     },
     "ACL": {},
     "RoleMapping": {},
@@ -54,7 +55,8 @@
       "7": "{\"lastUpdated\":\"2016-07-21T22:10:13.549Z\",\"groupId\":1,\"employeeId\":1,\"updateId\":1,\"id\":7}"
     },
     "IssueReport": {
-      "1": "{\"issue\":\"Install an update\",\"employeeId\":2,\"updateId\":1,\"stateId\":1,\"createdAt\":\"2016-07-21T22:10:35.418Z\",\"id\":1}"
+      "1": "{\"issue\":\"Install an update\",\"employeeId\":2,\"updateId\":1,\"stateId\":1,\"createdAt\":\"2016-07-21T22:10:35.418Z\",\"id\":1}",
+      "2": "{\"issue\":\"Download an update\",\"comments\":\"xss<script>alert('Oh Shit');</script>\",\"employeeId\":5,\"updateId\":1,\"stateId\":1,\"createdAt\":\"2016-07-25T02:07:04.513Z\",\"id\":2}"
     },
     "Update": {
       "1": "{\"releaseDate\":\"2016-07-21T05:00:00.000Z\",\"link\":\"https://s3.amazonaws.com/fsv42updates/FSV42KY-Mid(64bit).EXE\",\"stateId\":1,\"id\":1}",

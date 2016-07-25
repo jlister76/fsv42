@@ -41,16 +41,29 @@
         </div>
       </div>
     </div><!--End of section-->
-    <div hide-gt-xs flex-order-xs="7" flex-xs="100" id="sm-state-list">
+    <div flex-xs layout-xs hide-gt-xs >
+      <div  flex-xs="100" flex-order-xs="7" id="sm-state-list" style="background-color: whitesmoke; width:90vw;">
 
-        <md-list>
-          <md-list-item><span class="md-title">Texas</span><small class="md-subhead">- {{ TXPercentage | number:0 }} %</small></md-list-item>
-          <md-list-item><span class="md-title">Kentucky</span><small class="md-subhead">- {{ KYPercentage | number:0 }} %</small></md-list-item>
-          <md-list-item><span class="md-title">Mississippi</span><small class="md-subhead">- {{ MSPercentage | number:0 }} %</small></md-list-item>
+        <md-list flex-xs-grow>
+          <md-divider></md-divider>
+          <md-list-item><span class="md-title">Texas</span>
+            <small class="md-subhead">- {{ TXPercentage | number:0 }} %</small>
+          </md-list-item>
+          <md-divider></md-divider>
+          <md-list-item><span class="md-title">Kentucky</span>
+            <small class="md-subhead">- {{ KYPercentage | number:0 }} %</small>
+          </md-list-item>
+          <md-divider></md-divider>
+          <md-list-item><span class="md-title">Mississippi</span>
+            <small class="md-subhead">- {{ MSPercentage | number:0 }} %</small>
+          </md-list-item>
+          <md-divider></md-divider>
         </md-list>
+      </div>
+
 
     </div>
-    <div flex-gt-lg="25" flex-gt-md="30" flex-order-sm="1" flex-order-xs="5"  layout="column" layout-align="start" id="container-two">
+    <div hide-xs hide-sm flex-gt-lg="25" flex-gt-md="30" flex-order-sm="1" flex-order-xs="5"  layout="column" layout-align="start" id="container-two">
       <div ng-controller="DashboardController"  layout="column" layout-align="start center" layout-align-sm="center center"
            id="confirmation-box">
         <div layout="column" layout-align="start" id="status">
@@ -59,7 +72,8 @@
         </div>
         <div ng-if="!statusCurrent && msgStatus == 0 && msgShow == 2 "></div>
         <div ng-if="!statusCurrent && msgStatus == 0 && msgShow != 2">
-          <md-checkbox ng-model="status" ng-change="createConfirmation()">I have successfully installed this update.</md-checkbox>
+          <div layout layout-align="center "><p flex class="md-subhead"><strong>Confirm Installation</strong></p></div>
+          <md-checkbox ng-model="status" ng-change="createConfirmation()">I have successfully <u>installed</u> this update.</md-checkbox>
         </div>
         <div ng-if="msgStatus == 2">
         </div>
@@ -79,12 +93,12 @@
                         ng-submit="report(update.issue,issue.comments)">
                     <md-input-container>
                       <label>I am unable to...</label>
-                      <md-select ng-model="update.issue" required aria-label="issue report">
+                      <md-select ng-model="update.issue" required aria-label="issue report" id="select-field">
                         <md-option ng-repeat="issue in issueType" value="{{issue}}">{{issue}}</md-option>
                       </md-select>
                     </md-input-container>
                     <div  layout layout-align="center">
-                      <textarea flex="90"   ng-model="issue.comments" name="comments" id="comments" cols="10" rows="4"></textarea>
+                      <textarea flex="90"  ng-model="issue.comments" name="comments" id="comments" cols="10" rows="4"></textarea>
                     </div>
                     <div layout layout-align="center start">
                       <md-button class="md-raised md-primary" id="issue-tracker-button" type="submit" ng-disabled="reportIssueForm.$invalid">Submit</md-button>
@@ -186,7 +200,7 @@
                         <td class="md-body-1"> {{ e.member.lname}}, {{e.member.fname}}</td>
                         <td hide-sm hide-xs class="md-body-1">{{ e.state.title }}</td>
                         <td class="md-body-1">{{ e.group.title }}</td>
-                        <td ><a href="#" ng-click="sendEmail(e.member.email, e.stateId)" class="md-body-1"><i class="material-icons">chat_bubble</i></a>
+                        <td ><md-button href="#" ng-click="sendEmail(e.member.email, e.stateId)" class="md-mini md-icon-button"><i class="material-icons" style="color:rgb(0,164,239);">chat_bubble</i></md-button>
                         </td>
                       </tr>
                       </tbody>

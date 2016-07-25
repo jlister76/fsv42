@@ -91,8 +91,11 @@ table.clone + md-table-container table tbody tr:first-child td {
   background-color: white;
 }
 .chart-link{
+  border:solid thin lightsteelblue;
+  border-radius: 8px;
+  background-color: #e2e2e2;
   color: #0F6AB4;
-  padding:.8rem;
+  padding:.3rem .5rem;
   text-decoration: none;
 }
 .chart-link:hover {
@@ -136,6 +139,18 @@ a::selection {
   overflow: auto;
   max-height: 400px
 }
+#download-button {
+  background-color:rgb(127,186,0);
+  border:solid thin #d2d2d2;
+  border-radius:5px;
+  color: #fff;
+  width: 220px;
+  padding:.5rem;
+}
+#download-button:hover {
+  background-color: rgb(161, 226, 0);
+}
+
 
 /*********************************************************************/
                    /*X-Large Screens*/
@@ -167,9 +182,9 @@ a::selection {
 
   }
   #confirmation-box {
-    border:solid thin lightgray;
-    background-color: palegoldenrod;
-    padding: .8rem;
+    border:solid medium lightgray;
+    background-color: transparent;
+    padding: .8rem .4rem;
     margin-bottom: .8rem;
 
   }
@@ -220,9 +235,9 @@ a::selection {
                 /*Medium Screens*/
 @media only screen and (min-width:960px) and (max-width:1279px){
   #confirmation-box {
-    border:solid thin lightgray;
-    background-color: palegoldenrod;
-    padding: .8rem;
+    border:solid medium lightgray;
+    background-color: transparent;
+    padding: .8rem .4rem;
     margin-bottom: .8rem;
 
   }
@@ -311,6 +326,7 @@ a::selection {
     width: 98vw;
     min-height: 30vh;
     margin-bottom:1rem;
+
   }
   #logo-container {
     width:100vw;
