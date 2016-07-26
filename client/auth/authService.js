@@ -54,7 +54,6 @@
 
 
       }
-
       function getCurrentId() {
         return Member
           .getCurrentId()
@@ -63,7 +62,6 @@
       function isAuthenticated() {
         return Member.isAuthenticated;
       }
-
       function getCurrentState() {
         return Member
           .getCurrent()

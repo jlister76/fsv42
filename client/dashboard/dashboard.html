@@ -1,8 +1,35 @@
-<div flex layout="column" layout-align="center" class="container">
+<div flex layout="column" layout-align="" class="container">
+  <div flex layout layout-align="space-between center" style="background-color: white; border: solid medium lightgray;" >
+
+  </div>
   <div layout-sm="column" layout-gt-sm="row" layout-align-gt-sm="space-around" layout-xs="column"  layout-align-xs="start start" class="md-padding" id="top-container">
-    <div flex-gt-lg="75" flex-gt-md="70" flex-order-sm="2" hide-xs flex-gt-sm="70" layout-sm="row" id="chart-container">
+    <div ng-if="currentUser.accessLevel == 'account'||'group'" flex-gt-lg="75" flex-gt-md="70" style="background-color:white; margin-top:.5rem;">
+      <div layout layout-align="space-between center" style="margin:1rem;">
+      <div ><span class="md-title">{{group}}&nbsp;({{ groupPercentage | number:0}} %)</span></div>
+
+
+
+      </div>
+      <div layout style="margin:1rem;">
+        <div layout flex="100" style="background-color:rgb(0,120,215); height:6px;" id="span">
+        </div>
+      </div>
+      <table class="card" style="">
+        <thead>
+        <th>Employee</th>
+        <th>Status</th>
+        <tbody>
+        <tr ng-repeat="e in employees">
+          <td>{{ e.lname }}, {{ e.fname }}</td>
+          <td><div ng-if="e.status==true"  layout layout-align="center center" class="confirmation-icon"><i class="material-icons">done</i></div></td>
+        </tr>
+        </tbody>
+        </thead>
+      </table>
+    </div>
+    <div ng-if="currentUser.accessLevel =='company'" flex-gt-lg="75" flex-gt-md="70" flex-order-sm="2" hide-xs flex-gt-sm="70" layout-sm="row" id="chart-container">
       <div  flex-sm>
-        <div>
+        <div >
           <div flex class="md-padding">
             <div layout="column" class="card md-padding" md-whiteframe="1">
               <div layout layout-align="space-around" layout-xs="column">
@@ -63,18 +90,20 @@
 
 
     </div>
-    <div hide-xs hide-sm flex-gt-lg="25" flex-gt-md="30" flex-order-sm="1" flex-order-xs="5"  layout="column" layout-align="start" id="container-two">
-      <div ng-controller="DashboardController"  layout="column" layout-align="start center" layout-align-sm="center center"
-           id="confirmation-box">
-        <div layout="column" layout-align="start" id="status">
-          <md-progress-circular class="md-hue-4" md-mode="indeterminate">
-          </md-progress-circular>
-
+    <div hide-xs hide-sm flex-gt-lg="25" flex-gt-md="30" flex-order-sm="1" flex-order-xs="5"  layout="column" layout-align="start center" id="container-two">
+      <div ng-controller="DashboardController" layout="column" layout-align-sm="center center"
+           id="confirmation-box"  >
+        <div flex-66 layout >
+          <div ng-if="statusCurrent" layout layout-align="center center" class="confirmation-icon"><i class="material-icons">done</i></div>
+          <div layout layout-align="start" id="status">
+            <md-progress-circular class="md-hue-4" md-mode="indeterminate">
+            </md-progress-circular>
+          </div>
         </div>
 
         <div ng-if="!statusCurrent && msgStatus == 0 && msgShow == 2 "></div>
         <div ng-if="!statusCurrent && msgStatus == 0 && msgShow != 2">
-          <div layout layout-align="center "><p flex class="md-subhead"><strong>Confirm Installation</strong></p></div>
+          <div layout><p flex class="md-subhead"><strong>Confirm Installation</strong></p></div>
           <md-checkbox ng-model="status" ng-change="createConfirmation()">I have successfully <u>installed</u> this update.</md-checkbox>
         </div>
         <div ng-if="msgStatus == 2">
@@ -85,30 +114,33 @@
       </div>
       <div hide-xs hide-sm ng-controller="IssueReportController" layout="column" id="issue-tracker-form">
         <div flex>
-          <div flex flex-xs="100">
-            <div flex layout=column>
-              <h6 class="md-subhead title">Issue Tracker</h6>
-              <div  flex-xs="100" layout="column" layout-align="center center" class="md-padding"
-                   id="issue-form-background">
-                <div flex ng-if="msgStatus == 0" >
-                  <form flex layout="column" name="reportIssueForm"
-                        ng-submit="report(update.issue,issue.comments)">
-                    <md-input-container>
-                      <label>I am unable to...</label>
-                      <md-select ng-model="update.issue" required aria-label="issue report" id="select-field">
-                        <md-option ng-repeat="issue in issueType" value="{{issue}}">{{issue}}</md-option>
-                      </md-select>
-                    </md-input-container>
-                    <div  layout layout-align="center">
-                      <textarea flex="90"  ng-model="issue.comments" name="comments" id="comments" cols="10" rows="4"></textarea>
-                    </div>
-                    <div layout layout-align="center start">
-                      <md-button class="md-raised md-primary" id="issue-tracker-button" type="submit" ng-disabled="reportIssueForm.$invalid">Submit</md-button>
-                    </div>
-                  </form>
-                </div>
-                <div ng-if="msgStatus==1">
-                  <p>{{ confirmation }}</p>
+          <div flex flex-xs="100" layout>
+            <div>
+              <div layout="column">
+                <h6 class="md-subhead title" style="">Issue Tracker</h6>
+                <div  flex-xs="100" layout="column" layout-align="center center" class="md-padding"
+                      id="issue-form-background">
+
+                  <div flex ng-if="msgStatus == 0" >
+                    <form flex layout="column" name="reportIssueForm"
+                          ng-submit="report(update.issue,issue.comments)">
+                      <md-input-container>
+                        <label>I am unable to...</label>
+                        <md-select ng-model="update.issue" required aria-label="issue report" id="select-field">
+                          <md-option ng-repeat="issue in issueType" value="{{issue}}">{{issue}}</md-option>
+                        </md-select>
+                      </md-input-container>
+                      <div  layout layout-align="center">
+                        <textarea flex="90"  ng-model="issue.comments" name="comments" id="comments" cols="10" rows="4"></textarea>
+                      </div>
+                      <div layout layout-align="center start">
+                        <md-button class="md-raised md-primary" id="issue-tracker-button" type="submit" ng-disabled="reportIssueForm.$invalid">Submit</md-button>
+                      </div>
+                    </form>
+                  </div>
+                  <div ng-if="msgStatus==1">
+                    <p>{{ confirmation }}</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -117,7 +149,7 @@
       </div>
     </div><!--End of section -->
   </div>
-  <div flex layout="column" layout-align="center" id="bottom-container">
+  <div ng-if="currentUser.accessLevel !='account'" flex layout="column" layout-align="center" id="bottom-container">
     <div flex layout="column">
       <div layout layout-align="center" class="md-padding" id="results-title">
         <span class="md-title">Results Table</span>
@@ -199,7 +231,7 @@
                       <tbody flex>
                       <tr ng-repeat="e in employeesWithoutConfirmations | orderBy:sortOption:sortReverse | filter:searchCriteria">
 
-                        <td class="md-body-1"> {{ e.member.lname}}, {{e.member.fname}}</td>
+                        <td class="md-body-1"> {{ e.lname}}, {{e.fname}}</td>
                         <td hide-sm hide-xs class="md-body-1">{{ e.state.title }}</td>
                         <td class="md-body-1">{{ e.group.title }}</td>
                         <td ><md-button href="#" ng-click="sendEmail(e.member.email, e.stateId)" class="md-mini md-icon-button"><i class="material-icons" style="color:rgb(0,164,239);">chat_bubble</i></md-button>
@@ -240,7 +272,7 @@
                       <tr
                         ng-repeat="e in employeesWithConfirmations | orderBy:sortOption:sortReverse | filter:searchCriteria">
 
-                        <td class="md-body-1" > {{ e.member.lname }}, {{e.member.fname}}</td>
+                        <td class="md-body-1" > {{ e.lname }}, {{e.fname}}</td>
                         <td class="md-body-1" >{{ e.state.title }}</td>
                         <td class="md-body-1" >{{ e.group.title }}</td>
 

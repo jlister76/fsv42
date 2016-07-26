@@ -59,13 +59,13 @@ footer {
   color:#0F6AB4;
 }
 table {
-  border: thin solid lightgray;
+  border: medium solid lightgray;
   border-collapse: collapse;
   empty-cells: show;
 }
 
 tr {
-  border-bottom: solid thin lightgray;
+ /*border-bottom: solid medium lightgray;*/
 }
 tbody tr:hover {
   background-color: rgba(173, 216, 230, 0.13);
@@ -166,14 +166,14 @@ a::selection {
 .confirmation-icon {
   border-radius: 100%;
   background-color:rgb(50%, 73%, 0%);
-  width: 50px;
-  height:50px;
+  width: 24px;
+  height:24px;
   color: white;
 
 }
 
 .confirmation-icon i {
-  font-size:34px;
+  font-size:18px;
 }
 
 
@@ -184,7 +184,10 @@ a::selection {
     overflow: auto;
     max-height: 400px
   }
+  #top-container {
+    min-height:60vh;
 
+  }
 
 }
 /*********************************************************************/
@@ -198,17 +201,18 @@ a::selection {
   background-color: rgba(226, 226, 226, 0.89);
 }
   #container-two {
-    margin-top:2rem;
+
+    margin-top: 2.5rem;
     margin-left: .8rem;
 
   }
   #top-container {
-    min-height:60vh;
-
+    min-height:80vh;
+   
   }
   #confirmation-box {
-    border:solid medium lightgray;
-    background-color: transparent;
+    /*border:solid medium lightgray;*/
+    /*background-color: whitesmoke;*/
     padding: .8rem .4rem;
     margin-bottom: .8rem;
 
@@ -260,8 +264,8 @@ a::selection {
                 /*Medium Screens*/
 @media only screen and (min-width:960px) and (max-width:1279px){
   #confirmation-box {
-    border:solid medium lightgray;
-    background-color: transparent;
+    /*border:solid medium lightgray;*/
+    background-color: whitesmoke;
     padding: .8rem .4rem;
     margin-bottom: .8rem;
 
@@ -305,10 +309,9 @@ a::selection {
 @media only screen and (min-width:600px) and (max-width:959px){
 
   html { overflow:hidden;}
+
   #container-two {
-    width: 100vw;
-  }
-  #container-two {
+
     width: 98vw;
     maring-bottom:1rem;
   }
@@ -319,7 +322,7 @@ a::selection {
   #confirmation-box {
     background-color: white;
     padding-bottom: .8rem;
-    border-bottom: solid thin lightgrey;
+    border-bottom: solid medium lightgrey;
     width:95vw;
     margin: 1rem 0;
   }
@@ -344,9 +347,7 @@ a::selection {
                   /*XSmall Screens*/
 @media only screen and (max-width:599px){
   html { overflow:hidden;}
-  #container-two {
-    width: 100vw;
-  }
+
   #container-two {
     width: 98vw;
     min-height: 30vh;
@@ -362,9 +363,9 @@ a::selection {
     width:100vw;
   }
   #confirmation-box {
-    background-color: #E2E2E2;
+    /*background-color: whitesmoke;*/
     padding: .8rem;
-    border-bottom: solid thin lightgrey;
+
     width:95vw;
     margin: 1rem 0;
   }

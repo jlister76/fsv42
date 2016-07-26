@@ -3,7 +3,7 @@
 
   angular
     .module('FSV42App')
-    .controller('DashboardController', function ($scope, AuthService, $rootScope, $state, $mdSidenav, $log, $mdMedia, Confirmation,Employee,Update, $http,IssueReport, DownloadService,UpdateService, DashboardService,$mdToast, Group){
+    .controller('DashboardController', function ($scope, AuthService, $rootScope, $state, $mdSidenav, $log, $mdMedia, Confirmation,Employee,Update, $http,IssueReport, DownloadService,UpdateService, DashboardService,$mdToast, Group, Member){
       /*****************************************************************/
               //Sets current user
 
@@ -40,12 +40,9 @@
 
               if ($scope.statusCurrent){
 
-                var el = angular.element( document.querySelector('#status'));
-                var status ='<div layout layout-align="center center">'+
-                  '<div flex layout layout-align="center center" class="confirmation-icon">' +
-                  '<i class="material-icons">' + 'done' + '</i>'+
-                  '</div>' + '&nbsp; You are currently up to date.'+
-                  '</div>';
+                              var el = angular.element( document.querySelector('#status'));
+                var status ='&nbsp; You are currently up to date.';
+
 
                 el.html(status);
 
@@ -64,8 +61,8 @@
 
                       var el = angular.element( document.querySelector('#status'));
 
-                    var status = 'FieldSmart release '+moment(mostRecentDownload.releaseDate).format("MM/DD/YY") +' is available.' +
-                      '<p style="margin:0 1rem;" class="md-padding md-body-1">' +
+                    var status = '<span>'+'FieldSmart release '+moment(mostRecentDownload.releaseDate).format("MM/DD/YY") +' is available.<span>' +
+                      '<p style="" class="md-padding md-body-1">' +
                       '<button class="md-subhead" href="'+ mostRecentDownload.link +'' +
                       ' " id="download-button" >' +
                       "DOWNLOAD" + '</button>';
@@ -100,18 +97,53 @@
           .getCurrent()
           .$promise
           .then(function(user){
-            console.log(user);
-            if (user.accessLevel == 'account'){
+
+            if (user.accessLevel == 'account'|| 'group'){
              Employee
                .find({filter:{where:{memberId: user.id}}})
                .$promise
                .then(function(employee){
-                 var groupId = _.forEach(employee, function(e){console.log(e.groupId); return e.groupId;});
-                 console.log(groupId);
                  Group
-                   .find({filter: {where:{id:groupId}}})
-                   .$promise.then(function (group){
-                     console.log(group);
+                   .find({filter:{include:['confirmations','employees'],where:{id:employee[0].groupId}}})
+                   .$promise
+                   .then(function (group){
+                     $scope.group = group[0].title;
+                     console.log(group[0].confirmations);
+                     UpdateService
+                       .getAllCurrentUpdates()
+                       .then(function (currentUpdate){
+                         var currConfirmations = [];
+                         _.forEach(currentUpdate, function(u){
+                           _.forEach(group[0].confirmations, function(c){
+                             if (u.id == c.updateId){
+                              //console.log(c);
+                               currConfirmations.push(c);
+                             }
+                           })
+                         });
+                          //console.log(currConfirmations);
+
+                          $scope.groupPercentage = currConfirmations.length / group[0].employees.length *100;
+                         var el = angular.element(document.querySelector('#span'));
+                         var span = '<span style="width:'+ $scope.groupPercentage+'%;background-color: rgb(243,188,9) ; height:6px;"></span>';
+                         el.html(span);
+                         _.forEach(group[0].employees, function(e){
+                           _.forEach(currConfirmations, function(c){
+                             if (e.id == c.employeeId){
+
+                               e.status = true;
+                               //console.log(e);
+                             }
+                           })
+                         });
+                         $scope.employees = group[0].employees;
+                         var el = angular.element(document.querySelector('#chart-container'));
+                         var table = '<table><thead><th>Name</th><th>Status</th></thead>'+
+                           '<tbody><tr ng-repeat="e in employees"><td>{{ e.lname, e.fname }}</td><td>{{ e.status }}</td></tr></tbody></table>';
+
+                         console.log($scope.employees);
+                       })
+
                  })
                })
             }

@@ -47,7 +47,7 @@
       <div layout layout-align="center center" ng-controller="AuthLogoutController">
         <md-menu ng-show="currentUser" md-offset="80 30"class="md-padding">
           <a href="#"layout layout-align="center center" class="menu-icon"  ng-click="$mdOpenMenu($event)">
-            {{currentUser.fname +" " +currentUser.lname}}<span>&nbsp;<i class="material-icons">arrow_drop_down</i></span>
+            {{currentUser.username}}<span>&nbsp;<i class="material-icons">arrow_drop_down</i></span>
           </a>
           <md-menu-content  hide-xs ng-show="currentUser" width="4">
             <md-menu-item>
