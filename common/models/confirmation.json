@@ -30,6 +30,11 @@
       "type": "belongsTo",
       "model": "Group",
       "foreignKey": ""
+    },
+    "region": {
+      "type": "belongsTo",
+      "model": "Region",
+      "foreignKey": ""
     }
   },
   "acls": [

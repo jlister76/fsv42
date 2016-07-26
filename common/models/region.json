@@ -1,5 +1,5 @@
 {
-  "name": "State",
+  "name": "Region",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -7,17 +7,20 @@
   },
   "properties": {
     "title": {
-      "type": "string"
-    },
-    "sequence": {
-      "type": "number"
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],
   "relations": {
-    "groups": {
+    "company": {
+      "type": "belongsTo",
+      "model": "Company",
+      "foreignKey": ""
+    },
+    "confirmations": {
       "type": "hasMany",
-      "model": "Group",
+      "model": "Confirmation",
       "foreignKey": ""
     },
     "employees": {
@@ -25,24 +28,14 @@
       "model": "Employee",
       "foreignKey": ""
     },
-    "issueReports": {
+    "groups": {
       "type": "hasMany",
-      "model": "IssueReport",
+      "model": "Group",
       "foreignKey": ""
     },
-    "company": {
-      "type": "belongsTo",
-      "model": "Company",
-      "foreignKey": ""
-    },
-    "region": {
-      "type": "belongsTo",
-      "model": "Region",
-      "foreignKey": ""
-    },
-    "confirmations": {
+    "states": {
       "type": "hasMany",
-      "model": "Confirmation",
+      "model": "State",
       "foreignKey": ""
     }
   },

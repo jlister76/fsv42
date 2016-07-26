@@ -1,14 +1,15 @@
 <div flex layout="column" layout-align="" class="container">
-  <div flex layout layout-align="space-between center" style="background-color: white; border: solid medium lightgray;" >
 
-  </div>
   <div layout-sm="column" layout-gt-sm="row" layout-align-gt-sm="space-around" layout-xs="column"  layout-align-xs="start start" class="md-padding" id="top-container">
-    <div ng-if="currentUser.accessLevel == 'account'||'group'" flex-gt-lg="75" flex-gt-md="70" style="background-color:white; margin-top:.5rem;">
-      <div layout layout-align="space-between center" style="margin:1rem;">
-      <div ><span class="md-title">{{group}}&nbsp;({{ groupPercentage | number:0}} %)</span></div>
-
-
-
+    <div ng-if="currentUser.accessLevel == 'account'" flex-gt-lg="75" flex-gt-md="70" style="background-color:white; margin-top:.5rem;">
+      <div layout layout-align="space-between center" style="margin:1rem;" >
+        <div id="theBox">
+          <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+        </div>
+        <div ng-if="currentUser.accessLevel == 'group'" layout="column" layout-align="center center">
+          <md-button layout layout-align="center center" class="md-fab md-mini md-warn md-icon-button" ng-click="sendGroupReminder()"><i class="material-icons">chat_bubble_outline</i></md-button>
+          <span class="md-caption">Group Reminder</span>
+        </div>
       </div>
       <div layout style="margin:1rem;">
         <div layout flex="100" style="background-color:rgb(0,120,215); height:6px;" id="span">
@@ -26,6 +27,43 @@
         </tbody>
         </thead>
       </table>
+    </div><!--end-->
+    <div ng-if="currentUser.accessLevel == 'group'" flex-gt-lg="75" flex-gt-md="70" style="background-color:white; margin-top:.5rem;">
+      <div layout layout-align="space-between center" style="margin:1rem;" >
+        <div id="theBox">
+          <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+        </div>
+        <div ng-if="currentUser.accessLevel == 'group'" layout="column" layout-align="center center">
+          <md-button layout layout-align="center center" class="md-fab md-mini md-warn md-icon-button" ng-click="sendGroupReminder()"><i class="material-icons">chat_bubble_outline</i></md-button>
+          <span class="md-caption">Group Reminder</span>
+        </div>
+      </div>
+      <div layout style="margin:1rem;">
+        <div layout flex="100" style="background-color:rgb(0,120,215); height:6px;" id="span">
+        </div>
+      </div>
+      <table class="card" style="">
+        <thead>
+        <th>Employee</th>
+        <th>Status</th>
+        <tbody>
+        <tr ng-repeat="e in employees">
+          <td>{{ e.lname }}, {{ e.fname }}</td>
+          <td><div ng-if="e.status==true"  layout layout-align="center center" class="confirmation-icon"><i class="material-icons">done</i></div></td>
+        </tr>
+        </tbody>
+        </thead>
+      </table>
+    </div><!--end-->
+    <div flex ng-if="currentUser.accessLevel == 'regional'">
+      <div id="state-box"></div>
+      <div id="state-box-2"></div>
+      <div id="state-stats">
+        <div layout style="margin:1rem;">
+
+        </div>
+
+      </div>
     </div>
     <div ng-if="currentUser.accessLevel =='company'" flex-gt-lg="75" flex-gt-md="70" flex-order-sm="2" hide-xs flex-gt-sm="70" layout-sm="row" id="chart-container">
       <div  flex-sm>
@@ -149,7 +187,7 @@
       </div>
     </div><!--End of section -->
   </div>
-  <div ng-if="currentUser.accessLevel !='account'" flex layout="column" layout-align="center" id="bottom-container">
+  <div ng-if="currentUser.accessLevel =='region'" flex layout="column" layout-align="center" id="bottom-container">
     <div flex layout="column">
       <div layout layout-align="center" class="md-padding" id="results-title">
         <span class="md-title">Results Table</span>

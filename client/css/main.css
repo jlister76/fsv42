@@ -201,14 +201,14 @@ a::selection {
   background-color: rgba(226, 226, 226, 0.89);
 }
   #container-two {
-
+    border-left: solid thin lightgrey;
     margin-top: 2.5rem;
     margin-left: .8rem;
 
   }
   #top-container {
     min-height:80vh;
-   
+
   }
   #confirmation-box {
     /*border:solid medium lightgray;*/
@@ -263,6 +263,12 @@ a::selection {
 /*********************************************************************/
                 /*Medium Screens*/
 @media only screen and (min-width:960px) and (max-width:1279px){
+  #container-two {
+    border-left: solid thin lightgrey;
+    margin-top: 2.5rem;
+    margin-left: .8rem;
+
+  }
   #confirmation-box {
     /*border:solid medium lightgray;*/
     background-color: whitesmoke;
@@ -311,7 +317,7 @@ a::selection {
   html { overflow:hidden;}
 
   #container-two {
-
+    border-left: solid thin lightgrey;
     width: 98vw;
     maring-bottom:1rem;
   }

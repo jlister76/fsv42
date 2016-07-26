@@ -17,6 +17,11 @@
       "type": "belongsTo",
       "model": "State",
       "foreignKey": ""
+    },
+    "region": {
+      "type": "belongsTo",
+      "model": "Region",
+      "foreignKey": ""
     }
   },
   "acls": [
