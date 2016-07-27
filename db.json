@@ -1,13 +1,13 @@
 {
   "ids": {
     "User": 1,
-    "AccessToken": 103,
+    "AccessToken": 122,
     "ACL": 1,
     "RoleMapping": 7,
     "Role": 2,
-    "Member": 15,
-    "Employee": 10,
-    "Confirmation": 10,
+    "Member": 16,
+    "Employee": 11,
+    "Confirmation": 12,
     "IssueReport": 3,
     "Update": 4,
     "State": 7,
@@ -24,10 +24,11 @@
       "FBQDPNF2Zr8wgsV2DTCErgrrAhemAL6qGHQHit4x5BJIwCUhC9SMvFWGNEoeQxh9": "{\"id\":\"FBQDPNF2Zr8wgsV2DTCErgrrAhemAL6qGHQHit4x5BJIwCUhC9SMvFWGNEoeQxh9\",\"ttl\":1209600,\"created\":\"2016-07-26T05:21:23.987Z\",\"userId\":13}",
       "Pmv9BqUQk7iR593YFVV6dX003GVI0NTHXKyeE9gdXY89cEHWfkdz6A78HB7P6MaN": "{\"id\":\"Pmv9BqUQk7iR593YFVV6dX003GVI0NTHXKyeE9gdXY89cEHWfkdz6A78HB7P6MaN\",\"ttl\":1209600,\"created\":\"2016-07-26T06:39:19.008Z\",\"userId\":13}",
       "l27i2F06JtPInIj6h6uhT5ZUBlARDqE05s0YKayysl223GHmtdTt7aRwT7Anze4F": "{\"id\":\"l27i2F06JtPInIj6h6uhT5ZUBlARDqE05s0YKayysl223GHmtdTt7aRwT7Anze4F\",\"ttl\":1209600,\"created\":\"2016-07-26T07:10:26.608Z\",\"userId\":11}",
-      "Mmja1oEqFwJleTWb3YsQOCPA3nrlEG1ZwCW3GBq3roGgbblWEI2aG5WsdwZ6xWBE": "{\"id\":\"Mmja1oEqFwJleTWb3YsQOCPA3nrlEG1ZwCW3GBq3roGgbblWEI2aG5WsdwZ6xWBE\",\"ttl\":1209600,\"created\":\"2016-07-26T07:49:50.160Z\",\"userId\":13}",
       "sOSR71xvsyObbzuNleXGKQDL38EgDBbYoG0Dc2kExBUT0ipihDrgqpTwmygGok7m": "{\"id\":\"sOSR71xvsyObbzuNleXGKQDL38EgDBbYoG0Dc2kExBUT0ipihDrgqpTwmygGok7m\",\"ttl\":1209600,\"created\":\"2016-07-26T15:42:43.653Z\",\"userId\":11}",
       "xVoCfE66PEESAdTF83LGzffPLul95VwvphZlg8jsBzXYzG5QnMX1wfLotA9TGdwl": "{\"id\":\"xVoCfE66PEESAdTF83LGzffPLul95VwvphZlg8jsBzXYzG5QnMX1wfLotA9TGdwl\",\"ttl\":1209600,\"created\":\"2016-07-26T16:24:56.417Z\",\"userId\":13}",
-      "ODm8EmxtzMTdWoj4BWorbGDY4FcSrItDP40KLH0IGLsl8yYFBdV3L2pQfOtSkDGp": "{\"id\":\"ODm8EmxtzMTdWoj4BWorbGDY4FcSrItDP40KLH0IGLsl8yYFBdV3L2pQfOtSkDGp\",\"ttl\":1209600,\"created\":\"2016-07-26T23:05:30.298Z\",\"userId\":13}"
+      "ODm8EmxtzMTdWoj4BWorbGDY4FcSrItDP40KLH0IGLsl8yYFBdV3L2pQfOtSkDGp": "{\"id\":\"ODm8EmxtzMTdWoj4BWorbGDY4FcSrItDP40KLH0IGLsl8yYFBdV3L2pQfOtSkDGp\",\"ttl\":1209600,\"created\":\"2016-07-26T23:05:30.298Z\",\"userId\":13}",
+      "Lu5JiAQgEitUiWl8VpGZ2TRbDy5mldkpEOu83NXHD6OFEsTuST6604W6zcamYtmy": "{\"id\":\"Lu5JiAQgEitUiWl8VpGZ2TRbDy5mldkpEOu83NXHD6OFEsTuST6604W6zcamYtmy\",\"ttl\":1209600,\"created\":\"2016-07-27T03:28:37.666Z\",\"userId\":14}",
+      "cELYy1Lb7HSyrBHdkYaCgux7bR27kE3VwQQxRgUlDoFcT8U3yscQCwSNFBj1ywt7": "{\"id\":\"cELYy1Lb7HSyrBHdkYaCgux7bR27kE3VwQQxRgUlDoFcT8U3yscQCwSNFBj1ywt7\",\"ttl\":1209600,\"created\":\"2016-07-27T06:23:55.387Z\",\"userId\":8}"
     },
     "ACL": {},
     "RoleMapping": {},
@@ -46,7 +47,8 @@
       "11": "{\"fname\":\"Anthony\",\"lname\":\"McNitt\",\"username\":\"Anthony McNitt\",\"password\":\"$2a$10$sSMIvCeebcpbvEOIiDuyVeDFLQACUR/jUJthHL4c2BelQuafGHhTy\",\"email\":\"a.mcnitt@heathus.com\",\"created\":\"2016-07-21T00:00:00.000Z\",\"lastUpdated\":\"2016-07-21T00:00:00.000Z\",\"stateId\":1,\"id\":11,\"accessLevel\":\"account\"}",
       "12": "{\"fname\":\"Milton\",\"lname\":\"Austin\",\"username\":\"Milton Austin\",\"password\":\"$2a$10$8rZp/1i2dUG6Pg48xwQ7juCE2oSZC1tXmXgbT8nzYC8aKd65pHsyi\",\"email\":\"m.austin@heathus.com\",\"created\":\"2016-07-21T00:00:00.000Z\",\"lastUpdated\":\"2016-07-21T00:00:00.000Z\",\"stateId\":1,\"id\":12,\"access-level\":\"account\",\"accessLevel\":\"account\"}",
       "13": "{\"fname\":\"Fidencio\",\"lname\":\"Pinales\",\"username\":\"Fidencio Pinales\",\"password\":\"$2a$10$RVNX5/Og28x14gD/1nnMJOKTqelgR9FUgoHDgtZjQ/K83f/3heHGy\",\"email\":\"f.pinales@heathus.com\",\"created\":\"2016-07-21T00:00:00.000Z\",\"lastUpdated\":\"2016-07-21T00:00:00.000Z\",\"stateId\":1,\"id\":13,\"accessLevel\":\"group\"}",
-      "14": "{\"accessLevel\":\"regional\",\"username\":\"Jesse Spires\",\"password\":\"$2a$10$50eQYel9O/NtHqnc/qTYVewbOzKsyvCG1EiqaQ.M.c2wokh9Lygdu\",\"email\":\"j.spires@heathus.com\",\"created\":\"2016-07-26T00:00:00.000Z\",\"lastUpdated\":\"2016-07-26T00:00:00.000Z\",\"stateId\":2,\"regionId\":1,\"id\":14}"
+      "14": "{\"accessLevel\":\"regional\",\"username\":\"Jesse Spires\",\"password\":\"$2a$10$50eQYel9O/NtHqnc/qTYVewbOzKsyvCG1EiqaQ.M.c2wokh9Lygdu\",\"email\":\"j.spires@heathus.com\",\"created\":\"2016-07-26T00:00:00.000Z\",\"lastUpdated\":\"2016-07-26T00:00:00.000Z\",\"stateId\":2,\"regionId\":1,\"id\":14}",
+      "15": "{\"accessLevel\":\"account\",\"username\":\"William Luttrell\",\"password\":\"$2a$10$PPTGd4XvSOQW03w16sJxx.gOtlpkKukXxvDjUpNqk1g4wtODuBj/C\",\"email\":\"w.luttrell@heathus.com\",\"created\":\"2016-07-27T00:00:00.000Z\",\"lastUpdated\":\"2016-07-27T00:00:00.000Z\",\"stateId\":2,\"regionId\":1,\"id\":15}"
     },
     "Employee": {
       "1": "{\"employee_number\":\"12345\",\"stateId\":1,\"groupId\":1,\"memberId\":2,\"id\":1,\"fname\":\"Andrew\",\"lname\":\"Machiano\",\"regionId\":2}",
@@ -57,13 +59,15 @@
       "6": "{\"employee_number\":\"12345\",\"id\":6,\"stateId\":1,\"groupId\":2,\"memberId\":10,\"fname\":\"George\",\"lname\":\"Espinosa\",\"regionId\":2}",
       "7": "{\"employee_number\":\"12345\",\"id\":7,\"stateId\":1,\"groupId\":3,\"memberId\":11,\"fname\":\"Anthony\",\"lname\":\"McNitt\",\"regionId\":2}",
       "8": "{\"employee_number\":\"12345\",\"id\":8,\"stateId\":1,\"groupId\":3,\"memberId\":12,\"fname\":\"Milton\",\"lname\":\"Austin\",\"regionId\":2}",
-      "9": "{\"employee_number\":\"12345\",\"id\":9,\"stateId\":1,\"groupId\":3,\"memberId\":13,\"fname\":\"Fidencio\",\"lname\":\"Pinales\",\"regionId\":2}"
+      "9": "{\"employee_number\":\"12345\",\"id\":9,\"stateId\":1,\"groupId\":3,\"memberId\":13,\"fname\":\"Fidencio\",\"lname\":\"Pinales\",\"regionId\":2}",
+      "10": "{\"employee_number\":\"12345\",\"fname\":\"William\",\"lname\":\"Luttrell\",\"stateId\":2,\"groupId\":4,\"memberId\":15,\"companyId\":1,\"regionId\":1,\"id\":10}"
     },
     "Confirmation": {
       "6": "{\"lastUpdated\":\"2016-07-21T06:29:42.854Z\",\"groupId\":4,\"employeeId\":2,\"updateId\":2,\"id\":6,\"stateId\":2}",
       "7": "{\"lastUpdated\":\"2016-07-21T22:10:13.549Z\",\"groupId\":1,\"employeeId\":1,\"updateId\":1,\"id\":7,\"regionId\":2,\"stateId\":1}",
       "8": "{\"lastUpdated\":\"2016-07-26T01:33:23.857Z\",\"groupId\":3,\"employeeId\":9,\"updateId\":1,\"id\":8,\"regionId\":2,\"stateId\":1}",
-      "9": "{\"lastUpdated\":\"2016-07-26T02:04:52.278Z\",\"groupId\":3,\"employeeId\":8,\"updateId\":1,\"id\":9,\"regionId\":2,\"stateId\":1}"
+      "9": "{\"lastUpdated\":\"2016-07-26T02:04:52.278Z\",\"groupId\":3,\"employeeId\":8,\"updateId\":1,\"id\":9,\"regionId\":2,\"stateId\":1}",
+      "11": "{\"lastUpdated\":\"2016-07-27T04:58:11.198Z\",\"groupId\":4,\"employeeId\":10,\"updateId\":2,\"id\":11}"
     },
     "IssueReport": {
       "1": "{\"issue\":\"Install an update\",\"employeeId\":2,\"updateId\":1,\"stateId\":1,\"createdAt\":\"2016-07-21T22:10:35.418Z\",\"id\":1}",

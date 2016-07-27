@@ -58,6 +58,7 @@ footer {
   background-color: transparent; border: none;
   color:#0F6AB4;
 }
+
 table {
   border: medium solid lightgray;
   border-collapse: collapse;
@@ -185,6 +186,7 @@ a::selection {
     max-height: 400px
   }
   #top-container {
+    margin: 2rem;
     min-height:60vh;
 
   }
@@ -211,7 +213,6 @@ a::selection {
 
   }
   #confirmation-box {
-    /*border:solid medium lightgray;*/
     /*background-color: whitesmoke;*/
     padding: .8rem .4rem;
     margin-bottom: .8rem;

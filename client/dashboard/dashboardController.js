@@ -101,7 +101,7 @@
                     $scope.states = region[0].states;
                   _.forEach(region[0].states, function(s){
                     console.log(s);
-                    State.find({filter:{include:['confirmations','employees'],where:{id:s.id}}})
+                    State.find({filter:{include:['confirmations','employees','groups'],where:{id:s.id}}})
                       .$promise
                       .then(function(state){
                         console.log(state);
@@ -111,27 +111,39 @@
                         var kyNumofConfirmations =[];
                         var msNumOfEmployees =[];
                         var msNumofConfirmations =[];
+                        var txGroups = [];
 
                         if (region[0].id == 2){
                           _.forEach(state, function(s){
                             txNumofEmployees.push(s.employees);
                             txNumofConfirmations.push(s.confirmations);
+                            txGroups.push(s.groups);
+                            $scope.chart =0;
                           });
                           $scope.txPercentages = txNumofConfirmations[0].length / txNumofEmployees[0].length *100;
+                          
+                          var TXLabels = [];
+                          _.forEach(txGroups[0], function(g){
+                            TXLabels.push(g.title);
+                          });
 
+                          console.log( TXLabels);
+                          var TX = state[0].title;
                           var txPercent =  $filter('number')($scope.txPercentages,0);
                           var el = angular.element(document.querySelector('#state-box'));
-                          var TXpercentage = '<div id="state-box-1"><span class="md-title">'+TX+'( '+txPercent+'%)</span></div>' +
-                                             '<div layout style="margin:1rem;"><div layout flex="100" style="background-color:rgb(0,120,215); height:6px;" id="state-stat-box-1">'+
-                                             '<span style="width:'+ $scope.txPercentages+'%;background-color: rgb(243,188,9) ; height:6px;"></span></div></div>';
+                          var TXpercentage = '<div flex><span class="md-title">'+TX+'( '+txPercent+'%)</span></div>' +
+                                             '<div style="margin:1rem;"><div layout flex="100" style="background-color:rgb(0,120,215); height:6px;">'+
+                                             '<div style="width:'+ $scope.txPercentages+'%;background-color: rgb(243,188,9) ; height:6px;"></div></div></div>';
                           el.html(TXpercentage);
-
-
+                          //Angular-Chartjs
+                          $scope.TXLabels = TXLabels;
+                          $scope.TXData = [30,50,67];
 
                         }else if (region[0].id == 1){
                           var KY;
                           var MS;
                           if(s.id == 2){
+                            $scope.chart =1;
                             _.forEach(state, function(s){
                               kyNumOfEmployees.push(s.employees);
                               kyNumofConfirmations.push(s.confirmations);
@@ -139,12 +151,34 @@
                             $scope.kyPercentages = kyNumofConfirmations[0].length / kyNumOfEmployees[0].length *100;
 
                             KY = state[0].title;
-                            console.info(KY);
+                            console.info(state);
 
                             var kyPercent =  $filter('number')($scope.kyPercentages,0);
-                            var regionStat1 =  '<div id="state-box-1"><span class="md-title">'+KY+'( '+kyPercent+'%)</span></div>' +
-                              '<div layout style="margin:1rem;"><div layout flex="100" style="background-color:rgb(0,120,215); height:6px;" id="state-stat-box-1">'+
+                            var regionStat1 =  '<div><span class="md-title">'+KY+'( '+kyPercent+'%)</span></div>' +
+                              '<div flex style="margin:1rem;"><div layout flex="100" style="background-color:rgb(0,120,215); height:6px;" id="state-stat-box-1">'+
                               '<div style="width:'+ $scope.kyPercentages+'%;background-color: rgb(243,188,9) ; height:6px;"></div></div></div>';
+
+
+                            var KYGroups = [];
+                            var KYLabels =[];
+                            _.forEach(state[0].groups,function(g){
+                              KYGroups.push(g);
+                              KYLabels.push(g.title);
+
+                            });
+
+                            _.forEach(state[0].confirmations, function(c){
+                                if(KYGroups[0].id == c.groupId){
+                                  console.log(c);
+                                }
+                            });
+
+                            /*Angular-ChartJS*/
+                            $scope.KYLabel = KYLabels;
+                            $scope.data = [[33,45]];
+
+
+
                           }else if (s.id == 3){
                             _.forEach(state, function(s){
                               msNumOfEmployees.push(s.employees);
@@ -153,6 +187,16 @@
                             $scope.msPercentages = msNumofConfirmations[0].length / msNumOfEmployees[0].length *100;
                             console.info($scope.msPercentages);
                             MS = state[0].title;
+
+                            var MSGroups = [];
+                            var MSLabels =[];
+                            _.forEach(state[0].groups,function(g){
+                              MSGroups.push(g);
+                              MSLabels.push(g.title);
+                            });
+                            /*Angular-ChartJS*/
+                            $scope.MSLabel = MSLabels;
+                            $scope.MSdata = [[33,45]];
                           }
 
 
@@ -180,7 +224,98 @@
 
                 })
 
-            } else if (user.accessLevel === 'account'|| 'group'){
+            } else if(user.accessLevel == 'group') {
+              Employee
+                .find({filter: {where: {memberId: user.id}}})
+                .$promise
+                .then(function (employee) {
+                  Group
+                    .find({filter: {include: ['confirmations', 'employees'], where: {id: employee[0].groupId}}})
+                    .$promise
+                    .then(function (group) {
+                      $scope.group = group[0].title;
+
+                      UpdateService
+                        .getAllCurrentUpdates()
+                        .then(function (currentUpdate) {
+                          var currConfirmations = [];
+                          _.forEach(currentUpdate, function (u) {
+                            _.forEach(group[0].confirmations, function (c) {
+                              if (u.id == c.updateId) {
+                                //console.log(c);
+                                currConfirmations.push(c);
+                              }
+                            })
+                          });
+                          //console.log(currConfirmations);
+
+                          _.forEach(group[0].employees, function (e) {
+                            _.forEach(currConfirmations, function (c) {
+                              if (e.id == c.employeeId) {
+
+                                e.status = true;
+                                //console.log(e);
+                              }
+                            })
+                          });
+                          $scope.employees = group[0].employees;
+                          var unconfirmed = [];
+                          console.log($scope.employees);
+                          _.forEach(group[0].employees, function (e) {
+                            if (e.status != true) {
+                              unconfirmed.push(e);
+                            }
+                          });
+
+                          var gp = $filter('number')($scope.groupPercentage, 0);
+
+                          $scope.groupPercentage = currConfirmations.length / group[0].employees.length * 100;
+                          var el = angular.element(document.querySelector('#inject-box-1'));
+                          var span = '<div layout="row" layout-align="space-between end"><span class="md-title">' + $scope.group + ' (' + gp + '%)</span>' +
+                            '<span  class="md-caption" style="margin:.5rem;" layout="column" layout-align="start center"><button layout layout-align="center center" style="border: none; border-radius:100%; background-color:darkorange;color:white;width:34px; height:34px;" ng-click="sendGroupReminder()"><i class="material-icons" style="font-size:18px;">chat_bubble_outline</i></button>' +
+                            'Group Reminder</span></div>' +
+                            '<div layout style="margin:.1rem;"><div layout flex="100" style="background-color:rgb(0,120,215); height:6px;" id="span"><span style="width:' + $scope.groupPercentage + '%;background-color: rgb(243,188,9) ; height:6px;"></span></div></div>';
+
+                          el.html(span);
+
+                          _.forEach(unconfirmed, function (uc) {
+                            Member
+                              .findById({id: uc.memberId})
+                              .$promise
+                              .then(function (member) {
+                                var unconfirmedMembers = [];
+                                //console.log(member);
+                                unconfirmedMembers.push(member.email);
+                                return unconfirmedMembers;
+                              })
+                              .then(function (unconfirmedMembers) {
+
+
+                                $scope.sendGroupReminder = function ($event) {
+                                  console.log("active");
+                                  if (unconfirmedMembers.length > 0) {
+                                    console.log(unconfirmedMembers);
+                                    var emailList = {email: unconfirmedMembers};
+                                    /*$http.post('api/Updates/sendReminder', emailList);*/
+                                    console.log(emailList);
+                                    $mdToast.show($mdToast.simple()
+                                      .position('right')
+                                      .capsule(true)
+                                      .textContent("Group Reminder was sent."))
+                                  }
+                                };
+
+                              })
+
+                          });
+
+                        })
+
+                    })
+                })
+
+            }else if (user.accessLevel == 'account'){
+              console.log("ACCOUNT!!");
              Employee
                .find({filter:{where:{memberId: user.id}}})
                .$promise
@@ -205,10 +340,6 @@
                          });
                           //console.log(currConfirmations);
 
-                          $scope.groupPercentage = currConfirmations.length / group[0].employees.length *100;
-                         var spanel = angular.element(document.querySelector('#span'));
-                         var span = '<span style="width:'+ $scope.groupPercentage+'%;background-color: rgb(243,188,9) ; height:6px;"></span>';
-                         spanel.html(span);
                          _.forEach(group[0].employees, function(e){
                            _.forEach(currConfirmations, function(c){
                              if (e.id == c.employeeId){
@@ -219,11 +350,9 @@
                            })
                          });
                          $scope.employees = group[0].employees;
-                         var el = angular.element(document.querySelector('#chart-container'));
-                         var table = '<table><thead><th>Name</th><th>Status</th></thead>'+
-                           '<tbody><tr ng-repeat="e in employees"><td>{{ e.lname, e.fname }}</td><td>{{ e.status }}</td></tr></tbody></table>';
+
                           var unconfirmed = [];
-                         console.log($scope.employees);
+
                         _.forEach(group[0].employees, function (e){
                           if ( e.status != true){
                             unconfirmed.push(e);
@@ -231,14 +360,14 @@
                         });
 
                          var gp =  $filter('number')($scope.groupPercentage,0);
-                         var elBox = angular.element(document.querySelector('#theBox'));
-                         var groupStatus =  '<span class="md-title">'+
-                           $scope.group +'&nbsp;('+
-                           gp +
-                           '%)' +
-                           '</span>';
-                         //console.log(unconfirmed);
-                         elBox.html(groupStatus);
+
+                         $scope.groupPercentage = currConfirmations.length / group[0].employees.length *100;
+                         var el = angular.element(document.querySelector('#inject-box-1'));
+                         var span ='<div flex layout="row" layout-align="space-between end" ><span class="md-title">'+$scope.group+' ('+ gp +'%)</span>'+
+                           '<span flex class="md-caption" style="margin:.5rem;" layout="column" layout-align="start center"></div>'+
+                           '<div flex layout style="margin:.1rem;"><div layout flex="100" style="background-color:rgb(0,120,215); height:6px;" id="span"><span style="width:'+ $scope.groupPercentage+'%;background-color: rgb(243,188,9) ; height:6px;"></span></div></div>';
+
+                         el.html(span);
 
                          _.forEach(unconfirmed, function(uc){
                            Member
@@ -276,7 +405,6 @@
                  })
                })
             }
-
           });
         /**********************************************************/
 

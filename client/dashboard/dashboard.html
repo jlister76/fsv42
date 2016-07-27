@@ -1,111 +1,44 @@
 <div flex layout="column" layout-align="" class="container">
 
   <div layout-sm="column" layout-gt-sm="row" layout-align-gt-sm="space-around" layout-xs="column"  layout-align-xs="start start" class="md-padding" id="top-container">
-    <div ng-if="currentUser.accessLevel == 'account'" flex-gt-lg="75" flex-gt-md="70" style="background-color:white; margin-top:.5rem;">
-      <div layout layout-align="space-between center" style="margin:1rem;" >
-        <div id="theBox">
-          <md-progress-linear md-mode="indeterminate"></md-progress-linear>
-        </div>
-        <div ng-if="currentUser.accessLevel == 'group'" layout="column" layout-align="center center">
-          <md-button layout layout-align="center center" class="md-fab md-mini md-warn md-icon-button" ng-click="sendGroupReminder()"><i class="material-icons">chat_bubble_outline</i></md-button>
-          <span class="md-caption">Group Reminder</span>
-        </div>
-      </div>
-      <div layout style="margin:1rem;">
-        <div layout flex="100" style="background-color:rgb(0,120,215); height:6px;" id="span">
-        </div>
-      </div>
-      <table class="card" style="">
-        <thead>
-        <th>Employee</th>
-        <th>Status</th>
-        <tbody>
-        <tr ng-repeat="e in employees">
-          <td>{{ e.lname }}, {{ e.fname }}</td>
-          <td><div ng-if="e.status==true"  layout layout-align="center center" class="confirmation-icon"><i class="material-icons">done</i></div></td>
-        </tr>
-        </tbody>
-        </thead>
-      </table>
-    </div><!--end-->
-    <div ng-if="currentUser.accessLevel == 'group'" flex-gt-lg="75" flex-gt-md="70" style="background-color:white; margin-top:.5rem;">
-      <div layout layout-align="space-between center" style="margin:1rem;" >
-        <div id="theBox">
-          <md-progress-linear md-mode="indeterminate"></md-progress-linear>
-        </div>
-        <div ng-if="currentUser.accessLevel == 'group'" layout="column" layout-align="center center">
-          <md-button layout layout-align="center center" class="md-fab md-mini md-warn md-icon-button" ng-click="sendGroupReminder()"><i class="material-icons">chat_bubble_outline</i></md-button>
-          <span class="md-caption">Group Reminder</span>
-        </div>
-      </div>
-      <div layout style="margin:1rem;">
-        <div layout flex="100" style="background-color:rgb(0,120,215); height:6px;" id="span">
-        </div>
-      </div>
-      <table class="card" style="">
-        <thead>
-        <th>Employee</th>
-        <th>Status</th>
-        <tbody>
-        <tr ng-repeat="e in employees">
-          <td>{{ e.lname }}, {{ e.fname }}</td>
-          <td><div ng-if="e.status==true"  layout layout-align="center center" class="confirmation-icon"><i class="material-icons">done</i></div></td>
-        </tr>
-        </tbody>
-        </thead>
-      </table>
-    </div><!--end-->
-    <div flex ng-if="currentUser.accessLevel == 'regional'">
-      <div id="state-box"></div>
-      <div id="state-box-2"></div>
-      <div id="state-stats">
-        <div layout style="margin:1rem;">
+    <div flex layout>
+      <div ng-if="currentUser.accessLevel !='regional'" flex="100" layout="column" layout-align="start">
+        <div layout="column" layout-align="start" id="inject-box-1"
+             style="margin-top:2.5rem;"></div>
+        <table>
+          <thead>
+          <th>Employee</th>
+          <th>Current</th>
+          </thead>
+          <tbody>
+          <tr ng-repeat="e in employees">
+            <td>{{ e.lname }}, {{e.fname }}</td>
+            <td>
+              <div ng-if="e.status" layout layout-align="center center" class="confirmation-icon">
+                <i class="material-icons">done</i></div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div><!--account or group-->
+     <div flex layout>
+       <div ng-if="currentUser.accessLevel =='regional'" flex layout="column" layout-align="start">
+         <div layout="column" layout-align="start" id="state-box" style="margin-top:2.5rem;"></div>
+         <canvas ng-if="chart==0" id="bar1" class="chart-horizontal-bar"
+                 chart-options="options" chart-legend="true" chart-data="TXData" chart-labels="TXLabels">
+         </canvas>
+         <canvas ng-if="chart==1" id="bar2" class="chart-horizontal-bar"
+                 chart-options="options" chart-legend="true" chart-data="data" chart-labels="KYLabel">
+         </canvas>
+         <div layout="column" layout-align="start" id="state-box-2" style="margin-top:2.5rem;"></div>
+         <canvas ng-if="chart==1" id="bar3" class="chart-horizontal-bar"
+                 chart-options="options" chart-legend="true" chart-data="data" chart-labels="MSLabel">
+         </canvas>
+       </div><!--regional-->
+     </div>
 
-        </div>
 
-      </div>
     </div>
-    <div ng-if="currentUser.accessLevel =='company'" flex-gt-lg="75" flex-gt-md="70" flex-order-sm="2" hide-xs flex-gt-sm="70" layout-sm="row" id="chart-container">
-      <div  flex-sm>
-        <div >
-          <div flex class="md-padding">
-            <div layout="column" class="card md-padding" md-whiteframe="1">
-              <div layout layout-align="space-around" layout-xs="column">
-                <a href="#" class="md-body-1 chart-link" ng-click="chart=0">Company Wide</a>
-                <a href="#" class="md-body-1 chart-link" ng-click="chart=1">Texas</a>
-                <a href="#" class="md-body-1 chart-link" ng-click="chart=2">Kentucky </a>
-                <a href="#" class="md-body-1 chart-link" ng-click="chart=3">Mississippi</a>
-              </div>
-              <div>
-                <p ng-if="chart==0" class="md-title">Company-Wide</p>
-                <p ng-if="chart==0" class="md-subhead ">Installation Percentages</p>
-                <p ng-if="chart!=0" class="md-title">State-Wide</p>
-                <p ng-if="chart!=0" class="md-subhead">By Group Percentages</p>
-              </div>
-              <div>
-                <canvas ng-if="chart==0" id="bar" class="chart-horizontal-bar"
-                        chart-options="options" chart-legend="true" chart-data="data" chart-labels="labels">
-                </canvas>
-                <canvas ng-if="chart==1" id="base2" class="chart-horizontal-bar"
-                        chart-options="options" chart-data="TXGroupData" chart-labels="TXGroupLabels">
-                </canvas>
-                <canvas ng-if="chart==2" id="base3" class="chart-horizontal-bar"
-                        chart-options="options" chart-data="KYGroupData" chart-labels="KYGroupLabels">
-                </canvas>
-                <canvas ng-if="chart==3" id="base4" class="chart-horizontal-bar"
-                        chart-options="options" chart-data="MSGroupData" chart-labels="MSGroupLabels">
-                </canvas>
-              </div>
-              <div layout layout-align="center start">
-                <span ng-if="chart==1" class="md-body-1"><i>TEXAS GROUPS</i></span>
-                <span ng-if="chart==2" class="md-body-1"><i>KENTUCKY GROUPS</i></span>
-                <span ng-if="chart==3" class="md-body-1"><i>MISSISSIPPI GROUPS</i></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div><!--End of section-->
     <div flex-xs layout-xs hide-gt-xs >
       <div  flex-xs="100" flex-order-xs="7" id="sm-state-list" style="background-color: whitesmoke; width:90vw;">
 
@@ -127,7 +60,7 @@
       </div>
 
 
-    </div>
+    </div><!--small screen-->
     <div hide-xs hide-sm flex-gt-lg="25" flex-gt-md="30" flex-order-sm="1" flex-order-xs="5"  layout="column" layout-align="start center" id="container-two">
       <div ng-controller="DashboardController" layout="column" layout-align-sm="center center"
            id="confirmation-box"  >
