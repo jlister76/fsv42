@@ -121,7 +121,7 @@
                             $scope.chart =0;
                           });
                           $scope.txPercentages = txNumofConfirmations[0].length / txNumofEmployees[0].length *100;
-                          
+
                           var TXLabels = [];
                           _.forEach(txGroups[0], function(g){
                             TXLabels.push(g.title);
