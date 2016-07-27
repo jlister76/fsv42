@@ -48,6 +48,11 @@
       "model": "Company",
       "foreignKey": ""
     },
+    "confirmations": {
+      "type": "hasMany",
+      "model": "Confirmation",
+      "foreignKey": ""
+    },
     "region": {
       "type": "belongsTo",
       "model": "Region",

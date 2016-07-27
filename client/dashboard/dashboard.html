@@ -3,8 +3,17 @@
   <div layout-sm="column" layout-gt-sm="row" layout-align-gt-sm="space-around" layout-xs="column"  layout-align-xs="start start" class="md-padding" id="top-container">
     <div flex layout>
       <div ng-if="currentUser.accessLevel !='regional'" flex="100" layout="column" layout-align="start">
+        <div layout layout-align="end center" style="margin-top:2.5rem;">
+          <div ng-if="currentUser.accessLevel == 'group'" layout="column" layout-align="center center">
+            <md-button layout layout-align="center center" class="md-fab md-mini md-icon-button md-warn" ng-click="sendGroupReminder()"><i class="material-icons" style="font-size:18px;">chat_bubble_outline</i></md-button>
+            <span class="md-caption">Group Reminder</span>
+          </div>
+        </div>
         <div layout="column" layout-align="start" id="inject-box-1"
-             style="margin-top:2.5rem;"></div>
+             style="margin-top:1rem;">
+          <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+
+        </div>
         <table>
           <thead>
           <th>Employee</th>
@@ -28,11 +37,11 @@
                  chart-options="options" chart-legend="true" chart-data="TXData" chart-labels="TXLabels">
          </canvas>
          <canvas ng-if="chart==1" id="bar2" class="chart-horizontal-bar"
-                 chart-options="options" chart-legend="true" chart-data="data" chart-labels="KYLabel">
+                 chart-options="options" chart-legend="true" chart-data="KYData" chart-labels="KYLabel">
          </canvas>
          <div layout="column" layout-align="start" id="state-box-2" style="margin-top:2.5rem;"></div>
          <canvas ng-if="chart==1" id="bar3" class="chart-horizontal-bar"
-                 chart-options="options" chart-legend="true" chart-data="data" chart-labels="MSLabel">
+                 chart-options="options" chart-legend="true" chart-data="MSData" chart-labels="MSLabel">
          </canvas>
        </div><!--regional-->
      </div>
@@ -62,6 +71,19 @@
 
     </div><!--small screen-->
     <div hide-xs hide-sm flex-gt-lg="25" flex-gt-md="30" flex-order-sm="1" flex-order-xs="5"  layout="column" layout-align="start center" id="container-two">
+      <div ng-if="currentUser.accessLevel =='regional'" layout="column" style="border:solid thin red;width:100%;">
+       <div flex layout>
+         <div><md-select><md-option></md-option></md-select></div>
+         <div ng-if="currentUser.accessLevel == 'regional'" layout="column" layout-align="center center">
+           <md-button layout layout-align="center center" class="md-fab md-mini md-icon-button md-warn" ng-click="sendRegionalReminder()"><i class="material-icons" style="font-size:18px;">chat_bubble_outline</i></md-button>
+           <span class="md-caption">Group Reminder</span>
+         </div>
+       </div>
+        <div flex layout>
+          <table><thead><th>Employee</th></thead><tbody><tr ng-repeat="e in employeesWithoutConfirmations"><td>{{e.lname}} ,{{e.fname}}</td></tr></tbody></table>
+        </div>
+        <div flex layout>New Block</div>
+      </div>
       <div ng-controller="DashboardController" layout="column" layout-align-sm="center center"
            id="confirmation-box"  >
         <div flex-66 layout >

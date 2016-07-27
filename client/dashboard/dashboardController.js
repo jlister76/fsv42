@@ -3,7 +3,7 @@
 
   angular
     .module('FSV42App')
-    .controller('DashboardController', function ($scope, AuthService, $rootScope, $state, $mdSidenav, $log, $mdMedia, Confirmation,Employee,Update, $http,IssueReport, DownloadService,UpdateService, DashboardService,$mdToast, Region,State,Group, Member, $filter){
+    .controller('DashboardController', function ($scope,$filter, AuthService, $rootScope, $state, $mdSidenav, $log, $mdMedia, Confirmation,Employee,Update, $http,IssueReport, DownloadService,UpdateService, DashboardService,$mdToast, Region,State,Group, Member){
       /*****************************************************************/
               //Sets current user
 
@@ -100,11 +100,17 @@
                     //console.log(region[0].states);
                     $scope.states = region[0].states;
                   _.forEach(region[0].states, function(s){
-                    console.log(s);
+
+                    function compare(a,b) {
+                      if (a.title < b.title)
+                        return -1;
+                      return 1;
+                      return 0;
+                    }//sorts objects by id
                     State.find({filter:{include:['confirmations','employees','groups'],where:{id:s.id}}})
                       .$promise
                       .then(function(state){
-                        console.log(state);
+
                         var txNumofEmployees =[];
                         var txNumofConfirmations =[];
                         var kyNumOfEmployees =[];
@@ -120,24 +126,86 @@
                             txGroups.push(s.groups);
                             $scope.chart =0;
                           });
-                          $scope.txPercentages = txNumofConfirmations[0].length / txNumofEmployees[0].length *100;
+                          /*************************************************************************/
+                          //Texas Group stats
+                          var TXGroupLabels =[];
+                          var TXGroupPercentages =[];
+                          DashboardService
+                            .getTexasGroups()
+                            .then(function (Texas) {
+                              //console.log(Texas);
+                              _.forEach(Texas.sort(compare), function(g){TXGroupLabels.push(g.title)});
+                              function compare(a, b) {
+                                if (a.id < b.id)
+                                  return -1;
+                                if (a.id > b.id)
+                                  return 1;
+                                return 0;
+                              }//sorts objects by id
+
+                              _.forEach(Texas.sort(compare), function (g) {
+                                var cl = g.confirmations.length;
+                                var el = g.employees.length;
+                                var percentage = cl/el*100;
+                                TXGroupPercentages.push(percentage);
+                              });
+                              console.info(TXGroupLabels,TXGroupPercentages);
+                              //Angular-Chartjs
+                              $scope.TXLabels = TXGroupLabels;
+                              $scope.TXData = [TXGroupPercentages];
+
+                              //Unconfirmed Employee List
+                              var cList =[];
+                              var eList = [];
+                              var unconfirmedList = [];
+                              var employeesWithConfirmations =[];
+                              _.forEach(Texas.sort(compare), function(g){
+                                _.forEach(g.confirmations, function(c){
+                                  cList.push(c);
+                                });
+
+                                console.log(cList);
+                                _.forEach(g.employees, function(e){
+                                  eList.push(e);
+                                  _.forEach(cList,function(c){
+                                    if(c.employeeId == e.id){
+                                      employeesWithConfirmations.push(e);
+                                    }
+
+
+                                  })
+                                })
+                              });
+                                  console.log(employeesWithConfirmations);
+
+                              //match employee ids with employeeId and return the difference
+                              var employeesWithoutConfirmations = _.differenceBy(eList.sort(compare),employeesWithConfirmations.sort(compare), 'id');
+
+                             console.log($scope.employeesWithoutConfirmations);
+
+
+                            });
+
+                          /*************************************************************************/
+
+
+
+                          var txPercentages = txNumofConfirmations[0].length / txNumofEmployees[0].length *100;
 
                           var TXLabels = [];
                           _.forEach(txGroups[0], function(g){
                             TXLabels.push(g.title);
                           });
 
-                          console.log( TXLabels);
+
                           var TX = state[0].title;
-                          var txPercent =  $filter('number')($scope.txPercentages,0);
+                          var txPercent =  $filter('number')(txPercentages,0);
                           var el = angular.element(document.querySelector('#state-box'));
-                          var TXpercentage = '<div flex><span class="md-title">'+TX+'( '+txPercent+'%)</span></div>' +
+                          var TXpercentage = '<div flex><span class="md-title">'+TX+' ('+txPercent+'%)</span></div>' +
                                              '<div style="margin:1rem;"><div layout flex="100" style="background-color:rgb(0,120,215); height:6px;">'+
-                                             '<div style="width:'+ $scope.txPercentages+'%;background-color: rgb(243,188,9) ; height:6px;"></div></div></div>';
+                                             '<div style="width:'+ txPercentages+'%;background-color: rgb(243,188,9) ; height:6px;"></div></div></div>';
                           el.html(TXpercentage);
-                          //Angular-Chartjs
-                          $scope.TXLabels = TXLabels;
-                          $scope.TXData = [30,50,67];
+
 
                         }else if (region[0].id == 1){
                           var KY;
@@ -154,10 +222,9 @@
                             console.info(state);
 
                             var kyPercent =  $filter('number')($scope.kyPercentages,0);
-                            var regionStat1 =  '<div><span class="md-title">'+KY+'( '+kyPercent+'%)</span></div>' +
-                              '<div flex style="margin:1rem;"><div layout flex="100" style="background-color:rgb(0,120,215); height:6px;" id="state-stat-box-1">'+
+                            var regionStat1 =  '<div><span class="md-title">'+KY+' ('+kyPercent+'%)</span></div>' +
+                              '<div flex style="margin:1rem;"><div layout flex="100" style="background-color:rgb(0,120,215); height:6px;">'+
                               '<div style="width:'+ $scope.kyPercentages+'%;background-color: rgb(243,188,9) ; height:6px;"></div></div></div>';
-
 
                             var KYGroups = [];
                             var KYLabels =[];
@@ -166,16 +233,41 @@
                               KYLabels.push(g.title);
 
                             });
-
                             _.forEach(state[0].confirmations, function(c){
-                                if(KYGroups[0].id == c.groupId){
-                                  console.log(c);
-                                }
+                              if(KYGroups[0].id == c.groupId){
+                                console.log(c);
+                              }
                             });
 
-                            /*Angular-ChartJS*/
-                            $scope.KYLabel = KYLabels;
-                            $scope.data = [[33,45]];
+                            /*************************************************************************/
+                            //Kentucky Group stats
+                            var KYGroupLabels =[];
+                            var KYGroupPercentages =[];
+                            DashboardService
+                              .getKentuckyGroups()
+                              .then(function (Kentucky) {
+
+                                _.forEach(Kentucky.sort(compare), function(g){KYGroupLabels.push(g.title)});
+                                function compare(a, b) {
+                                  if (a.id < b.id)
+                                    return -1;
+                                  if (a.id > b.id)
+                                    return 1;
+                                  return 0;
+                                }//sorts objects by id
+                                _.forEach(Kentucky.sort(compare), function (g) {
+                                  var cl = g.confirmations.length;
+                                  var el = g.employees.length;
+                                  var percentage = cl/el*100;
+                                  KYGroupPercentages.push(percentage);
+                                });
+                                /*Angular-ChartJS*/
+                                $scope.KYLabel = KYGroupLabels;
+                                $scope.KYData = [KYGroupPercentages];
+                              });
+                            /*************************************************************************/
+
+
 
 
 
@@ -194,17 +286,44 @@
                               MSGroups.push(g);
                               MSLabels.push(g.title);
                             });
-                            /*Angular-ChartJS*/
-                            $scope.MSLabel = MSLabels;
-                            $scope.MSdata = [[33,45]];
+
+                            /*************************************************************************/
+                            //Mississippi Group stats
+                            var MSGroupLabels =[];
+                            var MSGroupPercentages =[];
+                            DashboardService
+                              .getMississippiGroups()
+                              .then(function (Mississippi) {
+
+                                _.forEach(Mississippi.sort(compare), function(g){MSGroupLabels.push(g.title)});
+                                function compare(a, b) {
+                                  if (a.id < b.id)
+                                    return -1;
+                                  if (a.id > b.id)
+                                    return 1;
+                                  return 0;
+                                }//sorts objects by id
+                                _.forEach(Mississippi.sort(compare), function (g) {
+                                  var cl = g.confirmations.length;
+                                  var el = g.employees.length;
+                                  var percentage = cl/el*100;
+                                  MSGroupPercentages.push(percentage);
+                                });
+                                /*Angular-ChartJS*/
+                                $scope.MSLabel = MSGroupLabels;
+                                $scope.MSData = [MSGroupPercentages];
+                              });
+                            /*************************************************************************/
+                            var msPercent =  $filter('number')($scope.msPercentages,0);
+                            var regionStat2 =
+                              '<div id="state-box-2"><span class="md-title">'+MS+' ('+msPercent+'%)</span></div>' +
+                              '<div layout style="margin:1rem;"><div layout flex="100" style="background-color:rgb(0,120,215); height:6px;">'+
+                              '<div style="width:'+ $scope.msPercentages+'%;background-color: rgb(243,188,9) ; height:6px;"></div></div></div>';
+
                           }
 
 
-                          var msPercent =  $filter('number')($scope.msPercentages,0);
-                          var regionStat2 =
-                                    '<div id="state-box-2"><span class="md-title">'+MS+'( '+msPercent+'%)</span></div>' +
-                                    '<div layout style="margin:1rem;"><div layout flex="100" style="background-color:rgb(0,120,215); height:6px;" id="state-stat-box-2">'+
-                                    '<div style="width:'+ $scope.msPercentages+'%;background-color: rgb(243,188,9) ; height:6px;"></div></div></div>';
+
 
                           var regionElement = angular.element(document.querySelector('#state-box'));
                           var regionElement2 = angular.element(document.querySelector('#state-box-2'));
@@ -248,7 +367,7 @@
                             })
                           });
                           //console.log(currConfirmations);
-
+                          var groupPercentage = currConfirmations.length / group[0].employees.length * 100;
                           _.forEach(group[0].employees, function (e) {
                             _.forEach(currConfirmations, function (c) {
                               if (e.id == c.employeeId) {
@@ -267,28 +386,30 @@
                             }
                           });
 
-                          var gp = $filter('number')($scope.groupPercentage, 0);
+                          /*var gp = $filter('number')(groupPercentage,0);*/
 
-                          $scope.groupPercentage = currConfirmations.length / group[0].employees.length * 100;
+
+                          var gp = groupPercentage.toFixed(0);
+                          console.log(groupPercentage);
                           var el = angular.element(document.querySelector('#inject-box-1'));
-                          var span = '<div layout="row" layout-align="space-between end"><span class="md-title">' + $scope.group + ' (' + gp + '%)</span>' +
-                            '<span  class="md-caption" style="margin:.5rem;" layout="column" layout-align="start center"><button layout layout-align="center center" style="border: none; border-radius:100%; background-color:darkorange;color:white;width:34px; height:34px;" ng-click="sendGroupReminder()"><i class="material-icons" style="font-size:18px;">chat_bubble_outline</i></button>' +
-                            'Group Reminder</span></div>' +
-                            '<div layout style="margin:.1rem;"><div layout flex="100" style="background-color:rgb(0,120,215); height:6px;" id="span"><span style="width:' + $scope.groupPercentage + '%;background-color: rgb(243,188,9) ; height:6px;"></span></div></div>';
+                          var span = '<div layout="row" layout-align="space-between end"><span class="md-title">' + $scope.group + ' (' + gp + '%)</span></div>' +
+                            '<div layout style="margin:.1rem;"><div layout flex="100" style="background-color:rgb(0,120,215); height:6px;" id="span"><span style="width:' + groupPercentage + '%;background-color: rgb(243,188,9) ; height:6px;"></span></div></div>';
 
                           el.html(span);
 
+
+
                           _.forEach(unconfirmed, function (uc) {
-                            Member
-                              .findById({id: uc.memberId})
-                              .$promise
-                              .then(function (member) {
-                                var unconfirmedMembers = [];
-                                //console.log(member);
-                                unconfirmedMembers.push(member.email);
-                                return unconfirmedMembers;
-                              })
-                              .then(function (unconfirmedMembers) {
+                           Member
+                           .findById({id: uc.memberId})
+                           .$promise
+                           .then(function (member) {
+                           var unconfirmedMembers = [];
+                           //console.log(member);
+                           unconfirmedMembers.push(member.email);
+                           return unconfirmedMembers;
+                           })
+                             .then(function (unconfirmedMembers) {
 
 
                                 $scope.sendGroupReminder = function ($event) {
@@ -315,7 +436,7 @@
                 })
 
             }else if (user.accessLevel == 'account'){
-              console.log("ACCOUNT!!");
+
              Employee
                .find({filter:{where:{memberId: user.id}}})
                .$promise
@@ -368,37 +489,36 @@
                            '<div flex layout style="margin:.1rem;"><div layout flex="100" style="background-color:rgb(0,120,215); height:6px;" id="span"><span style="width:'+ $scope.groupPercentage+'%;background-color: rgb(243,188,9) ; height:6px;"></span></div></div>';
 
                          el.html(span);
-
-                         _.forEach(unconfirmed, function(uc){
+                        /* _.forEach(unconfirmed, function (uc) {
                            Member
                              .findById({id: uc.memberId})
                              .$promise
-                             .then(function(member) {
-                               var unconfirmedMembers =[];
+                             .then(function (member) {
+                               var unconfirmedMembers = [];
                                //console.log(member);
                                unconfirmedMembers.push(member.email);
-                                return unconfirmedMembers;
+                               return unconfirmedMembers;
                              })
-                             .then(function(unconfirmedMembers){
+                             .then(function (unconfirmedMembers) {
 
 
-                               $scope.sendGroupReminder = function($event){
+                               $scope.sendGroupReminder = function ($event) {
                                  console.log("active");
-                                 if (unconfirmedMembers.length > 0){
+                                 if (unconfirmedMembers.length > 0) {
                                    console.log(unconfirmedMembers);
                                    var emailList = {email: unconfirmedMembers};
-                                   /*$http.post('api/Updates/sendReminder', emailList);*/
-                                   console.log(emailList);
+                                   /!*$http.post('api/Updates/sendReminder', emailList);*!/
+                                   console.info(emailList);
                                    $mdToast.show($mdToast.simple()
                                      .position('right')
                                      .capsule(true)
-                                     .textContent("Group Reminder was sent." ))
+                                     .textContent("Group Reminder was sent."))
                                  }
                                };
 
                              })
 
-                         });
+                         });*/
 
                        })
 

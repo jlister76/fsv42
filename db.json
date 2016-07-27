@@ -1,17 +1,17 @@
 {
   "ids": {
     "User": 1,
-    "AccessToken": 122,
+    "AccessToken": 152,
     "ACL": 1,
     "RoleMapping": 7,
     "Role": 2,
     "Member": 16,
     "Employee": 11,
-    "Confirmation": 12,
-    "IssueReport": 3,
+    "Confirmation": 15,
+    "IssueReport": 5,
     "Update": 4,
     "State": 7,
-    "Group": 8,
+    "Group": 9,
     "Company": 2,
     "Region": 3
   },
@@ -20,22 +20,23 @@
     "AccessToken": {
       "ljjVyaEXytFOTnhRY5NQ4QAYhUE9NKETYBIYCnL1Zh8tUrGADNric7ggVQghE1YV": "{\"id\":\"ljjVyaEXytFOTnhRY5NQ4QAYhUE9NKETYBIYCnL1Zh8tUrGADNric7ggVQghE1YV\",\"ttl\":1209600,\"created\":\"2016-07-21T06:30:21.416Z\",\"userId\":1}",
       "SQqX7c819fcw3OuXoNjmnykqiJ8PBbn5Di9w8vZmCA5SosjYuGniBCP7pH0pdhPO": "{\"id\":\"SQqX7c819fcw3OuXoNjmnykqiJ8PBbn5Di9w8vZmCA5SosjYuGniBCP7pH0pdhPO\",\"ttl\":1209600,\"created\":\"2016-07-22T03:37:13.673Z\",\"userId\":2}",
-      "jfr3lXRCDYAoxk5jNbA473wBAuqQTeBnngHEXuuIrRaWqSl0PAFffIP34p3GP3EF": "{\"id\":\"jfr3lXRCDYAoxk5jNbA473wBAuqQTeBnngHEXuuIrRaWqSl0PAFffIP34p3GP3EF\",\"ttl\":1209600,\"created\":\"2016-07-25T21:48:20.172Z\",\"userId\":12}",
       "FBQDPNF2Zr8wgsV2DTCErgrrAhemAL6qGHQHit4x5BJIwCUhC9SMvFWGNEoeQxh9": "{\"id\":\"FBQDPNF2Zr8wgsV2DTCErgrrAhemAL6qGHQHit4x5BJIwCUhC9SMvFWGNEoeQxh9\",\"ttl\":1209600,\"created\":\"2016-07-26T05:21:23.987Z\",\"userId\":13}",
       "Pmv9BqUQk7iR593YFVV6dX003GVI0NTHXKyeE9gdXY89cEHWfkdz6A78HB7P6MaN": "{\"id\":\"Pmv9BqUQk7iR593YFVV6dX003GVI0NTHXKyeE9gdXY89cEHWfkdz6A78HB7P6MaN\",\"ttl\":1209600,\"created\":\"2016-07-26T06:39:19.008Z\",\"userId\":13}",
       "l27i2F06JtPInIj6h6uhT5ZUBlARDqE05s0YKayysl223GHmtdTt7aRwT7Anze4F": "{\"id\":\"l27i2F06JtPInIj6h6uhT5ZUBlARDqE05s0YKayysl223GHmtdTt7aRwT7Anze4F\",\"ttl\":1209600,\"created\":\"2016-07-26T07:10:26.608Z\",\"userId\":11}",
-      "sOSR71xvsyObbzuNleXGKQDL38EgDBbYoG0Dc2kExBUT0ipihDrgqpTwmygGok7m": "{\"id\":\"sOSR71xvsyObbzuNleXGKQDL38EgDBbYoG0Dc2kExBUT0ipihDrgqpTwmygGok7m\",\"ttl\":1209600,\"created\":\"2016-07-26T15:42:43.653Z\",\"userId\":11}",
       "xVoCfE66PEESAdTF83LGzffPLul95VwvphZlg8jsBzXYzG5QnMX1wfLotA9TGdwl": "{\"id\":\"xVoCfE66PEESAdTF83LGzffPLul95VwvphZlg8jsBzXYzG5QnMX1wfLotA9TGdwl\",\"ttl\":1209600,\"created\":\"2016-07-26T16:24:56.417Z\",\"userId\":13}",
       "ODm8EmxtzMTdWoj4BWorbGDY4FcSrItDP40KLH0IGLsl8yYFBdV3L2pQfOtSkDGp": "{\"id\":\"ODm8EmxtzMTdWoj4BWorbGDY4FcSrItDP40KLH0IGLsl8yYFBdV3L2pQfOtSkDGp\",\"ttl\":1209600,\"created\":\"2016-07-26T23:05:30.298Z\",\"userId\":13}",
       "Lu5JiAQgEitUiWl8VpGZ2TRbDy5mldkpEOu83NXHD6OFEsTuST6604W6zcamYtmy": "{\"id\":\"Lu5JiAQgEitUiWl8VpGZ2TRbDy5mldkpEOu83NXHD6OFEsTuST6604W6zcamYtmy\",\"ttl\":1209600,\"created\":\"2016-07-27T03:28:37.666Z\",\"userId\":14}",
-      "cELYy1Lb7HSyrBHdkYaCgux7bR27kE3VwQQxRgUlDoFcT8U3yscQCwSNFBj1ywt7": "{\"id\":\"cELYy1Lb7HSyrBHdkYaCgux7bR27kE3VwQQxRgUlDoFcT8U3yscQCwSNFBj1ywt7\",\"ttl\":1209600,\"created\":\"2016-07-27T06:23:55.387Z\",\"userId\":8}"
+      "cELYy1Lb7HSyrBHdkYaCgux7bR27kE3VwQQxRgUlDoFcT8U3yscQCwSNFBj1ywt7": "{\"id\":\"cELYy1Lb7HSyrBHdkYaCgux7bR27kE3VwQQxRgUlDoFcT8U3yscQCwSNFBj1ywt7\",\"ttl\":1209600,\"created\":\"2016-07-27T06:23:55.387Z\",\"userId\":8}",
+      "ySUhWIBfJPrN2T4x28Y5SLeI92LIZjZLv9kDMXAFiw5pYo383d8kN4jMSdXFcHli": "{\"id\":\"ySUhWIBfJPrN2T4x28Y5SLeI92LIZjZLv9kDMXAFiw5pYo383d8kN4jMSdXFcHli\",\"ttl\":1209600,\"created\":\"2016-07-27T19:40:59.897Z\",\"userId\":9}",
+      "Ee94uChGHaxzAXMtKI9Hc6GcX8sF5TRPuRdiQ6opuU2997Sn32O98wGmIC4LHypH": "{\"id\":\"Ee94uChGHaxzAXMtKI9Hc6GcX8sF5TRPuRdiQ6opuU2997Sn32O98wGmIC4LHypH\",\"ttl\":1209600,\"created\":\"2016-07-27T20:12:51.479Z\",\"userId\":9}",
+      "GgSqbdKsrT6m1iXQRW3gdy0R1TXwOtHGcFVRiMMbkASsAt16vwcgBl7ftkHdVT4h": "{\"id\":\"GgSqbdKsrT6m1iXQRW3gdy0R1TXwOtHGcFVRiMMbkASsAt16vwcgBl7ftkHdVT4h\",\"ttl\":1209600,\"created\":\"2016-07-27T20:20:48.169Z\",\"userId\":9}"
     },
     "ACL": {},
     "RoleMapping": {},
     "Role": {},
     "Member": {
       "1": "{\"fname\":\"John\",\"lname\":\"Lister\",\"username\":\"John Lister\",\"password\":\"$2a$10$hEz34USvMlW7iqtMWcHyDe5OIXk.204SwIGCJJueI/o8fRClgUssS\",\"email\":\"jlister469@outlook.com\",\"stateId\":1,\"id\":1}",
-      "2": "{\"fname\":\"Andrew\",\"lname\":\"Machiano\",\"username\":\"Andrew Machiano\",\"password\":\"$2a$10$s98.bJK5zw89RnC55rB2ReVrIADMXGt44LKiiW93YshR4xmpskuKG\",\"email\":\"a.machiano@heathus.com\",\"stateId\":1,\"id\":2}",
+      "2": "{\"fname\":\"Andrew\",\"lname\":\"Machiano\",\"username\":\"Andrew Machiano\",\"password\":\"$2a$10$s98.bJK5zw89RnC55rB2ReVrIADMXGt44LKiiW93YshR4xmpskuKG\",\"email\":\"a.machiano@heathus.com\",\"stateId\":1,\"id\":2,\"accessLevel\":\"account\"}",
       "3": "{\"fname\":\"Sean\",\"lname\":\"Cerda\",\"username\":\"Sean Cerda\",\"password\":\"$2a$10$AOFHPcohLf30VNeDBujwue/C33qpu52RjfDQ3yk019b3sTPyjWKKG\",\"email\":\"s.cerda@heathus.com\",\"stateId\":2,\"id\":3,\"groupId\":4,\"accessLevel\":\"account\"}",
       "4": "{\"fname\":\"Paul\",\"lname\":\"Galyean\",\"username\":\"Paul Galyean\",\"password\":\"$2a$10$BTOWfwSIsGG/M/jcVumRruOKhlAQtZOv/lNi2Vf.pB5Ujse5gB5mK\",\"email\":\"p.galyean@heathus.com\",\"stateId\":3,\"id\":4,\"accessLevel\":\"account\"}",
       "5": "{\"fname\":\"Rodney\",\"lname\":\"Robinson\",\"username\":\"Rodney Robinson\",\"password\":\"$2a$10$loEfHXfdI/DsIhCszBj7DOBQfCVdAEije4LUDbcgcjugI5i8nM4Y2\",\"email\":\"j.lister@heathus.com\",\"created\":\"2016-07-21T00:00:00.000Z\",\"lastUpdated\":\"2016-07-21T00:00:00.000Z\",\"stateId\":1,\"id\":5,\"accessLevel\":\"account\"}",
@@ -67,11 +68,15 @@
       "7": "{\"lastUpdated\":\"2016-07-21T22:10:13.549Z\",\"groupId\":1,\"employeeId\":1,\"updateId\":1,\"id\":7,\"regionId\":2,\"stateId\":1}",
       "8": "{\"lastUpdated\":\"2016-07-26T01:33:23.857Z\",\"groupId\":3,\"employeeId\":9,\"updateId\":1,\"id\":8,\"regionId\":2,\"stateId\":1}",
       "9": "{\"lastUpdated\":\"2016-07-26T02:04:52.278Z\",\"groupId\":3,\"employeeId\":8,\"updateId\":1,\"id\":9,\"regionId\":2,\"stateId\":1}",
-      "11": "{\"lastUpdated\":\"2016-07-27T04:58:11.198Z\",\"groupId\":4,\"employeeId\":10,\"updateId\":2,\"id\":11}"
+      "11": "{\"lastUpdated\":\"2016-07-27T04:58:11.198Z\",\"groupId\":4,\"employeeId\":10,\"updateId\":2,\"id\":11}",
+      "13": "{\"lastUpdated\":\"2016-07-27T18:46:24.096Z\",\"groupId\":2,\"employeeId\":5,\"updateId\":1,\"id\":13}",
+      "14": "{\"lastUpdated\":\"2016-07-27T20:19:11.638Z\",\"groupId\":3,\"employeeId\":7,\"updateId\":1,\"id\":14}"
     },
     "IssueReport": {
       "1": "{\"issue\":\"Install an update\",\"employeeId\":2,\"updateId\":1,\"stateId\":1,\"createdAt\":\"2016-07-21T22:10:35.418Z\",\"id\":1}",
-      "2": "{\"issue\":\"Download an update\",\"comments\":\"xss<script>alert('Oh Shit');</script>\",\"employeeId\":5,\"updateId\":1,\"stateId\":1,\"createdAt\":\"2016-07-25T02:07:04.513Z\",\"id\":2}"
+      "2": "{\"issue\":\"Download an update\",\"comments\":\"xss<script>alert('Oh Shit');</script>\",\"employeeId\":5,\"updateId\":1,\"stateId\":1,\"createdAt\":\"2016-07-25T02:07:04.513Z\",\"id\":2}",
+      "3": "{\"issue\":\"Download an update\",\"comments\":\"this is whats goingt on\",\"employeeId\":9,\"updateId\":1,\"stateId\":1,\"createdAt\":\"2016-07-27T18:48:51.025Z\",\"id\":3}",
+      "4": "{\"issue\":\"Install an update\",\"comments\":\"dfdbfdg\",\"employeeId\":11,\"updateId\":1,\"stateId\":1,\"createdAt\":\"2016-07-27T20:19:20.810Z\",\"id\":4}"
     },
     "Update": {
       "1": "{\"releaseDate\":\"2016-07-21T05:00:00.000Z\",\"link\":\"https://s3.amazonaws.com/fsv42updates/FSV42KY-Mid(64bit).EXE\",\"stateId\":1,\"id\":1}",
