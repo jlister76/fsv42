@@ -73,14 +73,14 @@
     <div hide-xs hide-sm flex-gt-lg="25" flex-gt-md="30" flex-order-sm="1" flex-order-xs="5"  layout="column" layout-align="start center" id="container-two">
       <div ng-if="currentUser.accessLevel =='regional'" layout="column" style="border:solid thin red;width:100%;">
        <div flex layout>
-         <div><md-select><md-option></md-option></md-select></div>
+         <div></div>
          <div ng-if="currentUser.accessLevel == 'regional'" layout="column" layout-align="center center">
            <md-button layout layout-align="center center" class="md-fab md-mini md-icon-button md-warn" ng-click="sendRegionalReminder()"><i class="material-icons" style="font-size:18px;">chat_bubble_outline</i></md-button>
            <span class="md-caption">Group Reminder</span>
          </div>
        </div>
         <div flex layout>
-          <table><thead><th>Employee</th></thead><tbody><tr ng-repeat="e in employeesWithoutConfirmations"><td>{{e.lname}} ,{{e.fname}}</td></tr></tbody></table>
+          <table><thead><th>Employee</th><th>Group</th></thead><tbody><tr ng-repeat="e in employees"><td>{{e.lname}} ,{{e.fname}}</td><td>{{e.group.title}}</td></tr></tbody></table>
         </div>
         <div flex layout>New Block</div>
       </div>

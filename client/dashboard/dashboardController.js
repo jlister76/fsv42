@@ -110,7 +110,7 @@
                     State.find({filter:{include:['confirmations','employees','groups'],where:{id:s.id}}})
                       .$promise
                       .then(function(state){
-
+                        console.log(state);
                         var txNumofEmployees =[];
                         var txNumofConfirmations =[];
                         var kyNumOfEmployees =[];
@@ -126,6 +126,23 @@
                             txGroups.push(s.groups);
                             $scope.chart =0;
                           });
+
+                          var txPercentages = txNumofConfirmations[0].length / txNumofEmployees[0].length *100;
+
+                          var TXLabels = [];
+                          _.forEach(txGroups[0], function(g){
+                            TXLabels.push(g.title);
+                          });
+
+                          console.log(txNumofConfirmations[0]);
+                          var TX = state[0].title;
+                          var txPercent =  $filter('number')(txPercentages,0);
+                          var el = angular.element(document.querySelector('#state-box'));
+                          var TXpercentage = '<div flex><span class="md-title">'+TX+' ('+txPercent+'%)</span></div>' +
+                            '<div style="margin:1rem;"><div layout flex="100" style="background-color:rgb(0,120,215); height:6px;">'+
+                            '<div style="width:'+ txPercentages+'%;background-color: rgb(243,188,9) ; height:6px;"></div></div></div>';
+                          el.html(TXpercentage);
+
                           /*************************************************************************/
                           //Texas Group stats
                           var TXGroupLabels =[];
@@ -133,7 +150,7 @@
                           DashboardService
                             .getTexasGroups()
                             .then(function (Texas) {
-                              //console.log(Texas);
+                              console.log(Texas);
                               _.forEach(Texas.sort(compare), function(g){TXGroupLabels.push(g.title)});
                               function compare(a, b) {
                                 if (a.id < b.id)
@@ -176,12 +193,27 @@
                                   })
                                 })
                               });
-                                  console.log(employeesWithConfirmations);
+                                  //console.log(employeesWithConfirmations);
 
                               //match employee ids with employeeId and return the difference
                               var employeesWithoutConfirmations = _.differenceBy(eList.sort(compare),employeesWithConfirmations.sort(compare), 'id');
+                              var employeeList =[];
+                             //console.log(employeesWithoutConfirmations);
+                              Employee.find({filter:{include:'group', where:{stateId:1}}})
+                                .$promise
+                                .then(function(employees){
+                                 var list = _.uniq(employees.sort(),employeesWithoutConfirmations.sort());
+                                  _.forEach(employees.sort(), function(e){
+                                    _.forEach(employeesWithoutConfirmations.sort(), function(o){
+                                      if(e.id == o.id){
+                                        employeeList.push(e);
+                                      }
+                                    })
+                                  });
 
-                             console.log($scope.employeesWithoutConfirmations);
+                                  $scope.employees = employeeList;
+                                  console.log(employeeList);
+                                })
 
 
                             });
@@ -190,21 +222,7 @@
 
 
 
-                          var txPercentages = txNumofConfirmations[0].length / txNumofEmployees[0].length *100;
 
-                          var TXLabels = [];
-                          _.forEach(txGroups[0], function(g){
-                            TXLabels.push(g.title);
-                          });
-
-
-                          var TX = state[0].title;
-                          var txPercent =  $filter('number')(txPercentages,0);
-                          var el = angular.element(document.querySelector('#state-box'));
-                          var TXpercentage = '<div flex><span class="md-title">'+TX+' ('+txPercent+'%)</span></div>' +
-                                             '<div style="margin:1rem;"><div layout flex="100" style="background-color:rgb(0,120,215); height:6px;">'+
-                                             '<div style="width:'+ txPercentages+'%;background-color: rgb(243,188,9) ; height:6px;"></div></div></div>';
-                          el.html(TXpercentage);
 
 
                         }else if (region[0].id == 1){
@@ -841,7 +859,7 @@
                 });
 
                 Confirmation
-                  .create({lastUpdated: date, updateId: update.id, employeeId: user.id, groupId: user.groupId})
+                  .create({lastUpdated: date, updateId: update.id, employeeId: user.id, groupId: user.groupId, stateId:user.stateId})
                   .$promise
                   .then(function(confirmation){
                     console.log(confirmation + " saved");
