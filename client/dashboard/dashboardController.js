@@ -212,6 +212,7 @@
                                   });
 
                                   $scope.employees = employeeList;
+                                  $scope.groupList = _.uniqBy(employeeList,'group.title');
                                   console.log(employeeList);
                                 })
 
@@ -842,6 +843,7 @@
       /*Update or Create confirmation*/
 
       $scope.createConfirmation = function () {
+        console.log("New Confirmation");
         UpdateService
           .getAllCurrentUpdates()
           .then(function (currentUpdates) {
@@ -849,7 +851,7 @@
             AuthService
               .getCurrentEmployee()
               .then(function (user){
-
+                console.log(user);
                 var update;
                 var date = new Date();
                 _.forEach(currentUpdates, function(o){
@@ -859,7 +861,7 @@
                 });
 
                 Confirmation
-                  .create({lastUpdated: date, updateId: update.id, employeeId: user.id, groupId: user.groupId, stateId:user.stateId})
+                  .create({lastUpdated: date, updateId: update.id, employeeId: user.id, groupId: user.groupId, stateId:user.stateId, regionId: user.regionId})
                   .$promise
                   .then(function(confirmation){
                     console.log(confirmation + " saved");

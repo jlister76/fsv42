@@ -220,7 +220,7 @@ a::selection {
   }
   thead th {
     text-align:left;
-    min-width:15rem;
+    /*min-width:15rem;*/
   }
   td {
     padding: 1rem .5rem;
