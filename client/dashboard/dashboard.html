@@ -73,9 +73,8 @@
     <div hide-xs hide-sm flex-gt-lg="25" flex-gt-md="30" flex-order-sm="1" flex-order-xs="5"  layout="column" layout-align="start center" id="container-two">
       <div ng-if="currentUser.accessLevel =='regional'" layout="column" style="border:none;width:100%;">
        <div flex layout layout-align="space-around center">
-         <span  class="md-icon"><i class="material-icons">filter_list</i></span>
          <div style="margin:.5rem 0;">
-           <md-select ng-model="searchCriteria" required aria-label="Texas Groups" placeholder="Group">
+           <md-select ng-model="searchCriteria" required aria-label="Texas Groups" placeholder='<span  class="md-icon"><i class="material-icons">filter_list</i></span> Group'>
              <md-option ng-repeat="g in groupList" value="{{ g.group.title }}" >{{ g.group.title }}</md-option>
            </md-select>
          </div>
@@ -85,14 +84,16 @@
            <small class="md-caption">Reminder</small>
          </div>
        </div>
-        <div flex layout>
+        <div flex layout style="overflow: auto; max-height: 400px" id="unconfirmed-contianer">
           <table><thead>
-          <th>Employee</th>
-          <th class="md-body-2"><a layout layout-align="start center" href="#"
-                                   ng-click="sortOption='group.title'; sortReverse = !sortReverse">Group
-            <span ng-if="sortOption=='group.title' && !sortReverse"><i class="material-icons">arrow_drop_down</i></span>
-            <span ng-if="sortOption=='group.title' && sortReverse"><i
-              class="material-icons">arrow_drop_up</i></span></a></th>
+          <tr>
+            <th>Employee</th>
+            <th class=""><a layout layout-align="start center" href="#"
+                            ng-click="sortOption='group.title'; sortReverse = !sortReverse">Group
+              <span ng-if="sortOption=='group.title' && !sortReverse"><i class="material-icons">arrow_drop_down</i></span>
+              <span ng-if="sortOption=='group.title' && sortReverse"><i
+                class="material-icons">arrow_drop_up</i></span></a></th>
+          </tr>
           </thead>
             <tbody><tr ng-repeat="e in employees | orderBy:sortOption:sortReverse | filter:searchCriteria"><td>{{e.lname}} ,{{e.fname}}</td><td>{{e.group.title}}</td></tr></tbody></table>
         </div>
@@ -207,7 +208,7 @@
             <div>
               <md-tabs md-dynamic-height>
                 <md-tab label="Unconfirmed">
-                  <div id="unconfirmed-contianer">
+                  <div id="unconfirmed-contianer-2">
                     <table>
                       <thead fix-head>
                       <tr>
