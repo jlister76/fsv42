@@ -45,9 +45,9 @@
          </canvas>
        </div><!--regional-->
      </div>
-
-
     </div>
+
+
     <div flex-xs layout-xs hide-gt-xs >
       <div  flex-xs="100" flex-order-xs="7" id="sm-state-list" style="background-color: whitesmoke; width:90vw;">
 
@@ -67,27 +67,38 @@
           <md-divider></md-divider>
         </md-list>
       </div>
-
-
     </div><!--small screen-->
-    <div hide-xs hide-sm flex-gt-lg="25" flex-gt-md="30" flex-order-sm="1" flex-order-xs="5"  layout="column" layout-align="start center" id="container-two">
-      <div ng-if="currentUser.accessLevel =='regional'" layout="column" style="border:none;width:100%;">
-       <div flex layout layout-align="space-around center">
-         <div style="margin:.5rem 0;">
-           <md-select ng-model="searchCriteria" required aria-label="Texas Groups" placeholder='<span  class="md-icon"><i class="material-icons">filter_list</i></span> Group'>
-             <md-option ng-repeat="g in groupList" value="{{ g.group.title }}" >{{ g.group.title }}</md-option>
-           </md-select>
-         </div>
-         <div><a href="#"><i class="material-icons">clear_all</i></a></div>
-         <div ng-if="currentUser.accessLevel == 'regional'" layout="column" layout-align="center center">
-           <md-button layout layout-align="center center" class="md-fab md-mini md-icon-button md-warn" ng-click="sendRegionalReminder()"><i class="material-icons" style="font-size:18px;">chat_bubble_outline</i></md-button>
-           <small class="md-caption">Reminder</small>
+
+
+    <div hide-xs hide-sm flex-gt-lg="25" flex-gt-md="30"   layout="column" layout-align="start center" id="container-two">
+      <div ng-if="currentUser.accessLevel =='regional'" layout="column" style="border:none;width:100%; ">
+       <div layout style="background-color:rgb(0, 120, 215); color:white;">
+         <div flex layout="column" >
+
+           <div  layout layout-align="space-around center" class="md-padding">
+              <div flex-33 >
+                <span>Filter</span>
+                <select style="margin:0 1rem!important;" ng-model="searchCriteria" aria-label="groups"
+                           placeholder="Group">
+                  <option ng-repeat="g in groupList" value="{{ g.group.title }}">{{ g.group.title }}</option>
+                </select>
+             </div>
+              <div flex-33  class="md-icon"><a href="#" layout layout-align="center center" ng-click="searchCriteria=''" style="text-decoration:none;color:white;"><i class="material-icons">clear_all</i>Reset</a></div>
+              <div flex-33  layout="column" layout-align="center center">
+               <md-button layout layout-align="center center" class="md-fab md-mini md-icon-button md-warn" ng-click="sendRegionalReminder()"><i class="material-icons" style="font-size:18px;">chat_bubble_outline</i></md-button>
+              <!--<small>Reminder</small>-->
+             </div>
+           </div>
          </div>
        </div>
         <div flex layout style="overflow: auto; max-height: 400px" id="unconfirmed-contianer">
-          <table><thead>
-          <tr>
-            <th>Employee</th>
+          <table ><thead >
+          <tr >
+            <th><a layout layout-align="start center" href="#"
+                   ng-click="sortOption='lname'; sortReverse = !sortReverse">Employee
+              <span ng-if="sortOption=='lname' && !sortReverse">
+                              <i class="material-icons">arrow_drop_down</i></span>
+              <span ng-if="sortOption=='lname' && sortReverse"><i class="material-icons">arrow_drop_up</i></span></a></th>
             <th class=""><a layout layout-align="start center" href="#"
                             ng-click="sortOption='group.title'; sortReverse = !sortReverse">Group
               <span ng-if="sortOption=='group.title' && !sortReverse"><i class="material-icons">arrow_drop_down</i></span>
@@ -95,10 +106,11 @@
                 class="material-icons">arrow_drop_up</i></span></a></th>
           </tr>
           </thead>
-            <tbody><tr ng-repeat="e in employees | orderBy:sortOption:sortReverse | filter:searchCriteria"><td>{{e.lname}} ,{{e.fname}}</td><td>{{e.group.title}}</td></tr></tbody></table>
+            <tbody><tr ng-repeat="e in employees | orderBy:sortOption:sortReverse | filter:searchCriteria"><td>{{e.lname}}, {{e.fname}}</td><td>{{e.group.title}}</td></tr></tbody></table>
         </div>
-        <div flex layout>New Block</div>
+        <!--<div flex layout>New Block</div>-->
       </div>
+      <div ng-if="currentUser.accessLevel =='regional' && currentUser.regionId == 1"><--Empty--></div>
       <div ng-hide="currentUser.accessLevel=='regional'" ng-controller="DashboardController" layout="column" layout-align-sm="center center"
            id="confirmation-box"  >
         <div flex-66 layout >
@@ -158,144 +170,6 @@
     </div><!--End of section -->
   </div>
   <div ng-if="currentUser.accessLevel =='region'" flex layout="column" layout-align="center" id="bottom-container">
-    <div flex layout="column">
-      <div layout layout-align="center" class="md-padding" id="results-title">
-        <span class="md-title">Results Table</span>
-      </div>
-      <div layout="column" class="md-padding">
-        <div>
-          <div layout="column" layout-align-sm="space-between">
-            <div layout id="filter-bar">
-              <div hide-xs flex="25" layout layout-align="center center">
-                <span  class="md-icon">
-                  <i class="material-icons">filter_list</i>
-                </span>
-                <span>Filter</span>
-              </div>
-              <div flex="25" flex-xs="33" layout layout-align="center center">
-                <span hide-sm hide-xs class="md-body-2">Filter By State</span>
-                <md-select style="margin:0 1rem!important;" ng-model="searchCriteria" aria-label="states"
-                           placeholder="State">
-                  <md-option ng-repeat="state in states" value="{{ state }}">{{ state }}</md-option>
-                </md-select>
-              </div>
-              <div flex="25" flex-xs="33" layout layout-align="center center">
-                <span hide-sm hide-xs class="md-body-2">Filter By Group</span>
-                <md-select style="margin:0 1rem!important;" ng-model="searchCriteria" aria-label="groups"
-                           placeholder="Group">
-                  <md-option ng-repeat="group in groups" value="{{ group }}">{{ group }}</md-option>
-                </md-select>
-              </div>
-              <div flex="25" flex-xs="33" layout layout-align="center center" >
-                  <span class="md-icon">
-                    <a href="#" class="md-body-2" ng-click="searchCriteria=''">Clear Filter</a>
-                  </span>
-              </div>
-            </div>
-            <div>
-              <div layout layout-align="end">
-                <div layout="column" class="md-padding">
-                  <p class="md-caption">Statewide</p>
-                  <md-button class="md-fab md-mini md-warn md-icon-button" ng-click="sendReminder()"><i class="material-icons">chat_bubble_outline</i></md-button>
 
-                </div>
-                <div>
-
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <md-tabs md-dynamic-height>
-                <md-tab label="Unconfirmed">
-                  <div id="unconfirmed-contianer-2">
-                    <table>
-                      <thead fix-head>
-                      <tr>
-                        <th class="md-body-2">
-                          <a layout layout-align="start center" href="#"
-                             ng-click="sortOption='lname'; sortReverse = !sortReverse">Name
-                            <span ng-if="sortOption=='lname' && !sortReverse">
-                              <i class="material-icons">arrow_drop_down</i></span>
-                            <span ng-if="sortOption=='lname' && sortReverse"><i class="material-icons">arrow_drop_up</i></span></a>
-                        </th>
-                        <th hide-sm hide-xs class="md-body-2">
-                          <a layout layout-align="start center" href="#"
-                             ng-click="sortOption='state'; sortReverse = !sortReverse">State
-                            <span ng-if="sortOption=='state' && !sortReverse"><i
-                              class="material-icons">arrow_drop_down</i></span>
-                            <span ng-if="sortOption=='state' && sortReverse"><i class="material-icons">arrow_drop_up</i></span></a>
-
-                        </th>
-                        <th class="md-body-2"><a layout layout-align="start center" href="#"
-                                                 ng-click="sortOption='group.title'; sortReverse = !sortReverse">Group
-                          <span ng-if="sortOption=='group.title' && !sortReverse"><i class="material-icons">arrow_drop_down</i></span>
-                          <span ng-if="sortOption=='group.title' && sortReverse"><i
-                            class="material-icons">arrow_drop_up</i></span></a></th>
-
-                        <th layout layout-align-sm="start start" class="md-body-2">Reminder</th>
-                      </tr>
-                      </thead>
-                      <tbody flex>
-                      <tr ng-repeat="e in employeesWithoutConfirmations | orderBy:sortOption:sortReverse | filter:searchCriteria">
-
-                        <td class="md-body-1"> {{ e.lname}}, {{e.fname}}</td>
-                        <td hide-sm hide-xs class="md-body-1">{{ e.state.title }}</td>
-                        <td class="md-body-1">{{ e.group.title }}</td>
-                        <td ><md-button href="#" ng-click="sendEmail(e.member.email, e.stateId)" class="md-mini md-icon-button"><i class="material-icons" style="color:rgb(0,164,239);">chat_bubble</i></md-button>
-                        </td>
-                      </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </md-tab>
-                <md-tab label="Confirmed">
-                  <div style="overflow: auto; max-height: 400px">
-                    <table flex>
-                      <thead fix-head flex>
-
-                      <th class="md-body-2">
-                        <a layout layout-align="start center" href="#"
-                           ng-click="sortOption='lname'; sortReverse = !sortReverse">Name
-                          <span ng-if="sortOption=='lname' && !sortReverse"><i
-                            class="material-icons">arrow_drop_down</i></span>
-                          <span ng-if="sortOption=='lname' && sortReverse"><i
-                            class="material-icons">arrow_drop_up</i></span></a></th>
-                      <th class="md-body-2">
-                        <a layout layout-align="start center" href="#"
-                           ng-click="sortOption='state'; sortReverse = !sortReverse">State
-                          <span ng-if="sortOption=='state' && !sortReverse"><i
-                            class="material-icons">arrow_drop_down</i></span>
-                          <span ng-if="sortOption=='state' && sortReverse"><i
-                            class="material-icons">arrow_drop_up</i></span></a>
-
-                      </th>
-                      <th class="md-body-2"><a layout layout-align="start center" href="#"
-                                               ng-click="sortOption='group.title'; sortReverse = !sortReverse">Group
-                        <span ng-if="sortOption=='group.title' && !sortReverse"><i class="material-icons">arrow_drop_down</i></span>
-                        <span ng-if="sortOption=='group.title' && sortReverse"><i
-                          class="material-icons">arrow_drop_up</i></span></a></th>
-                      </thead>
-
-                      <tr
-                        ng-repeat="e in employeesWithConfirmations | orderBy:sortOption:sortReverse | filter:searchCriteria">
-
-                        <td class="md-body-1" > {{ e.lname }}, {{e.fname}}</td>
-                        <td class="md-body-1" >{{ e.state.title }}</td>
-                        <td class="md-body-1" >{{ e.group.title }}</td>
-
-                      </tr>
-                    </table>
-
-                  </div>
-                </md-tab>
-              </md-tabs>
-            </div>
-
-          </div>
-
-        </div>
-      </div>
-    </div>
   </div>
 </div>
