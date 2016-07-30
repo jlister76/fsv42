@@ -14,7 +14,7 @@
 
         });
       /*****************************************************************/
-      $scope.states = ["Texas", "Kentucky", "Mississippi"];//TODO: programattically bring in all states in dashboard service
+     /* $scope.states = ["Texas", "Kentucky", "Mississippi"];*///TODO: programattically bring in all states in dashboard service
       $scope.searchcriteria = "";
 
       /************************************************************************/
@@ -98,377 +98,212 @@
                   .$promise
                   .then(function(region){
                     //console.log(region[0].states);
-                    $scope.states = region[0].states;
-                  _.forEach(region[0].states, function(s){
+                    var state;
 
-                    function compare(a,b) {
-                      if (a.title < b.title)
-                        return -1;
-                      return 1;
-                      return 0;
-                    }//sorts objects by id
-                    State.find({filter:{include:['confirmations','employees','groups'],where:{id:s.id}}})
-                      .$promise
-                      .then(function(state){
+                    if (region[0].id == 2){
 
-                        var txNumofEmployees =[];
-                        var txNumofConfirmations =[];
-                        var kyNumOfEmployees =[];
-                        var kyNumofConfirmations =[];
-                        var msNumOfEmployees =[];
-                        var msNumofConfirmations =[];
-                        var txGroups = [];
+                      State
+                        .find({filter: {include:['groups','confirmations','employees'], where:{id: 1}}})
+                        .$promise
+                        .then(function(state){
 
-                        if (region[0].id == 2){
-                          _.forEach(state, function(s){
-                            txNumofEmployees.push(s.employees);
-                            txNumofConfirmations.push(s.confirmations);
-                            txGroups.push(s.groups);
-                            $scope.chart =0;
-                          });
+                          $scope.selectedState = state[0].title;
+                          $scope.statePercentage = state[0].confirmations.length / state[0].employees.length *100;
+                          var statePercentage = $scope.statePercentage.toFixed(0);
 
-                          var txPercentages = txNumofConfirmations[0].length / txNumofEmployees[0].length *100;
+                          var el = angular.element(document.querySelector('#state-percentage'));
+                          var html = '<div style="width:'+statePercentage+'%; height:6px; background-color:rgb(243,188,9);"></div>';
+                          el.html(html);
 
-                          var TXLabels = [];
-                          _.forEach(txGroups[0], function(g){
-                            TXLabels.push(g.title);
-                          });
+                          //Get State employees with group
 
-                          console.log(txNumofConfirmations[0]);
-                          var TX = state[0].title;
-                          var txPercent =  $filter('number')(txPercentages,0);
-                          var el = angular.element(document.querySelector('#state-box'));
-                          var TXpercentage = '<div flex><span class="md-title">'+TX+' ('+txPercent+'%)</span></div>' +
-                            '<div style="margin:1rem;"><div layout flex="100" style="background-color:rgb(0,120,215); height:6px;">'+
-                            '<div style="width:'+ txPercentages+'%;background-color: rgb(243,188,9) ; height:6px;"></div></div></div>';
-                          el.html(TXpercentage);
-
-                          /*************************************************************************/
-                          //Texas Group stats
-                          var TXGroupLabels =[];
-                          var TXGroupPercentages =[];
-                          DashboardService
-                            .getTexasGroups()
-                            .then(function (Texas) {
-                              console.log(Texas);
-                              _.forEach(Texas.sort(compare), function(g){TXGroupLabels.push(g.title)});
-                              function compare(a, b) {
-                                if (a.id < b.id)
-                                  return -1;
-                                if (a.id > b.id)
-                                  return 1;
-                                return 0;
-                              }//sorts objects by id
-
-                              _.forEach(Texas.sort(compare), function (g) {
-                                var cl = g.confirmations.length;
-                                var el = g.employees.length;
-                                var percentage = cl/el*100;
-                                TXGroupPercentages.push(percentage);
-                              });
-                              console.info(TXGroupLabels,TXGroupPercentages);
-                              //Angular-Chartjs
-                              $scope.TXLabels = TXGroupLabels;
-                              $scope.TXData = [TXGroupPercentages];
-
-                              //Unconfirmed Employee List
-                              var cList =[];
+                          Employee
+                            .find({filter:{include:'group',where:{stateId:state[0].id}}})
+                            .$promise
+                            .then(function(employees){
                               var eList = [];
-                              var unconfirmedList = [];
+
+                              _.forEach(employees, function(e){
+                                eList.push(e);
+                              });
+
+                              console.log(eList.id);
+                              //calculate the percentages for each group
+                              var groupLabels =[];
+                              var groupPercentages =[];
+                              var groups = [];
                               var employeesWithConfirmations =[];
-                              _.forEach(Texas.sort(compare), function(g){
-                                _.forEach(g.confirmations, function(c){
-                                  cList.push(c);
-                                });
+                              _.forEach(state[0].groups, function(g){groups.push(g); groupLabels.push(g.title);});
 
-                                console.log(cList);
-                                _.forEach(g.employees, function(e){
-                                  eList.push(e);
-                                  _.forEach(cList,function(c){
-                                    if(c.employeeId == e.id){
-                                      employeesWithConfirmations.push(e);
-                                    }
-
-
-                                  })
-                                })
-                              });
-                                  //console.log(employeesWithConfirmations);
-
-                              //match employee ids with employeeId and return the difference
-                              var employeesWithoutConfirmations = _.differenceBy(eList.sort(compare),employeesWithConfirmations.sort(compare), 'id');
-                              var employeeList =[];
-                             //console.log(employeesWithoutConfirmations);
-                              Employee.find({filter:{include:'group', where:{stateId:1}}})
+                              Group.find({filter:{include:['employees','confirmations'], where:{stateId:state[0].id}}})
                                 .$promise
-                                .then(function(employees){
-                                 var list = _.uniq(employees.sort(),employeesWithoutConfirmations.sort());
-                                  _.forEach(employees.sort(), function(e){
-                                    _.forEach(employeesWithoutConfirmations.sort(), function(o){
-                                      if(e.id == o.id){
-                                        employeeList.push(e);
-                                      }
-                                    })
+                                .then(function(groups){
+
+                                  var groupEmployees =[];
+                                  function compare(a, b) {
+                                    if (a.id < b.id)
+                                      return -1;
+                                    if (a.id > b.id)
+                                      return 1;
+                                    return 0;
+                                  }//sorts objects by id
+
+                                  _.forEach(groups.sort(compare), function(g){
+                                    var cl = g.confirmations.length;
+                                    var el = g.employees.length;
+                                    var percentage = cl/el*100;
+                                    groupPercentages.push(percentage);
+
                                   });
-
-                                  $scope.employees = employeeList;
-                                  $scope.groupList = _.uniqBy(employeeList,'group.title');
-                                  console.log(employeeList);
-                                })
+                                  _.forEach(state, function (s) {
 
 
-                            });
-
-                          /*************************************************************************/
-
-
-
-
-
-
-                        }else if (region[0].id == 1){
-                          var KY;
-                          var MS;
-                          var employeeList =[];
-                          var groupList =[];
-                          var groupList2 =[];
-
-                          if(s.id == 2){
-                            $scope.chart =1;
-                            _.forEach(state, function(s){
-                              kyNumOfEmployees.push(s.employees);
-                              kyNumofConfirmations.push(s.confirmations);
-                            });
-                            $scope.kyPercentages = kyNumofConfirmations[0].length / kyNumOfEmployees[0].length *100;
-
-                            KY = state[0].title;
-
-
-                            var kyPercent =  $filter('number')($scope.kyPercentages,0);
-                            var regionStat1 =  '<div><span class="md-title">'+KY+' ('+kyPercent+'%)</span></div>' +
-                              '<div flex style="margin:1rem;"><div layout flex="100" style="background-color:rgb(0,120,215); height:6px;">'+
-                              '<div style="width:'+ $scope.kyPercentages+'%;background-color: rgb(243,188,9) ; height:6px;"></div></div></div>';
-                            console.log(kyNumofConfirmations[0],kyNumOfEmployees[0]);
-                            var KYGroups = [];
-                            var KYLabels =[];
-                            _.forEach(state[0].groups,function(g){
-                              KYGroups.push(g);
-                              KYLabels.push(g.title);
-
-                            });
-                            _.forEach(state[0].confirmations, function(c){
-                              if(KYGroups[0].id == c.groupId){
-
-                              }
-                            });
-
-                            /*************************************************************************/
-                            //Kentucky Group stats
-                            var KYGroupLabels =[];
-                            var KYGroupPercentages =[];
-                            DashboardService
-                              .getKentuckyGroups()
-                              .then(function (Kentucky) {
-
-                                _.forEach(Kentucky.sort(compare), function(g){KYGroupLabels.push(g.title)});
-                                function compare(a, b) {
-                                  if (a.id < b.id)
-                                    return -1;
-                                  if (a.id > b.id)
-                                    return 1;
-                                  return 0;
-                                }//sorts objects by id
-                                _.forEach(Kentucky.sort(compare), function (g) {
-                                  var cl = g.confirmations.length;
-                                  var el = g.employees.length;
-                                  var percentage = cl/el*100;
-                                  KYGroupPercentages.push(percentage);
-                                });
-                                /*Angular-ChartJS*/
-                                $scope.KYLabel = KYGroupLabels;
-                                $scope.KYData = [KYGroupPercentages];
-
-                                //Unconfirmed Employee List
-                                var cList =[];
-                                var eList = [];
-                                var unconfirmedList = [];
-                                var employeesWithConfirmations =[];
-                                _.forEach(Kentucky.sort(compare), function(g){
-                                  _.forEach(g.confirmations, function(c){
-                                    cList.push(c);
-                                  });
-
-
-                                  _.forEach(g.employees, function(e){
-                                    eList.push(e);
-                                    _.forEach(cList,function(c){
-                                      if(c.employeeId == e.id){
-                                        employeesWithConfirmations.push(e);
-                                      }
-
-
-                                    })
-                                  })
-                                });
-                                //console.log(employeesWithConfirmations);
-                                //console.log(eList);
-                                //match employee ids with employeeId and return the difference
-                                var employeesWithoutConfirmations = _.differenceBy(eList.sort(compare),employeesWithConfirmations.sort(compare), 'id');
-
-                                console.log(employeesWithoutConfirmations);
-                                Employee.find({filter:{include:'group', where:{stateId:2}}})
-                                  .$promise
-                                  .then(function(employees){
-
-                                    var list = _.uniq(employees.sort(),employeesWithoutConfirmations.sort());
-                                    _.forEach(employees.sort(), function(e){
-                                      _.forEach(employeesWithoutConfirmations.sort(), function(o){
-                                        console.log(e.id,o.id);
-                                        if(e.id == o.id){
-                                          console.log(e);
-                                          employeeList.push(e);
-                                        }
-                                      });
+                                    _.forEach(state[0].groups, function(group){
+                                      groups.push(group);
 
                                     });
-                                    $scope.employees = employeeList;
-                                    groupList = _.uniqBy(employeeList,'group.title');
-                                    $scope.groupList = groupList;
-                                    console.log(employeeList);
+                                    _.forEach(s.employees, function (e) {
+                                      console.log(e);
 
-                                  })
+                                      _.forEach(s.confirmations, function (c) {
 
-
-                              });
-
-
-                            /*************************************************************************/
-
-
-
-
-
-                          }else if (s.id == 3){
-                            _.forEach(state, function(s){
-                              msNumOfEmployees.push(s.employees);
-                              msNumofConfirmations.push(s.confirmations);
-                            });
-                            $scope.msPercentages = msNumofConfirmations[0].length / msNumOfEmployees[0].length *100;
-                            console.info($scope.msPercentages);
-                            MS = state[0].title;
-
-                            var MSGroups = [];
-                            var MSLabels =[];
-                            _.forEach(state[0].groups,function(g){
-                              MSGroups.push(g);
-                              MSLabels.push(g.title);
-                            });
-                            var msPercent =  $filter('number')($scope.msPercentages,0);
-                            var regionStat2 =
-                              '<div id="state-box-2"><span class="md-title">'+MS+' ('+msPercent+'%)</span></div>' +
-                              '<div layout style="margin:1rem;"><div layout flex="100" style="background-color:rgb(0,120,215); height:6px;">'+
-                              '<div style="width:'+ $scope.msPercentages+'%;background-color: rgb(243,188,9) ; height:6px;"></div></div></div>';
-
-                          }
-                            /*************************************************************************/
-                            //Mississippi Group stats
-                            var MSGroupLabels =[];
-                            var MSGroupPercentages =[];
-                            DashboardService
-                              .getMississippiGroups()
-                              .then(function (Mississippi) {
-
-                                _.forEach(Mississippi.sort(compare), function(g){MSGroupLabels.push(g.title)});
-                                function compare(a, b) {
-                                  if (a.id < b.id)
-                                    return -1;
-                                  if (a.id > b.id)
-                                    return 1;
-                                  return 0;
-                                }//sorts objects by id
-                                _.forEach(Mississippi.sort(compare), function (g) {
-                                  var cl = g.confirmations.length;
-                                  var el = g.employees.length;
-                                  var percentage = cl/el*100;
-                                  MSGroupPercentages.push(percentage);
-                                });
-                                /*Angular-ChartJS*/
-                                $scope.MSLabel = MSGroupLabels;
-                                $scope.MSData = [MSGroupPercentages];
-
-                                //Unconfirmed Employee List
-                                var cList =[];
-                                var eList = [];
-                                var unconfirmedList = [];
-                                var employeesWithConfirmations =[];
-                                _.forEach(Mississippi.sort(compare), function(g){
-                                  _.forEach(g.confirmations, function(c){
-                                    cList.push(c);
-                                  });
-
-
-                                  _.forEach(g.employees, function(e){
-                                    eList.push(e);
-                                    _.forEach(cList,function(c){
-                                      if(c.employeeId == e.id){
-                                        employeesWithConfirmations.push(e);
-                                      }
-
-
-                                    })
-                                  })
-                                });
-                                //console.log(employeesWithConfirmations);
-                                //console.log(eList);
-                                //match employee ids with employeeId and return the difference
-                                var employeesWithoutConfirmations = _.differenceBy(eList.sort(compare),employeesWithConfirmations.sort(compare), 'id');
-
-                                console.log(employeesWithoutConfirmations);
-                                Employee.find({filter:{include:'group', where:{stateId:3}}})
-                                  .$promise
-                                  .then(function(employees){
-
-                                    var list = _.uniq(employees.sort(),employeesWithoutConfirmations.sort());
-                                    _.forEach(employees.sort(), function(e){
-                                      _.forEach(employeesWithoutConfirmations.sort(), function(o){
-                                        console.log(e.id,o.id);
-                                        if(e.id == o.id){
-                                          console.log(e);
-                                          employeeList.push(e);
+                                        if (c.employeeId == e.id) {
+                                          console.log(c.employeeId, e.id);
+                                          employeesWithConfirmations.push(e);
                                         }
-                                      });
-
+                                      })
                                     });
 
+                                  });
 
-                                    groupList2 = _.uniqBy(employeeList,'group.title');
-                                    $scope.groupList = groupList + groupList2;
-                                    console.log($scope.groupList);
+                                  var employeesWithoutConfirmations = _.differenceBy(eList.sort(compare),employeesWithConfirmations.sort(compare), 'id');
+                                  $scope.Unconfirmed =_.uniq(employeesWithoutConfirmations);
+                                  console.log( $scope.Unconfirmed);
+
+                                  $scope.group = _.uniqBy(groups,'title');
+                                  console.log($scope.group);
+                                  //Angular ChartJS
+                                  $scope.label = groupLabels;
+                                  $scope.data = groupPercentages;
+
+                                });
+
+                            });
+
+                        });
+
+                    }
+
+                    $scope.states = region[0].states;
+
+                    $scope.StateSelection = function (selectedState){
+                      var id = selectedState;
+                      console.log(id);
+                      State
+                        .find({filter:{include:['groups','confirmations','employees'],where:{id:id}}})
+                        .$promise
+                        .then(function(state){
+
+                          $scope.selectedState = state[0].title;
+                          $scope.statePercentage = state[0].confirmations.length / state[0].employees.length *100;
+                          var statePercentage = $scope.statePercentage.toFixed(0);
+
+                          var el = angular.element(document.querySelector('#state-percentage'));
+                          var html = '<div style="width:'+statePercentage+'%; height:6px; background-color:rgb(243,188,9);"></div>';
+                          el.html(html);
+
+                          //Get State employees with group
+
+                          Employee
+                            .find({filter:{include:'group',where:{stateId:state[0].id}}})
+                            .$promise
+                            .then(function(employees){
+                              var eList = [];
+
+                              _.forEach(employees, function(e){
+                                eList.push(e);
+                              });
+
+                              console.log(eList.id);
+                              //calculate the percentages for each group
+                              var groupLabels =[];
+                              var groupPercentages =[];
+                              var groups = [];
+                              var employeesWithConfirmations =[];
+                              _.forEach(state[0].groups, function(g){groups.push(g); groupLabels.push(g.title);});
+
+                              Group.find({filter:{include:['employees','confirmations'], where:{stateId:state[0].id}}})
+                                .$promise
+                                .then(function(groups){
+
+                                  var groupEmployees =[];
+                                  function compare(a, b) {
+                                    if (a.id < b.id)
+                                      return -1;
+                                    if (a.id > b.id)
+                                      return 1;
+                                    return 0;
+                                  }//sorts objects by id
+
+                                  _.forEach(groups.sort(compare), function(g){
+                                    var cl = g.confirmations.length;
+                                    var el = g.employees.length;
+                                    var percentage = cl/el*100;
+                                    groupPercentages.push(percentage);
+
+                                  });
+                                  _.forEach(state, function (s) {
+
+
+                                    _.forEach(state[0].groups, function(group){
+                                      groups.push(group);
+
+                                    });
+                                    _.forEach(s.employees, function (e) {
+                                      console.log(e);
+
+                                      _.forEach(s.confirmations, function (c) {
+
+                                        if (c.employeeId == e.id) {
+                                          console.log(c.employeeId, e.id);
+                                          employeesWithConfirmations.push(e);
+                                        }
+                                      })
+                                    });
 
                                   });
 
-                              });
-                            /*************************************************************************/
+                                  var employeesWithoutConfirmations = _.differenceBy(eList.sort(compare),employeesWithConfirmations.sort(compare), 'id');
+                                  $scope.Unconfirmed =_.uniq(employeesWithoutConfirmations);
+                                  console.log( $scope.Unconfirmed);
+
+                                  $scope.group = _.uniqBy(groups,'title');
+                                  console.log($scope.group);
+                                  //Angular ChartJS
+                                  $scope.label = groupLabels;
+                                  $scope.data = groupPercentages;
+
+                                });
+
+                            });
+                        })
+                    };//End of State Selection
 
 
 
+                  /*_.forEach(region[0].states, function(s){
 
-                          var regionElement = angular.element(document.querySelector('#state-box'));
-                          var regionElement2 = angular.element(document.querySelector('#state-box-2'));
-
-                          regionElement.html(regionStat1);
-                          regionElement2.html(regionStat2);
-                        }
-
-
-
-                      });
-                  });
-
-
-
-
-
+                      function compare(a,b) {
+                        if (a.title < b.title)
+                          return -1;
+                        return 1;
+                        return 0;
+                      }//sorts objects by id
+                      State.find({filter:{include:['confirmations','employees','groups'],where:{id:s.id}}})
+                        .$promise
+                        .then(function(state){
+                        });
+                    });*/
                 })
 
             } else if(user.accessLevel == 'group') {

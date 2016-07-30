@@ -30,20 +30,33 @@
           </tbody>
         </table>
       </div><!--account or group-->
-     <div flex layout>
-       <div ng-if="currentUser.accessLevel =='regional'" flex layout="column" layout-align="start">
-         <div layout="column" layout-align="start" id="state-box" style="margin-top:2.5rem;"></div>
-         <canvas ng-if="chart==0" id="bar1" class="chart-horizontal-bar"
-                 chart-options="options" chart-legend="true" chart-data="TXData" chart-labels="TXLabels">
-         </canvas>
-         <canvas ng-if="chart==1" id="bar2" class="chart-horizontal-bar"
-                 chart-options="options" chart-legend="true" chart-data="KYData" chart-labels="KYLabel">
-         </canvas>
-         <div layout="column" layout-align="start" id="state-box-2" style="margin-top:2.5rem;"></div>
-         <canvas ng-if="chart==1" id="bar3" class="chart-horizontal-bar"
-                 chart-options="options" chart-legend="true" chart-data="MSData" chart-labels="MSLabel">
-         </canvas>
-       </div><!--regional-->
+     <div ng-if="currentUser.accessLevel =='regional'" flex layout>
+
+       <div style="margin:2.5rem 0;">
+        <div flex layout="column">
+
+          <div ng-if="currentUser.regionId == 1" layout layout-align="center center" style="border: solid thin lightgrey; background-color: whitesmoke;">
+            <span class="md-subhead">Select state:</span>
+            <md-select ng-model="state" ng-change="StateSelection(state)" style="width:115px;" aria-label="state selection">
+              <md-option ng-repeat="state in states" value="{{ state.id }}">{{ state.title }}</md-option>
+            </md-select>
+          </div>
+
+        <div layout="column" style="">
+          <div flex-100 layout class="md-title" style="margin-top:.5rem;">
+           <span ng-if="selectedState"> {{ selectedState }}  {{ statePercentage | number:0 }} % </span>
+          </div>
+          <div ng-show="statePercentage >= 0" flex-100 layout style="margin: .5rem; height:6px; background-color:#0078D7;" id="state-percentage"></div>
+          <div ng-if="statePercentage <= 0" class="md-headline" style="color:lightgray">No updates have been installed.</div>
+          <div ng-if="statePercentage" flex class="md-padding">
+            <canvas id="bar2" class="chart-horizontal-bar"
+                    chart-options="options" chart-legend="true" chart-data="data" chart-labels="label">
+            </canvas>
+          </div>
+        </div>
+        <div flex layout style="width:55rem;"></div><!--keeps DIV expanded -->
+        </div>
+       </div>
      </div>
     </div>
 
@@ -78,9 +91,9 @@
            <div  layout layout-align="space-around center" class="md-padding">
               <div flex-33 >
                 <span>Filter</span>
-                <select style="margin:0 1rem!important;" ng-model="searchCriteria" aria-label="groups"
+                <select style="margin:0 1rem!important;" ng-model="searchCriteria" aria-label="group"
                            placeholder="Group">
-                  <option ng-repeat="g in groupList" value="{{ g.group.title }}">{{ g.group.title }}</option>
+                  <option ng-repeat="group in group" value="{{ group.title }}">{{ group.title }}</option>
                 </select>
              </div>
               <div flex-33  class="md-icon"><a href="#" layout layout-align="center center" ng-click="searchCriteria=''" style="text-decoration:none;color:white;"><i class="material-icons">clear_all</i>Reset</a></div>
@@ -106,11 +119,11 @@
                 class="material-icons">arrow_drop_up</i></span></a></th>
           </tr>
           </thead>
-            <tbody><tr ng-repeat="e in employees | orderBy:sortOption:sortReverse | filter:searchCriteria"><td>{{e.lname}}, {{e.fname}}</td><td>{{e.group.title}}</td></tr></tbody></table>
+            <tbody><tr ng-repeat="e in Unconfirmed | orderBy:sortOption:sortReverse | filter:searchCriteria"><td>{{e.lname}}, {{e.fname}}</td><td>{{e.group.title}}</td></tr></tbody></table>
         </div>
         <!--<div flex layout>New Block</div>-->
       </div>
-      <div ng-if="currentUser.accessLevel =='regional' && currentUser.regionId == 1"><--Empty--></div>
+
       <div ng-hide="currentUser.accessLevel=='regional'" ng-controller="DashboardController" layout="column" layout-align-sm="center center"
            id="confirmation-box"  >
         <div flex-66 layout >

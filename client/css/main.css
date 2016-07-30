@@ -35,10 +35,7 @@ body {
   overflow:auto;
 
 }
-.md-button {border-bottom: thin solid transparent;}
-.md-button:hover {
-  border-bottom: thin solid #d9d9d9;
-}
+
 footer {
   position: fixed;
   bottom: 0;
@@ -203,7 +200,7 @@ a::selection {
   background-color: rgba(226, 226, 226, 0.89);
 }
   #container-two {
-    border-left: solid thin lightgrey;
+
     margin-top: 2.5rem;
     margin-left: .8rem;
 
@@ -265,7 +262,7 @@ a::selection {
                 /*Medium Screens*/
 @media only screen and (min-width:960px) and (max-width:1279px){
   #container-two {
-    border-left: solid thin lightgrey;
+
     margin-top: 2.5rem;
     margin-left: .8rem;
 
@@ -318,7 +315,7 @@ a::selection {
   html { overflow:hidden;}
 
   #container-two {
-    border-left: solid thin lightgrey;
+
     width: 98vw;
     maring-bottom:1rem;
   }
