@@ -384,6 +384,7 @@ a::selection {
   }
 
   #state-selector {
+    margin-bottom:.3rem;
     width: 50%;
 
   }
@@ -465,6 +466,7 @@ a::selection {
    font-size:16px;
   }
   #state-selector {
+    margin-bottom:1rem;
     width:100%;
   }
 

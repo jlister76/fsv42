@@ -48,7 +48,7 @@
                 <md-option ng-repeat="state in states" value="{{ state.id }}">{{ state.title }}</md-option>
               </md-select>
             </div>
-            <div flex-xs="100" layout="column" style="width:340px;">
+            <div ng-if="selectedState" flex-xs="100" layout="column" style="width:340px;">
               <div layout="row" layout-align="space-between " class="">
                 <span class="md-title group-title" style="margin:.2rem;">{{ selectedState }} {{ statePercentage | number:0 }}%</span>
                 <div layout="column" layout-align="center center">
