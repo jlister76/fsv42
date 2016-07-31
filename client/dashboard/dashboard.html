@@ -3,10 +3,7 @@
   <div layout-sm="column" layout-gt-sm="row" layout-align-gt-sm="space-around" layout-xs="column"
        layout-align-xs="start start" class="md-padding" id="top-container">
     <div flex layout layout-xs layout-align-xs="center center" style="min-height:8rem;">
-      <div ng-if="currentUser.accessLevel !='regional'" flex="100" layout="column" layout-align="start">
-        <div layout layout-align="end center" style="margin-top:2.5rem;">
-
-        </div>
+      <div ng-if="currentUser.accessLevel !='regional'" flex="100" layout="column" layout-align="start" style="min-height:8rem;">
         <div layout="column" layout-align="start"
              style="margin-top:1rem;">
           <div layout="row" layout-align="space-between end" class="">
@@ -41,7 +38,8 @@
           </tbody>
         </table>
       </div><!--account or group-->
-      <div ng-if="currentUser.accessLevel =='regional'" flex-gt-sm="40" flex-gt-lg="25" flex-gt-md="30" layout layout-xs layout-align-xs="center center">
+      <div ng-if="currentUser.accessLevel =='regional'" flex-gt-sm="40" flex-gt-lg="25"
+           flex-gt-md="30" layout layout-xs layout-align-xs="center center" style="min-height:8rem;">
         <div style="margin:2.5rem 0;" layout-xs layout-align-xs="center center">
           <div flex  layout="column" flex-xs-100 layout-xs="column" layout-align-xs="center center" >
             <div ng-if="currentUser.regionId == 1" id="state-selector"  layout layout-align="center center"
