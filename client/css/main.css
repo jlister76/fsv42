@@ -178,10 +178,11 @@ a::selection {
 #state-selector {
   border: solid thin lightgrey;
   background-color: whitesmoke;
+  min-height: 4rem;
 }
 .state-stats {
   margin-top:.5rem;
-
+  min-height: 4rem;
 }
 .status-bar {
   margin: .5rem;
