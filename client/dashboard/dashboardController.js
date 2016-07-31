@@ -326,8 +326,8 @@
                                 $scope.Unconfirmed = _.uniq(employeesWithoutConfirmations);
                                 console.log($scope.Unconfirmed);
 
-                                $scope.group = _.uniqBy(groups, 'title');
-                                console.log($scope.group);
+                                $scope.groups = _.uniqBy(groups, 'title');
+
                                 //Angular ChartJS
                                 $scope.label = groupLabels;
                                 $scope.data = groupPercentages;
