@@ -23,9 +23,11 @@ footer {
 }
 .left-container{
   background-color: lightblue;
+  height:20px;
 }
 .right-container{
   background-color: lightcoral;
+  height:20px;
 }
 /*
 !***********************Global Styles*************************!
