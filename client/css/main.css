@@ -20,6 +20,7 @@ footer {
 /**GLOBAL**/
 .top-container{
   background-color: lightgoldenrodyellow;
+  max-height:4rem;
 }
 .left-container{
   background-color: lightblue;
@@ -52,7 +53,7 @@ footer {
   min-height: 2rem;
   border: solid thin aqua;
 }
-#download-contianer{
+#download-container{
   background-color: lightgray;
   margin: .3rem 0;
 }
@@ -60,7 +61,7 @@ footer {
   background-color: lightgray;
   margin: .3rem 0;
 }
-#issue-contianer{
+#issuetracker-container{
   background-color: lightgray;
   margin: .3rem 0;
 }
