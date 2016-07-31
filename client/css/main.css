@@ -457,6 +457,7 @@ a::selection {
   .state-stats {
     width:100%;
     font-size:16px;
+    min-height: 200px;
   }
   .state-stats i{
    font-size:16px;
