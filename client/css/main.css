@@ -453,10 +453,11 @@ a::selection {
   .status-bar{
     margin: .5rem;
     height:6px;
+
   }
 
   .state-stats {
-
+    width:300px;
     font-size:16px;
 
   }

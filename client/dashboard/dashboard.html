@@ -38,10 +38,9 @@
           </tbody>
         </table>
       </div><!--account or group-->
-      <div ng-if="currentUser.accessLevel =='regional'" flex-gt-sm="40" flex-gt-lg="25"
-           flex-gt-md="30" layout  style="">
-        <div style="margin:2.5rem 0;" >
-          <div flex  layout="column">
+      <div ng-if="currentUser.accessLevel =='regional'"  flex-gt-sm="40" flex-gt-lg="25"
+            flex-gt-md="30" layout  style="border:solid thin blue; min-width:300px;">
+        <div style="" >
             <div ng-if="currentUser.regionId == 1" id="state-selector"  layout layout-align="center center">
               <span class="md-subhead">Select state:</span>
               <md-select ng-model="state" ng-change="StateSelection(state)" style="width:115px;"
@@ -49,10 +48,10 @@
                 <md-option ng-repeat="state in states" value="{{ state.id }}">{{ state.title }}</md-option>
               </md-select>
             </div>
-            <div layout="column" style="">
-              <div layout="row" layout-align="space-between end" class="">
+            <div layout="column" style="width:300px;border:solid thin green;">
+              <div layout="row" layout-align="space-between " class="">
                 <span class="md-title group-title" style="margin:.2rem;">{{ selectedState }} {{ statePercentage | number:0 }}%</span>
-                <div ng-if="currentUser.accessLevel == 'group'"  layout="column" layout-align="center center">
+                <div layout="column" layout-align="center center">
                   <a href="#" layout layout-align="center center" class="group-title" style="text-decoration:none;"
                      ng-click="sendRegionalReminder()">
                     <span class="md-subhead group-title"><span hide-xs>Group</span> Reminder</span><i class="material-icons"
@@ -64,7 +63,7 @@
               <div ng-if="statePercentage <= 0" class="md-headline group-title" style="color:lightgray">No updates have been
                 installed.
               </div>
-              <div ng-if="statePercentage"  class="md-padding">
+              <div hide-xs ng-if="statePercentage"  class="md-padding">
                 <canvas hide-xs flex-gt-sm="70" flex-gt-lg="75" flex-gt-md="70" id="bar2" class="chart-horizontal-bar"
                         chart-options="options" chart-legend="true" chart-data="data" chart-labels="label">
                 </canvas>
