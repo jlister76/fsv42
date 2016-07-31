@@ -1,18 +1,28 @@
-<md-content flex layout="column" style=" height:100vh; border:solid thin red; background-color:lightgreen;">
+<md-content class="md-padding" flex layout="column" style=" height:100vh; border:solid thin red; background-color:lightgreen;">
 
   <div ng-if="currentUser.accessLevel!='regional'" layout layout-xs="column">
     <div class="left-container" flex="70" flex-xs="100" layout layout-xs >
-     <div>LEFT</div>
+     <div flex="grow" layout layout-align="space-between center" style="background-color: lightyellow;">
+       <div  class="area-title-bar">TITLE</div>
+       <div  class="area-button-bar">BUTTON</div>
+     </div>
     </div>
     <div class="right-container" flex="30" flex-xs="100" layout layout-xs >
-      <div>RIGHT</div>
+      <div>
+        RIGHT
+      </div>
     </div>
   </div>
   <div ng-if="currentUser.accessLevel=='regional'" layout layout-xs="column">
     <div layout="column">
       <div  class="top-container" flex="auto" layout layout-align="center start">TOP</div>
       <div layout layout-xs="column">
-        <div class="left-container" flex="70" flex-xs="100" >LEFT</div>
+        <div class="left-container" flex="70" flex-xs="100" >
+          <div flex="grow" layout layout-align="space-between center" style="background-color: lightyellow;">
+            <div  class="area-title-bar">TITLE</div>
+            <div  class="area-button-bar">BUTTON</div>
+          </div>
+        </div>
         <div class="right-container" flex="30" flex-xs="100" >RIGHT</div>
       </div>
     </div>
