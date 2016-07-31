@@ -1,20 +1,29 @@
 <div flex layout="column" layout-align="" class="container">
 
-  <div layout-sm="column" layout-gt-sm="row" layout-align-gt-sm="space-around" layout-xs="column"  layout-align-xs="start start" class="md-padding" id="top-container">
-    <div flex layout>
+  <div layout-sm="column" layout-gt-sm="row" layout-align-gt-sm="space-around" layout-xs="column"
+       layout-align-xs="start start" class="md-padding" id="top-container">
+    <div flex layout layout-xs layout-align-xs="center center">
       <div ng-if="currentUser.accessLevel !='regional'" flex="100" layout="column" layout-align="start">
         <div layout layout-align="end center" style="margin-top:2.5rem;">
-          <div ng-if="currentUser.accessLevel == 'group'" layout="column" layout-align="center center">
-            <md-button layout layout-align="center center" class="md-fab md-mini md-icon-button md-warn" ng-click="sendGroupReminder()"><i class="material-icons" style="font-size:18px;">chat_bubble_outline</i></md-button>
-            <span class="md-caption">Group Reminder</span>
-          </div>
-        </div>
-        <div layout="column" layout-align="start" id="inject-box-1"
-             style="margin-top:1rem;">
-          <md-progress-circular md-mode="indeterminate"></md-progress-circular>
 
         </div>
-        <table>
+        <div layout="column" layout-align="start"
+             style="margin-top:1rem;">
+          <div layout="row" layout-align="space-between end" class="">
+            <span class="md-title group-title" style="margin:.2rem;">{{ group }} {{ gp | number:0 }}%</span>
+            <div ng-if="currentUser.accessLevel == 'group'"  layout="column" layout-align="center center">
+              <a href="#" layout layout-align="center center" class="group-title" style="text-decoration:none;"
+                 ng-click="sendGroupReminder()">
+                <span class="md-subhead group-title"><span hide-xs>Group</span> Reminder</span><i class="material-icons"
+                                                                 style="">chat_bubble_outline</i></a>
+
+            </div>
+          </div>
+          <div layout style="margin:.1rem;">
+            <div layout flex="100" style="background-color:rgb(0,120,215); height:6px;" id="span"></div>
+          </div>
+        </div>
+        <table flex-gt-sm="70">
           <thead>
           <th>Employee</th>
           <th>Current</th>
@@ -23,107 +32,98 @@
           <tr ng-repeat="e in employees">
             <td>{{ e.lname }}, {{e.fname }}</td>
             <td>
-              <div ng-if="e.status" layout layout-align="center center" class="confirmation-icon">
-                <i class="material-icons">done</i></div>
+              <div layout layout-align="center center">
+                <div ng-if="e.status" layout layout-align="center center" class="confirmation-icon" >
+                  <i class="material-icons">done</i></div>
+              </div>
             </td>
           </tr>
           </tbody>
         </table>
       </div><!--account or group-->
-     <div ng-if="currentUser.accessLevel =='regional'" flex layout>
+      <div ng-if="currentUser.accessLevel =='regional'" flex-gt-sm="40" flex-gt-lg="25" flex-gt-md="30" layout layout-xs layout-align-xs="center center">
+        <div style="margin:2.5rem 0;" layout-xs layout-align-xs="center center">
+          <div flex  layout="column" flex-xs-100 layout-xs="column" layout-align-xs="center center" >
+            <div ng-if="currentUser.regionId == 1" id="state-selector"  layout layout-align="center center"
+                 style="">
+              <span class="md-subhead">Select state:</span>
+              <md-select ng-model="state" ng-change="StateSelection(state)" style="width:115px;"
+                         aria-label="state selection">
+                <md-option ng-repeat="state in states" value="{{ state.id }}">{{ state.title }}</md-option>
+              </md-select>
+            </div>
+            <div layout="column" style="">
+              <div flex-xs="30" flex-gt-sm="70" flex-gt-lg="75" flex-gt-md="70" layout layout-align="space-between" class="md-title state-stats" style="">
+                <span ng-if="selectedState"> {{ selectedState }}  {{ statePercentage | number:0 }} % </span>
+                <div flex-xs="30" flex-gt-sm="70" flex-gt-lg="75" flex-gt-md="70" ng-if="selectedState" layout="column" layout-align="center center">
+                  <a href="#" layout layout-align="center center" style="text-decoration:none;"
+                     ng-click="sendRegionalReminder()">
+                    <span class="md-subhead"><span hide-xs>Group</span> Reminder</span><i class="material-icons"
+                                                                     style="margin-left:.2rem;font-size:18px;">chat_bubble_outline</i></a>
 
-       <div style="margin:2.5rem 0;">
-        <div flex layout="column">
-
-          <div ng-if="currentUser.regionId == 1" layout layout-align="center center" style="border: solid thin lightgrey; background-color: whitesmoke;">
-            <span class="md-subhead">Select state:</span>
-            <md-select ng-model="state" ng-change="StateSelection(state)" style="width:115px;" aria-label="state selection">
-              <md-option ng-repeat="state in states" value="{{ state.id }}">{{ state.title }}</md-option>
-            </md-select>
-          </div>
-
-        <div layout="column" style="">
-          <div flex-100 layout class="md-title" style="margin-top:.5rem;">
-           <span ng-if="selectedState"> {{ selectedState }}  {{ statePercentage | number:0 }} % </span>
-          </div>
-          <div ng-show="statePercentage >= 0" flex-100 layout style="margin: .5rem; height:6px; background-color:#0078D7;" id="state-percentage"></div>
-          <div ng-if="statePercentage <= 0" class="md-headline" style="color:lightgray">No updates have been installed.</div>
-          <div ng-if="statePercentage" flex class="md-padding">
-            <canvas id="bar2" class="chart-horizontal-bar"
-                    chart-options="options" chart-legend="true" chart-data="data" chart-labels="label">
-            </canvas>
+                </div>
+              </div>
+              <div flex-xs="30" flex-gt-sm="70" flex-gt-lg="75" flex-gt-md="70" ng-show="statePercentage >= 0"  layout class="status-bar" id="state-percentage"></div>
+              <div ng-if="statePercentage <= 0" class="md-headline group-title" style="color:lightgray">No updates have been
+                installed.
+              </div>
+              <div ng-if="statePercentage"  class="md-padding">
+                <canvas hide-xs flex-gt-sm="70" flex-gt-lg="75" flex-gt-md="70" id="bar2" class="chart-horizontal-bar"
+                        chart-options="options" chart-legend="true" chart-data="data" chart-labels="label">
+                </canvas>
+              </div>
+            </div>
+            <div hide-xs hide-sm flex layout style="width:55rem;"></div><!--keeps DIV expanded -->
           </div>
         </div>
-        <div flex layout style="width:55rem;"></div><!--keeps DIV expanded -->
-        </div>
-       </div>
-     </div>
-    </div>
-
-
-    <div flex-xs layout-xs hide-gt-xs >
-      <div  flex-xs="100" flex-order-xs="7" id="sm-state-list" style="background-color: whitesmoke; width:90vw;">
-
-        <md-list flex-xs-grow>
-          <md-divider></md-divider>
-          <md-list-item><span class="md-title">Texas</span>
-            <small class="md-subhead">- {{ TXPercentage | number:0 }} %</small>
-          </md-list-item>
-          <md-divider></md-divider>
-          <md-list-item><span class="md-title">Kentucky</span>
-            <small class="md-subhead">- {{ KYPercentage | number:0 }} %</small>
-          </md-list-item>
-          <md-divider></md-divider>
-          <md-list-item><span class="md-title">Mississippi</span>
-            <small class="md-subhead">- {{ MSPercentage | number:0 }} %</small>
-          </md-list-item>
-          <md-divider></md-divider>
-        </md-list>
       </div>
-    </div><!--small screen-->
+    </div>
+   <div flex-xs="30" flex-gt-xs="100"  flex-gt-sm="30" flex-gt-lg="25" flex-gt-md="30"   layout="column" layout-align="start center" id="container-two">
+      <div ng-show="currentUser.accessLevel=='regional' && selectedState" flex layout="column" style="width:100%; ">
+        <div layout style="background-color:rgb(0, 120, 215); color:white;">
+          <div flex layout="column" >
 
-
-    <div hide-xs hide-sm flex-gt-lg="25" flex-gt-md="30"   layout="column" layout-align="start center" id="container-two">
-      <div ng-if="currentUser.accessLevel =='regional'" layout="column" style="border:none;width:100%; ">
-       <div layout style="background-color:rgb(0, 120, 215); color:white;">
-         <div flex layout="column" >
-
-           <div  layout layout-align="space-around center" class="md-padding">
+            <div  layout layout-align="space-around center" class="md-padding">
               <div flex-33 >
                 <span>Filter</span>
                 <select style="margin:0 1rem!important;" ng-model="searchCriteria" aria-label="group"
-                           placeholder="Group">
-                  <option ng-repeat="group in group" value="{{ group.title }}">{{ group.title }}</option>
+                        placeholder="Group">
+                  <option ng-repeat="group in groups" value="{{ group.title }}">{{ group.title }}</option>
                 </select>
-             </div>
-              <div flex-33  class="md-icon"><a href="#" layout layout-align="center center" ng-click="searchCriteria=''" style="text-decoration:none;color:white;"><i class="material-icons">clear_all</i>Reset</a></div>
+              </div>
+              <div flex-33  class="md-icon"><a href="#" layout layout-align="center center" ng-click="searchCriteria=''" style="text-decoration:none;color:white;"><small class="">Reset Filter</small></a></div>
               <div flex-33  layout="column" layout-align="center center">
-               <md-button layout layout-align="center center" class="md-fab md-mini md-icon-button md-warn" ng-click="sendRegionalReminder()"><i class="material-icons" style="font-size:18px;">chat_bubble_outline</i></md-button>
-              <!--<small>Reminder</small>-->
-             </div>
-           </div>
-         </div>
-       </div>
-        <div flex layout style="overflow: auto; max-height: 400px" id="unconfirmed-contianer">
-          <table ><thead >
-          <tr >
-            <th><a layout layout-align="start center" href="#"
-                   ng-click="sortOption='lname'; sortReverse = !sortReverse">Employee
-              <span ng-if="sortOption=='lname' && !sortReverse">
-                              <i class="material-icons">arrow_drop_down</i></span>
-              <span ng-if="sortOption=='lname' && sortReverse"><i class="material-icons">arrow_drop_up</i></span></a></th>
-            <th class=""><a layout layout-align="start center" href="#"
-                            ng-click="sortOption='group.title'; sortReverse = !sortReverse">Group
-              <span ng-if="sortOption=='group.title' && !sortReverse"><i class="material-icons">arrow_drop_down</i></span>
-              <span ng-if="sortOption=='group.title' && sortReverse"><i
-                class="material-icons">arrow_drop_up</i></span></a></th>
-          </tr>
-          </thead>
-            <tbody><tr ng-repeat="e in Unconfirmed | orderBy:sortOption:sortReverse | filter:searchCriteria"><td>{{e.lname}}, {{e.fname}}</td><td>{{e.group.title}}</td></tr></tbody></table>
+              </div>
+            </div>
+          </div>
         </div>
-        <!--<div flex layout>New Block</div>-->
+        <div  flex layout style="overflow: auto; max-height: 300px" id="unconfirmed-contianer">
+          <table >
+            <thead fix-head>
+            <tr>
+              <th><a layout layout-align="start center" href="#"
+                     ng-click="sortOption='lname'; sortReverse = !sortReverse">Employee
+                <span ng-if="sortOption=='lname' && !sortReverse">
+                              <i class="material-icons">arrow_drop_down</i></span>
+                <span ng-if="sortOption=='lname' && sortReverse"><i class="material-icons">arrow_drop_up</i></span></a>
+              </th>
+              <th class=""><a layout layout-align="start center" href="#"
+                              ng-click="sortOption='group.title'; sortReverse = !sortReverse">Group
+                <span ng-if="sortOption=='group.title' && !sortReverse"><i
+                  class="material-icons">arrow_drop_down</i></span>
+                <span ng-if="sortOption=='group.title' && sortReverse"><i
+                  class="material-icons">arrow_drop_up</i></span></a></th>
+            </tr>
+            </thead>
+            <tbody >
+            <tr ng-repeat="e in Unconfirmed | orderBy:sortOption:sortReverse | filter:searchCriteria">
+              <td>{{e.lname}}, {{e.fname}}</td>
+              <td>{{e.group.title}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-
       <div ng-hide="currentUser.accessLevel=='regional'" ng-controller="DashboardController" layout="column" layout-align-sm="center center"
            id="confirmation-box"  >
         <div flex-66 layout >
@@ -136,8 +136,8 @@
 
         <div ng-if="!statusCurrent && msgStatus == 0 && msgShow == 2 "></div>
         <div ng-if="!statusCurrent && msgStatus == 0 && msgShow != 2">
-          <div layout><p flex class="md-subhead"><strong>Confirm Installation</strong></p></div>
-          <md-checkbox ng-model="status" ng-change="createConfirmation()">I have successfully <u>installed</u> this update.</md-checkbox>
+          <div layout style="margin-left:.5rem;"><p flex class="md-subhead"><strong>Confirm Installation</strong></p></div>
+          <md-checkbox ng-model="status" ng-change="createConfirmation()" style="margin-left:.5rem;">I have successfully <u>installed</u> this update.</md-checkbox>
         </div>
         <div ng-if="msgStatus == 2">
         </div>
@@ -182,7 +182,5 @@
       </div>
     </div><!--End of section -->
   </div>
-  <div ng-if="currentUser.accessLevel =='region'" flex layout="column" layout-align="center" id="bottom-container">
 
-  </div>
 </div>

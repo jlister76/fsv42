@@ -50,8 +50,8 @@
         AuthService.logout()
           .then(function(){
             $mdSidenav('left').close();
-            localStorage.clear();
             $state.go('login');
+            localStorage.clear();
           });
       };
 

@@ -37,13 +37,12 @@ body {
 }
 
 footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
+  /*position: relative;
+  bottom: 0;*/
   width: 100vw;
   font-size: 12px;
-  height: 54px;
-  border-top: solid thin #c3d9ec;
+  max-height: 34px;
+  border-top: solid thin rgba(52, 73, 94, 0.5);
   color: #999;
   background-color: #DDDDDD;
 }
@@ -57,9 +56,9 @@ footer {
 }
 
 table {
-  border: medium solid lightgray;
+  border:solid 2px lightgrey;
   border-collapse: collapse;
-  empty-cells: show;
+  empty-cells: hide;
 }
 
 tr {
@@ -112,7 +111,7 @@ a::selection {
 }
 
 #bottom-container {
-  min-height: 600px;
+  min-height: 25px;
 }
 #bottom-container a {
   text-decoration: none;
@@ -150,12 +149,15 @@ a::selection {
 }
 
 #sign-in-form {
+
   border-radius: 8px;
-  border:solid thin rgba(1, 164, 239, 0.18);
+  border:solid thin rgba(195, 195, 195, 0.81);
+  color: #333;
 }
 #sign-in-button{
+  margin-top:4rem;
   background-color:#01A4EF;
-  width:140px;
+  width:220px;
   color:white;
 }
 #sign-in-button:hover {
@@ -173,8 +175,36 @@ a::selection {
 .confirmation-icon i {
   font-size:18px;
 }
+#state-selector {
+  border: solid thin lightgrey;
+  background-color: whitesmoke;
+}
+.state-stats {
+  margin-top:.5rem;
+
+}
+.status-bar {
+  margin: .5rem;
+  height:6px;
+
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#207ce5+0,499bea+100 */
+  background: #207ce5; /* Old browsers */
+  background: -moz-linear-gradient(left,  #207ce5 0%, #499bea 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left,  #207ce5 0%,#499bea 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right,  #207ce5 0%,#499bea 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#207ce5', endColorstr='#499bea',GradientType=1 ); /* IE6-9 */
+
+}
+.percentage-bar {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f3bc09+0,ffd65e+100 */
+  background: #f3bc09; /* Old browsers */
+  background: -moz-linear-gradient(left,  #f3bc09 0%, #ffd65e 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left,  #f3bc09 0%,#ffd65e 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right,  #f3bc09 0%,#ffd65e 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3bc09', endColorstr='#ffd65e',GradientType=1 ); /* IE6-9 */
 
 
+}
 /*********************************************************************/
                    /*X-Large Screens*/
 @media only screen and (min-width:1920px){
@@ -268,8 +298,9 @@ a::selection {
 
   }
   #confirmation-box {
-    /*border:solid medium lightgray;*/
-    background-color: whitesmoke;
+    /*border:solid thin lightgray;
+    background-color: whitesmoke;*/
+
     padding: .8rem .4rem;
     margin-bottom: .8rem;
 
@@ -278,6 +309,7 @@ a::selection {
     padding: 1rem .5rem;
     margin-left: .5rem;
     width:100vw;
+
   }
   #unconfirmed-contianer {
     overflow: auto;
@@ -287,6 +319,7 @@ a::selection {
     background-color: whitesmoke;
   }
   #issue-tracker-form {
+    width:380px;
     margin:1.8rem;
   }
   #issue-tracker-form md-input-container {
@@ -301,9 +334,12 @@ a::selection {
   }
   #issue-tracker-button {
     color:white;
-    width:200px;
+    width:275px;
     height:40px;
     margin: 1rem
+  }
+  .status-bar {
+    width:70%;
   }
 }
 
@@ -342,6 +378,24 @@ a::selection {
   #unconfirmed-contianer {
     overflow: auto;
     max-height: 400px
+  }
+
+  #state-selector {
+    width: 50%;
+
+  }
+  .state-stats {
+    margin-top:.5rem;
+    /*width:80%;*/
+  }
+  .status-bar {
+    margin: .5rem;
+    height:6px;
+   /* width:60%;*/
+  }
+  canvas {
+    width: auto;
+
   }
 
 }
@@ -388,6 +442,26 @@ a::selection {
   }
   #sm-state-list {
     min-height: 200px;
+  }
+  .group-title {
+
+    font-size:18px;
+  }
+  .status-bar{
+    width:100%;
+  }
+  .percentage-bar {
+    width:100%;
+  }
+  .state-stats {
+    width:100%;
+    font-size:16px;
+  }
+  .state-stats i{
+   font-size:16px;
+  }
+  #state-selector {
+    width:100%;
   }
 
 }
