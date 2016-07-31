@@ -54,12 +54,15 @@ footer {
 }
 #download-contianer{
   background-color: lightgray;
+  margin: .3rem 0;
 }
 #confirmation-container {
   background-color: lightgray;
+  margin: .3rem 0;
 }
 #issue-contianer{
   background-color: lightgray;
+  margin: .3rem 0;
 }
 
 /*
