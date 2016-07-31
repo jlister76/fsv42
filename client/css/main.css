@@ -11,7 +11,7 @@
   max-height: 120px!important;
 }
 a:active{
-  color: darkgoldenrod;
+  color: #0078d7;
 }
 .md-button[disabled] {
   background-color: #d2d2d2!important;
@@ -78,29 +78,11 @@ tbody tr:hover {
 table.clone + md-table-container table tbody tr:first-child td {
   border: none;
 }
-#q-input {
-  padding: .5rem;
-  border: solid thin lightgrey;
-  border-radius:2%;
-  margin: 1rem;
-}
+
 .card {
   background-color: white;
 }
-.chart-link{
-  border:solid thin lightsteelblue;
-  border-radius: 8px;
-  background-color: #e2e2e2;
-  color: #0F6AB4;
-  padding:.3rem .5rem;
-  text-decoration: none;
-}
-.chart-link:hover {
-  color: darkgoldenrod;
-}
-.selected {
-  background-color: #00b3ee;
-}
+
 a::selection {
   background-color: #00b3ee;
 }
@@ -108,28 +90,6 @@ a::selection {
   cursor: hand;
   text-decoration: none;
   color:lightgray;
-}
-
-#bottom-container {
-  min-height: 25px;
-}
-#bottom-container a {
-  text-decoration: none;
-  color: #0F6AB4;
-}
-#results-title {
-  background-color: #0f6ab4
-}
-#results-title span {
-  color:white;
-}
-#filter-bar {
-  background-color: palegoldenrod;
-  border:solid thin #bebebe;
-}
-
-#filter-bar span {
-  margin-right:.8rem;
 }
 
 #unconfirmed-contianer {
@@ -178,11 +138,13 @@ a::selection {
 #state-selector {
   border: solid thin lightgrey;
   background-color: whitesmoke;
-  min-height: 4rem;
+
+
 }
 .state-stats {
   margin-top:.5rem;
   min-height: 4rem;
+
 }
 .status-bar {
   margin: .5rem;
@@ -206,6 +168,11 @@ a::selection {
 
 
 }
+#state-percentage {
+
+
+}
+
 /*********************************************************************/
                    /*X-Large Screens*/
 @media only screen and (min-width:1920px){
@@ -232,8 +199,8 @@ a::selection {
 }
   #container-two {
 
-    margin-top: 2.5rem;
-    margin-left: .8rem;
+   /* margin-top: 2.5rem;*/
+   /* margin-left: .8rem;*/
 
   }
   #top-container {
@@ -244,6 +211,7 @@ a::selection {
     /*background-color: whitesmoke;*/
     padding: .8rem .4rem;
     margin-bottom: .8rem;
+    margin-top: 1.5rem;
 
   }
   thead th {
@@ -293,7 +261,6 @@ a::selection {
                 /*Medium Screens*/
 @media only screen and (min-width:960px) and (max-width:1279px){
   #container-two {
-
     margin-top: 2.5rem;
     margin-left: .8rem;
 
@@ -354,7 +321,6 @@ a::selection {
   html { overflow:hidden;}
 
   #container-two {
-
     width: 98vw;
     maring-bottom:1rem;
   }
@@ -427,7 +393,6 @@ a::selection {
   #confirmation-box {
     /*background-color: whitesmoke;*/
     padding: .8rem;
-
     width:95vw;
     margin: 1rem 0;
   }
