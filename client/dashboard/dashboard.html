@@ -41,7 +41,7 @@
       <div ng-if="currentUser.accessLevel =='regional'" flex-gt-sm="40" flex-gt-lg="25"
            flex-gt-md="30" layout  style="min-height:8rem;">
         <div style="margin:2.5rem 0;" >
-          <div flex  layout="column"  layout-align-xs="center center" >
+          <div flex  layout="column">
             <div ng-if="currentUser.regionId == 1" id="state-selector"  layout layout-align="center center"
                  style="">
               <span class="md-subhead">Select state:</span>
@@ -51,7 +51,7 @@
               </md-select>
             </div>
             <div layout="column" style="">
-              <div flex-xs="100" flex-gt-sm="70" flex-gt-lg="75" flex-gt-md="70" layout layout-align="space-between" layout-xs="column" class="md-title state-stats" style="">
+              <div flex-xs="100" flex-gt-sm="70" flex-gt-lg="75" flex-gt-md="70" layout layout-align="space-between" class="md-title state-stats" style="">
                 <span ng-if="selectedState"> {{ selectedState }}  {{ statePercentage | number:0 }} % </span>
                 <div flex-xs="100" flex-gt-sm="70" flex-gt-lg="75" flex-gt-md="70" ng-if="selectedState" layout="column" layout-align="center center">
                   <a href="#" layout layout-align="center center" style="text-decoration:none;"
