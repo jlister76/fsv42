@@ -1,12 +1,36 @@
-/***********************Global Styles*************************/
-
+/*******MUST HAVES******/
 [ng\:cloak], [ng-cloak], .ng-cloak {
   display: none !important;
 }
 .logo {
-  /*background-image: url(../hc-logo.png);*/
+  background-image: url(../hc-logo.png);
  width: 112px;
 }
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100vw;
+  font-size: 12px;
+  max-height: 34px;
+  border-top: solid thin rgba(52, 73, 94, 0.5);
+  color: #999;
+  background-color: #DDDDDD;
+}
+/*****************************************************/
+/**GLOBAL**/
+.top-container{
+  background-color: lightgoldenrodyellow;
+}
+.left-container{
+  background-color: lightblue;
+}
+.right-container{
+  background-color: lightcoral;
+}
+/*
+!***********************Global Styles*************************!
+
+
 .md-header {
   max-height: 120px!important;
 }
@@ -37,8 +61,8 @@ body {
 }
 
 footer {
-  /*position: relative;
-  bottom: 0;*/
+  !*position: relative;
+  bottom: 0;*!
   width: 100vw;
   font-size: 12px;
   max-height: 34px;
@@ -62,7 +86,7 @@ table {
 }
 
 tr {
- /*border-bottom: solid medium lightgray;*/
+ !*border-bottom: solid medium lightgray;*!
 }
 tbody tr:hover {
   background-color: rgba(173, 216, 230, 0.13);
@@ -150,21 +174,21 @@ a::selection {
   margin: .5rem;
   height:6px;
 
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#207ce5+0,499bea+100 */
-  background: #207ce5; /* Old browsers */
-  background: -moz-linear-gradient(left,  #207ce5 0%, #499bea 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(left,  #207ce5 0%,#499bea 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right,  #207ce5 0%,#499bea 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#207ce5', endColorstr='#499bea',GradientType=1 ); /* IE6-9 */
+  !* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#207ce5+0,499bea+100 *!
+  background: #207ce5; !* Old browsers *!
+  background: -moz-linear-gradient(left,  #207ce5 0%, #499bea 100%); !* FF3.6-15 *!
+  background: -webkit-linear-gradient(left,  #207ce5 0%,#499bea 100%); !* Chrome10-25,Safari5.1-6 *!
+  background: linear-gradient(to right,  #207ce5 0%,#499bea 100%); !* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ *!
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#207ce5', endColorstr='#499bea',GradientType=1 ); !* IE6-9 *!
 
 }
 .percentage-bar {
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f3bc09+0,ffd65e+100 */
-  background: #f3bc09; /* Old browsers */
-  background: -moz-linear-gradient(left,  #f3bc09 0%, #ffd65e 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(left,  #f3bc09 0%,#ffd65e 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right,  #f3bc09 0%,#ffd65e 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3bc09', endColorstr='#ffd65e',GradientType=1 ); /* IE6-9 */
+  !* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f3bc09+0,ffd65e+100 *!
+  background: #f3bc09; !* Old browsers *!
+  background: -moz-linear-gradient(left,  #f3bc09 0%, #ffd65e 100%); !* FF3.6-15 *!
+  background: -webkit-linear-gradient(left,  #f3bc09 0%,#ffd65e 100%); !* Chrome10-25,Safari5.1-6 *!
+  background: linear-gradient(to right,  #f3bc09 0%,#ffd65e 100%); !* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ *!
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3bc09', endColorstr='#ffd65e',GradientType=1 ); !* IE6-9 *!
 
 
 }
@@ -173,8 +197,8 @@ a::selection {
 
 }
 
-/*********************************************************************/
-                   /*X-Large Screens*/
+!*********************************************************************!
+                   !*X-Large Screens*!
 @media only screen and (min-width:1920px){
   #unconfirmed-contianer {
     overflow: auto;
@@ -187,9 +211,9 @@ a::selection {
   }
 
 }
-/*********************************************************************/
-/*********************************************************************/
-                 /*Large Screens*/
+!*********************************************************************!
+!*********************************************************************!
+                 !*Large Screens*!
 @media only screen and (min-width:1280px){
 #chart-container{
   min-height: 74vh;
@@ -199,8 +223,8 @@ a::selection {
 }
   .container-two {
 
-   /* margin-top: 2.5rem;*/
-   /* margin-left: .8rem;*/
+   !* margin-top: 2.5rem;*!
+   !* margin-left: .8rem;*!
 
   }
   #top-container {
@@ -208,7 +232,7 @@ a::selection {
 
   }
   #confirmation-box {
-    /*background-color: whitesmoke;*/
+    !*background-color: whitesmoke;*!
     padding: .8rem .4rem;
     margin-bottom: .8rem;
     margin-top: 1.5rem;
@@ -216,7 +240,7 @@ a::selection {
   }
   thead th {
     text-align:left;
-    /*min-width:15rem;*/
+    !*min-width:15rem;*!
   }
   td {
     padding: 1rem .5rem;
@@ -256,9 +280,9 @@ a::selection {
   }
 }
 
-/*********************************************************************/
-/*********************************************************************/
-                /*Medium Screens*/
+!*********************************************************************!
+!*********************************************************************!
+                !*Medium Screens*!
 @media only screen and (min-width:960px) and (max-width:1279px){
   .container-two {
     margin-top: 2.5rem;
@@ -266,8 +290,8 @@ a::selection {
 
   }
   #confirmation-box {
-    /*border:solid thin lightgray;
-    background-color: whitesmoke;*/
+    !*border:solid thin lightgray;
+    background-color: whitesmoke;*!
 
     padding: .8rem .4rem;
     margin-bottom: .8rem;
@@ -313,9 +337,9 @@ a::selection {
   }
 }
 
-/*********************************************************************/
-/*********************************************************************/
-                   /*Small Screens*/
+!*********************************************************************!
+!*********************************************************************!
+                   !*Small Screens*!
 @media only screen and (min-width:600px) and (max-width:959px){
 
   html { overflow:hidden;}
@@ -356,12 +380,12 @@ a::selection {
   }
   .state-stats {
     margin-top:.5rem;
-    /*width:80%;*/
+    !*width:80%;*!
   }
   .status-bar {
     margin: .5rem;
     height:6px;
-   /* width:60%;*/
+   !* width:60%;*!
   }
   canvas {
     width: auto;
@@ -370,9 +394,9 @@ a::selection {
 
 }
 
-/*********************************************************************/
-/*********************************************************************/
-                  /*XSmall Screens*/
+!*********************************************************************!
+!*********************************************************************!
+                  !*XSmall Screens*!
 @media only screen and (max-width:599px){
   html { overflow:hidden;}
 #top-container{
@@ -396,7 +420,7 @@ a::selection {
     width:100vw;
   }
   #confirmation-box {
-    /*background-color: whitesmoke;*/
+    !*background-color: whitesmoke;*!
     padding: .8rem;
     width:95vw;
     margin: 1rem 0;
@@ -442,4 +466,5 @@ a::selection {
 
 }
 
-/*********************************************************************/
+!*********************************************************************!
+*/
