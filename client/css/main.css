@@ -26,11 +26,7 @@ footer {
   min-height: 2rem;
  border: solid thin aqua;
 }
-.right-container{
-  background-color: lightcoral;
-  min-height: 2rem;
-  border: solid thin aqua;
-}
+
 .area-title-bar{
   background-color: #de6fba;
   margin:.3rem;
@@ -50,6 +46,22 @@ footer {
   max-height: 400px;
   margin-top: 1rem;
 }
+
+.right-container{
+  background-color: lightcoral;
+  min-height: 2rem;
+  border: solid thin aqua;
+}
+#download-contianer{
+  background-color: lightgray;
+}
+#confirmation-container {
+  background-color: lightgray;
+}
+#issue-contianer{
+  background-color: lightgray;
+}
+
 /*
 !***********************Global Styles*************************!
 
