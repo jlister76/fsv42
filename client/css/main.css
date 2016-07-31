@@ -383,7 +383,6 @@ a::selection {
     width: 98vw;
     min-height: 60vh;
     margin-bottom:1rem;
-    margin-top:2rem;
     border: solid thin red;
 
   }
