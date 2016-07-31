@@ -9,7 +9,7 @@
       </md-select>
 
     </div><!--state selector-->
-    <div flex layout layout-xs="column" layout-align-xs="center center">
+    <div flex layout layout-xs="column" layout-align-xs="center center" style="border:solid thin greenyellow;min-height:40vh;">
       <div layout-sm="column" layout-gt-sm="row" layout-align-gt-sm="space-around" layout-xs="column"
            layout-align-xs="start start" class="md-padding" id="top-container">
         <div flex layout>
@@ -49,8 +49,7 @@
             </table>
           </div><!--account or group-->
           <div ng-if="currentUser.accessLevel =='regional'" flex-xs="100" layout>
-            <div style="" >
-
+            <div>
               <div ng-if="selectedState" flex-xs="100" layout="column" layout-xs="column" layout-align-xs="center" style="margin-top: 2rem; min-width:340px;">
                 <div layout="row" layout-align="space-between " class="">
                   <span class="md-title group-title" style="margin:.2rem;">{{ selectedState }} {{ statePercentage | number:0 }}%</span>
