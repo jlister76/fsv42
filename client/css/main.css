@@ -377,7 +377,7 @@ a::selection {
   html { overflow:hidden;}
 #top-container{
   min-height: 6rem;
-  margin-top:4rem;
+  margin-top: 8rem;
   border:solid thin aqua;
 }
   .container-two {
