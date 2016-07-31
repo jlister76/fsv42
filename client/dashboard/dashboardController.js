@@ -264,7 +264,7 @@
                               eList.push(e);
                             });
 
-                            console.log(eList.id);
+
                             //calculate the percentages for each group
                             var groupLabels = [];
                             var groupPercentages = [];
@@ -332,6 +332,38 @@
                                 $scope.label = groupLabels;
                                 $scope.data = groupPercentages;
 
+                                var unconfirmedMembers = [];
+                                _.forEach(employeesWithoutConfirmations, function (uc) {
+
+                                  Member
+                                    .findById({id: uc.memberId})
+                                    .$promise
+                                    .then(function (member) {
+
+
+                                      unconfirmedMembers.push(member.email);
+
+                                      return unconfirmedMembers;
+
+                                    })
+                                    .then(function (unconfirmedMembers) {
+                                      $scope.sendRegionalReminder = function ($event) {
+                                        console.log("active");
+
+                                        if (unconfirmedMembers.length > 0) {
+
+                                          var emailList = {email: unconfirmedMembers};
+                                          /*$http.post('api/Updates/sendReminder', emailList);*/
+                                          console.log(emailList);
+                                          $mdToast.show($mdToast.simple()
+                                            .position('right')
+                                            .capsule(true)
+                                            .textContent("An email reminder was sent."))
+                                        }
+                                      };
+                                    })
+
+                                });
                               });
 
                           });
