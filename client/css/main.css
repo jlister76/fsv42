@@ -378,8 +378,9 @@ a::selection {
 
   #container-two {
     width: 98vw;
-    min-height: 30vh;
+    min-height: 60vh;
     margin-bottom:1rem;
+    border: solid thin red;
 
   }
   #logo-container {
