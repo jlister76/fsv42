@@ -423,6 +423,7 @@ a::selection {
   }
   .status-bar{
     margin: .5rem;
+    min-height:2rem;
     height:6px;
 
   }
