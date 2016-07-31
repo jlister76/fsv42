@@ -51,13 +51,13 @@
               </md-select>
             </div>
             <div layout="column" style="">
-              <div flex-gt-sm="70" flex-gt-lg="75" flex-gt-md="70" layout layout-align="space-between" class="md-title state-stats" style="">
-                <span ng-if="selectedState"> {{ selectedState }}  {{ statePercentage | number:0 }} % </span>
-                <div flex-gt-sm="70" flex-gt-lg="75" flex-gt-md="70" ng-if="selectedState" layout="column" layout-align="center center">
-                  <a href="#" layout layout-align="center center" style="text-decoration:none;"
+              <div layout="row" layout-align="space-between end" class="">
+                <span class="md-title group-title" style="margin:.2rem;">{{ selectedState }} {{ statePercentage | number:0 }}%</span>
+                <div ng-if="currentUser.accessLevel == 'group'"  layout="column" layout-align="center center">
+                  <a href="#" layout layout-align="center center" class="group-title" style="text-decoration:none;"
                      ng-click="sendRegionalReminder()">
-                    <span class="md-subhead"><span hide-xs>Group</span> Reminder</span><i class="material-icons"
-                                                                     style="margin-left:.2rem;font-size:18px;">chat_bubble_outline</i></a>
+                    <span class="md-subhead group-title"><span hide-xs>Group</span> Reminder</span><i class="material-icons"
+                                                                                                      style="">chat_bubble_outline</i></a>
 
                 </div>
               </div>
