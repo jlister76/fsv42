@@ -455,7 +455,8 @@ a::selection {
     height:6px;
   }
   .percentage-bar {
-    width:100%;
+    margin: .5rem;
+    height:6px;
   }
   .state-stats {
 
