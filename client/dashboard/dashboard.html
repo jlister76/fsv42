@@ -2,14 +2,27 @@
 
   <div ng-if="currentUser.accessLevel!='regional'" layout layout-xs="column">
     <div class="left-container" flex="70" flex-xs="100" layout layout-xs >
-     <div flex="grow" layout layout-align="space-between center" style="background-color: lightyellow;">
-       <div  class="area-title-bar">TITLE</div>
-       <div  class="area-button-bar">BUTTON</div>
+     <div  flex class="md-padding" style="background-color: lightyellow;">
+       <div layout="column">
+         <div flex="grow" layout layout-align="space-between center" class="md-padding" style="min-height:2rem;background-color: #00FF00;">
+           <div  class="area-title-bar">TITLE</div>
+           <div  class="area-button-bar">BUTTON</div>
+         </div>
+         <div class="percentage-bar"></div>
+         <div flex layout="column" class="table-container">
+          <div>TABLE</div>
+           <div>TABLE</div>
+           <div>TABLE</div>
+           <div>TABLE</div>
+         </div>
+       </div>
      </div>
     </div>
-    <div class="right-container" flex="30" flex-xs="100" layout layout-xs >
-      <div>
-        RIGHT
+    <div hide-xs class="right-container md-padding" flex="30" flex-xs="100" layout layout-xs >
+      <div layout="column" layout-align="center">
+        <div>DOWNLOAD</div>
+        <div>CONFIRMATION</div>
+        <div>ISSUE TRACKER</div>
       </div>
     </div>
   </div>
@@ -19,8 +32,13 @@
       <div layout layout-xs="column">
         <div class="left-container" flex="70" flex-xs="100" >
           <div flex="grow" layout layout-align="space-between center" style="background-color: lightyellow;">
-            <div  class="area-title-bar">TITLE</div>
-            <div  class="area-button-bar">BUTTON</div>
+            <div layout="column">
+              <div flex="grow" layout layout-align="space-between center" style="min-height:2rem;background-color: #00FF00;">
+                <div  class="area-title-bar">TITLE</div>
+                <div  class="area-button-bar">BUTTON</div>
+              </div>
+              <div class="percentage-bar"></div>
+            </div>
           </div>
         </div>
         <div class="right-container" flex="30" flex-xs="100" >RIGHT</div>

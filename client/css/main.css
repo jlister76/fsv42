@@ -33,9 +33,22 @@ footer {
 }
 .area-title-bar{
   background-color: #de6fba;
+  margin:.3rem;
 }
 .area-button-bar{
   background-color: lightsalmon;
+
+}
+.percentage-bar{
+  background-color: #0F6AB4;
+  min-height:8px;
+
+}
+.table-container{
+  background-color: lightgray;
+  min-height: 200px;
+  max-height: 400px;
+  margin-top: 1rem;
 }
 /*
 !***********************Global Styles*************************!
