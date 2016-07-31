@@ -1,8 +1,12 @@
 <md-content flex layout="column" style=" height:100vh; border:solid thin red; background-color:lightgreen;">
 
   <div ng-if="currentUser.accessLevel!='regional'" layout layout-xs="column">
-    <div class="left-container" flex="70" flex-xs="100" >LEFT</div>
-    <div class="right-container" flex="30" flex-xs="100" >RIGHT</div>
+    <div class="left-container" flex="70" flex-xs="100" >
+      LEFT
+    </div>
+    <div class="right-container" flex="30" flex-xs="100" >
+      RIGHT
+    </div>
   </div>
   <div ng-if="currentUser.accessLevel=='regional'">
     <div layout="column">
