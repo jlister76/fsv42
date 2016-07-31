@@ -197,7 +197,7 @@ a::selection {
   border:solid thin #eeeeee;
   background-color: rgba(226, 226, 226, 0.89);
 }
-  #container-two {
+  .container-two {
 
    /* margin-top: 2.5rem;*/
    /* margin-left: .8rem;*/
@@ -260,7 +260,7 @@ a::selection {
 /*********************************************************************/
                 /*Medium Screens*/
 @media only screen and (min-width:960px) and (max-width:1279px){
-  #container-two {
+  .container-two {
     margin-top: 2.5rem;
     margin-left: .8rem;
 
@@ -320,7 +320,7 @@ a::selection {
 
   html { overflow:hidden;}
 
-  #container-two {
+  .container-two {
     width: 98vw;
     maring-bottom:1rem;
   }
@@ -376,10 +376,11 @@ a::selection {
 @media only screen and (max-width:599px){
   html { overflow:hidden;}
 #top-container{
-  min-height: 12rem;
+  min-height: 6rem;
+  margin-top:4rem;
   border:solid thin aqua;
 }
-  #container-two {
+  .container-two {
     width: 98vw;
     min-height: 60vh;
     margin-bottom:1rem;
@@ -422,7 +423,6 @@ a::selection {
   }
   .status-bar{
     margin: .5rem;
-    min-height:2rem;
     height:6px;
 
   }

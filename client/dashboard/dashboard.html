@@ -12,10 +12,9 @@
     <div flex layout layout-xs="column" layout-align-xs="center center">
       <div layout-sm="column" layout-gt-sm="row" layout-align-gt-sm="space-around" layout-xs="column"
            layout-align-xs="start start" class="md-padding" id="top-container">
-        <div flex layout layout-xs layout-align-xs="center end" style="border:solid thin blue;min-height:2rem;">
-          <div ng-if="currentUser.accessLevel !='regional'"   layout="column" layout-align="start" style="min-height:18rem;">
-            <div layout="column" layout-align="start"
-                 style="margin-top:1rem;">
+        <div flex layout layout-xs layout-align-xs="center" style="border:solid thin blue; ">
+          <div ng-if="currentUser.accessLevel !='regional'" layout="column" layout-align="start" style="min-height:18rem;">
+            <div layout="column" layout-align="start">
               <div layout="row" layout-align="space-between end" class="">
                 <span class="md-title group-title" style="margin:.2rem;">{{ group }} {{ gp | number:0 }}%</span>
                 <div ng-if="currentUser.accessLevel == 'group'"  layout="column" layout-align="center center">
@@ -50,8 +49,8 @@
           </div><!--account or group-->
           <div ng-if="currentUser.accessLevel =='regional'" flex-xs="100" layout>
             <div>
-              <div ng-if="selectedState" flex-xs="100" layout="column" layout-xs="column" layout-align-xs="center" style="margin-top: 2rem; min-width:340px;">
-                <div layout="row" layout-align="space-between " class="">
+              <div ng-if="selectedState" flex-xs="100" layout="column" layout-xs="column" layout-align-xs="center" style="min-width:340px;">
+                <div layout="row" layout-align="space-between " class="" style="">
                   <span class="md-title group-title" style="margin:.2rem;">{{ selectedState }} {{ statePercentage | number:0 }}%</span>
                   <div layout="column" layout-align="center center">
                     <a href="#" layout layout-align="center center" class="group-title" style="text-decoration:none;"
@@ -78,8 +77,8 @@
           </div>
         </div>
       </div>
-      <div flex="30" flex-xs="100" layout="column" layout-align="start center" id="container-two">
-        <div ng-show="currentUser.accessLevel=='regional' && selectedState" layout="column" style="margin-top: 0rem;">
+      <div ng-if="currentUser.accessLevel=='regional'" flex="30" flex-xs="100" layout="column" layout-align="start center" class="container-two">
+        <div ng-show="selectedState" layout="column" style="margin-top: 0rem;">
           <div layout style="background-color:rgb(0, 120, 215); color:white;">
             <div flex layout="column" >
 
@@ -124,7 +123,9 @@
             </table>
           </div>
         </div>
-        <div hide-xs ng-hide="currentUser.accessLevel=='regional'" ng-controller="DashboardController" layout="column" layout-align-sm="center center"
+      </div>
+      <div ng-if="currentUser.accessLevel !='regional'" flex="30" flex-xs="100" layout="column" layout-align="start center" class="bottom-container">
+        <div hide-xs ng-controller="DashboardController" layout="column" layout-align-sm="center center"
              id="confirmation-box"  >
           <div flex-66 layout >
             <div ng-if="statusCurrent" layout layout-align="center center" class="confirmation-icon"><i class="material-icons">done</i></div>
@@ -145,7 +146,7 @@
             <span class="md-body-1">Your confirmation has been saved!</span>
           </div>
         </div>
-        <div hide-xs ng-hide="currentUser.accessLevel=='regional'" hide-xs hide-sm ng-controller="IssueReportController" layout="column" id="issue-tracker-form">
+        <div  hide-xs hide-sm ng-controller="IssueReportController" layout="column" id="issue-tracker-form">
           <div flex>
             <div flex flex-xs="100" layout>
               <div>
