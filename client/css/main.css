@@ -376,7 +376,7 @@ a::selection {
 @media only screen and (max-width:599px){
   html { overflow:hidden;}
 #top-container{
-  min-height: 10vh;
+
   border:solid thin aqua;
 }
   #container-two {
