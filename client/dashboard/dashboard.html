@@ -39,11 +39,10 @@
         </table>
       </div><!--account or group-->
       <div ng-if="currentUser.accessLevel =='regional'" flex-gt-sm="40" flex-gt-lg="25"
-           flex-gt-md="30" layout  style="min-height:18rem;">
+           flex-gt-md="30" layout  style="">
         <div style="margin:2.5rem 0;" >
           <div flex  layout="column">
-            <div ng-if="currentUser.regionId == 1" id="state-selector"  layout layout-align="center center"
-                 style="">
+            <div ng-if="currentUser.regionId == 1" id="state-selector"  layout layout-align="center center">
               <span class="md-subhead">Select state:</span>
               <md-select ng-model="state" ng-change="StateSelection(state)" style="width:115px;"
                          aria-label="state selection">
