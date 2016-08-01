@@ -112,7 +112,7 @@
                         var statePercentage = $scope.statePercentage.toFixed(0);
 
                         var el = angular.element(document.querySelector('#state-percentage'));
-                        var html = '<div class="percentage-bar" style="width:' + statePercentage + '%; height:6px; background-color:rgb(243, 188, 9);"></div>';
+                        var html = '<div class="percentage-bar" style="width:' + statePercentage + '%; height:8px; background-color:rgb(243, 188, 9);"></div>';
                         el.html(html);
 
                         //Get State employees with group

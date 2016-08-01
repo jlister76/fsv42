@@ -106,38 +106,52 @@
   </div>
   <div ng-if="currentUser.accessLevel=='regional'" layout layout-xs="column">
     <div flex layout="column" style="background-color:lightpink;border:solid thin lime;">
-      <div ng-if="currentUser.regionId==1" class="top-container" flex="auto" layout layout-align="center start">TOP</div>
-      <div layout layout-xs="column">
-        <div class="left-container" flex="70" flex-xs="100" layout layout-xs >
-          <div  flex class="md-padding lime" style="background-color: limegreen">
-            <div layout="column">
-              <div flex="grow" layout layout-align="space-between center" class="md-padding" style="min-height:2rem;background-color: #00FF00;">
-                <div  class="area-title-bar">TITLE</div>
-                <div  class="area-button-bar">BUTTON</div>
+      <div ng-if="currentUser.regionId==1" class="top-container" flex="auto" layout layout-align="center center">
+        <span class="md-subhead">Select state:</span>
+        <md-select ng-model="state" ng-change="StateSelection(state)" style="width:115px;"
+                   aria-label="state selection">
+          <md-option ng-repeat="state in states" value="{{ state.id }}">{{ state.title }}</md-option>
+        </md-select>
+      </div>
+      <div class="left-container" flex="70" flex-lg="67" flex-md="65" flex-sm="100" flex-xs="100" layout layout-xs >
+        <div  flex class="md-padding" style="background-color: limegreen; width:100vw;">
+          <div flex layout="column">
+            <div flex="grow" layout layout-align="space-between center" class="md-padding" style="min-height:2rem;background-color: #00FF00;">
+              <div  class="area-title-bar">
+                <span class="md-title group-title" style="margin:.2rem;">{{ selectedState }} {{ statePercentage | number:0 }}%</span>
               </div>
-              <div class="percentage-bar"></div>
-              <div hide-xs flex layout="column" class="chart-container">
-                <div>TABLE</div>
-                <div>TABLE</div>
-                <div>TABLE</div>
-                <div>TABLE</div>
+              <div  class="area-button-bar">
+                <a href="#" layout layout-align="center center" class="group-title"
+                   ng-click="sendGroupReminder()">
+                <span class="md-subhead group-title">
+                  <span hide-xs hide-sm class="md-subhead group-title">Group Reminder</span></span>
+                  <i class="material-icons">message</i>
+                </a>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="right-container md-padding" flex="30" flex-xs="100" layout layout-xs style="min-height:100vh;" >
-          <div layout="column" layout-align="" class="md-padding" style="min-height:100%;">
-            <div layout layout-align="space-around start" class="md-padding table-filter" id="a-contianer">
-              <div>Filter</div>
-              <div>Filter Reset</div>
-            </div>
-            <div>
-              TABLE
-            </div>
+            <div class="percentage-bar" id="state-percentage"></div>
+            <div layout-xs layout-align-xs="center center">
+              <div ng-if="statePercentage <= 0" class="md-headline group-title" style="color:lightgray">No updates have been
+                installed.
+              </div>
+              <div flex layout="column" class="chart-container">
+                <div hide-xs ng-if="statePercentage" class="md-padding">
+                  <canvas hide-xs flex-gt-sm="70" flex-gt-lg="75" flex-gt-md="70" id="bar2" class="chart-horizontal-bar"
+                          chart-options="options" chart-legend="true" chart-data="data" chart-labels="label">
+                  </canvas>
+                </div>
+              </div>
           </div>
         </div>
       </div>
-    </div>
+      <div hide-xs hide-sm class="right-container md-padding" flex-gt-lg="30" flex-md="35" flex-sm="45" flex-xs="100" layout layout-xs style="min-height:100%;" >
+        <div layout="column" class="md-padding" style="">
+          <div layout layout-align="start start" id="unconfirmed-table">
+
+          </div>
+        </div>
+      </div>
   </div>
 
+</div>
 </div>
