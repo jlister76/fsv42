@@ -44,7 +44,7 @@ a::selection {
   background-color: #00b3ee;
 }
 a:visited{
-  color:#00B3EE;
+  color: #0087b5;
 }
 
 .top-container{
@@ -76,7 +76,7 @@ a:visited{
   background-color: white;
   min-height: 200px;
   max-height: 400px;
-  
+
   margin-top: 1rem;
 }
 table {
@@ -104,13 +104,14 @@ td {
 }
 
 .right-container{
-
+  padding: 1rem;
+  border-left: solid thin lightgrey;
 
 }
 #download-container{
-
   margin: .3rem 0;
-
+  border-bottom: solid thin lightgrey;
+  background-color:whitesmoke;
 }
 
 #download-button {
@@ -124,17 +125,18 @@ td {
 
 #download-button:hover {
   background-color: rgb(161, 226, 0);
+  border-bottom: solid thin lightgrey;
 }
 
 #confirmation-container {
-
   margin: .3rem 0;
-  height:100%;
+  border-bottom: solid thin lightgrey;
+  background-color:whitesmoke;
 }
 #issuetracker-container{
 
   margin: .3rem 0;
-  height:100%;
+
 }
 
 #issue-form-background {
@@ -145,7 +147,8 @@ td {
 }
 
 #issue-tracker-form {
-  /*margin:1.8rem;*/
+
+  width:300px;
 
 }
 
