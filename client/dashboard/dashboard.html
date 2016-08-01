@@ -1,20 +1,21 @@
 <div class="md-padding" flex layout="column" style=" height:100vh; border:solid thin red; background-color:lightgreen;">
 
   <div ng-if="currentUser.accessLevel!='regional'" layout layout-xs="column">
-    <div class="left-container" flex="70" flex-lg="67" flex-md="65" flex-sm="100" flex-xs="100" layout layout-xs >
-      <div  flex class="md-padding" style="background-color: lightyellow;">
+    <div class="left-container" flex="70" flex-lg="67" flex-md="65" flex-sm="100" flex-xs="100" layout layout-xs>
+      <div flex class="md-padding" style="background-color: lightyellow;">
         <div flex layout="column">
-          <div flex="grow" layout layout-align="space-between center" class="md-padding" style="min-height:2rem;background-color: #00FF00;">
-            <div  class="area-title-bar">
+          <div flex="grow" layout layout-align="space-between center" class="md-padding"
+               style="min-height:2rem;background-color: #00FF00;">
+            <div class="area-title-bar">
               <span class="md-title group-title" style="margin:.2rem;">{{ group }} {{ gp | number:0 }}%</span>
             </div>
             <div ng-if="currentUser.accessLevel=='group'" class="area-button-bar">
               <a href="#" layout layout-align="center center" class="group-title"
-                     ng-click="sendGroupReminder()">
+                 ng-click="sendGroupReminder()">
                 <span class="md-subhead group-title">
                   <span hide-xs hide-sm class="md-subhead group-title">Group Reminder</span></span>
-              <i class="material-icons">message</i>
-            </a>
+                <i class="material-icons">message</i>
+              </a>
             </div>
           </div>
           <div class="percentage-bar" id="group-percentage"></div>
@@ -29,7 +30,7 @@
                 <td>{{ e.lname }}, {{e.fname }}</td>
                 <td>
                   <div layout-sm layout-align-sm="center center">
-                    <div ng-if="e.status" layout layout-align="center center" class="confirmation-icon" >
+                    <div ng-if="e.status" layout layout-align="center center" class="confirmation-icon">
                       <i class="material-icons">done</i></div>
                   </div>
                 </td>
@@ -40,10 +41,12 @@
         </div>
       </div>
     </div>
-    <div hide-xs hide-sm class="right-container md-padding" flex-gt-lg="30" flex-md="35" flex-sm="45" flex-xs="100" layout layout-xs style="min-height:100%;" >
+    <div hide-xs hide-sm class="right-container md-padding" flex-gt-lg="30" flex-md="35" flex-sm="45" flex-xs="100"
+         layout layout-xs style="min-height:100%;">
       <div layout="column" class="md-padding" style="">
         <div layout layout-align="start start" id="download-container">
-          <div ng-if="statusCurrent" layout layout-align="center center" class="confirmation-icon"><i class="material-icons">done</i></div>
+          <div ng-if="statusCurrent" layout layout-align="center center" class="confirmation-icon"><i
+            class="material-icons">done</i></div>
           <div layout layout-align="start" id="status">
             <md-progress-circular class="md-hue-4" md-mode="indeterminate">
             </md-progress-circular>
@@ -52,7 +55,8 @@
         <div id="confirmation-container">
           <div ng-if="!statusCurrent && msgStatus == 0 && msgShow == 2 "></div>
           <div ng-if="!statusCurrent && msgStatus == 0 && msgShow != 2">
-            <div layout style="margin-left:.5rem;"><p flex class="md-subhead"><strong>Confirm Installation</strong></p></div>
+            <div layout style="margin-left:.5rem;"><p flex class="md-subhead"><strong>Confirm Installation</strong></p>
+            </div>
             <p flex="90">
               <md-checkbox ng-model="status" ng-change="createConfirmation()" style="margin-left:.5rem;">
                 I have successfully <em>installed</em> this update.
@@ -65,16 +69,16 @@
           </div>
         </div>
         <div id="issuetracker-container">
-          <div  hide-xs ng-controller="IssueReportController" layout="column" id="issue-tracker-form">
+          <div hide-xs ng-controller="IssueReportController" layout="column" id="issue-tracker-form">
             <div flex>
               <div flex flex-xs="100" layout>
                 <div>
                   <div layout="column">
                     <span class="md-title title" style="">Issue Tracker</span>
-                    <div  flex-xs="100" layout="column" layout-align="center center" class="md-padding"
-                          id="issue-form-background">
+                    <div flex-xs="100" layout="column" layout-align="center center" class="md-padding"
+                         id="issue-form-background">
 
-                      <div flex ng-if="msgStatus == 0" >
+                      <div flex ng-if="msgStatus == 0">
                         <form flex layout="column" name="reportIssueForm"
                               ng-submit="report(update.issue,issue.comments)">
                           <md-input-container>
@@ -83,11 +87,14 @@
                               <md-option ng-repeat="issue in issueType" value="{{issue}}">{{issue}}</md-option>
                             </md-select>
                           </md-input-container>
-                          <div  layout layout-align="center">
-                            <textarea flex="90"  ng-model="issue.comments" name="comments" id="comments" cols="10" rows="4"></textarea>
+                          <div layout layout-align="center">
+                            <textarea flex="90" ng-model="issue.comments" name="comments" id="comments" cols="10"
+                                      rows="4"></textarea>
                           </div>
                           <div layout layout-align="center start">
-                            <md-button class="md-raised md-primary" id="issue-tracker-button" type="submit" ng-disabled="reportIssueForm.$invalid">Submit</md-button>
+                            <md-button class="md-raised md-primary" id="issue-tracker-button" type="submit"
+                                       ng-disabled="reportIssueForm.$invalid">Submit
+                            </md-button>
                           </div>
                         </form>
                       </div>
@@ -113,45 +120,91 @@
           <md-option ng-repeat="state in states" value="{{ state.id }}">{{ state.title }}</md-option>
         </md-select>
       </div>
-      <div class="left-container" flex="70" flex-lg="67" flex-md="65" flex-sm="100" flex-xs="100" layout layout-xs >
-        <div  flex class="md-padding" style="background-color: limegreen; width:100vw;">
-          <div flex layout="column">
-            <div flex="grow" layout layout-align="space-between center" class="md-padding" style="min-height:2rem;background-color: #00FF00;">
-              <div  class="area-title-bar">
-                <span class="md-title group-title" style="margin:.2rem;">{{ selectedState }} {{ statePercentage | number:0 }}%</span>
-              </div>
-              <div  class="area-button-bar">
-                <a href="#" layout layout-align="center center" class="group-title"
-                   ng-click="sendGroupReminder()">
+      <div layout layout-xs="column" layout-sm="column">
+        <div class="left-container" flex="70" flex-lg="67" flex-md="65" flex-sm="100" flex-xs="100" layout layout-xs>
+          <div flex class="md-padding" style="background-color: limegreen; width:100vw;">
+            <div flex layout="column">
+              <div flex="grow" layout layout-align="space-between center" class="md-padding"
+                   style="min-height:2rem;background-color: #00FF00;">
+                <div class="area-title-bar">
+                  <span class="md-title group-title" style="margin:.2rem;">{{ selectedState }} {{ statePercentage | number:0 }}%</span>
+                </div>
+                <div class="area-button-bar">
+                  <a href="#" layout layout-align="center center" class="group-title"
+                     ng-click="sendGroupReminder()">
                 <span class="md-subhead group-title">
                   <span hide-xs hide-sm class="md-subhead group-title">Group Reminder</span></span>
-                  <i class="material-icons">message</i>
-                </a>
-              </div>
-            </div>
-            <div class="percentage-bar" id="state-percentage"></div>
-            <div layout-xs layout-align-xs="center center">
-              <div ng-if="statePercentage <= 0" class="md-headline group-title" style="color:lightgray">No updates have been
-                installed.
-              </div>
-              <div flex layout="column" class="chart-container">
-                <div hide-xs ng-if="statePercentage" class="md-padding">
-                  <canvas hide-xs flex-gt-sm="70" flex-gt-lg="75" flex-gt-md="70" id="bar2" class="chart-horizontal-bar"
-                          chart-options="options" chart-legend="true" chart-data="data" chart-labels="label">
-                  </canvas>
+                    <i class="material-icons">message</i>
+                  </a>
                 </div>
               </div>
+              <div class="percentage-bar" id="state-percentage"></div>
+              <div layout-xs layout-align-xs="center center">
+                <div ng-if="statePercentage <= 0" class="md-headline group-title" style="color:lightgray">No updates have
+                  been
+                  installed.
+                </div>
+                <div hide-xs hide-sm flex layout="column" class="chart-container">
+                  <div  ng-if="statePercentage" class="md-padding">
+                    <canvas hide-xs flex-gt-sm="70" flex-gt-lg="75" flex-gt-md="70" id="bar2" class="chart-horizontal-bar"
+                            chart-options="options" chart-legend="true" chart-data="data" chart-labels="label">
+                    </canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="right-container md-padding" flex="30" flex-lg="33" flex-md="35" flex-sm="45" flex-xs="100" layout
+             layout-xs style="min-height:100vh;">
+          <div layout="column" class="md-padding" style="border:solid thin black;width:100%">
+            <div layout layout-align="space-around center" class="md-padding"
+                 style="border:solid thin #a1e200;width:100%">
+              <div flex-33>
+                <span>Filter</span>
+                <select style="margin:0 1rem!important;" ng-model="searchCriteria" aria-label="group"
+                        placeholder="Group">
+                  <option ng-repeat="group in groups" value="{{ group.title }}">{{ group.title }}</option>
+                </select>
+              </div>
+              <div flex-33 class="md-icon">
+                <a href="#" layout layout-align="center center" ng-click="searchCriteria=''"
+                   style="text-decoration:none;color:white;">
+                  <small class="">Reset Filter</small>
+                </a>
+              </div>
+              <div flex-33 layout="column" layout-align="center center">
+              </div>
+            </div>
+            <div flex layout id="unconfirmed-contianer">
+              <table>
+                <thead>
+                <tr>
+                  <th><a layout layout-align="start center" href="#"
+                         ng-click="sortOption='lname'; sortReverse = !sortReverse">Employee
+                    <span ng-if="sortOption=='lname' && !sortReverse">
+                              <i class="material-icons">arrow_drop_down</i></span>
+                    <span ng-if="sortOption=='lname' && sortReverse"><i class="material-icons">arrow_drop_up</i></span></a>
+                  </th>
+                  <th class=""><a layout layout-align="start center" href="#"
+                                  ng-click="sortOption='group.title'; sortReverse = !sortReverse">Group
+                    <span ng-if="sortOption=='group.title' && !sortReverse"><i
+                      class="material-icons">arrow_drop_down</i></span>
+                    <span ng-if="sortOption=='group.title' && sortReverse"><i
+                      class="material-icons">arrow_drop_up</i></span></a></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="e in Unconfirmed | orderBy:sortOption:sortReverse | filter:searchCriteria">
+                  <td>{{e.lname}}, {{e.fname}}</td>
+                  <td>{{e.group.title}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
-      <div hide-xs hide-sm class="right-container md-padding" flex-gt-lg="30" flex-md="35" flex-sm="45" flex-xs="100" layout layout-xs style="min-height:100%;" >
-        <div layout="column" class="md-padding" style="">
-          <div layout layout-align="start start" id="unconfirmed-table">
-
-          </div>
-        </div>
-      </div>
+    </div>
   </div>
-
-</div>
 </div>
