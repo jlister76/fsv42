@@ -38,7 +38,7 @@
               if ($scope.statusCurrent){
 
                               var el = angular.element( document.querySelector('#status'));
-                var status ='&nbsp; You are currently up to date.';
+                var status ='&nbsp; No update available.';
 
 
                 el.html(status);

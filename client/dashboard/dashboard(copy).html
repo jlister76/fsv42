@@ -136,12 +136,11 @@
           </div>
 
           <div ng-if="!statusCurrent && msgStatus == 0 && msgShow == 2 "></div>
-          <div ng-if="!statusCurrent && msgStatus == 0 && msgShow != 2">
+            <div ng-if="!statusCurrent && msgStatus == 0 && msgShow != 2">
             <div layout style="margin-left:.5rem;"><p flex class="md-subhead"><strong>Confirm Installation</strong></p></div>
             <md-checkbox ng-model="status" ng-change="createConfirmation()" style="margin-left:.5rem;">I have successfully <u>installed</u> this update.</md-checkbox>
           </div>
-          <div ng-if="msgStatus == 2">
-          </div>
+          <div ng-if="msgStatus == 2"></div>
           <div ng-if="msgStatus==1">
             <span class="md-body-1">Your confirmation has been saved!</span>
           </div>

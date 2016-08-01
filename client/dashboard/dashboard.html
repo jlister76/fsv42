@@ -1,14 +1,14 @@
 <md-content class="md-padding" flex layout="column" style=" height:100vh; border:solid thin red; background-color:lightgreen;">
 
   <div ng-if="currentUser.accessLevel!='regional'" layout layout-xs="column">
-    <div class="left-container" flex="70" flex-xs="100" layout layout-xs >
+    <div class="left-container" flex="70" flex-sm="55" flex-xs="100" layout layout-xs >
       <div  flex class="md-padding" style="background-color: lightyellow;">
         <div flex layout="column">
           <div flex="grow" layout layout-align="space-between center" class="md-padding" style="min-height:2rem;background-color: #00FF00;">
             <div  class="area-title-bar">
               <span class="md-title group-title" style="margin:.2rem;">{{ group }} {{ gp | number:0 }}%</span>
             </div>
-            <div  class="area-button-bar">
+            <div ng-if="currentUser.accessLevel=='group'" class="area-button-bar">
               <a href="#" layout layout-align="center center" class="group-title"
                      ng-click="sendGroupReminder()">
                 <span class="md-subhead group-title">
@@ -19,18 +19,47 @@
           </div>
           <div class="percentage-bar" id="group-percentage"></div>
           <div flex layout="column" class="table-container">
-            <div>TABLE</div>
-            <div>TABLE</div>
-            <div>TABLE</div>
-            <div>TABLE</div>
+            <table flex-gt-sm="70">
+              <thead>
+              <th>Employee</th>
+              <th>Current</th>
+              </thead>
+              <tbody>
+              <tr ng-repeat="e in employees">
+                <td>{{ e.lname }}, {{e.fname }}</td>
+                <td>
+                  <div layout-sm layout-align-sm="center center">
+                    <div ng-if="e.status" layout layout-align="center center" class="confirmation-icon" >
+                      <i class="material-icons">done</i></div>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
     </div>
-    <div hide-xs class="right-container md-padding" flex="30" flex-xs="100" layout layout-xs style="min-height:100%;" >
+    <div hide-xs class="right-container md-padding" flex="30" flex-sm="45" flex-xs="100" layout layout-xs style="min-height:100%;" >
       <div layout="column" layout-align="" class="md-padding" style="min-height:100%;">
-        <div class="md-padding" id="download-container">DOWNLOAD</div>
-        <div class="md-padding" id="confirmation-container">DOWNLOAD</div>
+        <div layout layout-align="start"  id="download-container">
+          <div ng-if="statusCurrent" layout layout-align="center" class="confirmation-icon"><i class="material-icons">done</i></div>
+          <div layout layout-align="start" id="status">
+            <md-progress-circular class="md-hue-4" md-mode="indeterminate">
+            </md-progress-circular>
+          </div>
+        </div>
+        <div class="md-padding" id="confirmation-container">
+          <div ng-if="!statusCurrent && msgStatus == 0 && msgShow == 2 "></div>
+          <div ng-if="!statusCurrent && msgStatus == 0 && msgShow != 2">
+            <div layout style="margin-left:.5rem;"><p flex class="md-subhead"><strong>Confirm Installation</strong></p></div>
+            <md-checkbox ng-model="status" ng-change="createConfirmation()" style="margin-left:.5rem;">I have successfully <u>installed</u> this update.</md-checkbox>
+          </div>
+          <div ng-if="msgStatus == 2"></div>
+          <div ng-if="msgStatus==1">
+            <span class="md-body-1">Your confirmation has been saved!</span>
+          </div>
+        </div>
         <div class="md-padding" id="issuetracker-container">DOWNLOAD</div>
       </div>
     </div>

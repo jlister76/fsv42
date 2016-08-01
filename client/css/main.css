@@ -67,10 +67,34 @@ a::selection {
 
 }
 .table-container{
-  background-color: lightgray;
+
+  background-color: white;
   min-height: 200px;
   max-height: 400px;
   margin-top: 1rem;
+}
+table {
+  border:solid 2px lightgrey;
+  border-collapse: collapse;
+  empty-cells: hide;
+}
+table.clone + md-table-container table tbody tr:first-child td {
+  border: none;
+}
+
+tbody tr:hover {
+  background-color: rgba(173, 216, 230, 0.13);
+}
+
+thead th {
+  text-align:left;
+}
+
+td {
+  padding: 1rem .5rem;
+  margin-left: .5rem;
+  width:100vw;
+
 }
 
 .right-container{
@@ -199,9 +223,7 @@ table {
 tr {
  !*border-bottom: solid medium lightgray;*!
 }
-tbody tr:hover {
-  background-color: rgba(173, 216, 230, 0.13);
-}
+
 
 .title {
   background-color: #0F6AB4;
@@ -209,10 +231,6 @@ tbody tr:hover {
   margin-bottom: 0;
   padding: .5rem;
 }
-table.clone + md-table-container table tbody tr:first-child td {
-  border: none;
-}
-
 .card {
   background-color: white;
 }
@@ -301,16 +319,7 @@ table.clone + md-table-container table tbody tr:first-child td {
     margin-top: 1.5rem;
 
   }
-  thead th {
-    text-align:left;
-    !*min-width:15rem;*!
-  }
-  td {
-    padding: 1rem .5rem;
-    margin-left: .5rem;
-    width:100vw;
 
-  }
   #issue-form-background {
     border: solid thin;
     border-color: rgba(52, 73, 94, 0.26);
