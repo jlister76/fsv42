@@ -67,6 +67,7 @@ a:visited{
 .percentage-bar{
   background-color: #0F6AB4;
   min-height:8px;
+  max-height:8px;
   margin-top:1rem;
 
 }
