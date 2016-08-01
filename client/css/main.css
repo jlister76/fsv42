@@ -26,7 +26,7 @@ footer {
 }
 .left-container{
   background-color: lightblue;
-  min-height: 100vh;
+  height: 100vh;
  border: solid thin aqua;
 }
 
@@ -71,7 +71,12 @@ footer {
 /**XSmall Screens***/
 @media only screen and (max-width:599px){
 
-
+  .left-container{
+    min-height:5rem!important;
+  }
+  .lime {
+    height:5rem;
+  }
 }
 /*****************************************************/
 /*
