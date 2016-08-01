@@ -43,6 +43,9 @@ a:active{
 a::selection {
   background-color: #00b3ee;
 }
+a:visited{
+  color:lightsteelblue;
+}
 
 .top-container{
   background-color: lightgoldenrodyellow;

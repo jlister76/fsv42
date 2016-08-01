@@ -1,13 +1,13 @@
-<div class="md-padding" flex layout="column" style=" height:100vh;">
+<div class="md-padding" flex layout="column" style=" height:100vh; background-color:white;">
   <div ng-if="currentUser.accessLevel!='regional'" layout layout-xs="column">
     <div class="left-container" flex="70" flex-lg="67" flex-md="65" flex-sm="100" flex-xs="100" layout layout-xs>
       <div flex class="md-padding">
         <div flex layout="column">
           <div flex="grow" layout layout-align="space-between center" class="md-padding">
             <div class="area-title-bar">
-              <span class="md-title group-title" style="margin:.2rem;">{{ group }} {{ gp | number:0 }}%</span>
+              <span class="md-title group-title" style="margin:.4rem;">{{ group }} {{ gp | number:0 }}%</span>
             </div>
-            <div ng-if="currentUser.accessLevel=='group'" class="area-button-bar">
+            <div ng-if="currentUser.accessLevel=='group'" class="area-button-bar" style="margin:.4rem;">
               <a href="#" layout layout-align="center center" class="group-title"
                  ng-click="sendGroupReminder()">
                 <span class="md-subhead group-title">
@@ -124,9 +124,9 @@
             <div ng-show="selectedState"flex layout="column">
               <div  flex="grow" layout layout-align="space-between center" class="md-padding">
                 <div  class="area-title-bar">
-                  <span class="md-title group-title" style="margin:.2rem;">{{ selectedState }} {{ statePercentage | number:0 }}%</span>
+                  <span class="md-title group-title" style="margin:.4rem;">{{ selectedState }} {{ statePercentage | number:0 }}%</span>
                 </div>
-                <div class="area-button-bar">
+                <div class="area-button-bar" style="margin:.4rem;">
                   <a href="#" layout layout-align="center center" class="group-title"
                      ng-click="sendRegionalReminder()">
                 <span class="md-subhead group-title">
