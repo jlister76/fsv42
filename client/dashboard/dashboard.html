@@ -52,7 +52,7 @@
             </md-progress-circular>
           </div>
         </div>
-        <div id="confirmation-container">
+        <div ng-if="!statusCurrent" id="confirmation-container">
           <div ng-if="!statusCurrent && msgStatus == 0 && msgShow == 2 "></div>
           <div ng-if="!statusCurrent && msgStatus == 0 && msgShow != 2">
             <div layout style="margin-left:.5rem;"><p flex class="md-subhead"><strong>Confirm Installation</strong></p>
@@ -120,7 +120,7 @@
           <md-option ng-repeat="state in states" value="{{ state.id }}">{{ state.title }}</md-option>
         </md-select>
       </div>
-      <div layout layout-xs="column" layout-sm="column">
+      <div ng-if="selectedState" layout layout-xs="column" layout-sm="column">
         <div class="left-container" flex="70" flex-lg="67" flex-md="65" flex-sm="100" flex-xs="100" layout layout-xs>
           <div flex class="md-padding" style="background-color: limegreen; width:100vw;">
             <div flex layout="column">
