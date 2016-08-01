@@ -47,7 +47,7 @@
       <div layout layout-align="center center" ng-controller="AuthLogoutController">
         <md-menu ng-show="currentUser" md-offset="80 30"class="md-padding">
           <a href="#"layout layout-align="center center" class="menu-icon"  ng-click="$mdOpenMenu($event)">
-            <span><i class="material-icons" style="margin-right:.2rem;font-size: 32px;">account_circle</i></span>{{currentUser.username}}<span>&nbsp;<i class="material-icons">arrow_drop_down</i></span>
+            <span><i class="material-icons user-icon" style="margin-right:.2rem;font-size: 32px;">account_circle</i></span><span style="color:#e2e2e2;">{{currentUser.username}}</span><span>&nbsp;<i class="material-icons">arrow_drop_down</i></span>
           </a>
           <md-menu-content  hide-xs ng-show="currentUser" width="4">
             <md-menu-item>

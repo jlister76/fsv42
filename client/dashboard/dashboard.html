@@ -1,11 +1,9 @@
-<div class="md-padding" flex layout="column" style=" height:100vh; border:solid thin red; background-color:lightgreen;">
-
+<div class="md-padding" flex layout="column" style=" height:100vh;">
   <div ng-if="currentUser.accessLevel!='regional'" layout layout-xs="column">
     <div class="left-container" flex="70" flex-lg="67" flex-md="65" flex-sm="100" flex-xs="100" layout layout-xs>
-      <div flex class="md-padding" style="background-color: lightyellow;">
+      <div flex class="md-padding">
         <div flex layout="column">
-          <div flex="grow" layout layout-align="space-between center" class="md-padding"
-               style="min-height:2rem;background-color: #00FF00;">
+          <div flex="grow" layout layout-align="space-between center" class="md-padding">
             <div class="area-title-bar">
               <span class="md-title group-title" style="margin:.2rem;">{{ group }} {{ gp | number:0 }}%</span>
             </div>
@@ -112,26 +110,25 @@
     </div>
   </div>
   <div ng-if="currentUser.accessLevel=='regional'" layout layout-xs="column">
-    <div flex layout="column" style="background-color:lightpink;border:solid thin lime;">
-      <div ng-if="currentUser.regionId==1" class="top-container" flex="auto" layout layout-align="center center">
+    <div flex layout="column" >
+      <div ng-if="currentUser.regionId==1" class="top-container" flex="auto" layout layout-align="center center" id="state-selector">
         <span class="md-subhead">Select state:</span>
         <md-select ng-model="state" ng-change="StateSelection(state)" style="width:115px;"
                    aria-label="state selection">
           <md-option ng-repeat="state in states" value="{{ state.id }}">{{ state.title }}</md-option>
         </md-select>
       </div>
-      <div ng-if="selectedState" layout layout-xs="column" layout-sm="column">
+      <div layout layout-xs="column" layout-sm="column">
         <div class="left-container" flex="70" flex-lg="67" flex-md="65" flex-sm="100" flex-xs="100" layout layout-xs>
-          <div flex class="md-padding" style="background-color: limegreen; width:100vw;">
-            <div flex layout="column">
-              <div flex="grow" layout layout-align="space-between center" class="md-padding"
-                   style="min-height:2rem;background-color: #00FF00;">
-                <div class="area-title-bar">
+          <div flex class="md-padding" style="width:100vw;">
+            <div ng-show="selectedState"flex layout="column">
+              <div  flex="grow" layout layout-align="space-between center" class="md-padding">
+                <div  class="area-title-bar">
                   <span class="md-title group-title" style="margin:.2rem;">{{ selectedState }} {{ statePercentage | number:0 }}%</span>
                 </div>
                 <div class="area-button-bar">
                   <a href="#" layout layout-align="center center" class="group-title"
-                     ng-click="sendGroupReminder()">
+                     ng-click="sendRegionalReminder()">
                 <span class="md-subhead group-title">
                   <span hide-xs hide-sm class="md-subhead group-title">Group Reminder</span></span>
                     <i class="material-icons">message</i>
@@ -157,9 +154,8 @@
         </div>
         <div class="right-container md-padding" flex="30" flex-lg="33" flex-md="35" flex-sm="45" flex-xs="100" layout
              layout-xs style="min-height:100vh;">
-          <div layout="column" class="md-padding" style="border:solid thin black;width:100%">
-            <div layout layout-align="space-around center" class="md-padding"
-                 style="border:solid thin #a1e200;width:100%">
+          <div ng-if="selectedState" layout="column" class="md-padding">
+            <div layout layout-align="space-around center" class="md-padding" style="background-color:#0F6AB4;width:100%">
               <div flex-33>
                 <span>Filter</span>
                 <select style="margin:0 1rem!important;" ng-model="searchCriteria" aria-label="group"

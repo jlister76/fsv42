@@ -16,7 +16,7 @@ module.exports = function(IssueReport) {
     IssueReport.app.models.Email.send({
       to: ['jlister76@gmail.com', 'jlister469@outlook.com'],
       from: 'noreply@gmail.com',
-      subject: 'Delete this email',
+      subject: 'Field Smart Update Issue',
       text: 'This is a test email.',
       html: '<em>This is a test message.</em>'
     }, function(err, mail) {

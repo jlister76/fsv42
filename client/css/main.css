@@ -1,4 +1,4 @@
-/*******MUST HAVES******/
+/**GLOBAL**/
 [ng\:cloak], [ng-cloak], .ng-cloak {
   display: none !important;
 }
@@ -16,7 +16,9 @@ footer {
   color: #999;
   background-color: #DDDDDD;
 }
+.user-icon{
 
+}
 h1 {
   font-family: 'Lora', sans-serif;
 }
@@ -41,25 +43,22 @@ a:active{
 a::selection {
   background-color: #00b3ee;
 }
-/**GLOBAL**/
+
 .top-container{
   background-color: lightgoldenrodyellow;
   max-height:4rem;
   min-height:2rem;
 }
 .left-container{
-  background-color: lightblue;
   height: 100vh;
-
- border: solid thin aqua;
 }
 
 .area-title-bar{
-  background-color: #de6fba;
+
   margin:.3rem;
 }
 .area-button-bar{
-  background-color: lightsalmon;
+
 
 }
 .percentage-bar{
@@ -99,12 +98,12 @@ td {
 }
 
 .right-container{
-  background-color: #f5e500;
+
   min-height: 2rem;
-  border: solid thin aqua;
+
 }
 #download-container{
-  background-color: lightgray;
+
   margin: .3rem 0;
   height:100%;
 }
@@ -117,17 +116,18 @@ td {
   width: 180px;
   padding:.5rem;
 }
+
 #download-button:hover {
   background-color: rgb(161, 226, 0);
 }
 
 #confirmation-container {
-  background-color: lightgray;
+
   margin: .3rem 0;
   height:100%;
 }
 #issuetracker-container{
-  background-color: lightgray;
+
   margin: .3rem 0;
   height:100%;
 }
@@ -193,7 +193,7 @@ textarea {
 
 #state-selector {
   border: solid thin lightgrey;
-  background-color: whitesmoke;
+  background-color: #e6e6e6;
 }
 
 .title {
@@ -238,368 +238,3 @@ textarea {
   }
 }
 /*****************************************************/
-/*
-!***********************Global Styles*************************!
-
-
-.md-header {
-  max-height: 120px!important;
-}
-
-.md-button[disabled] {
-  background-color: #d2d2d2!important;
-}
-.md-raised {
-  background-color:#34495E!important;
-}
-
-.md-subhead {
-  font-family: 'Source Sans Pro', sans-serif;
-}
-
-
-footer {
-  !*position: relative;
-  bottom: 0;*!
-  width: 100vw;
-  font-size: 12px;
-  max-height: 34px;
-  border-top: solid thin rgba(52, 73, 94, 0.5);
-  color: #999;
-  background-color: #DDDDDD;
-}
-.template_footer button{
-  background-color: transparent; border: none;
-  color:#999;
-}
-.template_footer button:hover{
-  background-color: transparent; border: none;
-  color:#0F6AB4;
-}
-
-table {
-  border:solid 2px lightgrey;
-  border-collapse: collapse;
-  empty-cells: hide;
-}
-
-tr {
- !*border-bottom: solid medium lightgray;*!
-}
-
-
-.title {
-  background-color: #0F6AB4;
-  color: white;
-  margin-bottom: 0;
-  padding: .5rem;
-}
-.card {
-  background-color: white;
-}
-
-.menu-icon {
-  cursor: hand;
-  text-decoration: none;
-  color:lightgray;
-}
-
-#unconfirmed-contianer {
-  overflow: auto;
-  max-height: 400px
-}
-
-.state-stats {
-  margin-top:.5rem;
-  min-height: 4rem;
-
-}
-.status-bar {
-  margin: .5rem;
-  height:6px;
-
-  !* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#207ce5+0,499bea+100 *!
-  background: #207ce5; !* Old browsers *!
-  background: -moz-linear-gradient(left,  #207ce5 0%, #499bea 100%); !* FF3.6-15 *!
-  background: -webkit-linear-gradient(left,  #207ce5 0%,#499bea 100%); !* Chrome10-25,Safari5.1-6 *!
-  background: linear-gradient(to right,  #207ce5 0%,#499bea 100%); !* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ *!
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#207ce5', endColorstr='#499bea',GradientType=1 ); !* IE6-9 *!
-
-}
-.percentage-bar {
-  !* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f3bc09+0,ffd65e+100 *!
-  background: #f3bc09; !* Old browsers *!
-  background: -moz-linear-gradient(left,  #f3bc09 0%, #ffd65e 100%); !* FF3.6-15 *!
-  background: -webkit-linear-gradient(left,  #f3bc09 0%,#ffd65e 100%); !* Chrome10-25,Safari5.1-6 *!
-  background: linear-gradient(to right,  #f3bc09 0%,#ffd65e 100%); !* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ *!
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3bc09', endColorstr='#ffd65e',GradientType=1 ); !* IE6-9 *!
-
-
-}
-#state-percentage {
-
-
-}
-
-!*********************************************************************!
-                   !*X-Large Screens*!
-@media only screen and (min-width:1920px){
-  #unconfirmed-contianer {
-    overflow: auto;
-    max-height: 400px
-  }
-  #top-container {
-    margin: 2rem;
-    min-height:60vh;
-
-  }
-
-}
-!*********************************************************************!
-!*********************************************************************!
-                 !*Large Screens*!
-@media only screen and (min-width:1280px){
-#chart-container{
-  min-height: 74vh;
-  margin-top: 2rem;
-  border:solid thin #eeeeee;
-  background-color: rgba(226, 226, 226, 0.89);
-}
-  .container-two {
-
-   !* margin-top: 2.5rem;*!
-   !* margin-left: .8rem;*!
-
-  }
-  #top-container {
-    min-height:80vh;
-
-  }
-  #confirmation-box {
-    !*background-color: whitesmoke;*!
-    padding: .8rem .4rem;
-    margin-bottom: .8rem;
-    margin-top: 1.5rem;
-
-  }
-
-  #issue-form-background {
-    border: solid thin;
-    border-color: rgba(52, 73, 94, 0.26);
-    background-color: whitesmoke;
-    min-height:280px;
-  }
-  #issue-tracker-form {
-    margin:1.8rem;
-
-  }
-  #issue-tracker-form md-input-container {
-    margin: 1rem 0;
-  }
-  textarea {
-    border-radius: 2%;
-    border: solid thin lightgray;
-  }
-  #issue-tracker-button-container {
-    margin: 1rem;
-  }
-  #issue-tracker-button {
-    color:white;
-    width:280px;
-    height:40px;
-    margin: 1rem
-  }
-  #unconfirmed-contianer {
-    overflow: auto;
-    max-height: 400px
-  }
-}
-
-!*********************************************************************!
-!*********************************************************************!
-                !*Medium Screens*!
-@media only screen and (min-width:960px) and (max-width:1279px){
-  .container-two {
-    margin-top: 2.5rem;
-    margin-left: .8rem;
-
-  }
-  #confirmation-box {
-    !*border:solid thin lightgray;
-    background-color: whitesmoke;*!
-
-    padding: .8rem .4rem;
-    margin-bottom: .8rem;
-
-  }
-  td {
-    padding: 1rem .5rem;
-    margin-left: .5rem;
-    width:100vw;
-
-  }
-  #unconfirmed-contianer {
-    overflow: auto;
-    max-height: 400px
-  }
-  #issue-form-background {
-    background-color: whitesmoke;
-  }
-  #issue-tracker-form {
-    width:380px;
-    margin:1.8rem;
-  }
-  #issue-tracker-form md-input-container {
-    margin: 1rem 0;
-  }
-  textarea {
-    border-radius: 2%;
-    border: solid thin lightgray;
-  }
-  #issue-tracker-button-container {
-    margin: 1rem;
-  }
-  #issue-tracker-button {
-    color:white;
-    width:275px;
-    height:40px;
-    margin: 1rem
-  }
-  .status-bar {
-    width:70%;
-    margin: .5rem;
-    height:6px;
-  }
-}
-
-!*********************************************************************!
-!*********************************************************************!
-                   !*Small Screens*!
-@media only screen and (min-width:600px) and (max-width:959px){
-
-  html { overflow:hidden;}
-
-  .container-two {
-    width: 98vw;
-    maring-bottom:1rem;
-  }
-  #chart-container {
-    border: none;
-    width:100vw;
-  }
-  #confirmation-box {
-    background-color: white;
-    padding-bottom: .8rem;
-    border-bottom: solid medium lightgrey;
-    width:95vw;
-    margin: 1rem 0;
-  }
-  td {
-    padding: 1rem .5rem;
-    margin-left: .5rem;
-    width:80vw;
-  }
- th {
-  padding: 1rem .5rem;
-  margin-left: .5rem;
-}
-  #unconfirmed-contianer {
-    overflow: auto;
-    max-height: 400px
-  }
-
-  #state-selector {
-    margin-bottom:.3rem;
-    width: 50%;
-
-  }
-  .state-stats {
-    margin-top:.5rem;
-    !*width:80%;*!
-  }
-  .status-bar {
-    margin: .5rem;
-    height:6px;
-   !* width:60%;*!
-  }
-  canvas {
-    width: auto;
-
-  }
-
-}
-
-!*********************************************************************!
-!*********************************************************************!
-                  !*XSmall Screens*!
-@media only screen and (max-width:599px){
-  html { overflow:hidden;}
-#top-container{
-  min-height: 6rem;
-  margin-top: 8rem;
-  border:solid thin aqua;
-}
-  .container-two {
-    width: 98vw;
-    min-height: 60vh;
-    margin-bottom:1rem;
-    border: solid thin red;
-
-  }
-  #logo-container {
-    width:100vw;
-
-  }
-  #chart-container {
-    border: none;
-    width:100vw;
-  }
-  #confirmation-box {
-    !*background-color: whitesmoke;*!
-    padding: .8rem;
-    width:95vw;
-    margin: 1rem 0;
-  }
-  td {
-    padding: 1rem .5rem;
-    margin-left: .5rem;
-    width:80vw;
-  }
-  th {
-    padding: 1rem .5rem;
-    margin-left: .5rem;
-  }
-  #unconfirmed-contianer {
-    overflow: auto;
-    max-height: 400px
-  }
-  #sm-state-list {
-    min-height: 200px;
-  }
-  .group-title {
-
-    font-size:18px;
-  }
-  .status-bar{
-    margin: .5rem;
-    height:6px;
-
-  }
-
-  .state-stats {
-    width:300px;
-    font-size:16px;
-
-  }
-  .state-stats i{
-   font-size:16px;
-  }
-  #state-selector {
-    margin-bottom:1rem;
-    width:100%;
-  }
-
-}
-
-!*********************************************************************!
-*/
