@@ -44,7 +44,7 @@ a::selection {
   background-color: #00b3ee;
 }
 a:visited{
-  color:lightsteelblue;
+  color:#00B3EE;
 }
 
 .top-container{
@@ -67,6 +67,7 @@ a:visited{
 .percentage-bar{
   background-color: #0F6AB4;
   min-height:8px;
+  margin-top:1rem;
 
 }
 .table-container{
