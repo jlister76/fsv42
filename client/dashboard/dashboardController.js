@@ -430,10 +430,10 @@
                           });
 
 
-                          $scope.gp = groupPercentage;
+                          $scope.gp = groupPercentage.toFixed(0);
 
-                          var el = angular.element(document.querySelector('#span'));
-                          var span = '<span style="width:' + $scope.gp +'%;background-color: rgb(243,188,9) ; height:6px;"></span>';
+                          var el = angular.element(document.querySelector('#group-percentage'));
+                          var span = '<div style="width:' + $scope.gp +'%;background-color: rgb(243,188,9) ; height:8px;"></div>';
 
                           el.html(span);
 

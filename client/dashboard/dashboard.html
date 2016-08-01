@@ -5,10 +5,19 @@
       <div  flex class="md-padding" style="background-color: lightyellow;">
         <div flex layout="column">
           <div flex="grow" layout layout-align="space-between center" class="md-padding" style="min-height:2rem;background-color: #00FF00;">
-            <div  class="area-title-bar">TITLE</div>
-            <div  class="area-button-bar">BUTTON</div>
+            <div  class="area-title-bar">
+              <span class="md-title group-title" style="margin:.2rem;">{{ group }} {{ gp | number:0 }}%</span>
+            </div>
+            <div  class="area-button-bar">
+              <a href="#" layout layout-align="center center" class="group-title"
+                     ng-click="sendGroupReminder()">
+                <span class="md-subhead group-title">
+                  <span hide-xs class="md-subhead group-title">Group Reminder</span></span>
+              <i class="material-icons">message</i>
+            </a>
+            </div>
           </div>
-          <div class="percentage-bar"></div>
+          <div class="percentage-bar" id="group-percentage"></div>
           <div flex layout="column" class="table-container">
             <div>TABLE</div>
             <div>TABLE</div>
@@ -28,7 +37,7 @@
   </div>
   <div ng-if="currentUser.accessLevel=='regional'" layout layout-xs="column">
     <div flex layout="column" style="background-color:lightpink;border:solid thin lime;">
-      <div  class="top-container" flex="auto" layout layout-align="center start">TOP</div>
+      <div ng-if="currentUser.regionId==1" class="top-container" flex="auto" layout layout-align="center start">TOP</div>
       <div layout layout-xs="column">
         <div class="left-container" flex="70" flex-xs="100" layout layout-xs >
           <div  flex class="md-padding lime" style="background-color: limegreen">

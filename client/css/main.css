@@ -3,8 +3,8 @@
   display: none !important;
 }
 .logo {
-  background-image: url(../hc-logo.png);
- width: 112px;
+
+  width: 112px;
 }
 footer {
   position: relative;
@@ -17,7 +17,30 @@ footer {
   background-color: #DDDDDD;
 }
 
+h1 {
+  font-family: 'Lora', sans-serif;
+}
 
+h2,h3,h4,h5,h6,p,span {
+  font-family: 'Ubuntu','Source Sans Pro', sans-serif;
+}
+
+body {
+  font-family: 'Ubuntu', sans-serif!important;
+  background-color: white;
+  height:100%;
+  overflow:auto;
+
+}
+a{
+  text-decoration:none;
+}
+a:active{
+  color: #0078d7;
+}
+a::selection {
+  background-color: #00b3ee;
+}
 /**GLOBAL**/
 .top-container{
   background-color: lightgoldenrodyellow;
@@ -67,6 +90,51 @@ footer {
   background-color: lightgray;
   margin: .3rem 0;
 }
+
+#download-button {
+  background-color:rgb(127,186,0);
+  border:solid thin #d2d2d2;
+  border-radius:5px;
+  color: #fff;
+  width: 220px;
+  padding:.5rem;
+}
+#download-button:hover {
+  background-color: rgb(161, 226, 0);
+}
+
+#sign-in-form {
+
+  border-radius: 8px;
+  border:solid thin rgba(195, 195, 195, 0.81);
+  color: #333;
+}
+#sign-in-button{
+  margin-top:4rem;
+  background-color:#01A4EF;
+  width:220px;
+  color:white;
+}
+#sign-in-button:hover {
+  background-color: rgba(1, 164, 239, 0.7);
+}
+
+.confirmation-icon {
+  border-radius: 100%;
+  background-color:rgb(50%, 73%, 0%);
+  width: 24px;
+  height:24px;
+  color: white;
+}
+
+.confirmation-icon i {
+  font-size:18px;
+}
+
+#state-selector {
+  border: solid thin lightgrey;
+  background-color: whitesmoke;
+}
 /*********************************************************************/
 /**XSmall Screens***/
 @media only screen and (max-width:599px){
@@ -77,6 +145,10 @@ footer {
   .lime {
     height:5rem;
   }
+
+  .group-title{
+    font-size:14px;
+  }
 }
 /*****************************************************/
 /*
@@ -86,31 +158,18 @@ footer {
 .md-header {
   max-height: 120px!important;
 }
-a:active{
-  color: #0078d7;
-}
+
 .md-button[disabled] {
   background-color: #d2d2d2!important;
 }
 .md-raised {
   background-color:#34495E!important;
 }
-h1 {
-  font-family: 'Lora', sans-serif;
-}
-h2,h3,h4,h5,h6,p,span {
-  font-family: 'Ubuntu','Source Sans Pro', sans-serif;
-}
+
 .md-subhead {
   font-family: 'Source Sans Pro', sans-serif;
 }
-body {
-  font-family: 'Ubuntu', sans-serif!important;
-  background-color: white;
-  height:100%;
-  overflow:auto;
 
-}
 
 footer {
   !*position: relative;
@@ -145,7 +204,6 @@ tbody tr:hover {
 }
 
 .title {
-
   background-color: #0F6AB4;
   color: white;
   margin-bottom: 0;
@@ -159,9 +217,6 @@ table.clone + md-table-container table tbody tr:first-child td {
   background-color: white;
 }
 
-a::selection {
-  background-color: #00b3ee;
-}
 .menu-icon {
   cursor: hand;
   text-decoration: none;
@@ -172,51 +227,7 @@ a::selection {
   overflow: auto;
   max-height: 400px
 }
-#download-button {
-  background-color:rgb(127,186,0);
-  border:solid thin #d2d2d2;
-  border-radius:5px;
-  color: #fff;
-  width: 220px;
-  padding:.5rem;
-}
-#download-button:hover {
-  background-color: rgb(161, 226, 0);
-}
 
-#sign-in-form {
-
-  border-radius: 8px;
-  border:solid thin rgba(195, 195, 195, 0.81);
-  color: #333;
-}
-#sign-in-button{
-  margin-top:4rem;
-  background-color:#01A4EF;
-  width:220px;
-  color:white;
-}
-#sign-in-button:hover {
-  background-color: rgba(1, 164, 239, 0.7);
-}
-.confirmation-icon {
-  border-radius: 100%;
-  background-color:rgb(50%, 73%, 0%);
-  width: 24px;
-  height:24px;
-  color: white;
-
-}
-
-.confirmation-icon i {
-  font-size:18px;
-}
-#state-selector {
-  border: solid thin lightgrey;
-  background-color: whitesmoke;
-
-
-}
 .state-stats {
   margin-top:.5rem;
   min-height: 4rem;
