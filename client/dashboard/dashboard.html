@@ -1,7 +1,7 @@
-<md-content class="md-padding" flex layout="column" style=" height:100vh; border:solid thin red; background-color:lightgreen;">
+<div class="md-padding" flex layout="column" style=" height:100vh; border:solid thin red; background-color:lightgreen;">
 
   <div ng-if="currentUser.accessLevel!='regional'" layout layout-xs="column">
-    <div class="left-container" flex="70" flex="65" flex-sm="100" flex-xs="100" layout layout-xs >
+    <div class="left-container" flex="70" flex-lg="67" flex-md="65" flex-sm="100" flex-xs="100" layout layout-xs >
       <div  flex class="md-padding" style="background-color: lightyellow;">
         <div flex layout="column">
           <div flex="grow" layout layout-align="space-between center" class="md-padding" style="min-height:2rem;background-color: #00FF00;">
@@ -40,33 +40,37 @@
         </div>
       </div>
     </div>
-    <div hide-xs hide-sm class="right-container md-padding" flex="30" flex-md="35" flex-sm="45" flex-xs="100" layout layout-xs style="min-height:100%;" >
-      <div layout="column" layout-align="" class="md-padding" style="min-height:100%;">
-        <div layout layout-align="start"  id="download-container">
+    <div hide-xs hide-sm class="right-container md-padding" flex-gt-lg="30" flex-md="35" flex-sm="45" flex-xs="100" layout layout-xs style="min-height:100%;" >
+      <div layout="column" class="md-padding" style="">
+        <div layout layout-align="start start" id="download-container">
           <div ng-if="statusCurrent" layout layout-align="center center" class="confirmation-icon"><i class="material-icons">done</i></div>
           <div layout layout-align="start" id="status">
             <md-progress-circular class="md-hue-4" md-mode="indeterminate">
             </md-progress-circular>
           </div>
         </div>
-        <div class="md-padding" id="confirmation-container">
+        <div id="confirmation-container">
           <div ng-if="!statusCurrent && msgStatus == 0 && msgShow == 2 "></div>
           <div ng-if="!statusCurrent && msgStatus == 0 && msgShow != 2">
             <div layout style="margin-left:.5rem;"><p flex class="md-subhead"><strong>Confirm Installation</strong></p></div>
-            <md-checkbox ng-model="status" ng-change="createConfirmation()" style="margin-left:.5rem;">I have successfully <u>installed</u> this update.</md-checkbox>
+            <p flex="90">
+              <md-checkbox ng-model="status" ng-change="createConfirmation()" style="margin-left:.5rem;">
+                I have successfully <em>installed</em> this update.
+              </md-checkbox>
+            </p>
           </div>
           <div ng-if="msgStatus == 2"></div>
           <div ng-if="msgStatus==1">
             <span class="md-body-1">Your confirmation has been saved!</span>
           </div>
         </div>
-        <div class="" id="issuetracker-container">
+        <div id="issuetracker-container">
           <div  hide-xs ng-controller="IssueReportController" layout="column" id="issue-tracker-form">
             <div flex>
               <div flex flex-xs="100" layout>
                 <div>
                   <div layout="column">
-                    <span class="md-title" style="">Issue Tracker</span>
+                    <span class="md-title title" style="">Issue Tracker</span>
                     <div  flex-xs="100" layout="column" layout-align="center center" class="md-padding"
                           id="issue-form-background">
 
@@ -136,4 +140,4 @@
     </div>
   </div>
 
-</md-content>
+</div>

@@ -105,10 +105,25 @@ td {
 #download-container{
   background-color: lightgray;
   margin: .3rem 0;
+  height:100%;
 }
+
+#download-button {
+  background-color:rgb(127,186,0);
+  border:solid thin #d2d2d2;
+  border-radius:5px;
+  color: #fff;
+  width: 180px;
+  padding:.5rem;
+}
+#download-button:hover {
+  background-color: rgb(161, 226, 0);
+}
+
 #confirmation-container {
   background-color: lightgray;
   margin: .3rem 0;
+  height:100%;
 }
 #issuetracker-container{
   background-color: lightgray;
@@ -148,20 +163,7 @@ textarea {
   margin: 1rem
 }
 
-#download-button {
-  background-color:rgb(127,186,0);
-  border:solid thin #d2d2d2;
-  border-radius:5px;
-  color: #fff;
-  width: 180px;
-  padding:.5rem;
-}
-#download-button:hover {
-  background-color: rgb(161, 226, 0);
-}
-
 #sign-in-form {
-
   border-radius: 8px;
   border:solid thin rgba(195, 195, 195, 0.81);
   color: #333;
@@ -191,6 +193,13 @@ textarea {
 #state-selector {
   border: solid thin lightgrey;
   background-color: whitesmoke;
+}
+
+.title {
+  background-color: #0F6AB4;
+  color: white;
+  margin-bottom: 0;
+  padding: .5rem;
 }
 /*********************************************************************/
 /*small screen*/
