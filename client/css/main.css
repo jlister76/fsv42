@@ -16,11 +16,13 @@ footer {
   color: #999;
   background-color: #DDDDDD;
 }
-/*****************************************************/
+
+
 /**GLOBAL**/
 .top-container{
   background-color: lightgoldenrodyellow;
   max-height:4rem;
+  min-height:2rem;
 }
 .left-container{
   background-color: lightblue;
@@ -65,7 +67,13 @@ footer {
   background-color: lightgray;
   margin: .3rem 0;
 }
+/*********************************************************************/
+/**XSmall Screens***/
+@media only screen and (max-width:599px){
 
+
+}
+/*****************************************************/
 /*
 !***********************Global Styles*************************!
 
