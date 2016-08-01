@@ -16,7 +16,7 @@
               </a>
             </div>
           </div>
-          <div class="percentage-bar" id="group-percentage"></div>
+          <div class="percentage-bar" id="group-percentage" style="margin-top: 1rem;"></div>
           <div flex layout="column" class="table-container">
             <table flex-gt-sm="70">
               <thead>
@@ -135,7 +135,7 @@
                   </a>
                 </div>
               </div>
-              <div class="percentage-bar" id="state-percentage"></div>
+              <div class="percentage-bar" id="state-percentage" style="margin-top: 1rem;"></div>
               <div layout-xs layout-align-xs="center center">
                 <div ng-if="statePercentage <= 0" class="md-headline group-title" style="color:lightgray">No updates have
                   been
@@ -154,7 +154,7 @@
         </div>
         <div class="right-container md-padding" flex="30" flex-lg="33" flex-md="35" flex-sm="45" flex-xs="100" layout
              layout-xs style="min-height:100%;">
-          <div ng-if="selectedState" layout="column" class="md-padding">
+          <div ng-if="selectedState" layout="column" class="md-padding" style="min-height:100%;">
             <div layout layout-align="space-around center" class="md-padding" style="background-color:#0F6AB4;width:100%">
               <div flex-33>
                 <span>Filter</span>
