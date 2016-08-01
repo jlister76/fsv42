@@ -1,7 +1,7 @@
 <md-content class="md-padding" flex layout="column" style=" height:100vh; border:solid thin red; background-color:lightgreen;">
 
   <div ng-if="currentUser.accessLevel!='regional'" layout layout-xs="column">
-    <div class="left-container" flex="70" flex-sm="55" flex-xs="100" layout layout-xs >
+    <div class="left-container" flex="70" flex="65" flex-sm="100" flex-xs="100" layout layout-xs >
       <div  flex class="md-padding" style="background-color: lightyellow;">
         <div flex layout="column">
           <div flex="grow" layout layout-align="space-between center" class="md-padding" style="min-height:2rem;background-color: #00FF00;">
@@ -12,7 +12,7 @@
               <a href="#" layout layout-align="center center" class="group-title"
                      ng-click="sendGroupReminder()">
                 <span class="md-subhead group-title">
-                  <span hide-xs class="md-subhead group-title">Group Reminder</span></span>
+                  <span hide-xs hide-sm class="md-subhead group-title">Group Reminder</span></span>
               <i class="material-icons">message</i>
             </a>
             </div>
@@ -40,10 +40,10 @@
         </div>
       </div>
     </div>
-    <div hide-xs class="right-container md-padding" flex="30" flex-sm="45" flex-xs="100" layout layout-xs style="min-height:100%;" >
+    <div hide-xs hide-sm class="right-container md-padding" flex="30" flex-md="35" flex-sm="45" flex-xs="100" layout layout-xs style="min-height:100%;" >
       <div layout="column" layout-align="" class="md-padding" style="min-height:100%;">
         <div layout layout-align="start"  id="download-container">
-          <div ng-if="statusCurrent" layout layout-align="center" class="confirmation-icon"><i class="material-icons">done</i></div>
+          <div ng-if="statusCurrent" layout layout-align="center center" class="confirmation-icon"><i class="material-icons">done</i></div>
           <div layout layout-align="start" id="status">
             <md-progress-circular class="md-hue-4" md-mode="indeterminate">
             </md-progress-circular>
@@ -60,7 +60,43 @@
             <span class="md-body-1">Your confirmation has been saved!</span>
           </div>
         </div>
-        <div class="md-padding" id="issuetracker-container">DOWNLOAD</div>
+        <div class="" id="issuetracker-container">
+          <div  hide-xs ng-controller="IssueReportController" layout="column" id="issue-tracker-form">
+            <div flex>
+              <div flex flex-xs="100" layout>
+                <div>
+                  <div layout="column">
+                    <span class="md-title" style="">Issue Tracker</span>
+                    <div  flex-xs="100" layout="column" layout-align="center center" class="md-padding"
+                          id="issue-form-background">
+
+                      <div flex ng-if="msgStatus == 0" >
+                        <form flex layout="column" name="reportIssueForm"
+                              ng-submit="report(update.issue,issue.comments)">
+                          <md-input-container>
+                            <label>I am unable to...</label>
+                            <md-select ng-model="update.issue" required aria-label="issue report" id="select-field">
+                              <md-option ng-repeat="issue in issueType" value="{{issue}}">{{issue}}</md-option>
+                            </md-select>
+                          </md-input-container>
+                          <div  layout layout-align="center">
+                            <textarea flex="90"  ng-model="issue.comments" name="comments" id="comments" cols="10" rows="4"></textarea>
+                          </div>
+                          <div layout layout-align="center start">
+                            <md-button class="md-raised md-primary" id="issue-tracker-button" type="submit" ng-disabled="reportIssueForm.$invalid">Submit</md-button>
+                          </div>
+                        </form>
+                      </div>
+                      <div ng-if="msgStatus==1">
+                        <p>{{ confirmation }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

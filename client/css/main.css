@@ -113,6 +113,39 @@ td {
 #issuetracker-container{
   background-color: lightgray;
   margin: .3rem 0;
+  height:100%;
+}
+
+#issue-form-background {
+  border: solid thin;
+  border-color: rgba(52, 73, 94, 0.26);
+  background-color: whitesmoke;
+  min-height:280px;
+}
+
+#issue-tracker-form {
+  /*margin:1.8rem;*/
+
+}
+
+#issue-tracker-form md-input-container {
+  margin: 1rem 0;
+}
+
+textarea {
+  border-radius: 2%;
+  border: solid thin lightgray;
+}
+
+#issue-tracker-button-container {
+  margin: 1rem;
+}
+
+#issue-tracker-button {
+  color:white;
+  width:200px;
+  height:40px;
+  margin: 1rem
 }
 
 #download-button {
@@ -120,7 +153,7 @@ td {
   border:solid thin #d2d2d2;
   border-radius:5px;
   color: #fff;
-  width: 220px;
+  width: 180px;
   padding:.5rem;
 }
 #download-button:hover {
@@ -160,7 +193,14 @@ td {
   background-color: whitesmoke;
 }
 /*********************************************************************/
-/**XSmall Screens***/
+/*small screen*/
+@media only screen and (min-width:600px) and (max-width:959px){
+  .group-title{
+    font-size: 16px;
+  }
+}
+/*********************************************************************/
+/**x-small screen***/
 @media only screen and (max-width:599px){
 
   .left-container{
