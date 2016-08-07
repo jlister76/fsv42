@@ -38,7 +38,8 @@
               if ($scope.statusCurrent){
 
                               var el = angular.element( document.querySelector('#status'));
-                var status ='&nbsp; No update available.';
+                var status ='<div ng-if="statusCurrent" layout layout-align="center center" class="confirmation-icon">'+
+                  '<i class="material-icons">done</i></div>&nbsp; No update available.';
 
 
                 el.html(status);
@@ -510,13 +511,6 @@
                     console.log(confirmation + " saved");
                     $scope.msgStatus = 1;
                     $state.reload();
-                    /*setTimeout(function() {
-                      $scope.$apply(function() {
-                        //wrapped this within $apply
-                        $state.reload();
-                        console.log('Data has been initialized');
-                      });
-                    }, 1000);*/
                   });
 
 

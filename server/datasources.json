@@ -16,14 +16,14 @@
       {
         "type": "smtp",
         "host": "smtp-mail.outlook.com",
-        "secure": false,
+        "secure": true,
         "port": 25,
         "tls": {
           "rejectUnauthorized": true
         },
         "auth": {
-          "user": "EMAIL",
-          "pass": "PASSWORD"
+          "user": "jlister469@outlook.com",
+          "pass": "19seventysix"
         }
       }
     ]

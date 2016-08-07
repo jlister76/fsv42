@@ -9,12 +9,13 @@
           .login({email: email, password: password})
           .$promise
           .then(function (response) {
-
-            /*$rootScope.currentUser = {
+            console.log(response);
+            $rootScope.currentUser = {
              id: response.user.id,
              tokenId: response.id,
+             username: response.user.username,
              email: email
-             };*/
+             };
           });
       }
       function logout() {
