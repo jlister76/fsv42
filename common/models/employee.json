@@ -20,7 +20,7 @@
   "relations": {
     "confirmations": {
       "type": "hasMany",
-      "model": "confirmation",
+      "model": "Confirmation",
       "foreignKey": ""
     },
     "group": {
@@ -46,11 +46,6 @@
     "company": {
       "type": "belongsTo",
       "model": "Company",
-      "foreignKey": ""
-    },
-    "confirmations": {
-      "type": "hasMany",
-      "model": "Confirmation",
       "foreignKey": ""
     },
     "region": {

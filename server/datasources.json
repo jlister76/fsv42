@@ -22,10 +22,19 @@
           "rejectUnauthorized": true
         },
         "auth": {
-          "user": "jlister469@outlook.com",
-          "pass": "19seventysix"
+          "user": "",
+          "pass": ""
         }
       }
     ]
+  },
+  "mongodb": {
+    "host": "",
+    "port": "",
+    "database": "",
+    "password": "" ,
+    "name": "mongodb",
+    "user": "DBAdmin",
+    "connector": "mongodb"
   }
 }
