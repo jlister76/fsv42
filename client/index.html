@@ -30,19 +30,13 @@
     <div layout-xs="row" layout-align-xs="start" ng-show="currentUser" hide-gt-xs ng-click="openLeftMenu()">
       <i class="material-icons">menu</i>
     </div>
-    <div flex-xs layout-xs layout-align-xs="center center" class="md-padding" id="logo-container" style="">
-      <div flex layout layout-align="start start" layout-sm layout-align-sm="start start" layout-xs layout-align-xs="center center">
-        <div flex-sm layout-sm  style="height:44px;">
+    <div flex-xs layout-xs layout-align-xs="center center" class="md-padding" id="logo-container">
+      <div flex layout layout-align="start start"  layout-xs layout-align-xs="center center">
+        <div style="height:44px;">
           <img  src="hc-logo.png" alt="logo" class="logo" ng-cloak />
         </div>
       </div>
     </div>
-    <div layout-xs>
-
-    </div>
-
-
-
     <div  layout layout-align="end end" hide-xs style="height:64px;; border:none">
       <div layout layout-align="center center" ng-controller="AuthLogoutController">
         <md-menu ng-show="currentUser" md-offset="80 30"class="md-padding">

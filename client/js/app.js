@@ -12,7 +12,7 @@
         'angularUtils.directives.dirPagination'
 
       ])
-    .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+    .config(function ($stateProvider, $urlRouterProvider) {
       $stateProvider
         .state('download', {
           controller: 'DownloadController',
@@ -24,14 +24,25 @@
           controller: 'DashboardController',
           url: '/dashboard',
           templateUrl: '../dashboard/dashboard.html',
-          authenticate: true,
-          sticky: true
+          authenticate: true
         })
         .state('report-issue', {
           controller: 'IssueReportController',
           url: '/report-issue',
           templateUrl: '../issue-reports/issue-report.html',
           authenticate: true
+        })
+        .state('success-page', {
+        controller: 'DashboardController',
+        url: '/installation-success',
+        templateUrl: '../views/success_page.html',
+        authenticate: false
+      })
+        .state('error-page', {
+          controller: 'DashboardController',
+          url: '/installation-error',
+          templateUrl: '../views/error_page.html',
+          authenticate: false
         })
         .state('forbidden', {
           url: '/forbidden',
@@ -51,27 +62,19 @@
         });
       $urlRouterProvider.otherwise('dashboard');
 
-      $httpProvider.interceptors.push(function ($q, $location, LoopBackAuth) {
-        return {
-          responseError: function (rejection) {
-            if (rejection.status == 401) {
-              //Now clearing the loopback values from client browser for safe logout...
-              LoopBackAuth.clearUser();
-              LoopBackAuth.clearStorage();
-              $location.nextAfterLogin = $location.path();
-              $location.path('login');
-            }
-            return $q.reject(rejection);
-          }
-        };
-      })
-    }).run(function ($rootScope, $state, AuthService) {
+    })
+    .run(function ($rootScope, $state, AuthService) {
+
     //prevents loading views that require authentication
-    $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+    $rootScope.$on("$stateChangeStart", function(event, toState){
+
+
       if (toState.authenticate && !AuthService.getCurrentId()){
         // User isn’t authenticated
+        $rootScope.returnToState = toState.name;
         $state.transitionTo('login');
         event.preventDefault();
+
       }
     });
   });

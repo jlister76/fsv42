@@ -3,7 +3,7 @@
 
   angular
     .module('FSV42App')
-    .controller('AuthLoginController', function ($scope, $state, AuthService, $location, $log, Member, Employee) {
+    .controller('AuthLoginController', function ($scope, $state, AuthService, $location, $log, Member, $rootScope) {
 
       $scope.user = {
         email: null,
@@ -14,15 +14,17 @@
         AuthService.login($scope.user.email, $scope.user.password)
           .then(
             function(){
-              var next = $location.nextAfterLogin || '/';
-              $location.nextAfterLogin = null;
-              $location.path(next);
-              //$state.go('dashboard');
+
+              var url = $rootScope.returnToState;
+              if($rootScope.returnToState){
+                $state.transitionTo(url);
+              }else{
+                $state.transitionTo('dashboard');
+              }
 
               Member.getCurrent()
                 .$promise
                 .then(function (user){
-
                   localStorage.setItem("email", user.email);
                   localStorage.setItem("employee_number", user.employee_number);
                   localStorage.setItem("username", user.username);
@@ -31,12 +33,12 @@
                   localStorage.setItem("stateId", user.stateId);
                   localStorage.setItem("group", user.groupId);
 
-                  $state.go('dashboard');
+
                 });
             })
           .catch(function(e){
             if (e) {
-              console.error(e);
+              console.log(e);
               $scope.err = e;
 
             }

@@ -16,16 +16,25 @@
       {
         "type": "smtp",
         "host": "smtp-mail.outlook.com",
-        "secure": false,
+        "secure": true,
         "port": 25,
         "tls": {
           "rejectUnauthorized": true
         },
         "auth": {
-          "user": "EMAIL",
-          "pass": "PASSWORD"
+          "user": "",
+          "pass": ""
         }
       }
     ]
+  },
+  "mongodb": {
+    "host": "",
+    "port": "",
+    "database": "",
+    "password": "" ,
+    "name": "mongodb",
+    "user": "DBAdmin",
+    "connector": "mongodb"
   }
 }

@@ -21,7 +21,7 @@
             <table flex-gt-sm="70">
               <thead>
               <th>Employee</th>
-              <th>Current</th>
+              <th layout-sm layout-align-sm="center center">Current</th>
               </thead>
               <tbody>
               <tr ng-repeat="e in employees">
@@ -42,10 +42,10 @@
     <div hide-xs hide-sm class="right-container" flex-gt-lg="30" flex-md="35" flex-sm="45" flex-xs="100"
          layout layout-xs style="min-height:100%;">
       <div layout="column" class="" style="">
-        <div layout layout-align="start start" id="download-container">
-          <div ng-if="statusCurrent" layout layout-align="center center" class="confirmation-icon"><i
-            class="material-icons">done</i></div>
-          <div layout layout-align="start" id="status">
+        <div layout="column" id="download-container" >
+
+
+          <div layout layout-align="center center" id="status">
             <md-progress-circular class="md-hue-4" md-mode="indeterminate">
             </md-progress-circular>
           </div>
@@ -53,13 +53,12 @@
         <div ng-if="!statusCurrent" id="confirmation-container">
           <div ng-if="!statusCurrent && msgStatus == 0 && msgShow == 2 "></div>
           <div ng-if="!statusCurrent && msgStatus == 0 && msgShow != 2">
-            <div layout style="margin-left:.5rem;"><p flex class="md-subhead"><strong>Confirm Installation</strong></p>
+            <div layout><span flex class="md-subhead title">Confirm Installation</span>
             </div>
-            <p flex="90">
+            <h5 flex="90">
               <md-checkbox ng-model="status" ng-change="createConfirmation()" style="margin-left:.5rem;">
-                I have successfully <em>installed</em> this update.
-              </md-checkbox>
-            </p>
+              </md-checkbox><span >I successfully installed this update.</span>
+            </h5>
           </div>
           <div ng-if="msgStatus == 2"></div>
           <div ng-if="msgStatus==1">
@@ -87,7 +86,7 @@
                           </md-input-container>
                           <div layout layout-align="center">
                             <textarea flex="90" ng-model="issue.comments" name="comments" id="comments" cols="10"
-                                      rows="4"></textarea>
+                                      rows="4" style="background-color: whitesmoke;"></textarea>
                           </div>
                           <div layout layout-align="center start">
                             <md-button class="md-raised md-primary" id="issue-tracker-button" type="submit"
@@ -138,8 +137,7 @@
               <div class="percentage-bar" id="state-percentage" style="margin-top: 1rem;"></div>
               <div layout-xs layout-align-xs="center center">
                 <div ng-if="statePercentage <= 0" class="md-headline group-title" style="color:lightgray">No updates have
-                  been
-                  installed.
+                  been installed.
                 </div>
                 <div hide-xs hide-sm flex layout="column" class="chart-container">
                   <div  ng-if="statePercentage" class="md-padding">
