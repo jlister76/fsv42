@@ -1,5 +1,5 @@
 module.exports = function(Employee) {
-  var os = require('os'),
+ /* var os = require('os'),
       fs = require('fs'),
       path = require('path');
 
@@ -42,6 +42,6 @@ module.exports = function(Employee) {
     {
       http: {path: '/dir', verb:'get'},
       returns: {arg: 'Dirs', type: 'Array'}
-    });
+    });*/
 
 };

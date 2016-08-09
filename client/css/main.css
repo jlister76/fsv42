@@ -212,8 +212,8 @@ textarea {
 
 #unconfirmed-container {
   overflow: auto;
-  max-height: 300px;
-  max-width: 310px;
+  max-height: 640px;
+  max-width: 330px;
 }
 /*********************************************************************/
 /*small screen*/
