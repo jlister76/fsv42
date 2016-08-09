@@ -10,13 +10,16 @@
           return AuthService
             .getCurrentState()
             .then(function (state) {
+
               return UpdateService
                 .getCurrentReleaseDate()
                 .then(function (date) {
+
                   return Update
                     .findOne({filter: {where: {stateId: state.id, releaseDate: moment(date)}}})
                     .$promise
                     .then(function (update) {
+
                       currentDownload.id = update.id;
                       currentDownload.state = state.title;
                       currentDownload.link = update.link;

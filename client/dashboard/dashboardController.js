@@ -61,9 +61,9 @@
 
                     var status = '<div layout="column" layout-align="center center">' +
                       '<p style="" class="md-padding md-body-1">' +
-                      '<button class="md-subhead" href="'+ mostRecentDownload.link +'' +
+                      '<a class="md-subhead" href="'+ mostRecentDownload.link +'' +
                       ' " id="download-button" >' +
-                      "DOWNLOAD" + '</button>' +
+                      "DOWNLOAD" + '</a>' +
                     '<br/><span class="md-caption">'+'<em>FieldSmart release '+moment(mostRecentDownload.releaseDate).format("MM/DD/YY") +' is available.</em></span><div>' +
                       '</div>';
 
@@ -87,6 +87,7 @@
           .getCurrent()
           .$promise
           .then(function (user) {
+            console.log(user);
             if (user.accessLevel == 'regional') {
 
               Region
@@ -98,13 +99,13 @@
                 })
                 .$promise
                 .then(function (region) {
-
+                  console.log(region)
                   var state;
 
-                  if (region[0].id == 2) {
+                  if (region[0].id == "57a98d77ee0c73153cc340d0") { //WEST
 
                     State
-                      .find({filter: {include: ['groups', 'confirmations', 'employees'], where: {id: 1}}})
+                      .find({filter: {include: ['groups', 'confirmations', 'employees'], where: {id: "57a98d9eee0c73153cc340d2"}}})//TEXAS
                       .$promise
                       .then(function (state) {
 
@@ -138,7 +139,7 @@
                               groups.push(g);
                               groupLabels.push(g.title);
                             });
-
+                            console.log(state[0].id)
                             Group.find({
                               filter: {
                                 include: ['employees', 'confirmations'],
@@ -244,7 +245,7 @@
                       .find({filter: {include: ['groups', 'confirmations', 'employees'], where: {id: id}}})
                       .$promise
                       .then(function (state) {
-
+                        //console.log(state);
                         $scope.selectedState = state[0].title;
                         $scope.statePercentage = state[0].confirmations.length / state[0].employees.length * 100;
                         var statePercentage = $scope.statePercentage.toFixed(0);
@@ -392,15 +393,18 @@
                 .find({filter: {where: {memberId: user.id}}})
                 .$promise
                 .then(function (employee) {
+                  console.log(employee[0].groupId);
                   Group
                     .find({filter: {include: ['confirmations', 'employees'], where: {id: employee[0].groupId}}})
                     .$promise
                     .then(function (group) {
+                      console.log(group);
                       $scope.group = group[0].title;
 
                       UpdateService
                         .getAllCurrentUpdates()
                         .then(function (currentUpdate) {
+                          console.log(currentUpdate);
                           var currConfirmations = [];
                           _.forEach(currentUpdate, function (u) {
                             _.forEach(group[0].confirmations, function (c) {
@@ -444,6 +448,7 @@
                               .findById({id: uc.memberId})
                               .$promise
                               .then(function (member) {
+
                                 var unconfirmedMembers = [];
 
                                 unconfirmedMembers.push(member.email);

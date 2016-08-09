@@ -27,14 +27,5 @@
         }
       }
     ]
-  },
-  "mongodb": {
-    "host": "",
-    "port": "",
-    "database": "",
-    "password": "" ,
-    "name": "mongodb",
-    "user": "DBAdmin",
-    "connector": "mongodb"
   }
 }

@@ -17,27 +17,27 @@
     "dataSource": "emailDs"
   },
   "User": {
-    "dataSource": "db",
+    "dataSource": "mongodb",
     "public": true
   },
   "AccessToken": {
-    "dataSource": "db",
+    "dataSource": "mongodb",
     "public": false
   },
   "ACL": {
-    "dataSource": "db",
+    "dataSource": "mongodb",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "db",
+    "dataSource": "mongodb",
     "public": false
   },
   "Role": {
-    "dataSource": "db",
+    "dataSource": "mongodb",
     "public": false
   },
   "Employee": {
-    "dataSource": "db",
+    "dataSource": "mongodb",
     "public": true
   },
   "Container": {
@@ -45,35 +45,35 @@
     "public": false
   },
   "Confirmation": {
-    "dataSource": "db",
+    "dataSource": "mongodb",
     "public": true
   },
   "IssueReport": {
-    "dataSource": "db",
+    "dataSource": "mongodb",
     "public": true
   },
   "Update": {
-    "dataSource": "db",
+    "dataSource": "mongodb",
     "public": true
   },
   "State": {
-    "dataSource": "db",
+    "dataSource": "mongodb",
     "public": true
   },
   "Group": {
-    "dataSource": "db",
+    "dataSource": "mongodb",
     "public": true
   },
   "Member": {
-    "dataSource": "db",
+    "dataSource": "mongodb",
     "public": true
   },
   "Company": {
-    "dataSource": "db",
+    "dataSource": "mongodb",
     "public": true
   },
   "Region": {
-    "dataSource": "db",
+    "dataSource": "mongodb",
     "public": true
   }
 }
