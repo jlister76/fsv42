@@ -105,7 +105,7 @@ td {
 
 .right-container{
   padding: 1rem;
-  border-left: solid thin rgba(211, 211, 211, 0.51);
+
 
 }
 #download-container{
@@ -119,8 +119,9 @@ td {
   border:solid thin #d2d2d2;
   border-radius:5px;
   color: #fff;
-  width: 180px;
-  padding:.5rem;
+  width: 300px;
+  padding:.5rem 1.5rem;
+
 }
 
 #download-button:hover {

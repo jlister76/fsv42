@@ -11,6 +11,9 @@
     },
     "link": {
       "type": "string"
+    },
+    "link2": {
+      "type": "string"
     }
   },
   "validations": [],

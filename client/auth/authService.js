@@ -13,7 +13,7 @@
             $rootScope.currentUser = {
              id: response.user.id,
              tokenId: response.id,
-             username: response.user.username,
+             username: response.userusername,
              email: email
              };
           });

@@ -32,7 +32,7 @@
                   localStorage.setItem("lname", user.lname);
                   localStorage.setItem("stateId", user.stateId);
                   localStorage.setItem("group", user.groupId);
-
+                  //$state.go('dashboard');
 
                 });
             })
