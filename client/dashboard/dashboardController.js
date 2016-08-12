@@ -18,67 +18,7 @@
       $scope.sortOption = 'lname';
       /*Determine the most recent update, confirm user status & provide d/l link*/
       /*var mostRecent = UpdateService.getCurrentReleaseDate();*/
-      UpdateService
-        .getCurrentReleaseDate()
-        .then(function(currentReleaseDate){
 
-          DashboardService
-            .getCurrentConfirmation()
-            .then(function(maxConfDate){
-
-              if (maxConfDate == null){
-                $scope.msgShow = 2;
-
-              }else{
-                $scope.msgShow = 1;
-                $scope.statusCurrent = moment(currentReleaseDate).isSame(maxConfDate);
-              }
-
-
-              if ($scope.statusCurrent){
-
-                              var el = angular.element( document.querySelector('#status'));
-                var status ='<div ng-if="statusCurrent" layout layout-align="center center" class="confirmation-icon">'+
-                  '<i class="material-icons">done</i></div>&nbsp; No update available.';
-
-
-                el.html(status);
-
-
-              }else{
-                $scope.msgStatus =0;
-                DownloadService
-                  .getCurrentDownload()
-                  .then(function(currentDownload){
-
-                    var mostRecentDownload = {
-                      id: currentDownload.id,
-                      state: currentDownload.state,
-                      link: currentDownload.link,
-                      releaseDate: currentDownload.releaseDate };
-
-                      var el = angular.element( document.querySelector('#status'));
-
-                    var status = '<div layout="column" layout-align="center center">' +
-                      '<p style="" class="md-padding md-body-1">' +
-                      '<a class="md-subhead" href="'+ mostRecentDownload.link +'' +
-                      ' " id="download-button" >' +
-                      "DOWNLOAD" + '</a>' +
-                    '<br/><span class="md-caption">'+'<em>FieldSmart release '+moment(mostRecentDownload.releaseDate).format("MM/DD/YY") +' is available.</em></span><div>' +
-                      '</div>';
-
-
-
-                    el.html(status);
-
-
-
-                  });
-
-              }
-            });
-
-        });
 
       /************************************************************************/
       function initData() {
@@ -87,40 +27,77 @@
           .getCurrent()
           .$promise
           .then(function (user) {
-            console.log(user);
-            if (user.accessLevel == 'regional') {
 
+            if (user.accessLevel == 'regional') {
+              console.log(user.regionId);
               Region
                 .find({
                   filter: {
-                    include: ['confirmations', 'employees', 'groups', 'states'],
-                    where: {id: user.regionId}
+                    //include: ['confirmations', 'employees', 'groups', 'states'],
+                    where: {uid: user.regionId}
                   }
                 })
                 .$promise
                 .then(function (region) {
-                  console.log(region)
+                  console.log(region);
                   var state;
 
-                  if (region[0].id == "57a98d77ee0c73153cc340d0") { //WEST
+
+                  if (region[0].uid == "57ace44a4be7451b183b4836") { //WEST
 
                     State
-                      .find({filter: {include: ['groups', 'confirmations', 'employees'], where: {id: "57a98d9eee0c73153cc340d2"}}})//TEXAS
+                      .find({filter: {/*include: ['groups', 'confirmations', 'employees'],*/ where: {uid: "57ace4fb4be7451b183b4839"}}})//TEXAS
                       .$promise
                       .then(function (state) {
-
+                        console.log(state);
                         $scope.selectedState = state[0].title;
-                        $scope.statePercentage = state[0].confirmations.length / state[0].employees.length * 100;
-                        var statePercentage = $scope.statePercentage.toFixed(0);
+                        //Including related employees
+                        Employee.find({filter:{where: {stateId: state.uid}}}).$promise.then(function(employees){
+                          //Including related confirmations
+                          Confirmation.find({filter:{where:{stateId: state.uid}}}).$promise.then(function(confirmations){
+                            console.log(confirmations);
 
-                        var el = angular.element(document.querySelector('#state-percentage'));
-                        var html = '<div class="percentage-bar" style="width:' + statePercentage + '%; height:8px; background-color:rgb(243, 188, 9);"></div>';
-                        el.html(html);
+                            $scope.statePercentage = confirmations.length / employees.length * 100;
+                            var statePercentage = $scope.statePercentage.toFixed(0);
+
+                            var el = angular.element(document.querySelector('#state-percentage'));
+                            var html = '<div class="percentage-bar" style="width:' + statePercentage + '%; height:8px; background-color:rgb(243, 188, 9);"></div>';
+                            el.html(html);
+                        });
+                        //Including related groups
+                          Group.find({filter:{where:{stateId: state.uid}}}).$promise.then(function(groups){
+
+                            var eList = [];
+
+                            _.forEach(employees, function (e) {
+                              eList.push(e);
+                            });
+
+                            //calculate the percentages for each group
+                            var groupLabels = [];
+                            var groupPercentages = [];
+                            var groups = [];
+                            var employeesWithConfirmations = [];
+                            _.forEach(groups, function (g) {
+                              groups.push(g);
+                              groupLabels.push(g.title);
+                            });
+                            console.log(state[0].uid)
+
+
+
+
+                          })//Group Container
+
+
+
+                        });
+
 
                         //Get State employees with group
 
                         Employee
-                          .find({filter: {include: 'group', where: {stateId: state[0].id}}})
+                          .find({filter: {include: 'group', where: {stateId: state[0].uid}}})
                           .$promise
                           .then(function (employees) {
                             var eList = [];
@@ -139,11 +116,11 @@
                               groups.push(g);
                               groupLabels.push(g.title);
                             });
-                            console.log(state[0].id)
+                            console.log(state[0].uid)
                             Group.find({
                               filter: {
                                 include: ['employees', 'confirmations'],
-                                where: {stateId: state[0].id}
+                                where: {stateId: state[0].uid}
                               }
                             })
                               .$promise
@@ -152,9 +129,9 @@
                                 var groupEmployees = [];
 
                                 function compare(a, b) {
-                                  if (a.id < b.id)
+                                  if (a.uid < b.uid)
                                     return -1;
-                                  if (a.id > b.id)
+                                  if (a.uid > b.uid)
                                     return 1;
                                   return 0;
                                 }//sorts objects by id
@@ -178,7 +155,7 @@
 
                                     _.forEach(s.confirmations, function (c) {
 
-                                      if (c.employeeId == e.id) {
+                                      if (c.employeeId == e.uid) {
 
                                         employeesWithConfirmations.push(e);
                                       }
@@ -201,7 +178,7 @@
                                 _.forEach(employeesWithoutConfirmations, function (uc) {
 
                                   Member
-                                    .findById({id: uc.memberId})
+                                    .find({filter:{where:{uid: uc.memberId}}})
                                     .$promise
                                     .then(function (member) {
 
@@ -235,8 +212,11 @@
                       });
 
                   }
-
-                  $scope.states = region[0].states;
+                  State.find({filter: {where:{regionId: region.uid}}}).$promise.then(function(states){
+                    console.log(states);
+                    $scope.states = states;
+                  });
+                  //$scope.states = region[0].states;
 
                   $scope.StateSelection = function (selectedState) {
                     var id = selectedState;
@@ -257,7 +237,7 @@
                         //Get State employees with group
 
                         Employee
-                          .find({filter: {include: 'group', where: {stateId: state[0].id}}})
+                          .find({filter: {include: 'group', where: {stateId: state[0].uid}}})
                           .$promise
                           .then(function (employees) {
                             var eList = [];
@@ -280,7 +260,7 @@
                             Group.find({
                               filter: {
                                 include: ['employees', 'confirmations'],
-                                where: {stateId: state[0].id}
+                                where: {stateId: state[0].uid}
                               }
                             })
                               .$promise
@@ -289,9 +269,9 @@
                                 var groupEmployees = [];
 
                                 function compare(a, b) {
-                                  if (a.id < b.id)
+                                  if (a.uid < b.uid)
                                     return -1;
-                                  if (a.id > b.id)
+                                  if (a.uid > b.uid)
                                     return 1;
                                   return 0;
                                 }//sorts objects by id
@@ -315,8 +295,8 @@
 
                                     _.forEach(s.confirmations, function (c) {
 
-                                      if (c.employeeId == e.id) {
-                                        console.log(c.employeeId, e.id);
+                                      if (c.employeeId == e.uid) {
+                                        console.log(c.employeeId, e.uid);
                                         employeesWithConfirmations.push(e);
                                       }
                                     })
@@ -338,7 +318,7 @@
                                 _.forEach(employeesWithoutConfirmations, function (uc) {
 
                                   Member
-                                    .findById({id: uc.memberId})
+                                    .find({filter:{where:{uid: uc.memberId}}})
                                     .$promise
                                     .then(function (member) {
 
@@ -372,110 +352,179 @@
                       })
                   };//End of State Selection
 
-
-                  /*_.forEach(region[0].states, function(s){
-
-                   function compare(a,b) {
-                   if (a.title < b.title)
-                   return -1;
-                   return 1;
-                   return 0;
-                   }//sorts objects by id
-                   State.find({filter:{include:['confirmations','employees','groups'],where:{id:s.id}}})
-                   .$promise
-                   .then(function(state){
-                   });
-                   });*/
                 })
 
             } else if (user.accessLevel == 'account' || 'group') {
+              //Check for currently available update and provide download button
+              UpdateService
+                .getCurrentReleaseDate()
+                .then(function(currentReleaseDate){
+
+                  DashboardService
+                    .getCurrentConfirmation()
+                    .then(function(maxConfDate){
+
+                      if (maxConfDate == null){
+                        $scope.msgShow = 2;
+
+                      }else{
+                        $scope.msgShow = 1;
+                        $scope.statusCurrent = moment(currentReleaseDate).isSame(maxConfDate);
+                      }
+
+
+                      if ($scope.statusCurrent){
+
+                        var el = angular.element( document.querySelector('#status'));
+                        var status ='<div ng-if="statusCurrent" layout layout-align="center center" class="confirmation-icon">'+
+                          '<i class="material-icons">done</i></div>&nbsp; No update available.';
+
+
+                        el.html(status);
+
+
+                      }else{
+
+                        $scope.msgStatus =0;
+                        DownloadService
+                          .getCurrentDownload()
+                          .then(function(currentDownload){
+
+                            var mostRecentDownload = {
+                              id: currentDownload.uid,
+                              state: currentDownload.state,
+                              link: currentDownload.link,
+                              releaseDate: currentDownload.releaseDate };
+
+                            var el = angular.element( document.querySelector('#status'));
+
+                            var status = '<div layout="column" layout-align="center center">' +
+                              '<p style="" class="md-padding md-body-1">' +
+                              '<a class="md-subhead" href="'+ mostRecentDownload.link +'' +
+                              ' " id="download-button" >' +
+                              "DOWNLOAD" + '</a>' +
+                              '<br/><span class="md-caption">'+'<em>FieldSmart release '+moment(mostRecentDownload.releaseDate).format("MM/DD/YY") +' is available.</em></span><div>' +
+                              '</div>';
+
+
+
+                            el.html(status);
+
+
+
+                          });
+
+                      }
+                    });
+
+                });
+
+
               Employee
-                .find({filter: {where: {memberId: user.id}}})
+                .find({filter: {where: {memberId: user.uid}}})
                 .$promise
                 .then(function (employee) {
                   console.log(employee[0].groupId);
+
                   Group
-                    .find({filter: {include: ['confirmations', 'employees'], where: {id: employee[0].groupId}}})
+                    .find({filter: {where: {uid: employee[0].groupId}}})
                     .$promise
                     .then(function (group) {
                       console.log(group);
                       $scope.group = group[0].title;
+                      Employee
+                        .find({filter: {where: {groupId: employee[0].groupId}}})
+                        .$promise
+                        .then(function (employees){
+                        console.log(employees);
+                        Confirmation.find({filter:{where:{groupId: employee[0].groupId}}})
+                          .$promise
+                          .then(function(confirmations){
+                            console.log(confirmations);
 
-                      UpdateService
-                        .getAllCurrentUpdates()
-                        .then(function (currentUpdate) {
-                          console.log(currentUpdate);
-                          var currConfirmations = [];
-                          _.forEach(currentUpdate, function (u) {
-                            _.forEach(group[0].confirmations, function (c) {
-                              if (u.id == c.updateId) {
+                            UpdateService
+                              .getAllCurrentUpdates()
+                              .then(function (currentUpdate) {
+                                console.log(currentUpdate);
+                                var currConfirmations = [];
+                                _.forEach(currentUpdate, function (u) {
 
-                                currConfirmations.push(c);
-                              }
-                            })
-                          });
+                                  _.forEach(confirmations, function (c) {
 
-                          var groupPercentage = currConfirmations.length / group[0].employees.length * 100;
-                          _.forEach(group[0].employees, function (e) {
-                            _.forEach(currConfirmations, function (c) {
-                              if (e.id == c.employeeId) {
+                                    if (u.uid == c.updateId) {
 
-                                e.status = true;
+                                      currConfirmations.push(c);
+                                    }
+                                  })
+                                });
 
-                              }
-                            })
-                          });
-                          $scope.employees = group[0].employees;
-                          var unconfirmed = [];
+                                var groupPercentage = currConfirmations.length / employees.length * 100;
+                                _.forEach(employees, function (e) {
+                                  _.forEach(currConfirmations, function (c) {
+                                    if (e.uid == c.employeeId) {
 
-                          _.forEach(group[0].employees, function (e) {
-                            if (e.status != true) {
-                              unconfirmed.push(e);
-                            }
-                          });
+                                      e.status = true;
 
+                                    }
+                                  })
+                                });
+                                console.log(group)
+                                $scope.employees = employees;
+                                var unconfirmed = [];
 
-                          $scope.gp = groupPercentage.toFixed(0);
-
-                          var el = angular.element(document.querySelector('#group-percentage'));
-                          var span = '<div style="width:' + $scope.gp +'%;background-color: rgb(243,188,9) ; height:8px;"></div>';
-
-                          el.html(span);
-
-
-                          _.forEach(unconfirmed, function (uc) {
-                            Member
-                              .findById({id: uc.memberId})
-                              .$promise
-                              .then(function (member) {
-
-                                var unconfirmedMembers = [];
-
-                                unconfirmedMembers.push(member.email);
-                                return unconfirmedMembers;
-                              })
-                              .then(function (unconfirmedMembers) {
-
-
-                                $scope.sendGroupReminder = function ($event) {
-                                  console.log("active");
-                                  if (unconfirmedMembers.length > 0) {
-
-                                    var emailList = {email: unconfirmedMembers};
-                                    /*$http.post('api/Updates/sendReminder', emailList);*/
-                                    console.log(emailList);
-                                    $mdToast.show($mdToast.simple()
-                                      .position('right')
-                                      .capsule(true)
-                                      .textContent("Group Reminder was sent."))
+                                _.forEach(employees, function (e) {
+                                  if (e.status != true) {
+                                    unconfirmed.push(e);
                                   }
-                                };
+                                });
+
+
+                                $scope.gp = groupPercentage.toFixed(0);
+
+                                var el = angular.element(document.querySelector('#group-percentage'));
+                                var span = '<div style="width:' + $scope.gp +'%;background-color: rgb(243,188,9) ; height:8px;"></div>';
+
+                                el.html(span);
+
+
+                                _.forEach(unconfirmed, function (uc) {
+                                  Member
+                                    .find({filter:{where:{uid: uc.memberId}}})
+                                    .$promise
+                                    .then(function (member) {
+                                      console.log(member);
+                                      var unconfirmedMembers = [];
+
+                                      unconfirmedMembers.push(member.email);
+                                      return unconfirmedMembers;
+                                    })
+                                    .then(function (unconfirmedMembers) {
+
+
+                                      $scope.sendGroupReminder = function ($event) {
+                                        console.log("active");
+                                        if (unconfirmedMembers.length > 0) {
+
+                                          var emailList = {email: unconfirmedMembers};
+                                          /*$http.post('api/Updates/sendReminder', emailList);*/
+                                          console.log(emailList);
+                                          $mdToast.show($mdToast.simple()
+                                            .position('right')
+                                            .capsule(true)
+                                            .textContent("Group Reminder was sent."))
+                                        }
+                                      };
+
+                                    })
+
+                                });
 
                               })
 
-                          });
+                          })
+                      });
 
-                        })
+
 
                     })
                 })
@@ -510,7 +559,7 @@
                 });
 
                 Confirmation
-                  .create({lastUpdated: date, updateId: update.id, employeeId: user.id, groupId: user.groupId, stateId:user.stateId, regionId: user.regionId})
+                  .create({lastUpdated: date, updateId: update.uid, employeeId: user.uid, groupId: user.groupId, stateId:user.stateId, regionId: user.regionId})
                   .$promise
                   .then(function(confirmation){
                     console.log(confirmation + " saved");

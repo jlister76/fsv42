@@ -6,6 +6,10 @@
     "validateUpsert": true
   },
   "properties": {
+    "uid" : {
+      "type": "string",
+      "id": true
+    },
     "accessLevel": {
       "type": "string",
       "default": ""
@@ -15,7 +19,7 @@
   "relations": {
     "state": {
       "type": "belongsTo",
-      "model": "State",
+      "model": "Company",
       "foreignKey": ""
     },
     "region": {
