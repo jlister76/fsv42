@@ -5,12 +5,20 @@
   "options": {
     "validateUpsert": true
   },
+<<<<<<< HEAD
     "properties": {
       "_id":{
         "type": "string",
         "id": true,
         "generated": true
       },
+=======
+  "properties": {
+    "uid" : {
+      "type": "string",
+      "id": true
+    },
+>>>>>>> github/master
     "employee_number": {
       "type": "string"
     },

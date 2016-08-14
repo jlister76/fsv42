@@ -16,11 +16,19 @@
                 .then(function (date) {
 
                   return Update
+<<<<<<< HEAD
                     .findOne({filter: {where: {stateId: state._id, releaseDate: moment(date)}}})
                     .$promise
                     .then(function (update) {
 
                       currentDownload._id = update._id;
+=======
+                    .find({filter: {where: {stateId: state.uid, releaseDate: moment(date)}}})
+                    .$promise
+                    .then(function (update) {
+
+                      currentDownload.uid = update.uid;
+>>>>>>> github/master
                       currentDownload.state = state.title;
                       currentDownload.link = update.link;
                       currentDownload.releaseDate = update.releaseDate;

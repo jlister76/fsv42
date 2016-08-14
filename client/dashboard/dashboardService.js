@@ -16,13 +16,13 @@
       }
       function getTexasGroups(){
         return Group
-          .find({filter:{include: ['confirmations','employees'],where:{stateId: "57a98d9eee0c73153cc340d2"}}})
+          .find({filter:{include: ['confirmations','employees'],where:{stateId: "57ace4fb4be7451b183b4839"}}})
           .$promise
 
       }
       function getKentuckyGroups(){
         return Group
-          .find({filter:{include: ['confirmations','employees'],where:{stateId: "57a98dcbee0c73153cc340d3"}}})
+          .find({filter:{include: ['confirmations','employees'],where:{stateId: "57ace4c44be7451b183b4838"}}})
           .$promise
 
       }
@@ -36,13 +36,19 @@
         return AuthService
           .getCurrentEmployee()
           .then(function(user){
+            console.log(user);
             if (!user){
               return null;
             }else{
               return Confirmation
+<<<<<<< HEAD
                 .find({filter: {where: {employeeId: user._id}, include: 'update'}})
+=======
+                .find({filter: {where: {employeeId: user.uid}, include: 'update'}})
+>>>>>>> github/master
                 .$promise
                 .then(function(confirmations){
+                  console.log(confirmations);
                   var currentReleaseDate =[];
                   _.forEach(confirmations, function (o){ currentReleaseDate.push(moment(o.update.releaseDate))});
                   return moment.max(currentReleaseDate);

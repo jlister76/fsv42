@@ -10,6 +10,7 @@
           .find()
           .$promise
           .then(function (updates){
+
             var dates = [];
             _.forEach(updates, function(d){dates.push(moment(d.releaseDate))});
             return moment.max(dates);
@@ -22,6 +23,7 @@
           .find({filter:{include: 'confirmations'}})
           .$promise
           .then(function (updates) {
+
             var dates = [];
             _.forEach(updates, function (d) {
               dates.push(moment(d.releaseDate))
