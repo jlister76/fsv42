@@ -29,7 +29,7 @@
                   }
                 });
                 IssueReport
-                  .create({issue: issue, createdAt:date, comments: comments, employeeId: user.id, stateId: user.stateId, groupId: user.groupId, updateId: update.id})
+                  .create({issue: issue, createdAt:date, comments: comments, employeeId: user._id, stateId: user.stateId, groupId: user.groupId, updateId: update._id})
                   .$promise
                   .then(function(){
                     console.log("Your issue has been emailed to the support team.");

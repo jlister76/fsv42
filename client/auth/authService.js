@@ -11,8 +11,8 @@
           .then(function (response) {
             console.log(response);
             $rootScope.currentUser = {
-             id: response.user.id,
-             tokenId: response.id,
+             id: response.user._id,
+             tokenId: response._id,
              username: response.userusername,
              email: email
              };
@@ -47,7 +47,7 @@
           .$promise
           .then(function(user){
             return Employee
-              .find({filter:{where:{memberId: user.id}}})
+              .find({filter:{where:{memberId: user._id}}})
               .$promise
               .then(function(employee) {
                 return employee[0];})
@@ -68,14 +68,21 @@
           .getCurrent()
           .$promise
           .then(function (currentEmployee) {
-            var stateId = currentEmployee.stateId;
 
-            return State
-              .findById({id: stateId})
-              .$promise
-              .then(function (state) {
-                return state;
-              })
+            return Employee.find({filter:{where:{memberId: currentEmployee.uid}}}).$promise.then(function(employee){
+
+              var stateId = employee[0].stateId;
+
+              return State
+                .find({filter:{where:{uid:stateId}}})
+                .$promise
+                .then(function (state) {
+
+                  return state;
+                })
+            })
+
+
           });
 
       }

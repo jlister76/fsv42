@@ -79,10 +79,12 @@ a:visited{
 
   margin-top: 1rem;
 }
+
 table {
   border:solid 2px lightgrey;
   border-collapse: collapse;
   empty-cells: hide;
+  min-width: 240px;
 }
 table.clone + md-table-container table tbody tr:first-child td {
   border: none;
@@ -94,6 +96,7 @@ tbody tr:hover {
 
 thead th {
   text-align:left;
+
 }
 
 td {
@@ -105,6 +108,7 @@ td {
 
 .right-container{
   padding: 1rem;
+  height: 600px;
 
 
 }
@@ -213,7 +217,7 @@ textarea {
 #unconfirmed-container {
   overflow: auto;
   max-height: 640px;
-  max-width: 330px;
+  max-width: 350px;
 }
 /*********************************************************************/
 /*small screen*/
@@ -223,7 +227,9 @@ textarea {
   }
 
   .right-container{
-    min-height:100vh;
+    min-height: 100vh;
+
+
   }
 
   .group-title{

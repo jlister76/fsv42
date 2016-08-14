@@ -5,7 +5,12 @@
   "options": {
     "validateUpsert": true
   },
-  "properties": {
+    "properties": {
+      "_id":{
+        "type": "string",
+        "id": true,
+        "generated": true
+      },
     "employee_number": {
       "type": "string"
     },

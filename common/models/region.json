@@ -6,6 +6,11 @@
     "validateUpsert": true
   },
   "properties": {
+    "_id":{
+      "type": "string",
+      "id": true,
+      "generated": true
+    },
     "title": {
       "type": "string",
       "required": true

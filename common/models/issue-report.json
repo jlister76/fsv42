@@ -6,6 +6,11 @@
     "validateUpsert": true
   },
   "properties": {
+    "_id":{
+      "type": "string",
+      "id": true,
+      "generated": true
+    },
     "createdAT": {
       "type": "date"
     },

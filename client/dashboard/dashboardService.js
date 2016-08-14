@@ -40,7 +40,7 @@
               return null;
             }else{
               return Confirmation
-                .find({filter: {where: {employeeId: user.id}, include: 'update'}})
+                .find({filter: {where: {employeeId: user._id}, include: 'update'}})
                 .$promise
                 .then(function(confirmations){
                   var currentReleaseDate =[];
