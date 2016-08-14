@@ -6,16 +6,10 @@
     "validateUpsert": true
   },
   "properties": {
-<<<<<<< HEAD
-    "_id":{
+    "_id": {
       "type": "string",
       "id": true,
       "generated": true
-=======
-    "uid" : {
-      "type": "string",
-      "id": true
->>>>>>> github/master
     },
     "releaseDate": {
       "type": "date"
