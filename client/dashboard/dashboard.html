@@ -110,17 +110,18 @@
   </div>
   <div ng-if="currentUser.accessLevel=='regional'" layout layout-xs="column">
     <div flex layout="column" >
-      <div ng-if="currentUser.regionId==1" class="top-container" flex="auto" layout layout-align="center center" id="state-selector">
+      <div ng-if="states != null" class="top-container" flex="auto" layout layout-align="center center" id="state-selector">
         <span class="md-subhead">Select state:</span>
-        <md-select ng-model="state" ng-change="StateSelection(state)" style="width:115px;"
+        <md-select ng-model="state" ng-change="StateSelection(state);" style="width:115px;"
                    aria-label="state selection">
-          <md-option ng-repeat="state in states" value="{{ state.uid }}">{{ state.title }}</md-option>
+          <md-option ng-repeat="state in states" value="{{ state._id }}">{{ state.title }}</md-option>
         </md-select>
+
       </div>
       <div layout layout-xs="column" layout-sm="column">
         <div class="left-container" flex="70" flex-lg="67" flex-md="65" flex-sm="100" flex-xs="100" layout layout-xs>
           <div flex class="md-padding" style="width:100vw;">
-            <div ng-show="selectedState"flex layout="column">
+            <div ng-show="selectedState" flex layout="column">
               <div  flex="grow" layout layout-align="space-between center" class="md-padding">
                 <div  class="area-title-bar">
                   <span class="md-title group-title" style="margin:.4rem;">{{ selectedState }} {{ statePercentage | number:0 }}%</span>
@@ -154,21 +155,19 @@
              layout-xs style="min-height:100vh; ">
           <div ng-if="selectedState" layout="column" class="md-padding" >
             <div layout layout-align="space-around center" class="md-padding" style="background-color:#0F6AB4;">
-              <div flex-33>
-                <span>Filter</span>
-                <select style="margin:0 1rem!important;" ng-model="searchCriteria" aria-label="group"
-                        placeholder="Group">
-                  <option ng-repeat="group in groups" value="{{ group.title }}">{{ group.title }}</option>
-                </select>
+              <div flex="60">
+                <md-select id="searchBox" style="margin:0 1rem!important; background-color: white!important;" ng-model="searchCriteria" aria-label="group"
+                  placeholder="Filter By Group">
+                  <md-option ng-repeat="group in groups" value="{{ group.title }}">{{ group.title }}</md-option>
+                </md-select>
               </div>
-              <div flex-33 class="md-icon">
+              <div flex="40" class="md-icon">
                 <a href="#" layout layout-align="center center" ng-click="searchCriteria=''"
                    style="text-decoration:none;color:white;">
-                  <small class="">Reset Filter</small>
+                  <small style="border:solid thin white; padding: .5rem;">Reset</small>
                 </a>
               </div>
-              <div flex-33 layout="column" layout-align="center center">
-              </div>
+
             </div>
             <div flex layout id="unconfirmed-container">
               <table>

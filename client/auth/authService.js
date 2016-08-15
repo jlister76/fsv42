@@ -69,12 +69,12 @@
           .$promise
           .then(function (currentEmployee) {
 
-            return Employee.find({filter:{where:{memberId: currentEmployee.uid}}}).$promise.then(function(employee){
+            return Employee.find({filter:{where:{memberId: currentEmployee._id}}}).$promise.then(function(employee){
 
               var stateId = employee[0].stateId;
 
               return State
-                .find({filter:{where:{uid:stateId}}})
+                .find({filter:{where:{_id:stateId}}})
                 .$promise
                 .then(function (state) {
 
