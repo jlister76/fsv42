@@ -14,10 +14,10 @@ module.exports = function(IssueReport) {
 
   IssueReport.sendMail = function(cb){
     IssueReport.app.models.Email.send({
-      to: ['jlister76@gmail.com', 'jlister469@outlook.com'],
+      to: ['j.lister@heathus.com'],
       from: 'noreply@gmail.com',
-      subject: 'Field Smart Update Issue',
-      text: 'This is a test email.',
+      subject: 'Issue Tracker- Field Smart Update',
+      text: '',
       html: '<em>This is a test message.</em>'
     }, function(err, mail) {
       console.log('email sent!');
@@ -37,7 +37,12 @@ module.exports = function(IssueReport) {
     next();
   });
 
-
+IssueReport.remoteMethod('submitIssue',
+  {
+    accepts: {arg: 'issue', type: 'Array'},
+    http: {path: '/sendReminder', verb: 'post'}
+  }
+)
 
 
 

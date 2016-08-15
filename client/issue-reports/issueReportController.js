@@ -3,7 +3,7 @@
 
   angular
     .module('FSV42App')
-    .controller('IssueReportController', function($scope, AuthService, IssueReport, UpdateService){
+    .controller('IssueReportController', function($scope, AuthService, IssueReport, UpdateService, Group){
 
 
       $scope.issueType = ['Download an update', 'Install an update', 'Other: See comments for details']; //TODO: programtically save and retrieve known issue types
@@ -17,26 +17,43 @@
         UpdateService
           .getAllCurrentUpdates()
           .then(function(currentUpdates){
+
             AuthService
-              .getCurrent()
-              .$promise
+              .getCurrentEmployee()
+
               .then(function (user){
+                console.log(user._id);
                 var update;
                 var date = new Date();
                 _.forEach(currentUpdates, function(o){
                   if(o.stateId == user.stateId){
                     update = o;
                   }
+                  console.log(update);
                 });
-                IssueReport
-                  .create({issue: issue, createdAt:date, comments: comments, employeeId: user._id, stateId: user.stateId, groupId: user.groupId, updateId: update._id})
+                Group
+                  .find({filter:{where:{_id: user.groupId}}})
                   .$promise
-                  .then(function(){
-                    console.log("Your issue has been emailed to the support team.");
-                    $scope.msgStatus = 1;
-                    $scope.confirmation = "Your message has been sent."
-                  });
-              })
+                  .then(function(group){
+                  AuthService
+                    .getCurrent()
+                    .$promise
+                    .then(function(member){
+                      console.log(group[0].title, member.username);
+                      IssueReport
+                        .create({issue: issue, createdAt:date, comments: comments, employee: member.username, email: member.email, group:group[0].title, updateLink: update.link})
+                        .$promise
+                        .then(function(report){
+                          console.log(report);
+                          console.log("Your issue has been emailed to the support team.");
+                          $scope.msgStatus = 1;
+                          $scope.confirmation = "Your message has been sent."
+                        });
+                    });
+
+                });
+
+              });
           });
       };
       /*****************************************************************/

@@ -6,11 +6,10 @@
     "validateUpsert": true
   },
   "properties": {
-    "_id":{
+    "_id": {
       "type": "string",
       "id": true,
       "generated": true
-
     },
     "title": {
       "type": "string"
@@ -44,6 +43,20 @@
       "foreignKey": ""
     }
   },
-  "acls": [],
+  "acls": [
+    {
+    "accessType": "*",
+    "principalType": "ROLE",
+    "principalId": "$everyone",
+    "permission": "DENY"
+  },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "find"
+    }
+  ],
   "methods": {}
 }

@@ -41,39 +41,30 @@
     "public": true
   },
   "Container": {
-    "dataSource": "storage",
-    "public": false
+    "dataSource": "storage"
   },
   "Confirmation": {
-    "dataSource": "mongodb",
-    "public": true
+    "dataSource": "mongodb"
   },
   "IssueReport": {
-    "dataSource": "mongodb",
-    "public": true
+    "dataSource": "mongodb"
   },
   "Update": {
-    "dataSource": "mongodb",
-    "public": true
+    "dataSource": "mongodb"
   },
   "State": {
-    "dataSource": "mongodb",
-    "public": true
+    "dataSource": "mongodb"
   },
   "Group": {
-    "dataSource": "mongodb",
-    "public": true
+    "dataSource": "mongodb"
   },
   "Member": {
-    "dataSource": "mongodb",
-    "public": true
+    "dataSource": "mongodb"
   },
   "Company": {
-    "dataSource": "mongodb",
-    "public": true
+    "dataSource": "mongodb"
   },
   "Region": {
-    "dataSource": "mongodb",
-    "public": true
+    "dataSource": "mongodb"
   }
 }

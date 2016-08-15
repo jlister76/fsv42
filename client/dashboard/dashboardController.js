@@ -313,76 +313,7 @@
 
             } else if (user.accessLevel == 'account' || 'group') {
 
-              /************************************************************************/
-
-              /*Determine the most recent update, confirm user status & provide d/l link*/
-              /*var mostRecent = UpdateService.getCurrentReleaseDate();*/
-              UpdateService
-                .getCurrentReleaseDate()
-                .then(function(currentReleaseDate){
-                  console.log(currentReleaseDate);
-                  DashboardService
-                    .getCurrentConfirmation()
-                    .then(function(maxConfDate){
-                      console.log(maxConfDate);
-                      if (maxConfDate == null){
-                        $scope.msgShow = 2;
-
-                      }else{
-                        $scope.msgShow = 1;
-                        $scope.statusCurrent = moment(currentReleaseDate).isSame(maxConfDate);
-                      }
-                        console.log($scope.statusCurrent);
-
-                      if ($scope.statusCurrent){
-
-                        var el = angular.element( document.querySelector('#status'));
-                        var status ='<div ng-if="statusCurrent" layout layout-align="center center" class="confirmation-icon">'+
-                          '<i class="material-icons">done</i></div>&nbsp; No update available.';
-
-
-                        el.html(status);
-
-
-                      }else{
-                        $scope.msgStatus =0;
-                        DownloadService
-                          .getCurrentDownload()
-                          .then(function(currentDownload){
-                            console.log(currentDownload);
-                            var mostRecentDownload = {
-                              id: currentDownload._id,
-                              state: currentDownload.state,
-                              link: currentDownload.link,
-                              releaseDate: currentDownload.releaseDate };
-
-                            var el = angular.element( document.querySelector('#status'));
-
-                            var status = '<div layout="column" layout-align="center center">' +
-                              '<p style="" class="md-padding md-body-1">' +
-                              '<a class="md-subhead" href="'+ mostRecentDownload.link +'' +
-                              ' " id="download-button" >' +
-                              "DOWNLOAD" + '</a>' +
-                              '<br/><br/><span class="md-caption">'+'<em>FieldSmart release '+moment(mostRecentDownload.releaseDate).format("MM/DD/YY") +' is available.</em></span><div>' +
-                              '</div>';
-
-
-
-                            el.html(status);
-
-
-
-                          });
-
-                      }
-                    });
-
-                });
-
-              /************************************************************************/
-
-
-              Employee
+             Employee
                 .find({filter: {where: {memberId: user._id}}})
                 .$promise
                 .then(function (employee) {
@@ -465,14 +396,81 @@
                                   }
                                 };
 
-                              })
+                              });
 
                           });
 
-                        })
+                        });
 
-                    })
-                })
+                    });
+                });
+              /************************************************************************/
+
+              /*Determine the most recent update, confirm user status & provide d/l link*/
+              /*var mostRecent = UpdateService.getCurrentReleaseDate();*/
+              UpdateService
+                .getCurrentReleaseDate()
+                .then(function(currentReleaseDate){
+                  console.log(currentReleaseDate);
+                  DashboardService
+                    .getCurrentConfirmation()
+                    .then(function(maxConfDate){
+                      console.log(maxConfDate);
+                      if (maxConfDate == null){
+                        $scope.msgShow = 2;
+
+                      }else{
+                        $scope.msgShow = 1;
+                        $scope.statusCurrent = moment(currentReleaseDate).isSame(maxConfDate);
+                      }
+                      console.log($scope.statusCurrent);
+
+                      if ($scope.statusCurrent){
+
+                        var el = angular.element( document.querySelector('#status'));
+                        var status ='<div ng-if="statusCurrent" layout layout-align="center center" class="confirmation-icon">'+
+                          '<i class="material-icons">done</i></div>&nbsp; No update available.';
+
+
+                        el.html(status);
+
+
+                      }else{
+                        $scope.msgStatus =0;
+                        DownloadService
+                          .getCurrentDownload()
+                          .then(function(currentDownload){
+                            console.log(currentDownload);
+                            var mostRecentDownload = {
+                              id: currentDownload._id,
+                              state: currentDownload.state,
+                              link: currentDownload.link,
+                              releaseDate: currentDownload.releaseDate };
+
+                            var el = angular.element( document.querySelector('#status'));
+
+                            var status = '<div layout="column" layout-align="center center">' +
+                              '<p style="" class="md-padding md-body-1">' +
+                              '<a class="md-subhead" href="'+ mostRecentDownload.link +'' +
+                              ' " id="download-button" >' +
+                              "DOWNLOAD" + '</a>' +
+                              '<br/><br/><span class="md-caption">'+'<em>FieldSmart release '+moment(mostRecentDownload.releaseDate).format("MM/DD/YY") +' is available.</em></span><div>' +
+                              '</div>';
+
+
+
+                            el.html(status);
+
+
+
+                          });
+
+                      }
+                    });
+
+                });
+
+              /************************************************************************/
 
             }
           });

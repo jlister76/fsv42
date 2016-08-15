@@ -8,7 +8,7 @@ module.exports = function(Update) {
       subject: 'Field Smart Update Reminder',
       text: '',
       html: '<p>A newer version of Field Smart is available for download.</p>' +
-        '<p>Click <a href="http://fsv42.azurewebsites.net"><em>here</em></a> to get the latest update.</p>'
+        '<p>Click <a href="https://fsv42.heathfieldapp.com"><em>here</em></a> to get the latest update.</p>'
     }, function(err, mail) {
       console.log('email sent!');
       if (err) return err;
