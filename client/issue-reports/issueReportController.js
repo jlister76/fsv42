@@ -3,7 +3,7 @@
 
   angular
     .module('FSV42App')
-    .controller('IssueReportController', function($scope, AuthService, IssueReport, UpdateService, Group){
+    .controller('IssueReportController', function($scope, AuthService, IssueReport, UpdateService, Group, $http){
 
 
       $scope.issueType = ['Download an update', 'Install an update', 'Other: See comments for details']; //TODO: programtically save and retrieve known issue types
@@ -44,7 +44,10 @@
                         .create({issue: issue, createdAt:date, comments: comments, employee: member.username, email: member.email, group:group[0].title, updateLink: update.link})
                         .$promise
                         .then(function(report){
-                          console.log(report);
+
+                          var issue = {"issue": report};
+                          $http.post('api/IssueReports/issueTracker', issue);
+                          console.log(issue);
                           console.log("Your issue has been emailed to the support team.");
                           $scope.msgStatus = 1;
                           $scope.confirmation = "Your message has been sent."

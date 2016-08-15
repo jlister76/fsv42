@@ -16,7 +16,7 @@
       {
         "type": "smtp",
         "host": "smtp-mail.outlook.com",
-        "secure": true,
+        "secure": false,
         "port": 25,
         "tls": {
           "rejectUnauthorized": true

@@ -1,4 +1,5 @@
 var app = require('../../server/server');
+var path = require('path');
 module.exports = function(IssueReport) {
 
     /*app.models.Email.send({
@@ -12,16 +13,18 @@ module.exports = function(IssueReport) {
       cb(err);
     });*/
 
-  IssueReport.sendMail = function(cb){
+  IssueReport.sendMail = function(report, cb){
+    var issue = report;
+    var html = issue;
+    console.log(issue);
     IssueReport.app.models.Email.send({
-      to: ['j.lister@heathus.com'],
+      to: ['j.lister@heathus.com', 'jlister76@gmail.com'],
       from: 'noreply@gmail.com',
       subject: 'Issue Tracker- Field Smart Update',
-      text: '',
-      html: '<em>This is a test message.</em>'
+      template: path.resolve(__dirname, '../../server/views/issue.ejs')
     }, function(err, mail) {
       console.log('email sent!');
-      if (err) return err;
+      if (err) console.log(err);
     });
   };
 
@@ -37,10 +40,15 @@ module.exports = function(IssueReport) {
     next();
   });
 
-IssueReport.remoteMethod('submitIssue',
-  {
-    accepts: {arg: 'issue', type: 'Array'},
-    http: {path: '/sendReminder', verb: 'post'}
+  IssueReport.submitIssue = function(report,next){
+    IssueReport.sendMail(report);
+    console.log("Sent!");
+    next();
+  };
+
+  IssueReport.remoteMethod('submitIssue', {
+    accepts: {arg: 'issue', type: 'Object'},
+    http: {path: '/issueTracker', verb: 'post'}
   }
 )
 
