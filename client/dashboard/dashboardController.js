@@ -39,7 +39,7 @@
                   var state;
 
                   if (region[0].states.length <= 1) { //WEST
-                    console.log(region[0].states.length);
+
                     $scope.states = null;
                     State
                       .find({filter: {include: ['groups', 'confirmations', 'employees'], where: {_id: region[0].states._id}}})//TEXAS
@@ -75,7 +75,7 @@
                               groups.push(g);
                               groupLabels.push(g.title);
                             });
-                            console.log(state[0]._id)
+
                             Group.find({
                               filter: {
                                 include: ['employees', 'confirmations'],
@@ -220,7 +220,7 @@
                               })
                                 .$promise
                                 .then(function (groups) {
-                                  console.log(groups);
+
                                   var groupEmployees = [];
 
                                   function compare(a, b) {
@@ -258,7 +258,7 @@
                                     });
 
                                   });
-                                  console.log(employeesWithConfirmations);
+
                                   var employeesWithoutConfirmations = _.differenceBy(eList.sort(compare), employeesWithConfirmations.sort(compare), '_id');
                                   $scope.Unconfirmed = _.uniq(employeesWithoutConfirmations);
 
@@ -323,7 +323,7 @@
                     .find({filter: {include: ['confirmations','employees'], where: {_id: employee[0].groupId}}})
                     .$promise
                     .then(function (group) {
-                      console.log(group);
+
                       $scope.group = group[0].title;
 
                       UpdateService
@@ -411,11 +411,11 @@
               UpdateService
                 .getCurrentReleaseDate()
                 .then(function(currentReleaseDate){
-                  console.log(currentReleaseDate);
+
                   DashboardService
                     .getCurrentConfirmation()
                     .then(function(maxConfDate){
-                      console.log(maxConfDate);
+
                       if (maxConfDate == null){
                         $scope.msgShow = 2;
 
@@ -423,7 +423,7 @@
                         $scope.msgShow = 1;
                         $scope.statusCurrent = moment(currentReleaseDate).isSame(maxConfDate);
                       }
-                      console.log($scope.statusCurrent);
+
 
                       if ($scope.statusCurrent){
 
@@ -440,7 +440,7 @@
                         DownloadService
                           .getCurrentDownload()
                           .then(function(currentDownload){
-                            console.log(currentDownload);
+
                             var mostRecentDownload = {
                               id: currentDownload._id,
                               state: currentDownload.state,
