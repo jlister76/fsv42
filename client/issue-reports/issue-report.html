@@ -5,11 +5,17 @@
     <div  flex-xs="100" layout="column" layout-align="center center" class="md-padding" id="issue-form-background">
       <div ng-if="msgStatus == 0">
         <form layout="column" name="reportIssueForm"
-              ng-submit="report(update.issue,issue.comments)">
+              ng-submit="report(update.issue,issue.comments, update.os)">
           <md-input-container style="margin: 1rem 0;">
             <label>I am unable to...</label>
             <md-select ng-model="update.issue" required>
               <md-option ng-repeat="issue in issueType" value="{{issue}}">{{issue}}</md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container>
+            <label>Operating System</label>
+            <md-select ng-model="update.os" required aria-label="issue report" id="os">
+              <md-option ng-repeat="os in OS" value="{{os}}">{{os}}</md-option>
             </md-select>
           </md-input-container>
           <div layout layout-align="center">
