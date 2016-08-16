@@ -77,11 +77,17 @@
 
                       <div flex ng-if="msgStatus == 0">
                         <form flex layout="column" name="reportIssueForm"
-                              ng-submit="report(update.issue,issue.comments)">
+                              ng-submit="report(update.issue,issue.comments, update.os)">
                           <md-input-container>
-                            <label>I am unable to...</label>
+                            <label>Select Reason</label>
                             <md-select ng-model="update.issue" required aria-label="issue report" id="select-field">
                               <md-option ng-repeat="issue in issueType" value="{{issue}}">{{issue}}</md-option>
+                            </md-select>
+                          </md-input-container>
+                          <md-input-container>
+                            <label>Operating System</label>
+                            <md-select ng-model="update.os" required aria-label="issue report" id="os">
+                              <md-option ng-repeat="os in OS" value="{{os}}">{{os}}</md-option>
                             </md-select>
                           </md-input-container>
                           <div layout layout-align="center">

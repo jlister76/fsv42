@@ -1,34 +1,37 @@
 var app = require('../../server/server');
-var path = require('path');
+
 module.exports = function(IssueReport) {
 
-    /*app.models.Email.send({
-      to: 'foo@bar.com',
-      from: 'you@gmail.com',
-      subject: 'my subject',
-      text: 'my text',
-      html: 'my <em>html</em>'
-    }, function(err, mail) {
-      console.log('email sent!');
-      cb(err);
-    });*/
 
   IssueReport.sendMail = function(report, cb){
-    var issue = report;
-    var html = issue;
-    console.log(issue);
+   var employee = report.employee;
+   var email = report.email;
+   var group = report.group;
+   var issue = report.issue;
+   var comments = report.comments;
+   var link = report.updateLink;
+    var os = report.os;
+
+    console.log("Sending email...");
     IssueReport.app.models.Email.send({
       to: ['j.lister@heathus.com', 'jlister76@gmail.com'],
       from: 'noreply@gmail.com',
       subject: 'Issue Tracker- Field Smart Update',
-      template: path.resolve(__dirname, '../../server/views/issue.ejs')
+      html: '<p>Employee: '+employee+'</p>' +
+            '<p>Email: '+email +'</p>' +
+            '<p>Group: '+group +'</p>' +
+            '<p>O/S: '+os +'</p>' +
+            '<p>Update Link: '+ link+'</p>' +
+            '<p>Issue: '+issue +'</p>' +
+            '<p>Comments: '+comments +'</p>'
+
     }, function(err, mail) {
       console.log('email sent!');
       if (err) console.log(err);
     });
   };
 
-  IssueReport.observe('after save', function(ctx, next) {
+  /*IssueReport.observe('after save', function(ctx, next) {
     if (ctx.instance) {
       IssueReport.sendMail();
       console.log('Saved %s#%s', ctx.Model.modelName, ctx.instance.id);
@@ -38,11 +41,11 @@ module.exports = function(IssueReport) {
         ctx.where);
     }
     next();
-  });
+  });*/
 
   IssueReport.submitIssue = function(report,next){
-    IssueReport.sendMail(report);
-    console.log("Sent!");
+  console.log(report.issue);
+   IssueReport.sendMail(report);
     next();
   };
 

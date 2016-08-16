@@ -22,10 +22,21 @@
           "rejectUnauthorized": true
         },
         "auth": {
-          "user": "",
-          "pass": ""
+          "user": "jlister469@outlook.com",
+          "pass": "19seventysix"
         }
       }
     ]
+  },
+  "mongodb": {
+    "host": "ds147525-a0.mlab.com",
+    "port": 47525,
+    "url": "",
+    "database": "fsv42updates",
+    "password": "19seventysix",
+    "name": "mongodb",
+    "user": "DBAdmin",
+    "connector": "mongodb"
   }
+
 }
