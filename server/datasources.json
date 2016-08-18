@@ -15,11 +15,11 @@
     "transports": [
       {
         "type": "smtp",
-        "host": "smtp-mail.outlook.com",
+        "host": "smtp.office365.com",
         "secure": false,
-        "port": 25,
+        "port": 587,
         "tls": {
-          "rejectUnauthorized": true
+          "ciphers": "SSLv3"
         },
         "auth": {
           "user": "",
@@ -27,6 +27,17 @@
         }
       }
     ]
+  },
+  "mongodb": {
+    "host": "",
+    "port": 47525,
+    "url": "",
+    "database": "",
+    "password": "",
+    "name": "mongodb",
+    "user": "",
+    "connector": "mongodb"
   }
+
 
 }

@@ -25,15 +25,7 @@
               Member.getCurrent()
                 .$promise
                 .then(function (user){
-                  localStorage.setItem("email", user.email);
-                  localStorage.setItem("employee_number", user.employee_number);
-                  localStorage.setItem("username", user.username);
-                  localStorage.setItem("fname", user.fname);
-                  localStorage.setItem("lname", user.lname);
-                  localStorage.setItem("stateId", user.stateId);
-                  localStorage.setItem("group", user.groupId);
                   //$state.go('dashboard');
-
                 });
             })
           .catch(function(e){

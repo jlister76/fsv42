@@ -15,7 +15,7 @@ module.exports = function(IssueReport) {
     console.log("Sending email...");
     IssueReport.app.models.Email.send({
       to: ['j.lister@heathus.com', 'jlister76@gmail.com'],
-      from: 'noreply@gmail.com',
+      from: 'j.lister@heathus.com',
       subject: 'Issue Tracker- Field Smart Update',
       html: '<p>Employee: '+employee+'</p>' +
             '<p>Email: '+email +'</p>' +
