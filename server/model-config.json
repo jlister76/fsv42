@@ -56,7 +56,8 @@
     "dataSource": "mongodb"
   },
   "Group": {
-    "dataSource": "mongodb"
+    "dataSource": "mongodb",
+    "public": true
   },
   "Member": {
     "dataSource": "mongodb"

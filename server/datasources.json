@@ -22,20 +22,20 @@
           "ciphers": "SSLv3"
         },
         "auth": {
-          "user": "",
-          "pass": ""
+          "user": "j.lister@heathus.com",
+          "pass": "List547*"
         }
       }
     ]
   },
   "mongodb": {
-    "host": "",
+    "host": "ds147525-a0.mlab.com",
     "port": 47525,
     "url": "",
-    "database": "",
-    "password": "",
+    "database": "fsv42updates",
+    "password": "19seventysix",
     "name": "mongodb",
-    "user": "",
+    "user": "DBAdmin",
     "connector": "mongodb"
   }
 
