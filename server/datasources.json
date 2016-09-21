@@ -8,35 +8,6 @@
     "name": "storage",
     "connector": "loopback-component-storage",
     "provider": "amazon"
-  },
-  "emailDs": {
-    "name": "emailDs",
-    "connector": "mail",
-    "transports": [
-      {
-        "type": "smtp",
-        "host": "smtp.office365.com",
-        "secure": false,
-        "port": 587,
-        "tls": {
-          "ciphers": "SSLv3"
-        },
-        "auth": {
-          "user": "j.lister@heathus.com",
-          "pass": "List547*"
-        }
-      }
-    ]
-  },
-  "mongodb": {
-    "host": "ds147525-a0.mlab.com",
-    "port": 47525,
-    "url": "",
-    "database": "fsv42updates",
-    "password": "19seventysix",
-    "name": "mongodb",
-    "user": "DBAdmin",
-    "connector": "mongodb"
   }
 
 

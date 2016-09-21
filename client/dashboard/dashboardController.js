@@ -34,7 +34,7 @@
                 })
                 .$promise
                 .then(function (region) {
-
+                  console.log(region);
 
                   var state;
 
